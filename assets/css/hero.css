@@ -1,0 +1,75 @@
+.navbar-nav li a {
+    color: #777;
+}
+.navbar-pad-left{
+    padding-left: 15px;
+}
+
+.badge-green {
+    padding:8px;
+    background-color: #47a447;
+    border-radius: 13px;
+    min-width: 28px;
+    margin-top: -4px;
+}
+
+.header-image{
+    padding-bottom: 15px;
+}
+.hr-light-blue{
+    border-top: #447294;
+    background: #447294;
+}
+.hr-dark-blue{
+    background: #0F1621;
+}
+hr {
+    background: #447294;
+    width: 100%; 
+    height: 1px;
+}
+.navbar-nav li a.navbar-brand{
+    border: none;
+    background: none;
+    paddding: 0;
+    margin: 0;
+}
+
+.navbar-nav li a {
+border-bottom: 1px solid #447294;
+padding: 10px;
+color: #fff;
+}
+
+.navbar-nav li a:hover{
+    background: none;
+}
+
+.navbar-nav li.active a, .navbar-nav li.active a .fa{
+    background: none;
+    color: #447294;
+}
+
+.navbar-nav .navbar-pad-left a.fa{
+    color: #fff;
+}
+
+.navbar-nav .navbar-pad-left a{
+    text-transform: uppercase;
+    color: #000;
+    background: #F2F2F2;
+}
+
+.navbar-nav li a .fa, .navbar li a .glyphicon {
+    font-size: 18px;
+    color: #fff;
+    margin: 0 16px;
+}
+
+.side-nav{
+    background-color: #0F1621;
+}
+
+#create-quest-btn{
+    
+}
