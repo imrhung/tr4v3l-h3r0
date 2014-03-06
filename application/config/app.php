@@ -7,11 +7,11 @@
  **/
 
 // Default App Title
-$config['app_title'] = 'Travel Hero';
+$config['app_title'] = 'Hero for Zero';
 
 // Default "From" for Email library
-$config['email_from_name'] = 'Travel Hero - Do not reply';
-$config['email_from_email'] = 'do_not_reply@myapp.com';
+$config['email_from_name'] = 'Hero for Zero - Do not reply';
+$config['email_from_email'] = 'do_not_reply@heroforzero.org';
 
 // Default blocked domains for Email Validation
 $config['blocked_domains'] = array(

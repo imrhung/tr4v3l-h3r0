@@ -31,10 +31,7 @@ class Quest_Model extends CI_Model {
 
     public function getQuestData($currentPage, $pageSize) {
         try {
-			$currentPage = (int) $currentPage;
-			$pageSize = (int) $pageSize;
-			
-            $sql = 'CALL sp_paginationquest(?,?)';
+            $sql = 'CALL sp_paginationquest(:currentPage, :pageSize)';
             $result = $this->db->query($sql, array($currentPage, $pageSize));
             return $result->result();
         } catch (PDOException $e) {

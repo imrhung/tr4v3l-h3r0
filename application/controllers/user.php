@@ -105,5 +105,24 @@ class User extends App_Controller {
     public function loginfacebook(){
         $this->facebook_ion_auth->login();
     }
+    
+    public function sendemail(){
+        $this->load->helper("email");
+        echo send_email("imrhung@yahoo.com", "Test mail", "I love you!!!");
+        echo "OK";
+    }
+    public function sendemail2(){
+        $this->load->library('email');
+
+$this->email->from('imrhung@yahoo.com', 'Nguyen Vawn Hung');
+$this->email->to('nguyenvanhungbkit@gmail.com'); 
+
+$this->email->subject('Email Test');
+$this->email->message('Testing the email class.');	
+
+$this->email->send();
+
+echo $this->email->print_debugger();
+    }
 
 }

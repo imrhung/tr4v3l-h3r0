@@ -213,4 +213,35 @@ class App_Controller extends CI_Controller
         // Renders the main layout
         $this->template->build($page, $data);
     }
+    
+    /**
+     * Renders admin page
+     */
+    public function render_page_admin($page, $data = array())
+    {
+        // Renders the whole page
+        $this->template
+            ->set_metadata('keywords', $this->page_meta_keywords)
+            ->set_metadata('description', $this->page_meta_description)
+            ->set_metadata('canonical', site_url($this->uri->uri_string()), 'link')
+            ->title($this->page_title, $this->site_title);
+
+        $this->set_styles();
+        $this->set_javascript();
+        $this->prepare_base_javascript();
+        
+        // Set global template vars
+        $this->template
+            ->set('current_section', $this->current_section)
+            ->set('user_logged_in', $this->ion_auth->logged_in())
+            ->set('body_class', implode(' ', $this->body_class));
+        
+        $this->template
+            ->set_partial('flash_messages', 'partials/flash_messages')
+            ->set_partial('header', 'partials/header_admin')
+            ->set_partial('footer', 'partials/footer');
+        
+        // Renders the main layout
+        $this->template->build($page, $data);
+    }
 }
