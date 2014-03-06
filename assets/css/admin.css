@@ -39,6 +39,10 @@ root {
   src: local('Lato Regular'), local('Lato-Regular'), url(http://themes.googleusercontent.com/static/fonts/lato/v7/9k-RPmcnxYEPm8CNFsH2gg.woff) format('woff');
 }
 
+.left-border{
+    border-left: solid 1px #447294;
+}
+
 
 
 

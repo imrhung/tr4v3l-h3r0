@@ -8,7 +8,7 @@
                     <br>
                     <hr class="hr-light-blue">
                 <div class="navbar-pad-left <?php echo ($current_section == 'quest') ? 'active' : '' ?>">
-                    <a href="<?php echo site_url('admin/questform') ?>"><img id="create-quest-btn"src="<?php echo base_url() ?>assets/img/create_quest_btn.png" alt="Create Quest"></a>
+                    <a href="<?php echo site_url('admin/create_quest') ?>"><img id="create-quest-btn"src="<?php echo base_url() ?>assets/img/create_quest_btn.png" alt="Create Quest"></a>
                 </div>       
                 <li class="<?php echo ($current_section == 'home') ? 'active' : '' ?>"><a href="<?php echo site_url('admin/index') ?>"><i class="fa fa-home"></i>  Home</a></li>
                 
@@ -28,8 +28,4 @@
 </div>
 <div id="watermark">
     
-</div>
-<div class="alert alert-danger alert-dismissable top-alert">
-  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-  <strong>Hi Super Admin!</strong> You are loged in as super admin, this means you're top dogs. So please be aware what you do affect others below you.
 </div>
