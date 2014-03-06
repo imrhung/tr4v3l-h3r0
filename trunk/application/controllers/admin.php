@@ -14,6 +14,25 @@ class Admin extends App_Controller {
         $this->render_page_admin('admin/index');
     }
     
+    public function edit_quiz($id = NULl){
+        if ($id == NULL) {
+            redirect("admin/index");
+        } else {
+            $this->current_section = "edit_quiz";
+            $this->assets_css[] = "admin.css";
+            $data = array(
+                'quizId' => $id,
+            );
+            $this->render_page_admin('admin/edit_quiz', $data);
+        }
+    }
+    
+    public function create_quest(){
+        $this->current_section = 'create_quest';
+        $this->assets_css[] = "admin.css";
+        $this->render_page_admin('admin/create_quest');
+    }
+    
     public function questform(){
         $this->current_section = 'quest';
         $this->assets_js[] = "core.js";
