@@ -33,6 +33,14 @@ class Admin extends App_Controller {
         $this->render_page_admin('admin/create_quest');
     }
     
+    public function login(){
+        $this->load->view('admin/login');
+    }
+    
+    public function signup(){
+        $this->load->view('admin/signup');
+    }
+    
     public function questform(){
         $this->current_section = 'quest';
         $this->assets_js[] = "core.js";

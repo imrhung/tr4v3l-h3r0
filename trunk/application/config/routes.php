@@ -38,10 +38,11 @@
 |
 */
 
-$route['default_controller'] = "home";
+$route['default_controller'] = "admin";
 $route['404_override'] = '';
 
-$route['login'] = 'user/login';
+$route['login'] = 'admin/login';
+$route['signup'] = 'admin/signup';
 $route['logout'] = 'user/logout';
 $route['forgot-password'] = 'user/forgot_password';
 $route['my-account'] = 'user/account';
