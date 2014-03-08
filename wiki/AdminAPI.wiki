@@ -1,0 +1,218 @@
+=Get activity list=
+Order by newest first. 
+Request: POST to Link:
+
+params: pageSize (pageSize == 0 will return full list), pageNumber.
+
+
+Response:
+{{{
+{
+"code": 1,
+"message": "Success",
+"info": 
+
+}
+}}}
+
+=Approve/Deny activity=
+
+Request: POST to Link:
+
+Params: id, state (0:not set yet, 1: approved, 2: denied)
+
+
+Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "state": 1
+  }
+}
+}}}
+
+
+=Update Point Value=
+
+Request: POST to link:
+
+Params: id, point
+
+Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "point_value": 100
+  }
+}
+}}}
+
+=Get donation list=
+Order by newest first. 
+
+Request: POST to Link:
+
+params: pageSize (pageSize == 0 will return full list), pageNumber (start from 0).
+
+Response:
+
+
+=Update donation cost=
+
+Request: POST to link:
+
+Params: id, cost
+
+Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "cost": 100
+  }
+}
+}}}
+
+
+=Approve/Deny donation=
+
+Request: POST to Link:
+
+Params: id, state (0:not set yet, 1: approved, 2: denied)
+
+
+Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "state": 1
+  }
+}
+}}}
+
+
+=Get Quiz list=
+Order by newest first. 
+
+Request: POST to Link:
+
+params: pageSize (pageSize == 0 will return full list), pageNumber.
+
+
+Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "quiz": [
+      {
+        "qId": 1,
+        "categoryId": 1,
+        "partnerId": 2,
+        "content": "abcxyz",
+        "bonusPoint": 100,
+        "connectChoiceId": 2,
+        "createDate": 1002,
+        "correctChoiceId": 1,
+        "sharingInfo": "abcxyz",
+        "learnMoreUrl": "http://abcxyz",
+        "imageUrl": "http://abcxyz",
+        "isApproved": 1,
+        "categoryName": "Teaching",
+        "pName": "Partner's Name",
+        "packetId": 2,
+        "packetName": "Da Nang",
+        "approvedDate": "2014/04/02",
+        "publishedDate": "2014/04/03"
+      },
+      {
+        "qId": 1,
+        "categoryId": 1,
+        "partnerId": 2,
+        "content": "abcxyz",
+        "bonusPoint": 100,
+        "connectChoiceId": 2,
+        "createDate": 1002,
+        "correctChoiceId": 1,
+        "sharingInfo": "abcxyz",
+        "learnMoreUrl": "http://abcxyz",
+        "imageUrl": "http://abcxyz",
+        "isApproved": 1,
+        "categoryName": "Teaching",
+        "pName": "Partner's Name",
+        "packetId": 2,
+        "packetName": "Da Nang",
+        "approvedDate": "2014/04/02",
+        "publishedDate": "2014/04/03"
+      }
+    ]
+  }
+}
+}}}
+
+
+=Edit Quiz=
+
+Request: 
+
+
+Response:
+
+
+=Approve/Deny quiz=
+
+Request: 
+
+
+Response:
+
+
+=Delete quiz=
+
+Request: 
+
+
+Response:
+
+
+=Get Packet List=
+
+Request: 
+
+
+Response:
+
+
+=Add packet=
+
+Request: 
+
+
+Response:
+
+
+=Get Quest Category=
+
+Request: 
+
+
+Response:
+
+
+=Add Quest Category=
+
+Request: 
+
+
+Response:
+
+
+
