@@ -17,19 +17,19 @@ calendar (in format YYYY/MM/DD).
 
 Response in json file.
 if created successful:
-
+{{{
 {
   "code": 1,
   "message": "Success",
 }
-
+}}}
 or error:
-
+{{{
 {
   "code": 0,
   "message": "Fail",
 }
-
+}}}
 
 
 
@@ -42,19 +42,19 @@ title, description.
 
 Response:
 Success:
-
+{{{
 {
   "code": 1,
   "message": "Success",
 }
-
+}}}
 or error:
-
+{{{
 {
   "code": 0,
   "message": "Fail",
 }
-
+}}}
 
 
 =Create Quiz=
@@ -68,15 +68,16 @@ category (is the the id of category), question, answer_a, answer_b, answer_c, an
 
 Response:
 Success:
-
+{{{
 {
   "code": 1,
   "message": "Success",
 }
-
+}}}
 or error:
-
+{{{
 {
   "code": 0,
   "message": "Fail",
 }
+}}}
