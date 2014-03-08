@@ -1,0 +1,73 @@
+=Create Activity=
+POST with params: 
+title,
+description,
+check_facebook (it's checkbox, =1 is yes.),
+facebook_share (test to share facebook),
+check_newsletter (=1 is yes.),
+newsletter_link,
+check_facebook_page (=1 is yes.),
+facebook_page,
+check_calendar (=1 is yes),
+calendar (in format YYYY/MM/DD).
+
+Response in json file.
+if created successful:
+
+{
+  "code": 1,
+  "message": "Success",
+}
+
+or error:
+
+{
+  "code": 0,
+  "message": "Fail",
+}
+
+
+
+
+=Create Donation=
+POST with params:
+title, description.
+
+Response:
+Success:
+
+{
+  "code": 1,
+  "message": "Success",
+}
+
+or error:
+
+{
+  "code": 0,
+  "message": "Fail",
+}
+
+
+
+=Create Quiz=
+At this time, we will just create one quiz at a time.
+POST with params:
+
+category (is the the id of category), question, answer_a, answer_b, answer_c, andwer_d, correct_answer (will be a/b/c/d), sharing, link.
+
+Response:
+Success:
+
+{
+  "code": 1,
+  "message": "Success",
+}
+
+or error:
+
+{
+  "code": 0,
+  "message": "Fail",
+}
+
