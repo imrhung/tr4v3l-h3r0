@@ -161,26 +161,108 @@ Response:
 
 =Edit Quiz=
 
-Request: 
+Request: POST to Link:
 
+Params: category (is the the id of category), question, answer_a, answer_b, answer_c, answer_d, correct_answer (will be a/b/c/d), sharing, link.
 
 Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "quiz": {
+      "qId": 1,
+      "categoryId": 1,
+      "partnerId": 2,
+      "content": "abcxyz",
+      "bonusPoint": 100,
+      "connectChoiceId": 2,
+      "createDate": 1002,
+      "correctChoiceId": 1,
+      "sharingInfo": "abcxyz",
+      "learnMoreUrl": "http://abcxyz",
+      "imageUrl": "http://abcxyz",
+      "isApproved": 1,
+      "categoryName": "Teaching",
+      "pName": "Partner's Name",
+      "packetId": 2,
+      "packetName": "Da Nang",
+      "approvedDate": "2014/04/02",
+      "publishedDate": "2014/04/03"
+    }
+  }
+}
+}}}
 
+=Update quiz points=
+
+Request: POST to link:
+
+Params: id, point
+
+Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "point": 100
+  }
+}
+}}}
+
+
+=Update Quiz Packet=
+
+Request: POST to link:
+
+Params: id, packet_id
+
+Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "packet_id": 1
+  }
+}
+}}}
 
 =Approve/Deny quiz=
 
-Request: 
+Request: POST to Link:
+
+Params: id, state (0:not set yet, 1: approved, 2: denied)
 
 
 Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "state": 1
+  }
+}
+}}}
 
 
 =Delete quiz=
 
-Request: 
+Request: POST to Link:
+
+Params: id
 
 
 Response:
+{{{
+{
+  "code": 1,
+  "message": "Success"
+}
+}}}
 
 
 =Get Packet List=
@@ -213,6 +295,4 @@ Request:
 
 
 Response:
-
-
 
