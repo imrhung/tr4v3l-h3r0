@@ -6,7 +6,7 @@
         <h1>Create Activity</h1>
         <p>To Create an Activity please fill out the information below.</p>
 
-        <form class="form-horizontal">
+        <form class="form-horizontal" onSubmit="return createActivity();">
             <fieldset>
                 
                 <!-- Form Name -->
@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="description">Description</label>  
                     <div class="col-md-4">
-                        <input id="description" name="description" type="text" placeholder="Limits to 140 characters" class="form-control input-md">
+                        <input id="description" name="description" type="text" placeholder="Limits to 140 characters" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                     <label class="col-md-4 control-label" for="check_facebook"></label>
                     <div class="col-md-4">
                         <div class="checkbox">
-                            <label for="check_facebook-0">
+                            <label for="check_facebook">
                                 <input type="checkbox" name="check_facebook" id="check_facebook" value="1">
                                 Share on their Facebook
                             </label>
@@ -61,7 +61,7 @@
                     <label class="col-md-4 control-label" for="check_newsletter"></label>
                     <div class="col-md-4">
                         <div class="checkbox">
-                            <label for="check_newsletter-0">
+                            <label for="check_newsletter">
                                 <input type="checkbox" name="check_newsletter" id="check_newsletter" value="1">
                                 Sign up for Your news letter
                             </label>
@@ -83,7 +83,7 @@
                     <label class="col-md-4 control-label" for="check_facebook_page"></label>
                     <div class="col-md-4">
                         <div class="checkbox">
-                            <label for="check_facebook_page-0">
+                            <label for="check_facebook_page">
                                 <input type="checkbox" name="check_facebook_page" id="check_facebook_page" value="1">
                                 Like our facebook page
                             </label>
@@ -105,7 +105,7 @@
                     <label class="col-md-4 control-label" for="check_calendar"></label>
                     <div class="col-md-4">
                         <div class="checkbox">
-                            <label for="check_calendar-0">
+                            <label for="check_calendar">
                                 <input type="checkbox" name="check_calendar" id="check_calendar" value="1">
                                 Add to User's calendar
                             </label>
@@ -116,9 +116,11 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="calendar"></label>  
-                    <div class="col-md-4">
-                        <input id="calendar" name="calendar" type="text" placeholder="Please select a date" class="form-control input-md">
-
+                    <div class="col-md-4 date input-group" id="datetimepicker">
+                        <input id="calendar" name="calendar" type="text" placeholder="Please select a date" class="form-control" data-format="YYYY/MM/DD">
+                        <span class="input-group-addon"><span data-icon-element="" class="fa fa-calendar">
+                                </span>
+                          </span>
                     </div>
                 </div>
 
@@ -127,6 +129,7 @@
                     <label class="col-md-4 control-label" for="submit"></label>
                     <div class="col-md-4">
                         <button id="submit" name="submit" class="btn btn-primary">Submit Activity</button>
+                        <div id="alert_placeholder"></div>
                     </div>
                 </div>
 

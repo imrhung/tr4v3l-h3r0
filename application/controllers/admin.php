@@ -70,10 +70,11 @@ class Admin extends App_Controller {
      * Test API
      */
     public  function testapi_s(){
+        //$title= $this->input->post("title");
         $data = array(
             'code' => 1,
             'message' => "Quest Success",
-            'info' => "Awesome",
+            'info' => $_REQUEST,
         );
         echo json_encode($data);
     }

@@ -76,7 +76,6 @@ class App_Controller extends CI_Controller
         // Initialize array with assets we use site wide
         $this->assets_css = array(
             'bootstrap.min.css',
-            'app.css',
             'bootstrap-responsive.min.css',
             'font-awesome.min.css',
             'sb-admin.css',
@@ -84,7 +83,8 @@ class App_Controller extends CI_Controller
             );
         $this->assets_js = array(
             'jquery-1.9.1.min.js',
-            'bootstrap.min.js'
+            'bootstrap.min.js',
+            'core.js',
             );
 
         $this->template->set('is_frontend', true);
