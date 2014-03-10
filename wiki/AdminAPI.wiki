@@ -158,6 +158,41 @@ Response:
 }
 }}}
 
+=Get one Quiz=
+
+Request: POST to Link:
+
+Params: id
+
+Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "quiz": {
+      "qId": 1,
+      "categoryId": 1,
+      "partnerId": 2,
+      "content": "abcxyz",
+      "bonusPoint": 100,
+      "connectChoiceId": 2,
+      "createDate": 1002,
+      "correctChoiceId": 1,
+      "sharingInfo": "abcxyz",
+      "learnMoreUrl": "http://abcxyz",
+      "imageUrl": "http://abcxyz",
+      "isApproved": 1,
+      "categoryName": "Teaching",
+      "pName": "Partner's Name",
+      "packetId": 2,
+      "packetName": "Da Nang",
+      "approvedDate": "2014/04/02",
+      "publishedDate": "2014/04/03"
+    }
+  }
+}
+}}}
 
 =Edit Quiz=
 
@@ -295,4 +330,3 @@ Request:
 
 
 Response:
-
