@@ -131,10 +131,14 @@ Response:
         "PacketName": "Da Nang",
         "ApprovedDate": "2014/04/02",
         "PublishedDate": "2014/04/03",
-        "AnswerA": 2,
-        "AnswerB": 3,
-        "AnswerC": 4,
-        "AnswerD": 5
+        "AnswerA": "1234",
+        "AnswerB": "1234",
+        "AnswerC": "1234",
+        "AnswerD": "1234",
+        "AnswerAId": 2,
+        "AnswerBId": 3,
+        "AnswerCId": 4,
+        "AnswerDId": 5
       },
       {
         "Id": 1,
@@ -154,10 +158,14 @@ Response:
         "PacketName": "Da Nang",
         "ApprovedDate": "2014/04/02",
         "PublishedDate": "2014/04/03",
-        "AnswerA": 2,
-        "AnswerB": 3,
-        "AnswerC": 4,
-        "AnswerD": 5
+        "AnswerA": "1234",
+        "AnswerB": "1234",
+        "AnswerC": "1234",
+        "AnswerD": "1234",
+        "AnswerAId": 2,
+        "AnswerBId": 3,
+        "AnswerCId": 4,
+        "AnswerDId": 5
       }
     ]
   }
@@ -194,10 +202,14 @@ Response:
         "PacketName": "Da Nang",
         "ApprovedDate": "2014/04/02",
         "PublishedDate": "2014/04/03",
-        "AnswerA": 2,
-        "AnswerB": 3,
-        "AnswerC": 4,
-        "AnswerD": 5
+        "AnswerA": "1234",
+        "AnswerB": "1234",
+        "AnswerC": "1234",
+        "AnswerD": "1234",
+        "AnswerAId": 2,
+        "AnswerBId": 3,
+        "AnswerCId": 4,
+        "AnswerDId": 5
     }
   }
 }
@@ -233,10 +245,14 @@ Response:
         "PacketName": "Da Nang",
         "ApprovedDate": "2014/04/02",
         "PublishedDate": "2014/04/03",
-        "AnswerA": 2,
-        "AnswerB": 3,
-        "AnswerC": 4,
-        "AnswerD": 5
+        "AnswerA": "1234",
+        "AnswerB": "1234",
+        "AnswerC": "1234",
+        "AnswerD": "1234",
+        "AnswerAId": 2,
+        "AnswerBId": 3,
+        "AnswerCId": 4,
+        "AnswerDId": 5
     }
   }
 }
