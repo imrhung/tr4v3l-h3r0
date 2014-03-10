@@ -40,7 +40,7 @@
                     <div class="col-md-4">
                         <div class="checkbox">
                             <label for="check_facebook-0">
-                                <input type="checkbox" name="check_facebook" id="check_facebook-0" value="1">
+                                <input type="checkbox" name="check_facebook" id="check_facebook" value="1">
                                 Share on their Facebook
                             </label>
                         </div>
@@ -62,7 +62,7 @@
                     <div class="col-md-4">
                         <div class="checkbox">
                             <label for="check_newsletter-0">
-                                <input type="checkbox" name="check_newsletter" id="check_newsletter-0" value="1">
+                                <input type="checkbox" name="check_newsletter" id="check_newsletter" value="1">
                                 Sign up for Your news letter
                             </label>
                         </div>
@@ -84,7 +84,7 @@
                     <div class="col-md-4">
                         <div class="checkbox">
                             <label for="check_facebook_page-0">
-                                <input type="checkbox" name="check_facebook_page" id="check_facebook_page-0" value="1">
+                                <input type="checkbox" name="check_facebook_page" id="check_facebook_page" value="1">
                                 Like our facebook page
                             </label>
                         </div>
@@ -106,7 +106,7 @@
                     <div class="col-md-4">
                         <div class="checkbox">
                             <label for="check_calendar-0">
-                                <input type="checkbox" name="check_calendar" id="check_calendar-0" value="1">
+                                <input type="checkbox" name="check_calendar" id="check_calendar" value="1">
                                 Add to User's calendar
                             </label>
                         </div>

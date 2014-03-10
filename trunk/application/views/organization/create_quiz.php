@@ -77,19 +77,19 @@
                     <label class="col-md-4 control-label" for="correct_answer">Correct Answer</label>
                     <div class="col-md-4">
                         <label class="checkbox-inline" for="correct_answer-0">
-                            <input type="checkbox" name="correct_answer" id="correct_answer-0" value="1">
+                            <input type="checkbox" name="correct_answer" id="correct_answer-0" value="a">
                             A
                         </label>
                         <label class="checkbox-inline" for="correct_answer-1">
-                            <input type="checkbox" name="correct_answer" id="correct_answer-1" value="2">
+                            <input type="checkbox" name="correct_answer" id="correct_answer-1" value="b">
                             B
                         </label>
                         <label class="checkbox-inline" for="correct_answer-2">
-                            <input type="checkbox" name="correct_answer" id="correct_answer-2" value="3">
+                            <input type="checkbox" name="correct_answer" id="correct_answer-2" value="c">
                             C
                         </label>
                         <label class="checkbox-inline" for="correct_answer-3">
-                            <input type="checkbox" name="correct_answer" id="correct_answer-3" value="4">
+                            <input type="checkbox" name="correct_answer" id="correct_answer-3" value="d">
                             D
                         </label>
                     </div>

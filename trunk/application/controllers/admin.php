@@ -61,4 +61,29 @@ class Admin extends App_Controller {
         $this->current_section = 'quests';
         $this->render_page_admin('admin/questlist');
     }
+    
+    public function test(){
+        $this->load->view('login/login.inc.php');
+    }
+    
+    /**
+     * Test API
+     */
+    public  function testapi_s(){
+        $data = array(
+            'code' => 1,
+            'message' => "Quest Success",
+            'info' => "Awesome",
+        );
+        echo json_encode($data);
+    }
+    
+    public  function testapi_f(){
+        $data = array(
+            'code' => 0,
+            'message' => "Quest Unsuccessful",
+            'info' => "Ehh!!!",
+        );
+        echo json_encode($data);
+    }
 }

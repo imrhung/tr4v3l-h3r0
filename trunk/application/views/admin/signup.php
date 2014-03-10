@@ -2,14 +2,17 @@
 <html lang='en'>
     <head>
         <meta name="viewport" content='width=device-width, initial-scale=1'>
-        <title>Login</title>
+        <title>Sign Up</title>
 
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/login.css" media="screen" />
+        
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/admin/signup.js"></script>
     </head>
     <body>
         <div class='content-center'>
-            
+
             <form class="form-horizontal">
                 <fieldset>
 
@@ -18,6 +21,27 @@
                         Fill out the information below to join Hero for Zero program
                     </p>
                     <br><br><br><br>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="username">Username</label>  
+                        <div class="col-md-4">
+                            <input id="username" name="username" type="text" placeholder="Your username to login later" class="form-control input-md" required="">
+
+                        </div>
+                    </div>
+
+                    <!-- Password input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="password">Password</label>
+                        <div class="col-md-4">
+                            <input id="password" name="password" type="password" placeholder="And password" class="form-control input-md" required="">
+
+                        </div>
+                    </div>
+
+
+
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="name">Organization's Name</label>  
@@ -40,7 +64,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="email">Contact Email</label>  
                         <div class="col-md-4">
-                            <input id="email" name="email" type="text" placeholder="" class="form-control input-md" required="">
+                            <input id="email" name="email" type="email" placeholder="" class="form-control input-md" required="">
 
                         </div>
                     </div>
@@ -58,7 +82,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="phone">Phone Number</label>  
                         <div class="col-md-4">
-                            <input id="phone" name="phone" type="text" placeholder="" class="form-control input-md" required="">
+                            <input id="phone" name="phone" type="tel" placeholder="" class="form-control input-md" required="">
 
                         </div>
                     </div>
@@ -67,7 +91,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="website">Website (if applicable)</label>  
                         <div class="col-md-4">
-                            <input id="website" name="website" type="text" placeholder="" class="form-control input-md">
+                            <input id="website" name="website" type="url" placeholder="" class="form-control input-md">
 
                         </div>
                     </div>
@@ -98,7 +122,8 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="submit"></label>
                         <div class="col-md-4">
-                            <button id="submit" name="submit" class="btn btn-block btn-primary">Submit Information</button>
+                            <button type="button" id="submit" name="submit" class="btn btn-block btn-primary">Submit Information</button>
+                            <div id="ack"></div>
                         </div>
                     </div>
 

@@ -6,12 +6,15 @@
 
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/login.css" media="screen" />
+        
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/admin/login.js"></script>
     </head>
     <body>
         <div class='content-center'>
             
             
-        <form class="form-horizontal">
+        <form class="form-horizontal" action =''>
             <fieldset>
                 <img src='<?php echo base_url(); ?>assets/img/sign_up_logo.png' class='img-responsive img-center' alt='Hero For Zero'>
                 <!-- Text input-->
@@ -36,8 +39,10 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="login"></label>
                     <div class="col-md-4">
-                        <button id="login" name="login" class="btn btn-block btn-primary">Sign me in</button>
+                        <button type='button' id="login" name="login" class="btn btn-block btn-primary">Sign me in</button>
+                        <div id="ack"></div>
                     </div>
+                    
                 </div>
 
                 <!-- Multiple Checkboxes (inline) -->
