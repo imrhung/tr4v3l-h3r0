@@ -17,6 +17,11 @@ class Organization extends App_Controller {
     public function create_activity(){
         $this->current_section = 'activity';
         $this->assets_css[] = 'admin.css';
+        $this->assets_css[] = 'datepicker/bootstrap-datetimepicker.min.css';
+        $this->assets_css[] = 'hero.css';
+        $this->assets_js[] = 'organization/create_activity.js';
+        $this->assets_js[] = 'datepicker/moment.js';
+        $this->assets_js[] = 'datepicker/bootstrap-datetimepicker.min.js';
         $this->render_page("organization/create_activity");
     }
     
