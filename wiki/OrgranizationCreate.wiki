@@ -4,6 +4,7 @@ Link:
 
 
 POST with params: 
+partner_id,
 title,
 description,
 check_facebook (it's checkbox, =1 is yes.),
