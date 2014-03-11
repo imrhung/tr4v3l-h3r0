@@ -1,6 +1,5 @@
 <div id="wrapper">
 
-
     <div id="page-wrapper">
 
         <h1>Create Activity</h1>

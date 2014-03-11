@@ -5,7 +5,7 @@
         <h1>Create a Quiz</h1>
         <p>To Create a Quiz please fill out the information below.</p>
 
-        <form class="form-horizontal">
+        <form id="quiz-form" class="form-horizontal" onSubmit="return createQuiz();">
             <fieldset>
 
                 <!-- Form Name -->
@@ -72,24 +72,24 @@
                     </div>
                 </div>
 
-                <!-- Multiple Checkboxes (inline) -->
+                <!-- Multiple Radios (inline) -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="correct_answer">Correct Answer</label>
-                    <div class="col-md-4">
-                        <label class="checkbox-inline" for="correct_answer-0">
-                            <input type="checkbox" name="correct_answer" id="correct_answer-0" value="a">
+                    <label class="col-md-4 control-label" for="answer">Correct Answer</label>
+                    <div class="col-md-4"> 
+                        <label class="radio-inline" for="answer-0">
+                            <input type="radio" name="answer" id="answer-0" value="0" checked="checked">
                             A
-                        </label>
-                        <label class="checkbox-inline" for="correct_answer-1">
-                            <input type="checkbox" name="correct_answer" id="correct_answer-1" value="b">
+                        </label> 
+                        <label class="radio-inline" for="answer-1">
+                            <input type="radio" name="answer" id="answer-1" value="1">
                             B
-                        </label>
-                        <label class="checkbox-inline" for="correct_answer-2">
-                            <input type="checkbox" name="correct_answer" id="correct_answer-2" value="c">
+                        </label> 
+                        <label class="radio-inline" for="answer-2">
+                            <input type="radio" name="answer" id="answer-2" value="2">
                             C
-                        </label>
-                        <label class="checkbox-inline" for="correct_answer-3">
-                            <input type="checkbox" name="correct_answer" id="correct_answer-3" value="d">
+                        </label> 
+                        <label class="radio-inline" for="answer-3">
+                            <input type="radio" name="answer" id="answer-3" value="3">
                             D
                         </label>
                     </div>
@@ -118,6 +118,7 @@
                     <label class="col-md-4 control-label" for="submit"></label>
                     <div class="col-md-4">
                         <button id="submit" name="submit" class="btn btn-primary">Submit Quiz</button>
+                        <div id="alert_placeholder"></div>
                     </div>
                 </div>
 

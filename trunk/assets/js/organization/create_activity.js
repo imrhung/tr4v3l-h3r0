@@ -1,5 +1,6 @@
 function createActivity() {
-    var baseUrl = window.location.protocol + "//" + window.location.host + "/";
+    //var baseUrl = window.location.protocol + "//" + window.location.host + "/";
+    var baseUrl = $("#base-url").attr("href");
 
     // Get the input data:
     var partner_id = 1;
@@ -15,10 +16,12 @@ function createActivity() {
     var calendar = $("#calendar").val();
     
     // Make the spining when waiting
+    // Disable submit button
+    $('#submit').attr('disabled', 'true');
     
     // Post to api
     $.post(
-            baseUrl + "admin/testapi_s",
+            baseUrl + "admin/testapi_f",
             {
                 partner_id: partner_id,
                 title: title,
@@ -48,6 +51,7 @@ function createActivity() {
                     return false;
                 } else { // Fail
                     bootstrap_alert.warning("Some error occurred, please try again!");
+                    $('#submit').removeAttr("disabled");
                 }
             },
             "json"
@@ -58,7 +62,7 @@ function createActivity() {
 }
 
 successfulAlert = function(message) {
-    var baseUrl = window.location.protocol + "//" + window.location.host + "/";
+    var baseUrl = $("#base-url").attr("href");
     $('#alert_placeholder').html('<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>' + message + '</span> <a href="'+baseUrl+'organization/create_activity">Create another Activity</a></div>')
 }
 
