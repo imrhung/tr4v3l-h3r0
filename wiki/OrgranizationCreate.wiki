@@ -39,7 +39,7 @@ or error:
 Link:
 
 POST with params:
-title, description.
+partner_id, title, description.
 
 Response:
 Success:
@@ -65,7 +65,7 @@ Link:
 At this time, we will just create one quiz at a time.
 POST with params:
 
-category (is the the id of category), question, answer_a, answer_b, answer_c, answer_d, correct_answer (will be a/b/c/d), sharing, link.
+partner_id, category (is the the id of category), question, answer_a, answer_b, answer_c, answer_d, correct_answer (will be a/b/c/d), sharing, link.
 
 Response:
 Success:
