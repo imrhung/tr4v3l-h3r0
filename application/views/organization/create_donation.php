@@ -5,7 +5,7 @@
         <h1>Create Donation</h1>
         <p>To Create a Donation please fill out the information below.</p>
 
-        <form class="form-horizontal">
+        <form class="form-horizontal" onSubmit="return createDonation();">
             <fieldset>
                 
                 <!-- Form Name -->
@@ -14,7 +14,7 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="title">Title of Donation</label>  
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <input id="title" name="title" type="text" placeholder="" class="form-control input-md" required="">
 
                     </div>
@@ -22,9 +22,9 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="descripiton">Description</label>  
-                    <div class="col-md-4">
-                        <input id="descripiton" name="descripiton" type="text" placeholder="Limits to 140 characters." class="form-control input-md">
+                    <label class="col-md-4 control-label" for="description">Description</label>  
+                    <div class="col-md-6">
+                        <input id="description" name="description" type="text" placeholder="Limits to 140 characters." class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -34,14 +34,12 @@
                     <label class="col-md-4 control-label" for="submit"></label>
                     <div class="col-md-4">
                         <button id="submit" name="submit" class="btn btn-primary">Submit Donation</button>
+                        <div id="alert_placeholder"></div>
                     </div>
                 </div>
 
             </fieldset>
         </form>
-
-
-
 
     </div><!-- /#page-wrapper -->
 </div><!-- /#wrapper -->

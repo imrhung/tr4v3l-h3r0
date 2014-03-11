@@ -18,7 +18,6 @@ class Organization extends App_Controller {
         $this->current_section = 'activity';
         $this->assets_css[] = 'admin.css';
         $this->assets_css[] = 'datepicker/bootstrap-datetimepicker.min.css';
-        $this->assets_css[] = 'hero.css';
         $this->assets_js[] = 'organization/create_activity.js';
         $this->assets_js[] = 'datepicker/moment.js';
         $this->assets_js[] = 'datepicker/bootstrap-datetimepicker.min.js';
@@ -28,12 +27,14 @@ class Organization extends App_Controller {
     public function create_donation(){
         $this->current_section = 'donation';
         $this->assets_css[] = 'admin.css';
+        $this->assets_js[] = 'organization/create_donation.js';
         $this->render_page("organization/create_donation");
     }
     
     public function create_quiz(){
         $this->current_section = 'quiz';
         $this->assets_css[] = 'admin.css';
+        $this->assets_js[] = 'organization/create_quiz.js';
         $this->render_page("organization/create_quiz");
     }
     public function questform(){
