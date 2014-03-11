@@ -219,7 +219,7 @@ Response:
 
 Request: POST to Link:
 
-Params: category (is the the id of category), question, answer_a, answer_b, answer_c, answer_d, correct_answer (will be a/b/c/d), sharing, link.
+Params: id, category (is the the id of category), question, answer_a, answer_b, answer_c, answer_d, correct_answer (will be a/b/c/d), sharing, link.
 
 Response:
 {{{
