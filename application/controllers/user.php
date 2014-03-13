@@ -6,6 +6,7 @@ class User extends App_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->model('user_model');
     }
 
     public function index() {
@@ -13,116 +14,173 @@ class User extends App_Controller {
     }
 
     public function login() {
-        $this->body_class[] = 'login';
         
-        $this->page_title = 'Please sign in';
+        $this->load->helper(array('form', 'url'));
 
-        $this->current_section = 'login';
-
-        // validate form input
-        $this->form_validation->set_rules('identity', 'Email', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
-
-        if ($this->form_validation->run() == true) {
-            // check to see if the user is logging in
-            // check for "remember me"
-            $remember = (bool) $this->input->post('remember');
-
-            if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember)) {
-                $this->session->set_flashdata('app_success', $this->ion_auth->messages());
-                redirect('home');
-            } else {
-                $this->session->set_flashdata('app_error', $this->ion_auth->errors());
-                redirect('login');
-            }
+        $this->load->library('form_validation');
+        
+        $this->form_validation->set_rules('username', 'Username', 'required');
+	$this->form_validation->set_rules('password', 'Password', 'required');
+        
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('user/login');
         } else {
-            // the user is not logging in so display the login page
-            // set the flash data error message if there is one
-            $data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+            redirect('admin/index');
+        }
+        
+        
+        
+        // Check if login
+        if ($this->session->userdata('islogin')) {
+            if ($this->session->userdata('role') == 'admin') {
+                redirect('admin');
+            } else if ($this->session->userdata('role') == 'organization') {
+                redirect('organization');
+            }
+        }
+        //$this->load->view('user/login');
+    }
 
-            $data['identity'] = array('name' => 'identity',
-                'id' => 'identity',
-                'type' => 'text',
-                'value' => $this->form_validation->set_value('identity'),
-                'class' => 'form-control',
-                'placeholder' => 'Your email'
-            );
-            $data['password'] = array('name' => 'password',
-                'id' => 'password',
-                'type' => 'password',
-                'class' => 'form-control',
-                'placeholder' => 'Your password'
-            );
+    public function process() {
+        //This method will have the credentials validation
+        $this->load->library('form_validation');
 
-            $this->assets_css[] = "social-buttons-3.css";
-            $this->render_page('user/login', $data);
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_check_database');
+
+        if ($this->form_validation->run() == FALSE) {
+            //Field validation failed.  User redirected to login page
+            $this->load->view('user/login');
+        } else {
+            //Go to private area
+            redirect('home', 'refresh');
+        }
+    }
+
+    function check_database($password) {
+        //Field validation succeeded.  Validate against database
+        $username = $this->input->post('username');
+
+        //query the database
+        $result = $this->user->login($username, $password);
+
+        if ($result) {
+            $sess_array = array();
+            foreach ($result as $row) {
+                $sess_array = array(
+                    'id' => $row->id,
+                    'username' => $row->username
+                );
+                $this->session->set_userdata('logged_in', $sess_array);
+            }
+            return TRUE;
+        } else {
+            $this->form_validation->set_message('check_database', 'Invalid username or password');
+            return false;
         }
     }
 
     public function logout() {
         // log the user out
-        $logout = $this->ion_auth->logout();
-        
+        $this->session->sess_destroy();
+
         // redirect them back to the login page
-        redirect('login');
+        redirect('/user/login');
     }
 
-    public function forgot_password() {
-        if ($this->form_validation->run('user_forgot_password')) {
-            $forgotten = $this->ion_auth->forgotten_password($this->input->post('email', TRUE));
+    public function signup() {
+        $this->load->helper(array('form', 'url'));
 
-            if ($forgotten) {
-                // if there were no errors
-                $this->session->set_flashdata('app_success', $this->ion_auth->messages());
-                redirect('login');
-            } else {
-                $this->session->set_flashdata('app_error', $this->ion_auth->errors());
-                redirect('login');
-            }
+        $this->load->library('form_validation');
+        
+        $config = array(
+            array(
+                'field'=> 'username',
+                'label'=> 'Username',
+                'rules'=> 'trim|required|min_length[6]|is_unique[UserPartner.UserName]|xss_clean'
+            ),
+            array(
+                'field'=> 'password',
+                'label'=> 'Password',
+                'rules'=> 'trim|required|min_length[6]|max_length[32]'
+            ),
+            array(
+                'field'=> 'passconf',
+                'label'=> 'Confirm Password',
+                'rules'=> 'trim|required|matches[password]'
+            ),
+            array(
+                'field'=> 'name',
+                'label'=> 'Organization\'s Name',
+                'rules'=> 'trim|required'
+            ),
+            array(
+                'field'=> 'admin_name',
+                'label'=> 'Administrator Name',
+                'rules'=> 'trim|required'
+            ),
+            array(
+                'field'=> 'email',
+                'label'=> 'Contact Email',
+                'rules'=> 'trim|required'
+            ),
+            array(
+                'field'=> 'address',
+                'label'=> 'Organization\'s Address',
+                'rules'=> 'trim|required'
+            ),
+            array(
+                'field'=> 'phone',
+                'label'=> 'Phone Number',
+                'rules'=> 'trim|required'
+            ),
+            array(
+                'field'=> 'website',
+                'label'=> 'Website',
+                'rules'=> 'trim'
+            ),
+            array(
+                'field'=> 'type',
+                'label'=> 'Organization type',
+                'rules'=> ''
+            ),
+            array(
+                'field'=> 'description',
+                'label'=> 'Description',
+                'rules'=> 'trim|required'
+            ),
+        );
+        
+        $this->form_validation->set_rules($config);
+        
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('user/signup');
+        } else {
+            // Add user
+            $partnerId = $this->user_model->register(
+                    $this->input->post('username'),
+                    $this->input->post('password'),
+                    $this->input->post('name'),
+                    $this->input->post('admin_name'),
+                    $this->input->post('email'),
+                    $this->input->post('address'),
+                    $this->input->post('phone'),
+                    $this->input->post('website'),
+                    $this->input->post('type'),
+                    $this->input->post('description')
+                    );
+            
+            // Store to session
+            $sess_array = array(
+                'islogin' => TRUE,
+                'partner_id' => $partnerId,
+                'role' => "organization"
+            );
+            $this->session->set_userdata($sess_array);
+            
+            // Redirect to proper page.
+            redirect('organization/index');
         }
-
-        $this->body_class[] = 'forgot_password';
-
-        $this->page_title = 'Forgot password';
-
-        $this->current_section = 'forgot_password';
-
-        $this->render_page('user/forgot_password');
-    }
-
-    public function account() {
-        $this->body_class[] = 'my_account';
-
-        $this->page_title = 'My Account';
-
-        $this->current_section = 'my_account';
-
-        $user = $this->ion_auth->user()->row_array();
-
-        $this->render_page('user/account', array('user' => $user));
-    }
-    
-    public function loginfacebook(){
-        $this->facebook_ion_auth->login();
-    }
-    
-    public function sendemail(){
-        $this->load->helper("email");
-        echo send_email("imrhung@yahoo.com", "Test mail", "I love you!!!");
-        echo "OK";
-    }
-    public function sendemail2(){
-        $this->load->library('email');
-
-$this->email->from('imrhung@yahoo.com', 'Nguyen Vawn Hung');
-$this->email->to('nguyenvanhungbkit@gmail.com'); 
-
-$this->email->subject('Email Test');
-$this->email->message('Testing the email class.');	
-
-$this->email->send();
-
-echo $this->email->print_debugger();
     }
 
 }
