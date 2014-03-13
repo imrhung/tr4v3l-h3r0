@@ -15,21 +15,6 @@ class User extends App_Controller {
 
     public function login() {
         
-        $this->load->helper(array('form', 'url'));
-
-        $this->load->library('form_validation');
-        
-        $this->form_validation->set_rules('username', 'Username', 'required');
-	$this->form_validation->set_rules('password', 'Password', 'required');
-        
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('user/login');
-        } else {
-            redirect('admin/index');
-        }
-        
-        
-        
         // Check if login
         if ($this->session->userdata('islogin')) {
             if ($this->session->userdata('role') == 'admin') {
@@ -38,6 +23,56 @@ class User extends App_Controller {
                 redirect('organization');
             }
         }
+        
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('username', 'Username', 'required');
+	$this->form_validation->set_rules('password', 'Password', 'required');
+        
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('user/login');
+        } else {
+            // Check username and password.
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $valid = $this->user_model->login($username, $password);
+            
+            if ($valid){
+                // Check role
+                $userId = $this->user_model->getUserId($username);
+                $roleId = $this->user_model->getRoleId($userId);
+                if ($roleId == 4) { // Organization
+                    $partnerId = $this->user_model->getPartnerId($userId);
+                    // Store to session
+                    $sess_array = array(
+                        'islogin' => TRUE,
+                        'partner_id' => $partnerId,
+                        'role' => "organization"
+                    );
+                    $this->session->set_userdata($sess_array);
+                    // Load view
+                    redirect("organization/index");
+                    
+                } else if ($roleId == 3){ // mod
+                    // Store to session
+                    $sess_array = array(
+                        'islogin' => TRUE,
+                        'role' => "admin"
+                    );
+                    $this->session->set_userdata($sess_array);
+                    // Load view
+                    redirect("admin/index");
+                
+                }
+            } else {
+                // Incorrect login
+                $this->load->view('user/login');
+            }
+        }
+        
+        
+        
+        
         //$this->load->view('user/login');
     }
 

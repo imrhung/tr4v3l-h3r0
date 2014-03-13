@@ -56,7 +56,7 @@
                     </div>
                     </div>
                     <div class=''>
-                        <a href='<?php echo base_url(); ?>admin/signup'> Sign me up </a>
+                        <a href='<?php echo base_url(); ?>signup'> Sign me up </a>
                     </div>
                 </div>
 

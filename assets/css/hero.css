@@ -50,6 +50,11 @@ color: #fff;
     color: #447294;
 }
 
+.navbar-nav li.disable a, .navbar-nav li.disable a .fa{
+    background: none;
+    color: #4F565C;
+}
+
 .navbar-nav .navbar-pad-left a.fa{
     color: #fff;
 }

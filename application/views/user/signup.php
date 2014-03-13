@@ -18,6 +18,8 @@
                     <img src='<?php echo base_url(); ?>assets/img/sign_up_logo.png' class='img-responsive img-center' alt='Hero For Zero'>
                     <p class='col-md-12 img-center'>
                         Fill out the information below to join Hero for Zero program
+                        <br>
+                        If you're already a member, <a href='<?php echo base_url(); ?>login'> Login </a>
                     </p>
                     <br><br><br><br>
                     <div class='col-md-12 img-center'>
