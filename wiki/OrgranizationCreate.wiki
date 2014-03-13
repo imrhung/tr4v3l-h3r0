@@ -7,14 +7,8 @@ POST with params:
 partner_id,
 title,
 description,
-check_facebook (it's checkbox, =1 is yes.),
-facebook_share (test to share facebook),
-check_newsletter (=1 is yes.),
-newsletter_link,
-check_facebook_page (=1 is yes.),
-facebook_page,
-check_calendar (=1 is yes),
-calendar (in format YYYY/MM/DD).
+action_id,
+action_content,
 
 Response in json file.
 if created successful:
