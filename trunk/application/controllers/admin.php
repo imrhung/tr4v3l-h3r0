@@ -33,6 +33,18 @@ class Admin extends App_Controller {
         $this->render_page_admin('admin/create_quest');
     }
     
+    public function under_construction(){
+        $this->current_section = 'construct';
+        $this->assets_css[] = "admin.css";
+        $this->render_page_admin('home/under_construction');
+    }
+    
+    public function help(){
+        $this->current_section = 'help';
+        $this->assets_css[] = "admin.css";
+        $this->render_page_admin('home/help');
+    }
+    
     public function questform(){
         $this->current_section = 'quest';
         $this->assets_js[] = "core.js";

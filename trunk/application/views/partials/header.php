@@ -16,14 +16,14 @@
                 <!-- Management button -->
                 <li class="<?php echo ($current_section == 'home') ? 'active' : '' ?>"><a id="base-url" href="<?php echo site_url('') ?>"><i class="fa fa-home"></i>  Home</a></li>
                 <li class="<?php echo ($current_section == 'profile') ? 'active' : '' ?>"><a href="<?php echo site_url('organization/partnerform') ?>"><i class="fa fa-pencil"></i>  Edit profile</a></li>
-                <li class="<?php echo ($current_section == 'noti') ? 'active' : '' ?>"><a href="<?php echo site_url('organization/index') ?>"><i class="fa fa-bell"></i><span class="badge pull-right badge-green">4</span>  Notifications</a></li>
-                <li class="<?php echo ($current_section == 'stat') ? 'active' : '' ?>"><a href="<?php echo site_url('organization/index') ?>"><i class="fa fa-bar-chart-o"></i></span>  Statistics</a></li>
+                <li class="<?php echo ($current_section == 'noti') ? 'active' : '' ?>  disable"><a href="<?php echo site_url('organization/under_construction') ?>" TITLE="Function under construction"><i class="fa fa-bell"></i><span class="badge pull-right badge-green"></span>  Notifications</a></li>
+                <li class="<?php echo ($current_section == 'stat') ? 'active' : '' ?> disable"><a href="<?php echo site_url('organization/under_construction') ?>" TITLE="Function under construction"><i class="fa fa-bar-chart-o"></i></span>  Statistics</a></li>
                 
             </ul>
             
             <!-- Buttom button -->
             <ul class="nav navbar-nav side-nav bottom-left-nav">
-                <li class="<?php echo ($current_section == 'help') ? 'active' : '' ?>"><a href="<?php echo site_url('organization/index') ?>"><i class="fa fa-question"></i>  Help me!</a></li>
+                <li class="<?php echo ($current_section == 'help') ? 'active' : '' ?>"><a href="<?php echo site_url('organization/help') ?>"><i class="fa fa-question"></i>  Help me!</a></li>
                 <li class="<?php echo ($current_section == 'signout') ? 'active' : '' ?>"><a href="<?php echo site_url('logout') ?>"><i class="fa fa-power-off"></i>  Sign me out</a></li>
             </ul>
         </div>
