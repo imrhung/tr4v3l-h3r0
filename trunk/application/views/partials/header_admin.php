@@ -21,7 +21,7 @@
             <ul class="nav navbar-nav side-nav bottom-left-nav">
                 
                 <li class="<?php echo ($current_section == 'help') ? 'active' : '' ?>"><a href="<?php echo site_url('admin/index') ?>"><i class="fa fa-shield"></i>  Help me!</a></li>
-                <li class="<?php echo ($current_section == 'signout') ? 'active' : '' ?>"><a href="<?php echo site_url('admin/index') ?>"><i class="fa fa-power-off"></i>  Sign me out</a></li>
+                <li class="<?php echo ($current_section == 'signout') ? 'active' : '' ?>"><a href="<?php echo site_url('logout') ?>"><i class="fa fa-power-off"></i>  Sign me out</a></li>
             </ul>
         </div>
     </div>

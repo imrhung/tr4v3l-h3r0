@@ -1,64 +1,64 @@
 <?php
 
-class User_Model extends CI_Model {
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class User_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+        $this->load->database();
     }
 
-    public function getUserDataWithEmail($username, $password) {
-        $sql = "CALL sp_getuserdatawithemail(?, ?)";
+    function login($username, $password) {
+        $this->db->select('UserId, PartnerId, UserName, Password');
+        $this->db->from('UserPartner');
+        $this->db->where('UserName', $username);
+        $this->db->where('Password', md5($password));
+        $this->db->limit(1);
 
-        $result = $this->db->query($sql, array($username, $password));
-        return $result->row();
-    }
+        $query = $this->db->get();
 
-    public function getUserDataWithFacebookId($facebookId) {
-        $stmt = $this->db->prepare('CALL sp_getuserdatawithfacebook(?)');
-        $result = $this->db->query($stmt, array($facebookId));
-        return $result->row();
-    }
-
-    public function checkInfoExistsWithEmail($fullName, $heroName, $email, $phone, $password) {
-        try {
-            $sql = 'CALL sp_checksignupwithemailinfo(?,?,?,?,?)';
-            
-            $result = $this->db->query($sql, array($fullName, $heroName, $email, $phone, $password));
-            return $result->row();
-        } catch (PDOException $e) {
-            return $e->getMessage();
+        if ($query->num_rows() == 1) {
+            return $query->result();
+        } else {
+            return false;
         }
     }
-
-    /* Last Edit 17-Oct-2013 */
-
-    public function checkInfoExistsWithFacebookId($facebookId, $fullName, $heroName, $email) {
-        try {
-            $sql = 'CALL sp_checksignupwithfacebookinfo(?, ?, ?, ?)';
-            $result = $this->db->query($sql, array($facebookId, $fullName, $heroName, $email));
-            return $result->row();
-        } catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
-
-    public function getHotelAgodaData($currentPage, $pageSize, $lat, $lon, $distance, $countryisocode) {
-        try {
-            $sql = 'CALL sp_paginationhotelagodabydistance(?, ?, ?, ?, ?, ?)';
-            $result = $this->db->query($sql, array($currentPage, $pageSize, $lat, $lon, $distance, $countryisocode));
-            return $result->result();
-        } catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
-
-    /* Get Leader board Last Edit 22-Oct-2013 */
-
-    public function getLeaderBoard() {
-        $sql = 'SELECT * FROM user ORDER BY user.points DESC LIMIT 10';
-        $result = $this->db->query($sql);
-        return $result->result();
+    
+    function register($username, $password, $name, $adminName, $email, $address, $phone, $website, $type, $description){
+        // Save to user table
+        $data = array(
+            'Email'=> $email,
+            'RegisterDate' => date("Y-m-d H:i:s"),
+            'PhoneNumber' => $phone
+        );
+        $this->db->insert("user", $data);
+        $userId = $this->db->insert_id();
+        
+        // Save to Partner table
+        $data = array(
+            'Name'=> $name,
+            'OrganizationTypeId' => $type,
+            'Description' => $description,
+            'Address' => $address,
+            'PhoneNumber' => $phone,
+            'WebsiteURL' => $website,
+        );
+        $this->db->insert("partner", $data);
+        $partnerId = $this->db->insert_id();
+        
+        // Save to userPartner table
+        $data = array(
+            'UserId'=> $userId,
+            'PartnerId' => $partnerId,
+            'UserName' => $username,
+            'Password' => md5($password),
+        );
+        $this->db->insert("UserPartner", $data);
+        return $partnerId;
     }
 
 }
 
+?>

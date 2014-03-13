@@ -1,35 +1,68 @@
-<!-- <button class="btn btn-facebook"><i class="fa fa-facebook"></i> | Login with Facebook</button> -->
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta name="viewport" content='width=device-width, initial-scale=1'>
+        <title>Login</title>
 
-<?php echo form_open('login', array('class' => 'form-signin')) ?>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/login.css" media="screen" />
+        
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.9.1.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+        <div class='content-center'>
+            
+            
+        <form class="form-horizontal" action ='' method='POST'>
+            <fieldset>
+                <img src='<?php echo base_url(); ?>assets/img/sign_up_logo.png' class='img-responsive img-center' alt='Hero For Zero'>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="username"></label>  
+                    <div class="col-md-4">
+                        <input id="username" name="username" type="text" value="<?php echo set_value('username'); ?>" placeholder="Username" class="form-control input-md" required="">
+                    </div>
+                </div>
 
-<h2 class="form-signin-heading">Please sign in</h2>
+                <!-- Password input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="password"></label>
+                    <div class="col-md-4">
+                        <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" required="">
 
-<div class="form-group <?php echo (form_error('identity')) ? 'error' : '' ?>">
-    <div class="controls">
-        <label for="identity" class="control-label">Email</label>
-        <?php echo form_input($identity) ?>
-        <?php echo form_error('identity') ?>
-    </div>
-</div>
+                    </div>
+                </div>
 
-<div class="form-group <?php echo (form_error('password')) ? 'error' : '' ?>">
-    <div class="controls">
-        <label for="password" class="control-label">Password</label>
-        <?php echo form_input($password) ?>
-        <?php echo form_error('password') ?>
-    </div>
-</div>
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="login"></label>
+                    <div class="col-md-4">
+                        <button id="login" name="login" class="btn btn-block btn-primary">Sign me in</button>
+                        <div id="ack"></div>
+                    </div>
+                    
+                </div>
 
+                <!-- Multiple Checkboxes (inline) -->
+                <div class="form-group">
+                    <div class=''>
+                    <label class="col-md-4 control-label" for="remember"></label>
+                    <div class="col-md-3">
+                        <label class="checkbox-inline checkbox" for="remember">
+                            <input type="checkbox" name="remember" id="remember" value="1">
+                            Keep me sign in
+                        </label>
+                    </div>
+                    </div>
+                    <div class=''>
+                        <a href='<?php echo base_url(); ?>admin/signup'> Sign me up </a>
+                    </div>
+                </div>
 
-<div class="checkbox">
-    <label class="cb_rememberme">
-        <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"') ?> Keep me logged in
-    </label>
-</div>
-<button id="btn_submit" class="btn tn-larbge btn-primary" type="submit">Log In</button>
-
-<?php echo form_close() ?>
-
-<div class="section_forgot">
-    &raquo; <a href="<?php echo site_url('forgot-password') ?>">Forgot your password?</a>
-</div>
+            </fieldset>
+        </form>
+        </div>
+        </div>
+    </body>
+</html>
