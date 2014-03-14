@@ -1,6 +1,6 @@
 =Get a activity=
  
-* Request: POST
+ * Request: POST
    Input parameters:
     - id (id of Activity: INT)
  * Response:
