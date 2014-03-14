@@ -7,7 +7,7 @@
  * Response:
  {{{
   "code": 1,
-  "message": "Get Quest Success",
+  "message": "Success",
   "info": {
     "activity": 
       {
