@@ -43,6 +43,27 @@ Response:
 }}}
 
 =Get category list=
+Request: POST to link:
+
+Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "category": [
+      {
+        "Id": 1,
+        "CategoryName": "Children"
+      },
+      {
+        "Id": 1,
+        "CategoryName": "Children"
+      }
+    ]
+  }
+}
+}}}
 
 
 =Add category=
