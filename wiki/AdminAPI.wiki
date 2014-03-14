@@ -18,7 +18,9 @@
         "Title": "http://abcxyz",       
         "Name": "Action's Name"
       }
+ }
  }}}
+ 
   
 =Get activity list=
 Order by newest first. 
@@ -32,7 +34,25 @@ Response:
 {
 "code": 1,
 "message": "Success",
-"info": 
+"info": {
+    "activity": 
+      {
+        "Id": 1,
+        "PartnerId": 1,
+        "ActionContent": "abcxyz",
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",       
+        "Name": "Action's Name"
+      },
+      {
+        "Id": 2,
+        "PartnerId": 2,
+        "ActionContent": "abcxyz",
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",       
+        "Name": "Action's Name"
+      }
+ } 
 
 }
 }}}
