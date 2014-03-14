@@ -6,7 +6,7 @@
     * partner_id (INT)
  * Response:
  {{{
-   "code": 1,
+  "code": 1,
   "message": "Success",
   "info": {
     "activity": 
