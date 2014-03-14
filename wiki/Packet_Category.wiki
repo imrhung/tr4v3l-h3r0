@@ -1,0 +1,48 @@
+=Get packet list=
+POST to link:
+
+Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "packet": [
+      {
+        "id": 1,
+        "name": "Ho Chi Minh"
+      },
+      {
+        "id": 1,
+        "name": "Ho Chi Minh"
+      },
+      {
+        "id": 1,
+        "name": "Ho Chi Minh"
+      }
+    ]
+  }
+}
+}}}
+
+=Add packet=
+Request: POST to link:
+
+Params: packet_name
+
+Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "id" : 1,
+    "name": "Ha Noi"
+  }
+}
+}}}
+
+=Get category list=
+
+
+=Add category=
