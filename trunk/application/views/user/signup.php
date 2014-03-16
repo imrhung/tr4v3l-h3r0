@@ -120,14 +120,14 @@
                         </div>
                     </div>
 
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="description">Description/ Mission</label>  
-                        <div class="col-md-4">
-                            <input id="description" name="description" type="text" value="<?php echo set_value('description'); ?>" placeholder="Limits to 50 words." class="form-control input-md" required="">
-
-                        </div>
-                    </div>
+                    
+                    <!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="description">Description/Mission</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="description" name="description" value="<?php echo set_value('description'); ?>" required=""></textarea>
+  </div>
+</div>
 
                     <!-- Button -->
                     <div class="form-group">

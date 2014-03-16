@@ -14,7 +14,7 @@
                 <!-- Select Basic -->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="category">Quest Category</label>
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         <select id="category" name="category" class="form-control">
                             <option value="1">Helping Children</option>
                             <option value="2">Giving Food</option>
@@ -27,19 +27,18 @@
                     </div>
                 </div>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="question">Quest Question</label>  
-                    <div class="col-md-4">
-                        <input id="question" name="question" type="text" placeholder="Limits to 140 character" class="form-control input-md" required="">
-
-                    </div>
-                </div>
+                <!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="question">Quest Question</label>
+  <div class="col-md-8">                     
+    <textarea class="form-control" id="question" name="question"></textarea>
+  </div>
+</div>
 
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_a">Answer A:</label>  
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         <input id="answer_a" name="answer_a" type="text" placeholder="Limits to 50 characters" class="form-control input-md">
 
                     </div>
@@ -48,7 +47,7 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_b">Answer B:</label>  
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         <input id="answer_b" name="answer_b" type="text" placeholder="Limits to 50 characters" class="form-control input-md">
 
                     </div>
@@ -57,7 +56,7 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_c">Answer C:</label>  
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         <input id="answer_c" name="answer_c" type="text" placeholder="Limits to 50 characters" class="form-control input-md">
 
                     </div>
@@ -66,7 +65,7 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_d">Answer D:</label>  
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         <input id="answer_d" name="answer_d" type="text" placeholder="Limits to 50 characters" class="form-control input-md">
 
                     </div>
@@ -75,7 +74,7 @@
                 <!-- Multiple Radios (inline) -->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer">Correct Answer</label>
-                    <div class="col-md-4"> 
+                    <div class="col-md-8"> 
                         <label class="radio-inline" for="answer-0">
                             <input type="radio" name="answer" id="answer-0" value="0" checked="checked">
                             A
@@ -95,19 +94,18 @@
                     </div>
                 </div>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="sharing">Sharing Information</label>  
-                    <div class="col-md-4">
-                        <input id="sharing" name="sharing" type="text" placeholder="Write down a fact related to the question you would like the user to share. Limit to 140 characters." class="form-control input-md">
-
-                    </div>
-                </div>
+                <!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="sharing">Sharing Information</label>
+  <div class="col-md-8">                     
+    <textarea class="form-control" id="sharing" name="sharing">Write down a fact related to the question you would like the user to share. Limit to 140 characters.</textarea>
+  </div>
+</div>
 
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="link">More Link URL</label>  
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         <input id="link" name="link" type="text" placeholder="Website URL for learning more" class="form-control input-md">
 
                     </div>
@@ -116,7 +114,7 @@
                 <!-- Button -->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="submit"></label>
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         <button id="submit" name="submit" class="btn btn-primary">Submit Quiz</button>
                         <div id="alert_placeholder"></div>
                     </div>
