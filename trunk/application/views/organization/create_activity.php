@@ -5,9 +5,9 @@
         <h1>Create Activity</h1>
         <p>To Create an Activity please fill out the information below.</p>
 
-        <form class="form-horizontal" onSubmit="return createActivity();">
+        <form id="activity-form" class="form-horizontal" onSubmit="createActivity(); return false;">
             <fieldset>
-                
+
                 <!-- Form Name -->
                 <legend></legend>
 
@@ -21,45 +21,47 @@
                 </div>
 
                 <!-- Textarea -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="description">Description</label>
-  <div class="col-md-8">                     
-    <textarea class="form-control" id="description" name="description"></textarea>
-  </div>
-</div>
-                
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="description">Description</label>
+                    <div class="col-md-8">                     
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+                </div>
+
                 <p>
-                    What is the action(s) the hero must perform to receive their points? Please check the boxes that  apply.
+                    What is the action(s) the hero must perform to receive their points? Please check the boxes that apply.
                 </p>
 
                 <!-- Multiple Checkboxes -->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="check_facebook"></label>
+
                     <div class="col-md-8">
-                        <div class="checkbox">
-                            <label for="check_facebook">
-                                <input type="checkbox" name="check_facebook" id="check_facebook" value="1">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="action" id="check_facebook" value="0" checked>
                                 Share on their Facebook
                             </label>
                         </div>
                     </div>
                 </div>
 
+
                 <!-- Textarea -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="facebook_share"></label>
-  <div class="col-md-8">                     
-    <textarea class="form-control" id="facebook_share" name="facebook_share"></textarea>
-  </div>
-</div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="facebook_share"></label>
+                    <div class="col-md-8">                     
+                        <textarea class="form-control" id="facebook_share" name="facebook_share"></textarea>
+                    </div>
+                </div>
 
                 <!-- Multiple Checkboxes -->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="check_newsletter"></label>
                     <div class="col-md-8">
-                        <div class="checkbox">
-                            <label for="check_newsletter">
-                                <input type="checkbox" name="check_newsletter" id="check_newsletter" value="1">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="action" id="check_newsletter" value="1">
                                 Sign up for Your news letter
                             </label>
                         </div>
@@ -79,9 +81,9 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="check_facebook_page"></label>
                     <div class="col-md-8">
-                        <div class="checkbox">
-                            <label for="check_facebook_page">
-                                <input type="checkbox" name="check_facebook_page" id="check_facebook_page" value="1">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="action" id="check_facebook_page" value="2">
                                 Like our facebook page
                             </label>
                         </div>
@@ -101,9 +103,9 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="check_calendar"></label>
                     <div class="col-md-8">
-                        <div class="checkbox">
-                            <label for="check_calendar">
-                                <input type="checkbox" name="check_calendar" id="check_calendar" value="1">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="action" id="check_calendar" value="3">
                                 Add to User's calendar
                             </label>
                         </div>
@@ -116,15 +118,15 @@
                     <div class="col-md-8 date input-group" id="datetimepicker">
                         <input id="calendar" name="calendar" type="text" placeholder="Please select a date" class="form-control" data-format="YYYY/MM/DD">
                         <span class="input-group-addon"><span data-icon-element="" class="fa fa-calendar">
-                                </span>
-                          </span>
+                            </span>
+                        </span>
                     </div>
                 </div>
 
                 <!-- Button -->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="submit"></label>
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         <button id="submit" name="submit" class="btn btn-primary">Submit Activity</button>
                         <div id="alert_placeholder"></div>
                     </div>

@@ -5,7 +5,7 @@
         <h1>Create Donation</h1>
         <p>To Create a Donation please fill out the information below.</p>
 
-        <form class="form-horizontal" onSubmit="return createDonation();">
+        <form class="form-horizontal" onSubmit="createDonation(); return false;">
             <fieldset>
                 
                 <!-- Form Name -->
@@ -31,7 +31,7 @@
                 <!-- Button -->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="submit"></label>
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         <button id="submit" name="submit" class="btn btn-primary">Submit Donation</button>
                         <div id="alert_placeholder"></div>
                     </div>

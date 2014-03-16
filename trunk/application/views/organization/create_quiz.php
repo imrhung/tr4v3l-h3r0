@@ -5,7 +5,7 @@
         <h1>Create a Quiz</h1>
         <p>To Create a Quiz please fill out the information below.</p>
 
-        <form id="quiz-form" class="form-horizontal" onSubmit="return createQuiz();">
+        <form id="quiz-form" class="form-horizontal" onSubmit="createQuiz(); return false;">
             <fieldset>
 
                 <!-- Form Name -->
