@@ -26,15 +26,14 @@
                             </select>
                         </div>
                     </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="question">Quest Question</label>  
-                        <div class="col-md-8">
-                            <input id="question" name="question" type="text" placeholder="Limits to 140 character" class="form-control input-md" required="">
-
-                        </div>
-                    </div>
+                    
+                    <!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="question">Quest Question</label>
+  <div class="col-md-8">                     
+    <textarea class="form-control" id="question" name="question"></textarea>
+  </div>
+</div>
 
                     <!-- Text input-->
                     <div class="form-group">
@@ -95,14 +94,13 @@
                         </div>
                     </div>
 
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="sharing">Sharing Information</label>  
-                        <div class="col-md-8">
-                            <input id="sharing" name="sharing" type="text" placeholder="Write down a fact related to the question you would like the user to share. Limit to 140 characters." class="form-control input-md">
-
-                        </div>
-                    </div>
+                    <!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="sharing">Sharing Information</label>
+  <div class="col-md-8">                     
+    <textarea class="form-control" id="sharing" name="sharing">Write down a fact related to the question you would like the user to share. Limit to 140 characters.</textarea>
+  </div>
+</div>
 
                     <!-- Text input-->
                     <div class="form-group">

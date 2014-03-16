@@ -14,20 +14,19 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="title">Title of Donation</label>  
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <input id="title" name="title" type="text" placeholder="" class="form-control input-md" required="">
 
                     </div>
                 </div>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="description">Description</label>  
-                    <div class="col-md-6">
-                        <input id="description" name="description" type="text" placeholder="Limits to 140 characters." class="form-control input-md" required="">
-
-                    </div>
-                </div>
+                 <!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="description">Description</label>
+  <div class="col-md-8">                     
+    <textarea class="form-control" id="description" name="description"></textarea>
+  </div>
+</div>
 
                 <!-- Button -->
                 <div class="form-group">

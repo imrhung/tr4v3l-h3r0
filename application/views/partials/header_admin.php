@@ -1,6 +1,12 @@
 <div class="navbar-nav" role="navigation">
     <div class="container">
-        <div class="collapse navbar-collapse">
+        <button type="button" class="navbar-toggle btn-primary" id="navbar-btn" data-toggle="collapse" data-target="#hero-side-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>Menu
+      </button>
+        <div class="collapse navbar-collapse" id="hero-side-nav">
             <ul class="nav navbar-nav side-nav">
                 <li><div class="navbar-pad-left nav-header header-image"><a class="navbar-brand" href="<?php echo site_url('admin/index') ?>">
                         <input type="image"  src="<?php echo base_url() ?>assets/img/unicef_logo.png"/>
