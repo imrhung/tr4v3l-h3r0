@@ -6,14 +6,24 @@ function createActivity() {
     var partner_id = 1;
     var title = $("#title").val();
     var description = $("#description").val();
-    var check_facebook = (document.getElementById("check_facebook").checked) ? 1 : 0;
-    var facebook_share = $("#facebook_share").val();
-    var check_newsletter = (document.getElementById("check_newsletter").checked) ? 1 : 0;
-    var newsletter_link = $("#newsletter_link").val();
-    var check_facebook_page = (document.getElementById("check_facebook_page").checked) ? 1 : 0;
-    var facebook_page = $("#facebook_page").val();
-    var check_calendar = (document.getElementById("check_calendar").checked) ? 1 : 0;
-    var calendar = $("#calendar").val();
+    var actionId = parseInt($("input[name='action']:checked", '#activity-form').val());
+    var actionContent='';
+    switch (actionId){
+        case 0:
+            actionContent = $('#facebook_share').val();
+            break;
+        case 1:
+            actionContent = $('#newsletter_link').val();
+            break;
+        case 2:
+            actionContent = $('#facebook_page').val();
+            break;
+        case 3:
+            actionContent = $('#calendar').val();
+            break;
+        default:
+            actionContent = $('#facebook_share').val();
+    }
     
     // Make the spining when waiting
     // Disable submit button
@@ -21,20 +31,13 @@ function createActivity() {
     
     // Post to api
     $.post(
-            baseUrl + "admin/testapi_f",
+            baseUrl + "admin/testapi_s",
             {
                 partner_id: partner_id,
                 title: title,
                 description: description,
-                check_facebook: check_facebook,
-                facebook_share: facebook_share,
-                check_newsletter: check_newsletter,
-                newsletter_link: newsletter_link,
-                check_facebook_page: check_facebook_page,
-                facebook_page: facebook_page,
-                check_calendar: check_calendar,
-                calendar: calendar,
-                //password: password
+                action_id: actionId,
+                action_content: actionContent
             },
             function(data) {
                 console.log(data);
@@ -56,8 +59,6 @@ function createActivity() {
             },
             "json"
         );
-
-    console.log("he");
     return false;
 }
 
