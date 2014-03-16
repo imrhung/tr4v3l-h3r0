@@ -5,7 +5,7 @@
         <h1>Edit a Quiz</h1>
         <p>You can edit the Quiz to be more accurate.</p>
         <div class="col-lg-8">
-            <form class="form-horizontal">
+            <form class="form-horizontal" onsubmit="updateQuiz(<?php echo $quizId ?>); return false;">
                 <fieldset>
 
                     <!-- Form Name -->
@@ -72,24 +72,24 @@
                         </div>
                     </div>
 
-                    <!-- Multiple Checkboxes (inline) -->
+                    <!-- Multiple Radios (inline) -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="correct_answer">Correct Answer</label>
-                        <div class="col-md-8">
-                            <label class="checkbox-inline" for="correct_answer-0">
-                                <input type="checkbox" name="correct_answer" id="correct_answer-0" value="1">
+                        <label class="col-md-4 control-label" for="answer">Correct Answer</label>
+                        <div class="col-md-4"> 
+                            <label class="radio-inline" for="answer-0">
+                                <input type="radio" name="answer" id="answer-0" value="0" checked="checked">
                                 A
-                            </label>
-                            <label class="checkbox-inline" for="correct_answer-1">
-                                <input type="checkbox" name="correct_answer" id="correct_answer-1" value="2">
+                            </label> 
+                            <label class="radio-inline" for="answer-1">
+                                <input type="radio" name="answer" id="answer-1" value="1">
                                 B
-                            </label>
-                            <label class="checkbox-inline" for="correct_answer-2">
-                                <input type="checkbox" name="correct_answer" id="correct_answer-2" value="3">
+                            </label> 
+                            <label class="radio-inline" for="answer-2">
+                                <input type="radio" name="answer" id="answer-2" value="2">
                                 C
-                            </label>
-                            <label class="checkbox-inline" for="correct_answer-3">
-                                <input type="checkbox" name="correct_answer" id="correct_answer-3" value="4">
+                            </label> 
+                            <label class="radio-inline" for="answer-3">
+                                <input type="radio" name="answer" id="answer-3" value="3">
                                 D
                             </label>
                         </div>
@@ -136,7 +136,7 @@
                     <div class="form-group">
                         <label class=" control-label" for="packet">Packet:</label>
                         <div class="">
-                            <select id="packet" name="packet" class="form-control">
+                            <select id="packet" name="packet" class="form-control" onChange="updatePacket(<?php echo $quizId ?>, this.value);">
                                 <option value="1">Ho Chi Minh City</option>
                                 <option value="2">Ha Noi</option>
                                 <option value="3">Da Nang</option>
@@ -145,12 +145,26 @@
                         </div>
                     </div>
 
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="point">Point</label>
+                        <div class="">
+                            <select id="point" name="point" class="form-control" onChange="updatePoint(<?php echo $quizId;?> , this.value);">
+                                <option value="100">100pts</option>
+                                <option value="200">200pts</option>
+                                <option value="300">300pts</option>
+                                <option value="400">400pts</option>
+                                <option value="500">500pts</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <!-- Button (Double) -->
                     <div class="form-group">
                         <label class=" control-label" for="approve">Approve:</label>
                         <div class="">
-                            <button id="approve" name="approve" class="btn  btn-success">Yes</button>
-                            <button id="deny" name="deny" class="btn  btn-danger">No</button>
+                            <button type="button" id="approve" name="approve" class="btn  btn-success" onclick="approveQuiz(1);">Yes</button>
+                            <button type="button" id="deny" name="deny" class="btn  btn-danger" onclick="approveQuiz(0)">No</button>
                         </div>
                     </div>
 
@@ -158,7 +172,7 @@
                     <div class="form-group">
                         <label class=" control-label" for="date">Published on:</label>  
                         <div class="">
-                            <input id="date" name="date" type="text" placeholder="YYYY/MM/DD" class="form-control input-md">
+                            <input id="date" name="date" type="text" placeholder="YYYY/MM/DD" class="form-control input-md" disabled>
 
                         </div>
                     </div>
@@ -168,7 +182,7 @@
                     <div class="form-group">
                         <label class=" control-label" for="delete"></label>
                         <div class="">
-                            <button id="delete" name="delete" class="btn btn-block btn-danger">Delete Question</button>
+                            <button type="button" id="delete" name="delete" class="btn btn-block btn-danger" onclick="callDelete(<?php echo $quizId ?>)">Delete Question</button>
                         </div>
                     </div>
 
@@ -179,3 +193,9 @@
 
     </div><!-- /#page-wrapper -->
 </div><!-- /#wrapper -->
+
+<script>
+    $(function() {
+        getQuiz(<?php echo $quizId; ?>);
+    });
+</script>

@@ -69,11 +69,6 @@ class User extends App_Controller {
                 $this->load->view('user/login');
             }
         }
-        
-        
-        
-        
-        //$this->load->view('user/login');
     }
 
     public function process() {

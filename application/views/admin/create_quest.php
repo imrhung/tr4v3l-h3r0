@@ -5,9 +5,11 @@
         <h1>Create Donation</h1>
         <p>Each quest must belong to a city or a packet. You must first create that city or packet, then you can associate that packet/city with your quest.</p>
 
+        
+        
         <!-- Left table -->
         <div class="col-md-6">
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered" id="packet-table">
                 <thead>
                     <tr>
                         <th>Packet's Name</th>
@@ -35,6 +37,7 @@
                         <td>Nha Trang</td>
                         <td>5</td>
                     </tr>
+                    
                 </tbody>
             </table>
             <form class='form-inline' role ='form'>
