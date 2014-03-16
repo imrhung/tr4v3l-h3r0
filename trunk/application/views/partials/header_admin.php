@@ -10,7 +10,7 @@
                 <div class="navbar-pad-left <?php echo ($current_section == 'quest') ? 'active' : '' ?>">
                     <a href="<?php echo site_url('admin/create_quest') ?>"><img id="create-quest-btn"src="<?php echo base_url() ?>assets/img/create_quest_btn.png" alt="Create Quest"></a>
                 </div>       
-                <li class="<?php echo ($current_section == 'home') ? 'active' : '' ?>"><a href="<?php echo site_url() ?>"><i class="fa fa-home"></i>  Home</a></li>
+                <li class="<?php echo ($current_section == 'home') ? 'active' : '' ?>"><a id="base-url" href="<?php echo site_url() ?>"><i class="fa fa-home"></i>  Home</a></li>
                 
                 <li class="<?php echo ($current_section == 'profile') ? 'active' : '' ?>"><a href="<?php echo site_url('admin/partnerform') ?>"><i class="fa fa-pencil"></i>  Edit profile</a></li>
                 <li class="<?php echo ($current_section == 'notification') ? 'active' : '' ?> disable"><a href="<?php echo site_url('admin/under_construction') ?>" TITLE="Function under construction"><i class="fa fa-bell"></i><span class="badge pull-right badge-green"></span>  Notifications</a></li>
