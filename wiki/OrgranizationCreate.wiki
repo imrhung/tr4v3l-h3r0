@@ -59,7 +59,6 @@ Link:
 
 At this time, we will just create one quiz at a time.
  * POST with params:
-
   * partner_id
   * category (is the the id of category)
   * question
@@ -71,7 +70,6 @@ At this time, we will just create one quiz at a time.
   * correct_answer (will be 0/1/2/3)
   * sharing
   * link.
-
  * Response:
   * Success:
 {{{
