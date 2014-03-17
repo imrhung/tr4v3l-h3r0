@@ -68,9 +68,6 @@ Response:
 {
   "code": 1,
   "message": "Success",
-  "info": {
-    "point_value": 100
-  }
 }
 }}}
 
