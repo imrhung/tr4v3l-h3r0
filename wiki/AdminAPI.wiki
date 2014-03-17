@@ -79,6 +79,27 @@ Order by newest first.
 }
 }}}
 
+=Approve/Deny Activity=
+
+Request: POST to Link:
+
+Params: id, state (0:not set yet, 1: approved, 2: denied)
+
+
+Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "state": 1
+  }
+}
+}}}
+
+
+
+
 =Get donation list=
 Order by newest first. 
 
