@@ -1,5 +1,5 @@
-=Get a activity=
- (*)
+=Get a activity(F)=
+ 
  * Request: POST
    Input parameters:
     * id (id of Activity: INT)
