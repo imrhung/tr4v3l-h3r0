@@ -290,20 +290,20 @@ Response:
 }
 }}}
 
-=Approve/Deny quiz=
+=Approve/Deny quiz(F)=
 
-Request: POST to Link:
+ * Request: POST to Link:
 
-Params: id, state (0:not set yet, 1: approved, 2: denied)
+    * Input Values: id, is_approved (0:not set yet, 1: approved, 2: denied)
 
 
-Response:
+ * Response:
 {{{
 {
   "code": 1,
   "message": "Success",
   "info": {
-    "state": 1
+    
   }
 }
 }}}
