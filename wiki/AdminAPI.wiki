@@ -57,32 +57,13 @@ Response:
 }
 }}}
 
-=Approve/Deny activity=
+=Update Point Value Activity=
 
-Request: POST to Link:
-
-Params: id, state (0:not set yet, 1: approved, 2: denied)
-
-
-Response:
-{{{
-{
-  "code": 1,
-  "message": "Success",
-  "info": {
-    "state": 1
-  }
-}
-}}}
-
-
-=Update Point Value=
-
-Request: POST to link:
-
-Params: id, point
-
-Response:
+ * Request: POST to link:
+   Params: 
+   * id
+   * point
+ * Response:
 {{{
 {
   "code": 1,
