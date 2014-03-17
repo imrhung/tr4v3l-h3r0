@@ -80,19 +80,17 @@ params: pageSize (pageSize == 0 will return full list), pageNumber (start from 0
 Response:
 
 
-=Update donation cost(F)=
+=Update donation RequirePoint(F)=
  * Request: POST to link:
   Params: 
    * id
-   * cost
+   * point
  * Response:
 {{{
 {
   "code": 1,
   "message": "Success",
-  "info": {
-    "cost": 100
-  }
+ 
 }
 }}}
 
