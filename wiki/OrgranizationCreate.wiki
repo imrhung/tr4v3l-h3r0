@@ -3,8 +3,8 @@
 Link:
 
 
-*POST with params: 
-  * partner_id,
+ * POST with params: 
+   * partner_id,
 title,
 description,
 action_id,
