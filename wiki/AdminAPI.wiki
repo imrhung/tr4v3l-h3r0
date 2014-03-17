@@ -6,19 +6,22 @@
     * partner_id (INT)
  * Response:
  {{{
+{
   "code": 1,
   "message": "Success",
   "info": {
-    "activity": 
-      {
-        "Id": 1,
-        "PartnerId": 2,
-        "ActionContent": "abcxyz",
-        "Description": "abcxyz",
-        "Title": "http://abcxyz",       
-        "Name": "Action's Name"
-      }
- }
+    "activity": {
+      "Id": 1,
+      "PartnerId": 2,
+      "ActionContent": "abcxyz",
+      "Description": "abcxyz",
+      "Title": "http://abcxyz",
+      "Name": "Action's Name",
+      "Point": 100,
+      "CreatedDate": "2014/03/02"
+    }
+  }
+}
  }}}
  
   
@@ -31,28 +34,32 @@ Order by newest first.
  * Response:
 {{{
 {
-"code": 1,
-"message": "Success",
-"info": {
-    "activity": 
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "activity": [
       {
         "Id": 1,
-        "PartnerId": 1,
-        "ActionContent": "abcxyz",
-        "Description": "abcxyz",
-        "Title": "http://abcxyz",       
-        "Name": "Action's Name"
-      },
-      {
-        "Id": 2,
         "PartnerId": 2,
         "ActionContent": "abcxyz",
         "Description": "abcxyz",
-        "Title": "http://abcxyz",       
-        "Name": "Action's Name"
+        "Title": "http://abcxyz",
+        "Name": "Action's Name",
+        "Point": 100,
+        "CreatedDate": "2014/03/02"
+      },
+      {
+        "Id": 1,
+        "PartnerId": 2,
+        "ActionContent": "abcxyz",
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",
+        "Name": "Action's Name",
+        "Point": 100,
+        "CreatedDate": "2014/03/02"
       }
- } 
-
+    ]
+  }
 }
 }}}
 
