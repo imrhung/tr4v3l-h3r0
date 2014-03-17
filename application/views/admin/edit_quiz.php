@@ -161,8 +161,8 @@
                     <div class="form-group">
                         <label class=" control-label" for="approve">Approve:</label>
                         <div class="">
-                            <button type="button" id="approve" name="approve" class="btn  btn-success" onclick="approveQuiz(1);">Yes</button>
-                            <button type="button" id="deny" name="deny" class="btn  btn-danger" onclick="approveQuiz(0)">No</button>
+                            <button type="button" id="approve" name="approve" class="btn  btn-success" onclick="approveQuiz(<?php echo $quizId ?>, 1);">Yes</button>
+                            <button type="button" id="deny" name="deny" class="btn  btn-danger" onclick="approveQuiz(<?php echo $quizId ?>, 0)">No</button>
                         </div>
                     </div>
 

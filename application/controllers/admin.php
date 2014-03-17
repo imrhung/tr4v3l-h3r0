@@ -11,6 +11,12 @@ class Admin extends App_Controller {
     public function index() {
         $this->current_section = 'home';
         $this->assets_css[] = "admin.css";
+        $this->assets_css[] = 'datatables/jquery.dataTables.css';
+        $this->assets_css[] = 'datatables/data-bootstrap.css';
+        $this->assets_js[] = 'datatables/jquery.dataTables.js';
+        $this->assets_js[] = 'datatables/pagebootstrap.js';
+        $this->assets_js[] = 'admin/index.js';
+        $this->assets_js[] = 'bootbox/bootbox.min.js';
         $this->render_page_admin('admin/index');
     }
     
@@ -104,33 +110,148 @@ class Admin extends App_Controller {
   "code": 1,
   "message": "Success",
   "info": {
-    "quiz": {
-      "Id": 1,
-        "CategoryId": 2,
-        "PartnerId": 2,
-        "Content": "abcxyz",
-        "BonusPoint": 100,
+    "quiz": [
+      {
+        "Id": 1,
+        "CategoryId": 1,
         "CreatedDate": 1002,
-        "CorrectChoiceId": 4,
-        "SharingInfo": "abcxyz",
-        "LearnMoreURL": "http://abcxyz",
-        "ImageURL": "http://abcxyz",
+        "CorrectChoiceId": 1,
+        "IsApproved": 1,
+        "CategoryName": "Teaching",
+        "Name": "KTO",
+        "CreateDate": "2014/04/03"
+      },
+      {
+        "Id": 2,
+        "CategoryId": 1,
+        "CreatedDate": 1002,
+        "CorrectChoiceId": 1,
+        "IsApproved": 0,
+        "CategoryName": "Teaching",
+        "Name": "Partners Name",
+        "CreateDate": "2014/04/03"
+      },
+      {
+        "Id": 3,
+        "CategoryId": 0,
+        "CreatedDate": 1002,
+        "CorrectChoiceId": 1,
+        "IsApproved": 1,
+        "CategoryName": "Teaching",
+        "Name": "Papa",
+        "CreateDate": "2014/04/03"
+      },
+      {
+        "Id": 4,
+        "CategoryId": 1,
+        "CreatedDate": 1002,
+        "CorrectChoiceId": 1,
         "IsApproved": 1,
         "CategoryName": "Teaching",
         "Name": "Partners Name",
-        "PacketId": 2,
-        "PacketName": "Da Nang",
-        "ApprovedDate": "2014/04/02",
-        "PublishedDate": "2014/04/03",
-        "AnswerA": "1234",
-        "AnswerB": "1234",
-        "AnswerC": "1234",
-        "AnswerD": "1234",
-        "AnswerAId": 2,
-        "AnswerBId": 3,
-        "AnswerCId": 4,
-        "AnswerDId": 5
-    }
+        "CreateDate": "2014/04/03"
+      },
+      {
+        "Id": 5,
+        "CategoryId": 0,
+        "CreatedDate": 1002,
+        "CorrectChoiceId": 1,
+        "IsApproved": 1,
+        "CategoryName": "Teaching",
+        "Name": "Partners Name",
+        "CreateDate": "2014/04/03"
+      },
+      {
+        "Id": 6,
+        "CategoryId": 1,
+        "CreatedDate": 1002,
+        "CorrectChoiceId": 1,
+        "IsApproved": 1,
+        "CategoryName": "Teaching",
+        "Name": "Partners Name",
+        "CreateDate": "2014/04/03"
+      },
+      {
+        "Id": 1,
+        "CategoryId": 1,
+        "CreatedDate": 1002,
+        "CorrectChoiceId": 1,
+        "IsApproved": 1,
+        "CategoryName": "Teaching",
+        "Name": "Partners Name",
+        "CreateDate": "2014/04/03"
+      },
+      {
+        "Id": 1,
+        "CategoryId": 1,
+        "CreatedDate": 1002,
+        "CorrectChoiceId": 1,
+        "IsApproved": 1,
+        "CategoryName": "Teaching",
+        "Name": "Partners Name",
+        "CreateDate": "2014/04/03"
+      },
+      {
+        "Id": 1,
+        "CategoryId": 1,
+        "CreatedDate": 1002,
+        "CorrectChoiceId": 1,
+        "IsApproved": 0,
+        "CategoryName": "Teaching",
+        "Name": "Partners Name",
+        "CreateDate": "2014/04/03"
+      },
+      {
+        "Id": 1,
+        "CategoryId": 1,
+        "CreatedDate": 1002,
+        "CorrectChoiceId": 1,
+        "IsApproved": 1,
+        "CategoryName": "Teaching",
+        "Name": "Partners Name",
+        "CreateDate": "2014/04/03"
+      },
+      {
+        "Id": 1,
+        "CategoryId": 1,
+        "CreatedDate": 1002,
+        "CorrectChoiceId": 1,
+        "IsApproved": 0,
+        "CategoryName": "Teaching",
+        "Name": "Partners Name",
+        "CreateDate": "2014/04/03"
+      },
+      {
+        "Id": 1,
+        "CategoryId": 1,
+        "CreatedDate": 1002,
+        "CorrectChoiceId": 1,
+        "IsApproved": 1,
+        "CategoryName": "Teaching",
+        "Name": "Partners Name",
+        "CreateDate": "2014/04/03"
+      },
+      {
+        "Id": 1,
+        "CategoryId": 1,
+        "CreatedDate": 1002,
+        "CorrectChoiceId": 1,
+        "IsApproved": 0,
+        "CategoryName": "Teaching",
+        "Name": "Partners Name",
+        "CreateDate": "2014/04/03"
+      },
+      {
+        "Id": 1,
+        "CategoryId": 1,
+        "CreatedDate": 1002,
+        "CorrectChoiceId": 1,
+        "IsApproved": 1,
+        "CategoryName": "Teaching",
+        "Name": "Partners Name",
+        "CreateDate": "2014/04/03"
+      }
+    ]
   }
 }';
         echo json_encode(json_decode($data));

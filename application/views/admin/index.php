@@ -28,9 +28,12 @@
 
         <!-- Main content -->
         <!-- Quest approval -->
-        <h3>Please approve recent quest</h3>
-        <p>Below are quests that have been created by other organizations. Please approve or deny them.</p>
-        <table class="table table-striped table-bordered">
+        <h3>Please approve recent quiz</h3>
+        <p>Below are quiz that have been created by other organizations. Please approve or deny them.</p>
+        
+        <div id="quiz"></div>
+        <!-- Table 
+        <table class="table table-striped table-bordered" id="quiz-table" cellpadding="0" cellspacing="0" border="0">
             <thead>
                 <tr>
                     <th>
@@ -120,8 +123,8 @@
                     <td>-</td>
                 </tr>
             </tbody>
-        </table>
-
+        </table>-->
+        <br>
         <!-- Activity approval -->
         <h3>Please approve recent activity</h3>
         <p>Below are activities that have been created by other organizations. Please approve or deny them.</p>
