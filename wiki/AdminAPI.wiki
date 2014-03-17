@@ -18,7 +18,8 @@
       "Title": "http://abcxyz",
       "Name": "Action's Name",
       "Point": 100,
-      "CreatedDate": "2014/03/02"
+      "CreatedDate": "2014/03/02",
+      "IsApproved": 1
     }
   }
 }
@@ -46,7 +47,8 @@ Order by newest first.
         "Title": "http://abcxyz",
         "Name": "Action's Name",
         "Point": 100,
-        "CreatedDate": "2014/03/02"
+        "CreatedDate": "2014/03/02",
+        "IsApproved": 1
       },
       {
         "Id": 1,
@@ -56,7 +58,8 @@ Order by newest first.
         "Title": "http://abcxyz",
         "Name": "Action's Name",
         "Point": 100,
-        "CreatedDate": "2014/03/02"
+        "CreatedDate": "2014/03/02",
+        "IsApproved": 1
       }
     ]
   }
