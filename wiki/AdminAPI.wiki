@@ -140,7 +140,7 @@ Response:
 }}}
 
 
-=Get Quiz list=
+=Get Quiz list*=
 Order by newest first. 
 
 Request: POST to Link:
@@ -175,7 +175,7 @@ Response:
 }
 }}}
 
-=Get one Quiz=
+=Get one Quiz*=
 
 Request: POST to Link:
 
@@ -214,7 +214,7 @@ Response:
 }
 }}}
 
-=Edit Quiz=
+=Edit Quiz*=
 
 Request: POST to Link:
 
@@ -255,7 +255,7 @@ Response:
 }
 }}}
 
-=Update quiz points=
+=Update quiz points*=
 
 Request: POST to link:
 
@@ -309,7 +309,7 @@ Response:
 }}}
 
 
-=Delete quiz=
+=Delete quiz*=
 
 Request: POST to Link:
 
