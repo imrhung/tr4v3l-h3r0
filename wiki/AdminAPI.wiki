@@ -57,8 +57,7 @@ Response:
 }
 }}}
 
-=Update Point Value Activity=
-
+=Update Point Value Activity(F)=
  * Request: POST to link:
    Input value: 
    * id
@@ -81,13 +80,12 @@ params: pageSize (pageSize == 0 will return full list), pageNumber (start from 0
 Response:
 
 
-=Update donation cost=
-
-Request: POST to link:
-
-Params: id, cost
-
-Response:
+=Update donation cost(F)=
+ * Request: POST to link:
+  Params: 
+   * id
+   * cost
+ * Response:
 {{{
 {
   "code": 1,
