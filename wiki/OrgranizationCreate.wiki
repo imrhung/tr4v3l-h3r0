@@ -4,13 +4,12 @@ Link:
 
 
  * POST with params: 
-   * partner_id,
-title,
-description,
-action_id,
-action_content,
-
-Response in json file.
+   * partner_id
+   * title
+   * description
+   * action_id
+   * action_content
+ * Response in json file.
 if created successful:
 {{{
 {
