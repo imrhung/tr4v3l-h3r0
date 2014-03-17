@@ -157,22 +157,16 @@ Response:
     "quiz": [
       {
         "Id": 1,
-        "CategoryId": 1,
-        "CreatedDate": 1002,
-        "CorrectChoiceId": 1,
+        "CategoryName": "Teaching",      
         "IsApproved": 1,
-        "CategoryName": "Teaching",
         "Name": "Partner's Name",
         "CreateDate": "2014/04/03",
   
       },
       {
         "Id": 1,
-        "CategoryId": 1,
-        "CreatedDate": 1002,
-        "CorrectChoiceId": 1,
+        "CategoryName": "Teaching",       
         "IsApproved": 1,
-        "CategoryName": "Teaching",
         "Name": "Partner's Name",
         "CreateDate": "2014/04/03",
       }
