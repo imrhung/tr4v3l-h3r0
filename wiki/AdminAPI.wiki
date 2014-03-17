@@ -80,7 +80,7 @@ params: pageSize (pageSize == 0 will return full list), pageNumber (start from 0
 Response:
 
 
-=Update donation RequirePoint(F)=
+=Update donation RequiredPoint(F)?=
  * Request: POST to link:
   Params: 
    * id
