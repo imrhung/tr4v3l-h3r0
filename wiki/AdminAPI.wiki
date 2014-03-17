@@ -293,12 +293,9 @@ Response:
 =Approve/Deny quiz(F)=
 
  * Request: POST to Link:
-
      Input Values: 
          * id
          * is_approved (0:not set yet, 1: approved, 2: denied)
-
-
  * Response:
 {{{
 {
