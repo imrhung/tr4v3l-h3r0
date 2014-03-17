@@ -300,10 +300,7 @@ Response:
 {{{
 {
   "code": 1,
-  "message": "Success",
-  "info": {
-    
-  }
+  "message": "Success"
 }
 }}}
 
