@@ -27,15 +27,17 @@ or error:
 
 
 
-=Create Donation=
+=Create Donation(F)=
 
 Link:
 
-POST with params:
-partner_id, title, description.
+ * POST with params:
+  * partner_id
+  * title
+  * description.
 
-Response:
-Success:
+ * Response:
+  * Success:
 {{{
 {
   "code": 1,
@@ -51,17 +53,27 @@ or error:
 }}}
 
 
-=Create Quiz=
+=Create Quiz(F)=
 
 Link:
 
 At this time, we will just create one quiz at a time.
-POST with params:
+ * POST with params:
 
-partner_id, category (is the the id of category), question, image_url, answer_a, answer_b, answer_c, answer_d, correct_answer (will be 0/1/2/3), sharing, link.
+  * partner_id
+  * category (is the the id of category)
+  * question
+  * image_url
+  * answer_a
+  * answer_b
+  * answer_c
+  * answer_d
+  * correct_answer (will be 0/1/2/3)
+  * sharing
+  * link.
 
-Response:
-Success:
+ * Response:
+  * Success:
 {{{
 {
   "code": 1,
