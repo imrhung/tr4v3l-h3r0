@@ -189,8 +189,6 @@ Response:
   "info": {
     "quiz": {
       "Id": 1,
-        "CategoryId": 1,
-        "PartnerId": 2,
         "Content": "abcxyz",
         "BonusPoint": 100,
         "CreatedDate": 1002,
@@ -201,8 +199,6 @@ Response:
         "IsApproved": 1,
         "CategoryName": "Teaching",
         "Name": "Partner's Name",
-        "PacketId": 2,
-        "PacketName": "Da Nang",
         "ApprovedDate": "2014/04/02",
         "PublishedDate": "2014/04/03",
         "AnswerA": "1234",
@@ -244,8 +240,6 @@ Response:
         "IsApproved": 1,
         "CategoryName": "Teaching",
         "Name": "Partner's Name",
-        "PacketId": 2,
-        "PacketName": "Da Nang",
         "ApprovedDate": "2014/04/02",
         "PublishedDate": "2014/04/03",
         "AnswerA": "1234",
