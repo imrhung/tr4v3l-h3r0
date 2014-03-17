@@ -60,7 +60,7 @@ Response:
 =Update Point Value Activity=
 
  * Request: POST to link:
-   Params: 
+   Input value: 
    * id
    * point
  * Response:
