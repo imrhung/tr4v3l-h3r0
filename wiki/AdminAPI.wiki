@@ -22,14 +22,13 @@
  }}}
  
   
-=Get activity list=
+=Get activity list(F)=
 Order by newest first. 
-Request: POST to Link:
-
-params: pageSize (pageSize == 0 will return full list), pageNumber.
-
-
-Response:
+ * Request: POST to Link:
+ params: 
+  * pageSize (pageSize == 0 will return full list) 
+  * pageNumber.
+ * Response:
 {{{
 {
 "code": 1,
