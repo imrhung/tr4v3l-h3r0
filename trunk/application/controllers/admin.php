@@ -105,6 +105,58 @@ class Admin extends App_Controller {
         echo json_encode($data);
     }
     
+    public function testactivity(){
+        $data = '{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "activity": [
+      {
+        "Id": 1,
+        "PartnerId": 2,
+        "ActionContent": "abcxyz",
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",
+        "Name": "Actions Name",
+        "Point": 100,
+        "CreatedDate": "2014/03/02"
+      },
+      {
+        "Id": 2,
+        "PartnerId": 2,
+        "ActionContent": "abcxyz",
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",
+        "Name": "Acts Name",
+        "Point": 100,
+        "CreatedDate": "2014/03/02"
+      },
+      {
+        "Id": 3,
+        "PartnerId": 2,
+        "ActionContent": "abcxyz",
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",
+        "Name": "As Name",
+        "Point": 100,
+        "CreatedDate": "2014/03/02"
+      },
+      {
+        "Id": 1,
+        "PartnerId": 2,
+        "ActionContent": "abcxyz",
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",
+        "Name": "Actios Name",
+        "Point": 100,
+        "CreatedDate": "2014/03/02"
+      }
+    ]
+  }
+}';
+       echo json_encode(json_decode($data));
+    }
+    
     public function testapi(){
         $data = '{
   "code": 1,
@@ -255,5 +307,176 @@ class Admin extends App_Controller {
   }
 }';
         echo json_encode(json_decode($data));
+    }
+    
+    public function testDonation(){
+        $data='{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "donation": [
+      {
+        "Id": 1,
+        "PartnerId": 2,
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",
+        "Name": "Action Name",
+        "RequiredPoint": 100,
+        "CreatedDate": "2014/03/02",
+        "IsApproved": 0
+      },
+      {
+        "Id": 1,
+        "PartnerId": 2,
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",
+        "Name": "Actio Name",
+        "RequiredPoint": 100,
+        "CreatedDate": "2014/03/02",
+        "IsApproved": 1
+      },
+      {
+        "Id": 1,
+        "PartnerId": 2,
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",
+        "Name": "Actis Name",
+        "RequiredPoint": 100,
+        "CreatedDate": "2014/03/02",
+        "IsApproved": 0
+      },
+      {
+        "Id": 1,
+        "PartnerId": 2,
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",
+        "Name": "Actions Name",
+        "RequiredPoint": 100,
+        "CreatedDate": "2014/03/02",
+        "IsApproved": 1
+      },
+      {
+        "Id": 1,
+        "PartnerId": 2,
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",
+        "Name": "Actis Name",
+        "RequiredPoint": 100,
+        "CreatedDate": "2014/03/02",
+        "IsApproved": 1
+      },
+      {
+        "Id": 1,
+        "PartnerId": 2,
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",
+        "Name": "As Name",
+        "RequiredPoint": 100,
+        "CreatedDate": "2014/03/02",
+        "IsApproved": 1
+      },
+      {
+        "Id": 1,
+        "PartnerId": 2,
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",
+        "Name": "Actis Name",
+        "RequiredPoint": 100,
+        "CreatedDate": "2014/03/02",
+        "IsApproved": 1
+      }
+    ]
+  }
+}';
+        echo json_encode(json_decode($data));
+    }
+    
+    public function testQuest(){
+        $data = '{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "quest": [
+      {
+        "Id": 1,
+        "QuestName": "Rescure",
+        "PacketName": "HCM",
+        "Point": 500,
+        "CreatedDate": "2014/03/04"
+      },
+      {
+        "Id": 1,
+        "QuestName": "Rescure",
+        "PacketName": "HCM",
+        "Point": 500,
+        "CreatedDate": "2014/03/04"
+      },
+      {
+        "Id": 1,
+        "QuestName": "Rescure",
+        "PacketName": "HCM",
+        "Point": 500,
+        "CreatedDate": "2014/03/04"
+      },
+      {
+        "Id": 1,
+        "QuestName": "Rescure",
+        "PacketName": "HCM",
+        "Point": 500,
+        "CreatedDate": "2014/03/04"
+      },
+      {
+        "Id": 1,
+        "QuestName": "Rescure",
+        "PacketName": "HCM",
+        "Point": 500,
+        "CreatedDate": "2014/03/04"
+      },
+      {
+        "Id": 1,
+        "QuestName": "Rescure",
+        "PacketName": "HCM",
+        "Point": 500,
+        "CreatedDate": "2014/03/04"
+      },
+      {
+        "Id": 1,
+        "QuestName": "Rescure",
+        "PacketName": "HCM",
+        "Point": 500,
+        "CreatedDate": "2014/03/04"
+      },
+      {
+        "Id": 1,
+        "QuestName": "Rescure",
+        "PacketName": "HCM",
+        "Point": 500,
+        "CreatedDate": "2014/03/04"
+      },
+      {
+        "Id": 1,
+        "QuestName": "Rescure",
+        "PacketName": "HCM",
+        "Point": 500,
+        "CreatedDate": "2014/03/04"
+      },
+      {
+        "Id": 1,
+        "QuestName": "Rescure",
+        "PacketName": "HCM",
+        "Point": 500,
+        "CreatedDate": "2014/03/04"
+      },
+      {
+        "Id": 1,
+        "QuestName": "Rescure",
+        "PacketName": "HCM",
+        "Point": 500,
+        "CreatedDate": "2014/03/04"
+      }
+    ]
+  }
+}';
+        echo $data;
     }
 }
