@@ -177,7 +177,7 @@ Order by newest first.
 }
 }}}
 
-=Delete Activity=
+=Delete Activity(F)=
 Request: POST to Link:
 
 Params: id
@@ -256,7 +256,7 @@ Order by newest first.
 }
 }}}
 
-=Delete Donation=
+=Delete Donation(F)=
 Request: POST to Link:
 
 Params: id
