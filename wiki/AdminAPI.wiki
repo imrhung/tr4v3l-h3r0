@@ -450,33 +450,5 @@ Response:
 }}}
 
 
-=Get Packet List=
-
-Request: 
 
 
-Response:
-
-
-=Add packet=
-
-Request: 
-
-
-Response:
-
-
-=Get Quest Category=
-
-Request: 
-
-
-Response:
-
-
-=Add Quest Category=
-
-Request: 
-
-
-Response:
