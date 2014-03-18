@@ -27,7 +27,7 @@ class User extends App_Controller {
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
         $this->form_validation->set_rules('username', 'Username', 'required');
-	$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
         
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('user/login');
