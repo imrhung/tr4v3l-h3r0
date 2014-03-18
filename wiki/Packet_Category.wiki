@@ -28,9 +28,9 @@ Response:
 =Add packet=
  * Request: POST to link:
  Params: 
-  * title
-  * image_url
-  * partner_id
+   * title(string)
+   * image_url(string)
+   * partner_id(int)
  * Response:
 {{{
 {
