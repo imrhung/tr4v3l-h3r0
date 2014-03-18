@@ -1,3 +1,4 @@
+#labels Phase-Support
 =Get a activity(F)=
  
  * Request: POST
@@ -80,11 +81,10 @@ Order by newest first.
 }}}
 
 =Approve/Deny Activity(F)=
-
  * Request: POST to Link:
- Params: 
-  * id
-  * is_approved (0:not set yet, 1: approved, 2: denied)
+  Params: 
+   * id
+   * is_approved (0:not set yet, 1: approved, 2: denied)
  * Response:
 {{{
 {
