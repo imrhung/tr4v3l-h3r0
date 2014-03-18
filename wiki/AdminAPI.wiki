@@ -97,7 +97,7 @@ Order by newest first.
 =Get donation list(F)=
 Order by newest first. 
  * Request: POST to Link:
- params: 
+  params: 
    * pageSize (pageSize == 0 will return full list)
    * pageNumber (start from 0).
  * Response:
