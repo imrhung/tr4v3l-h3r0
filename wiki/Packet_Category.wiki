@@ -42,7 +42,7 @@ POST to link:
 }
 }}}
 
-=Get category list=
+=Get Quiz category list(F)=
 Request: POST to link:
 
 Response:
@@ -66,4 +66,14 @@ Response:
 }}}
 
 
-=Add category=
+=Add category(F)=
+ * Request:
+   Input Values:
+    * category_name (string)
+ * Response:
+   {{{
+    {
+      "code": 1,
+      "message": "Success"
+    }
+   }}}
