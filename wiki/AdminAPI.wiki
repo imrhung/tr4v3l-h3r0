@@ -98,8 +98,6 @@ Response:
 }}}
 
 
-
-
 =Get donation list=
 Order by newest first. 
 
@@ -108,7 +106,36 @@ Request: POST to Link:
 params: pageSize (pageSize == 0 will return full list), pageNumber (start from 0).
 
 Response:
-
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "donation": [
+      {
+        "Id": 1,
+        "PartnerId": 2,
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",
+        "Name": "Action's Name",
+        "RequiredPoint": 100,
+        "CreatedDate": "2014/03/02",
+        "IsApproved": 1
+      },
+      {
+        "Id": 1,
+        "PartnerId": 2,
+        "Description": "abcxyz",
+        "Title": "http://abcxyz",
+        "Name": "Action's Name",
+        "RequiredPoint": 100,
+        "CreatedDate": "2014/03/02",
+        "IsApproved": 1
+      }
+    ]
+  }
+}
+}}}
 
 =Update donation RequiredPoint(F)?=
  * Request: POST to link:
