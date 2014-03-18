@@ -1,4 +1,76 @@
 #labels Phase-Support
+=Get a Quest=
+ *Request: Post to:
+   Input params:
+    * id
+ *Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "quest": {
+      "Id": 1,
+      "QuestName": "abcxyz",
+      "Title": "http://abcxyz",
+      "Name": "Action's Name",
+      "Point": 100,
+      "CreatedDate": "2014/03/02",
+      "PacketName": "HCM"
+    },
+    "condition": [
+      {
+        "Id": 1,
+        "Type": 1,
+        "ObjectId": 4,
+        "ObjectName": "Donation 4$",
+        "Value": 500
+      },
+      {
+        "Id": 1,
+        "Type": 1,
+        "ObjectId": 4,
+        "ObjectName": "Donation 4$",
+        "Value": 500
+      }
+    ]
+  }
+}
+}}}
+
+=Get quest List=
+
+ * Request: POST
+   Input parameters:
+    * id (id of Activity: INT)
+    * partner_id (INT)
+ * Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "quest": [
+      {
+        "Id": 1,
+        "QuestName": "Rescure",
+        "PacketName": "HCM",
+        "Point": 500,
+        "CreatedDate": "2014/03/04"
+      },
+      {
+        "Id": 1,
+        "QuestName": "Rescure",
+        "PacketName": "HCM",
+        "Point": 500,
+        "CreatedDate": "2014/03/04"
+      }
+    ]
+  }
+}
+}}}
+
+
 =Get a activity(F)=
  
  * Request: POST
