@@ -72,8 +72,8 @@
 }}}
 
 =Delete VirtualQuest(F)=
-Request: POST to Link:
- http://localhost:1443/heroforzero/virtualquest/deleteVirtualQuest
+ * Link:  http://localhost:1443/heroforzero/virtualquest/deleteVirtualQuest
+Request: 
 Params: id
 
 Response:
@@ -197,7 +197,7 @@ Response:
 
 =Get donation list(F)=
 Order by newest first.
- 
+ * Link: donation/getDonation
  * Request: 
   params: 
    * pageSize (pageSize == 0 will return full list)
@@ -235,7 +235,7 @@ Order by newest first.
 }}}
 
 =Update donation RequiredPoint(F)?=
- * Request: POST to link:
+ * Request: POST to link: donation/updateRequiredPoint
   Params: 
    * id
    * point
@@ -263,7 +263,7 @@ Order by newest first.
 }}}
 
 =Delete Donation(F)=
-Request: POST to Link:
+Request: POST to Link: donation/deleteDonation
 
 Params: id
 
@@ -278,7 +278,7 @@ Response:
 =Get Quiz list(F)=
 Order by newest first. 
 
-Request: POST to Link:
+Request: POST to Link: quiz/getQuizList
 
 params: pageSize (pageSize == 0 will return full list), pageNumber.
 
@@ -312,7 +312,7 @@ Response:
 
 =Get one Quiz(F)=
 
-Request: POST to Link:
+Request: POST to Link: quiz/getQuiz
 
 Params: id
 
@@ -351,7 +351,7 @@ Response:
 
 =Edit Quiz(F)=
 
-Request: POST to Link:
+Request: POST to Link: quiz/updateQuiz
 
 Params: id, category (is the the id of category), question, answer_a, answer_b, answer_c, answer_d, correct_answer (will be 0/1/2/3), sharing, link.
 
@@ -392,7 +392,7 @@ Response:
 
 =Update quiz points(F)=
 
-Request: POST to link:
+Request: POST to link: quiz/updateBonusPoint
 
 Params: id, point
 
@@ -410,7 +410,7 @@ Response:
 
 =Approve/Deny quiz(F)=
 
- * Request: POST to Link:
+ * Request: POST to Link: quiz/updateIsApproved
      Input Values: 
          * id
          * is_approved (0:not set yet, 1: approved, 2: denied)
@@ -425,7 +425,7 @@ Response:
 
 =Delete quiz(F)=
 
-Request: POST to Link:
+Request: POST to Link: quiz/deleteQuiz
 
 Params: id
 
