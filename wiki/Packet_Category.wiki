@@ -12,16 +12,16 @@ POST to link: packet/getPacketList
   "info": {
     "packet": [
       {
-        "id": 1,
-        "name": "Ho Chi Minh"
+        "Id": 1,
+        "Title": "Ho Chi Minh"
       },
       {
-        "id": 1,
-        "name": "Ho Chi Minh"
+        "Id": 1,
+        "Title": "Ho Chi Minh"
       },
       {
-        "id": 1,
-        "name": "Ho Chi Minh"
+        "Id": 1,
+        "Title": "Ho Chi Minh"
       }
     ]
   }
