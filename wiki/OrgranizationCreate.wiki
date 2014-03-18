@@ -1,3 +1,35 @@
+=Create Quest=
+
+Link: 
+
+ * POST with params: 
+   * partner_id
+   * packet_id
+   * name
+   * point
+   * quiz_category
+   * activity_id_1 (=0 means no choose)
+   * activity_id_2
+   * activity_id_3
+   * donation_id_1 (=0 means no choose)
+   * donation_id_2
+   * donation_id_3
+ * Response in json file.
+if created successful:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+}
+}}}
+or error:
+{{{
+{
+  "code": 0,
+  "message": "Fail",
+}
+}}}
+
 =Create Activity(F)=
 
 Link: [activity/insertActivity]
@@ -24,8 +56,6 @@ or error:
   "message": "Fail",
 }
 }}}
-
-
 
 =Create Donation(F)=
 
