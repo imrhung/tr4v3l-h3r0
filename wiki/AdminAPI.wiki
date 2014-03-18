@@ -94,14 +94,13 @@ Order by newest first.
 }}}
 
 
-=Get donation list=
+=Get donation list(F)=
 Order by newest first. 
-
-Request: POST to Link:
-
-params: pageSize (pageSize == 0 will return full list), pageNumber (start from 0).
-
-Response:
+ * Request: POST to Link:
+ params: 
+   * pageSize (pageSize == 0 will return full list)
+   * pageNumber (start from 0).
+ * Response:
 {{{
 {
   "code": 1,
@@ -148,21 +147,16 @@ Response:
 }}}
 
 
-=Approve/Deny donation=
-
-Request: POST to Link:
-
-Params: id, state (0:not set yet, 1: approved, 2: denied)
-
-
-Response:
+=Approve/Deny donation(F)=
+ * Request: POST to Link:
+ Params: 
+   * id
+   * is_approved (0:not set yet, 1: approved, 2: denied)
+ * Response:
 {{{
 {
   "code": 1,
-  "message": "Success",
-  "info": {
-    "state": 1
-  }
+  "message": "Success"
 }
 }}}
 
