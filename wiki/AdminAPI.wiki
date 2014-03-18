@@ -1,5 +1,5 @@
 #labels Phase-Support
-=Get a Quest=
+=Get a VirtualQuest=
  *Request: Post to:
    Input params:
     * id
@@ -38,7 +38,7 @@
 }
 }}}
 
-=Get quest List=
+=Get VirtualQuest List=
 
  * Request: POST
    Input parameters:
@@ -70,7 +70,7 @@
 }
 }}}
 
-=Delete Quest=
+=Delete VirtualQuest=
 Request: POST to Link:
 
 Params: id
@@ -448,7 +448,5 @@ Response:
   "message": "Success"
 }
 }}}
-
-
 
 
