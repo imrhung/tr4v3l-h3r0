@@ -1,6 +1,6 @@
 =Create Activity(F)=
 
-Link:
+Link: [activity/insertActivity]
 
 
  * POST with params: 
@@ -29,7 +29,7 @@ or error:
 
 =Create Donation(F)=
 
-Link:
+Link: [donation/insertDonation]
 
  * POST with params:
   * partner_id
@@ -55,7 +55,7 @@ or error:
 
 =Create Quiz(F)=
 
-Link:
+Link: [quiz/insertQuiz]
 
 At this time, we will just create one quiz at a time.
  * POST with params:
