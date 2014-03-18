@@ -402,23 +402,6 @@ Response:
 }}}
 
 
-=Update Quiz Packet=
-
-Request: POST to link:
-
-Params: id, packet_id
-
-Response:
-{{{
-{
-  "code": 1,
-  "message": "Success",
-  "info": {
-    "packet_id": 1
-  }
-}
-}}}
-
 =Approve/Deny quiz(F)=
 
  * Request: POST to Link:
