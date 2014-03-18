@@ -26,19 +26,16 @@ Response:
 }}}
 
 =Add packet=
-Request: POST to link:
-
-Params: packet_name
-
-Response:
+ * Request: POST to link:
+ Params: 
+  * title
+  * image_url
+  * partner_id
+ * Response:
 {{{
 {
   "code": 1,
   "message": "Success",
-  "info": {
-    "id" : 1,
-    "name": "Ha Noi"
-  }
 }
 }}}
 
