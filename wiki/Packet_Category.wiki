@@ -1,4 +1,4 @@
-=Get packet list=
+=Get packet list(F)=
 POST to link:
 
 Response:
@@ -25,7 +25,7 @@ Response:
 }
 }}}
 
-=Add packet=
+=Add packet(F)=
  * Request: POST to link:
  Params: 
    * title(string)
