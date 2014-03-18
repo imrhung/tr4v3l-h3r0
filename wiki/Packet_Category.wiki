@@ -1,7 +1,10 @@
 =Get packet list(F)=
 POST to link:
-
-Response:
+ * Request
+ Input parameters:
+   * pageSize (pageSize == 0 will return full list)
+   * pageNumber.
+ * Response:
 {{{
 {
   "code": 1,
