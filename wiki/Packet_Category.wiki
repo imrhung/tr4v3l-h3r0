@@ -1,5 +1,5 @@
 =Get packet list(F)=
-POST to link:
+POST to link: packet/getPacketList
  * Request
  Input parameters:
    * pageSize (pageSize == 0 will return full list)
@@ -29,7 +29,7 @@ POST to link:
 }}}
 
 =Add packet(F)=
- * Request: POST to link:
+ * Request: POST to link: packet/insertPacket
  Params: 
    * title(string)
    * image_url(string)
@@ -43,7 +43,7 @@ POST to link:
 }}}
 
 =Get Quiz category list(F)=
-Request: POST to link:
+Request: POST to link: quizcategory/getQuizCategoryList
 
 Response:
 {{{
@@ -67,6 +67,7 @@ Response:
 
 
 =Add Quiz category(F)=
+    * Link: quizcategory/insertQuizCategory
  * Request:
    Input Values:
     * category_name (string)
