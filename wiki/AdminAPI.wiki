@@ -70,6 +70,18 @@
 }
 }}}
 
+=Delete Quest=
+Request: POST to Link:
+
+Params: id
+
+Response:
+{{{
+{
+  "code": 1,
+  "message": "Success"
+}
+}}}
 
 =Get a activity(F)=
  
@@ -165,6 +177,18 @@ Order by newest first.
 }
 }}}
 
+=Delete Activity=
+Request: POST to Link:
+
+Params: id
+
+Response:
+{{{
+{
+  "code": 1,
+  "message": "Success"
+}
+}}}
 
 =Get donation list(F)=
 Order by newest first. 
@@ -232,6 +256,18 @@ Order by newest first.
 }
 }}}
 
+=Delete Donation=
+Request: POST to Link:
+
+Params: id
+
+Response:
+{{{
+{
+  "code": 1,
+  "message": "Success"
+}
+}}}
 
 =Get Quiz list(F)=
 Order by newest first. 
