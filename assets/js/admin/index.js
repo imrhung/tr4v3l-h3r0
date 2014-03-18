@@ -1,3 +1,107 @@
+/*
+ * Quest Table
+ */
+
+var questTable;
+
+$(document).ready(function(){
+    $('#quest').html( '<table cellpadding="0" cellspacing="0" border="0" class="display table table-striped table-bordered" id="quest-table"></table>' );
+    questTable = $('#quest-table').dataTable({
+        "aoColumns":[
+            { "sTitle": "Quest'name" },
+            { "sTitle": "Packet" },
+            { "sTitle": "Point of Advance" },
+            { "sTitle": "Action", "sClass": "center" }
+        ],
+        "sPaginationType": "bootstrap",
+        "bSort": false
+    });
+    loadQuestTable();
+});
+
+function loadQuestTable(){
+    var baseUrl = $("#base-url").attr("href");
+    
+    // Make the spining when waiting
+
+    // Post to api
+    $.post(
+            baseUrl + "admin/testQuest",
+            {
+                pageSize: 0,
+                pageNumber: 0
+            },
+            function(data) {
+                console.log(data);
+                if (data.code === 1) { // Successful
+                    var quesetArray = data.info.quest;
+                    var tableData = new Array();
+                    var quest;
+                    var action;
+                    for (var i=0; i<quesetArray.length; i++){
+                        quest = quesetArray[i];
+                        
+                        action = '<a href="'+baseUrl+'admin/edit_quest/'+quest.Id+'">View</a>  <a onclick="callDeleteQuest('+quest.Id+')" href="javacript:void(0);">Delete</a>';
+                        tableData.push([
+                            quest.QuestName,
+                            quest.PacketName,
+                            quest.Point,
+                            action
+                        ]);
+                    }
+                    questTable.fnClearTable();
+                    questTable.fnAddData(tableData);
+                } else { // Fail
+
+                }
+            },
+            "json"
+            );
+}
+
+function callDeleteQuest(questId){
+    bootbox.confirm(
+            "Are you sure you want to delete this Quest. The action cannot be undone!",
+            function(result){
+                if (result){
+                    deleteQuest(questId);
+                }
+            }
+        );
+}
+
+function deleteQuest(questId){
+    var baseUrl = $("#base-url").attr("href");
+    console.log("Deleting");
+    // Make the spining when waiting
+    // Disable submit button
+
+    // Post to api
+    $.post(
+            baseUrl + "admin/testapi",
+            {
+                id: questId,
+            },
+            function(data) {
+                console.log(data);
+                if (data.code === 1) { // Successful
+                    loadQuestTable();
+                } else { // Fail
+                    bootbox.alert("Some error happened that we cannot delete the quest. Please try again later.", 
+                        function(){
+                            
+                        });
+                }
+            },
+            "json"
+            );
+}
+
+
+/*
+ * Quiz Table
+ */
+
 var quizTable;
 
 $(document).ready(function(){
@@ -116,6 +220,278 @@ function deleteQuiz(quizId){
                 console.log(data);
                 if (data.code === 1) { // Successful
                     loadQuizTable();
+                } else { // Fail
+                    bootbox.alert("Some error happened that we cannot delete the quest. Please try again later.", 
+                        function(){
+                            
+                        });
+                }
+            },
+            "json"
+            );
+}
+
+
+/*
+ * Table of Activity
+ */
+
+var activityTable;
+
+$(document).ready(function(){
+    $('#activity').html( '<table cellpadding="0" cellspacing="0" border="0" class="display table table-striped table-bordered" id="activity-table"></table>' );
+    activityTable = $('#activity-table').dataTable({
+        "aoColumns":[
+            { "sTitle": "Title of Activity" },
+            { "sTitle": "Author" },
+            { "sTitle": "Point Value", "sClass": "center"},
+            { "sTitle": "Approve?", "sClass": "center" },
+            { "sTitle": "Action", "sClass": "center" }
+        ],
+        "sPaginationType": "bootstrap",
+        "bSort": false
+    });
+    loadActivityTable();
+    
+});
+
+function loadActivityTable(){
+    var baseUrl = $("#base-url").attr("href");
+    
+    // Make the spining when waiting
+    // Post to api
+    $.post(
+            baseUrl + "admin/testactivity",
+            {
+                pageSize: 0,
+                pageNumber: 0
+            },
+            function(data) {
+                console.log(data);
+                if (data.code === 1) { // Successful
+                    var actArray = data.info.activity;
+                    var tableData = new Array();
+                    var act;
+                    var isApproved;
+                    var action;
+                    for (var i=0; i<actArray.length; i++){
+                        act = actArray[i];
+                        if (act.IsApproved === 1){
+                            isApproved = "Yes";
+                        }else {
+                            isApproved = '<button id="approve" name="approve" class="btn btn-success" onclick="approveActivity('+act.Id+', 1);">Yes</button> <button id="deny" name="deny" class="btn btn-danger">No</button>';
+                        }
+                        action = '<a href="'+baseUrl+'admin/edit_activity/'+act.Id+'">View</a>  <a onclick="callDeleteAct('+act.Id+')" href="javacript:void(0);">Delete</a>';
+                        tableData.push([
+                            act.Title,
+                            act.Name,
+                            act.Point+'pts',
+                            isApproved,
+                            action
+                        ]);
+                    }
+                    activityTable.fnClearTable();
+                    activityTable.fnAddData(tableData);
+                } else { // Fail
+
+                }
+            },
+            "json"
+            );
+}
+
+function approveActivity(activityId, state){
+    var baseUrl = $("#base-url").attr("href");
+    
+    // Make the spining when waiting
+    // Disable submit button
+
+    // Post to api
+    $.post(
+            baseUrl + "admin/testapi",
+            {
+                id: activityId,
+                state: state
+            },
+            function(data) {
+                console.log(data);
+                if (data.code === 1) { // Successful
+                    if (data.info.state ===1){
+                        loadActivityTable();
+                    } else {
+                        
+                    }
+                } else { // Fail
+
+                }
+            },
+            "json"
+            );
+}
+
+function callDeleteAct(activityId){
+    bootbox.confirm(
+            "Are you sure you want to delete this Activity. The action cannot be undone!",
+            function(result){
+                if (result){
+                    deleteActivity(activityId);
+                }
+            }
+        );
+}
+
+function deleteActivity(activityId){
+    var baseUrl = $("#base-url").attr("href");
+    console.log("Deleting");
+    // Make the spining when waiting
+    // Disable submit button
+
+    // Post to api
+    $.post(
+            baseUrl + "admin/testapi",
+            {
+                id: activityId,
+            },
+            function(data) {
+                console.log(data);
+                if (data.code === 1) { // Successful
+                    loadActivityTable();
+                } else { // Fail
+                    bootbox.alert("Some error happened that we cannot delete the quest. Please try again later.", 
+                        function(){
+                            
+                        });
+                }
+            },
+            "json"
+            );
+}
+
+
+/*
+ * Table of Donation
+ */
+
+var donationTable;
+
+$(document).ready(function(){
+    $('#donation').html( '<table cellpadding="0" cellspacing="0" border="0" class="display table table-striped table-bordered" id="donation-table"></table>' );
+    donationTable = $('#donation-table').dataTable({
+        "aoColumns":[
+            { "sTitle": "Title of Donation" },
+            { "sTitle": "Author" },
+            { "sTitle": "Cost"},
+            { "sTitle": "Approve?", "sClass": "center" },
+            { "sTitle": "Action", "sClass": "center" }
+        ],
+        "sPaginationType": "bootstrap",
+        "bSort": false
+    });
+    loadDonationTable();
+    
+});
+
+function loadDonationTable(){
+    var baseUrl = $("#base-url").attr("href");
+    
+    // Make the spining when waiting
+    // Post to api
+    $.post(
+            baseUrl + "admin/testDonation",
+            {
+                pageSize: 0,
+                pageNumber: 0
+            },
+            function(data) {
+                console.log(data);
+                if (data.code === 1) { // Successful
+                    var donationArray = data.info.donation;
+                    var tableData = new Array();
+                    var donation;
+                    var isApproved;
+                    var action;
+                    for (var i=0; i<donationArray.length; i++){
+                        donation = donationArray[i];
+                        if (donation.IsApproved === 1){
+                            isApproved = "Yes";
+                        }else {
+                            isApproved = '<button id="approve" name="approve" class="btn btn-success" onclick="approveDonation('+donation.Id+', 1);">Yes</button> <button id="deny" name="deny" class="btn btn-danger">No</button>';
+                        }
+                        action = '<a href="'+baseUrl+'admin/edit_donation/'+donation.Id+'">View</a>  <a onclick="callDeleteDonation('+donation.Id+')" href="javacript:void(0);">Delete</a>';
+                        tableData.push([
+                            donation.Title,
+                            donation.Name,
+                            '-'+donation.RequiredPoint+'pts',
+                            isApproved,
+                            action
+                        ]);
+                    }
+                    donationTable.fnClearTable();
+                    donationTable.fnAddData(tableData);
+                } else { // Fail
+
+                }
+            },
+            "json"
+            );
+}
+
+function approveDonation(activityId, state){
+    var baseUrl = $("#base-url").attr("href");
+    
+    // Make the spining when waiting
+    // Disable submit button
+
+    // Post to api
+    $.post(
+            baseUrl + "admin/testapi",
+            {
+                id: activityId,
+                state: state
+            },
+            function(data) {
+                console.log(data);
+                if (data.code === 1) { // Successful
+                    if (data.info.state ===1){
+                        loadDonationTable();
+                    } else {
+                        
+                    }
+                } else { // Fail
+
+                }
+            },
+            "json"
+            );
+}
+
+function callDeleteDonation(donationId){
+    bootbox.confirm(
+            "Are you sure you want to delete this Activity. The action cannot be undone!",
+            function(result){
+                if (result){
+                    deleteDonation(donationId);
+                }
+            }
+        );
+}
+
+function deleteDonation(donationId){
+    var baseUrl = $("#base-url").attr("href");
+    console.log("Deleting");
+    // Make the spining when waiting
+    // Disable submit button
+
+    // Post to api
+    $.post(
+            baseUrl + "admin/testapi",
+            {
+                id: donationId,
+            },
+            function(data) {
+                console.log(data);
+                if (data.code === 1) { // Successful
+                    loadDonationTable();
                 } else { // Fail
                     bootbox.alert("Some error happened that we cannot delete the quest. Please try again later.", 
                         function(){
