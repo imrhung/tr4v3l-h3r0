@@ -79,21 +79,17 @@ Order by newest first.
 }
 }}}
 
-=Approve/Deny Activity=
+=Approve/Deny Activity(F)=
 
-Request: POST to Link:
-
-Params: id, state (0:not set yet, 1: approved, 2: denied)
-
-
-Response:
+ * Request: POST to Link:
+ Params: 
+  * id
+  * is_approved (0:not set yet, 1: approved, 2: denied)
+ * Response:
 {{{
 {
   "code": 1,
-  "message": "Success",
-  "info": {
-    "state": 1
-  }
+  "message": "Success"
 }
 }}}
 
