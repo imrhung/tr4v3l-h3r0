@@ -41,8 +41,9 @@ class User extends App_Controller {
                 // Check role
                 $userId = $this->user_model->getUserId($username);
                 $roleId = $this->user_model->getRoleId($userId);
+                $partnerId = $this->user_model->getPartnerId($userId);
                 if ($roleId == 4) { // Organization
-                    $partnerId = $this->user_model->getPartnerId($userId);
+                    
                     // Store to session
                     $sess_array = array(
                         'islogin' => TRUE,
@@ -53,11 +54,12 @@ class User extends App_Controller {
                     // Load view
                     redirect("organization/index");
                     
-                } else if ($roleId == 3){ // mod
+                } else if ($roleId == 3){ // Unicef
                     // Store to session
                     $sess_array = array(
                         'islogin' => TRUE,
-                        'role' => "admin"
+                        'role' => "admin",
+                        'partner_id' => $partnerId,
                     );
                     $this->session->set_userdata($sess_array);
                     // Load view
