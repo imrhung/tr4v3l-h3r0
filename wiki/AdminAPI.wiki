@@ -258,8 +258,8 @@ Response:
 }
 }}}
 
-=Get a donation=
- * Link:
+=Get a donation(F)=
+ * Link: donation/getDonation
  * Request:
     * id
  * Response:
@@ -320,9 +320,9 @@ Order by newest first.
 }
 }}}
 
-=Edit Donation =
+=Edit Donation(F) =
 
-Link: 
+Link: donation/updateDonation
 
  * POST with params:
   * id
