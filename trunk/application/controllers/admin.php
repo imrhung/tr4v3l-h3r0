@@ -6,6 +6,9 @@ class Admin extends App_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->helper('cookie');
+        $partnerId = $this->session->userdata('partner_id');
+        set_cookie('partner_id', $partnerId);
     }
 
     public function index() {
@@ -39,6 +42,7 @@ class Admin extends App_Controller {
         $this->current_section = 'create_quest';
         $this->assets_js[] = 'datatables/jquery.dataTables.js';
         $this->assets_js[] = 'admin/create_quest.js';
+        $this->assets_js[] = 'bootstrap/dynamicform.js';
         $this->assets_css[] = 'datatables/jquery.dataTables.css';
         $this->assets_css[] = "admin.css";
         $this->render_page_admin('admin/create_quest');
@@ -116,7 +120,7 @@ class Admin extends App_Controller {
         "PartnerId": 2,
         "ActionContent": "abcxyz",
         "Description": "abcxyz",
-        "Title": "http://abcxyz",
+        "Title": "Go to yeah",
         "Name": "Actions Name",
         "Point": 100,
         "CreatedDate": "2014/03/02"
@@ -126,7 +130,7 @@ class Admin extends App_Controller {
         "PartnerId": 2,
         "ActionContent": "abcxyz",
         "Description": "abcxyz",
-        "Title": "http://abcxyz",
+        "Title": "Go to yeah://abcxyz",
         "Name": "Acts Name",
         "Point": 100,
         "CreatedDate": "2014/03/02"
@@ -136,7 +140,7 @@ class Admin extends App_Controller {
         "PartnerId": 2,
         "ActionContent": "abcxyz",
         "Description": "abcxyz",
-        "Title": "http://abcxyz",
+        "Title": "Go to yeah://abcxyz",
         "Name": "As Name",
         "Point": 100,
         "CreatedDate": "2014/03/02"
@@ -146,7 +150,7 @@ class Admin extends App_Controller {
         "PartnerId": 2,
         "ActionContent": "abcxyz",
         "Description": "abcxyz",
-        "Title": "http://abcxyz",
+        "Title": "Go to yeah://abcxyz",
         "Name": "Actios Name",
         "Point": 100,
         "CreatedDate": "2014/03/02"
@@ -478,5 +482,60 @@ class Admin extends App_Controller {
   }
 }';
         echo $data;
+    }
+    
+    public function testPackets(){
+        $data = '{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "packet": [
+      {
+        "Id": 1,
+        "Title": "Ho Chi Minh"
+      },
+      {
+        "Id": 1,
+        "Title": "Ho Chi Minh"
+      },
+      {
+        "Id": 1,
+        "Title": "Ho Chi Minh"
+      }
+    ]
+  }
+}';
+        echo $data;
+    }
+    
+    public function testCate(){
+        echo '{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "category": [
+      {
+        "Id": 1,
+        "CategoryName": "Children"
+      },
+      {
+        "Id": 1,
+        "CategoryName": "Children2"
+      },
+      {
+        "Id": 1,
+        "CategoryName": "Children3"
+      },
+      {
+        "Id": 1,
+        "CategoryName": "Children4"
+      },
+      {
+        "Id": 1,
+        "CategoryName": "Children5"
+      }
+    ]
+  }
+}';
     }
 }

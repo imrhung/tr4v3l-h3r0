@@ -45,7 +45,7 @@ function loadQuestTable(){
                         tableData.push([
                             quest.QuestName,
                             quest.PacketName,
-                            quest.Point,
+                            quest.UnlockPoint,
                             action
                         ]);
                     }
@@ -148,7 +148,7 @@ function loadQuizTable(){
                         }
                         action = '<a href="'+baseUrl+'admin/edit_quiz/'+quiz.Id+'">View</a>  <a onclick="callDelete('+quiz.Id+')" href="javacript:void(0);">Delete</a>';
                         tableData.push([
-                            quiz.Name,
+                            quiz.PartnerName,
                             quiz.CategoryName,
                             isApproved,
                             action
@@ -284,8 +284,8 @@ function loadActivityTable(){
                         action = '<a href="'+baseUrl+'admin/edit_activity/'+act.Id+'">View</a>  <a onclick="callDeleteAct('+act.Id+')" href="javacript:void(0);">Delete</a>';
                         tableData.push([
                             act.Title,
-                            act.Name,
-                            act.Point+'pts',
+                            act.PartnerName,
+                            act.BonusPoint+'pts',
                             isApproved,
                             action
                         ]);
@@ -420,7 +420,7 @@ function loadDonationTable(){
                         action = '<a href="'+baseUrl+'admin/edit_donation/'+donation.Id+'">View</a>  <a onclick="callDeleteDonation('+donation.Id+')" href="javacript:void(0);">Delete</a>';
                         tableData.push([
                             donation.Title,
-                            donation.Name,
+                            donation.PartnerName,
                             '-'+donation.RequiredPoint+'pts',
                             isApproved,
                             action

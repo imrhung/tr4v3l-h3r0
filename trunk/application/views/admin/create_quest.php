@@ -2,97 +2,102 @@
 
     <div id="page-wrapper">
 
-        <h1>Create Donation</h1>
-        <p>Each quest must belong to a city or a packet. You must first create that city or packet, then you can associate that packet/city with your quest.</p>
+        <h1>Create Quest</h1>
+        <p>Please select the fields below to create a quest.</p>
 
-        
-        
-        <!-- Left table -->
-        <div class="col-md-6">
-            <table class="table table-striped table-bordered" id="packet-table">
-                <thead>
-                    <tr>
-                        <th>Packet's Name</th>
-                        <th>Packet's ID</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Can Tho</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>Vung Tau</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td>Ho Chi Minh City</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>Da Nang</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>Nha Trang</td>
-                        <td>5</td>
-                    </tr>
-                    
-                </tbody>
-            </table>
-            <form class='form-inline' role ='form'>
-                <div class='form-group col-md-6'>
-                    <label class='sr-only' for='packet'>Packet's Name</label>
-                    <input type='text' class='form-control' id='packet' placeholder='Write the packet name'>
-                </div>
-                <div class='col-md-6'>
-                    <button type='submit' class='btn btn-block btn-primary'>Add Packet</button>
-                </div>
-            </form>
-        </div> <!-- #End of Left table -->
+        <form class="form-horizontal" onSubmit="createDonation();
+                return false;"></form>
 
-        <!-- Right table -->
-        <div class='col-md-6'>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>Quest Category</th>
-                        <th>Category's ID</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Helping Children</td>
-                        <td>11</td>
-                    </tr>
-                    <tr>
-                        <td>Giving Food</td>
-                        <td>21</td>
-                    </tr>
-                    <tr>
-                        <td>Donating time</td>
-                        <td>31</td>
-                    </tr>
-                    <tr>
-                        <td>Health Care</td>
-                        <td>41</td>
-                    </tr>
-                    <tr>
-                        <td>Donation</td>
-                        <td>51</td>
-                    </tr>
-                </tbody>
-            </table>
-            <form class='form-inline' role ='form'>
-                <div class='form-group col-md-6'>
-                    <label class='sr-only' for='category'>Category's Name</label>
-                    <input type='text' class='form-control' id='category' placeholder='Write the category name'>
+        <form class="form-horizontal" onSubmit="createQuest(); return false;">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend></legend>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="packet">Choose Quest Packet:</label>
+                    <div class="col-md-8" id="select-packet"></div>
                 </div>
-                <div class='col-md-6'>
-                    <button type='submit' class='btn btn-block btn-primary'>Add Category</button>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="name">Name</label>  
+                    <div class="col-md-8">
+                        <input id="name" name="name" type="text" placeholder="Title for the quest" class="form-control input-md" required="">
+
+                    </div>
                 </div>
-            </form>
-        </div> <!-- #End of Right table -->
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="point">Point to Advance</label>  
+                    <div class="col-md-8">
+                        <input id="point" name="point" type="text" placeholder="Amount of points user must earn to advance to the next quest." class="form-control input-md" required="">
+                        
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="category">Quiz Category</label>
+                    <div class="col-md-8" id="select-category">
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="activity_1">Choose the Activity</label>
+                    <div class="col-md-8" id="select-activity-1">
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="activity_2"></label>
+                    <div class="col-md-8" id="select-activity-2">
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="activity_3"></label>
+                    <div class="col-md-8" id="select-activity-3">
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="donation_1">Choose Donation</label>
+                    <div class="col-md-8" id="select-donation-1">
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="donation_2"></label>
+                    <div class="col-md-8" id="select-donation-2">
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="donation"></label>
+                    <div class="col-md-8" id="select-donation-3">
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="submit"></label>
+                    <div class="col-md-8">
+                        <button id="submit" name="submit" class="btn btn-primary">Add Quest</button>
+                        <div id="alert_placeholder"></div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
 
 
     </div><!-- /#page-wrapper -->
