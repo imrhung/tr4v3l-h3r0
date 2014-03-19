@@ -102,8 +102,8 @@ Response:
       "ActionContent": "abcxyz",
       "Description": "abcxyz",
       "Title": "http://abcxyz",
-      "Name": "Action's Name",
-      "Point": 100,
+      "PartnerName": "Action's Name",
+      "BonusPoint": 100,
       "CreatedDate": "2014/03/02",
       "IsApproved": 1
     }
@@ -132,8 +132,8 @@ Order by newest first.
         "ActionContent": "abcxyz",
         "Description": "abcxyz",
         "Title": "http://abcxyz",
-        "Name": "Action's Name",
-        "Point": 100,
+        "PartnerName": "Action's Name",
+        "BonusPoint": 100,
         "CreatedDate": "2014/03/02",
         "IsApproved": 1
       },
@@ -143,8 +143,8 @@ Order by newest first.
         "ActionContent": "abcxyz",
         "Description": "abcxyz",
         "Title": "http://abcxyz",
-        "Name": "Action's Name",
-        "Point": 100,
+        "PartnerName": "Action's Name",
+        "BonusPoint": 100,
         "CreatedDate": "2014/03/02",
         "IsApproved": 1
       }
@@ -214,7 +214,7 @@ Order by newest first.
         "PartnerId": 2,
         "Description": "abcxyz",
         "Title": "http://abcxyz",
-        "Name": "Action's Name",
+        "PartnerName": "Action's Name",
         "RequiredPoint": 100,
         "CreatedDate": "2014/03/02",
         "IsApproved": 1
@@ -224,7 +224,7 @@ Order by newest first.
         "PartnerId": 2,
         "Description": "abcxyz",
         "Title": "http://abcxyz",
-        "Name": "Action's Name",
+        "PartnerName": "Action's Name",
         "RequiredPoint": 100,
         "CreatedDate": "2014/03/02",
         "IsApproved": 1
@@ -294,7 +294,7 @@ Response:
         "Id": 1,
         "CategoryName": "Teaching",      
         "IsApproved": 1,
-        "Name": "Partner's Name",
+        "PartnerName": "Partner's Name",
         "CreateDate": "2014/04/03",
   
       },
@@ -302,7 +302,7 @@ Response:
         "Id": 1,
         "CategoryName": "Teaching",       
         "IsApproved": 1,
-        "Name": "Partner's Name",
+        "PartnerName": "Partner's Name",
         "CreateDate": "2014/04/03",
       }
     ]
@@ -333,9 +333,7 @@ Response:
         "ImageURL": "http://abcxyz",
         "IsApproved": 1,
         "CategoryName": "Teaching",
-        "Name": "Partner's Name",
-        "ApprovedDate": "2014/04/02",
-        "PublishedDate": "2014/04/03",
+        "PartnerName": "Partner's Name",
         "AnswerA": "1234",
         "AnswerB": "1234",
         "AnswerC": "1234",
@@ -374,9 +372,7 @@ Response:
         "ImageURL": "http://abcxyz",
         "IsApproved": 1,
         "CategoryName": "Teaching",
-        "Name": "Partner's Name",
-        "ApprovedDate": "2014/04/02",
-        "PublishedDate": "2014/04/03",
+        "PartnerName": "Partner's Name",
         "AnswerA": "1234",
         "AnswerB": "1234",
         "AnswerC": "1234",
