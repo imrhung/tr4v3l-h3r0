@@ -187,8 +187,8 @@ Order by newest first.
 }
 }}}
 
-=Edit Activity=
-Link: 
+=Edit Activity(F)=
+Link: activity/updateActivity
 
 
  * POST with params: 
