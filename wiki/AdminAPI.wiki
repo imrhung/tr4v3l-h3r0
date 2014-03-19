@@ -397,9 +397,6 @@ Response:
 {
   "code": 1,
   "message": "Success",
-  "info": {
-    "point": 100
-  }
 }
 }}}
 
