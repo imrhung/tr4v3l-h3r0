@@ -71,6 +71,38 @@
 }
 }}}
 
+=Edit Virtual Quest=
+Link:
+
+*POST with params:
+    *id
+    *partner_id
+    *packet_id
+    *name
+    *point
+    *quiz_category
+    *activity_id_1 (=0 means no choose)
+    *activity_id_2
+    *activity_id_3
+    *donation_id_1 (=0 means no choose)
+    *donation_id_2
+    *donation_id_3
+*Response in json file.
+if created successful:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+}
+}}}
+or error:
+{{{
+{
+  "code": 0,
+  "message": "Fail",
+}
+}}}
+
 =Delete VirtualQuest(F)=
  * Link:  http://localhost:1443/heroforzero/virtualquest/deleteVirtualQuest
 Request: 
@@ -153,6 +185,35 @@ Order by newest first.
 }
 }}}
 
+=Edit Activity=
+Link: 
+
+
+ * POST with params: 
+   * id
+   * partner_id
+   * title
+   * description
+   * action_id
+   * action_content
+   * point
+   * approve (0 : not approve, 1 is approved)
+ * Response in json file.
+if created successful:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+}
+}}}
+or error:
+{{{
+{
+  "code": 0,
+  "message": "Fail",
+}
+}}}
+
 =Update Point Value Activity(F)=
  * Link: http://localhost:1443/heroforzero/activity/updateActivity
  * Request:
@@ -231,6 +292,34 @@ Order by newest first.
       }
     ]
   }
+}
+}}}
+
+=Edit Donation =
+
+Link: 
+
+ * POST with params:
+  * id
+  * partner_id
+  * title
+  * description.
+  * approve
+  * point
+
+ * Response:
+  * Success:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+}
+}}}
+or error:
+{{{
+{
+  "code": 0,
+  "message": "Fail",
 }
 }}}
 
