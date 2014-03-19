@@ -130,6 +130,7 @@ Response:
     "activity": {
       "Id": 1,
       "PartnerId": 2,
+      "ActionId": 1,
       "ActionContent": "abcxyz",
       "Description": "abcxyz",
       "Title": "http://abcxyz",
@@ -160,6 +161,7 @@ Order by newest first.
       {
         "Id": 1,
         "PartnerId": 2,
+        "ActionId": 1,
         "ActionContent": "abcxyz",
         "Description": "abcxyz",
         "Title": "http://abcxyz",
@@ -171,6 +173,7 @@ Order by newest first.
       {
         "Id": 1,
         "PartnerId": 2,
+        "ActionId": 1,
         "ActionContent": "abcxyz",
         "Description": "abcxyz",
         "Title": "http://abcxyz",
