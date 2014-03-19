@@ -14,8 +14,8 @@
       "Id": 1,
       "QuestName": "abcxyz",
       "Title": "http://abcxyz",
-      "Name": "Action's Name",
-      "Point": 100,
+      "PartnerName": "Action's Name",
+      "UnlockPoint": 100,
       "CreatedDate": "2014/03/02",
       "PacketName": "HCM"
     },
@@ -56,14 +56,14 @@
         "Id": 1,
         "QuestName": "Rescure",
         "PacketName": "HCM",
-        "Point": 500,
+        "UnlockPoint": 500,
         "CreatedDate": "2014/03/04"
       },
       {
         "Id": 1,
         "QuestName": "Rescure",
         "PacketName": "HCM",
-        "Point": 500,
+        "UnlockPoint": 500,
         "CreatedDate": "2014/03/04"
       }
     ]
