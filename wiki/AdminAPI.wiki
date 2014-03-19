@@ -13,7 +13,6 @@
     "quest": {
       "Id": 1,
       "QuestName": "abcxyz",
-      "Title": "http://abcxyz",
       "PartnerName": "Action's Name",
       "UnlockPoint": 100,
       "CreatedDate": "2014/03/02",
