@@ -33,21 +33,23 @@ class Packet extends App_Controller{
 		$result = array();
         $result['code'] = -1;
         $result['message'] = "";
-        $result['info'] = null;
-
+		$result['info'] = array();
+		
+		$result['info']['packet'] = "";
+			
         $currentPage = $_POST['pageNumber'];
         $pageSize = $_POST['pageSize'];
 
         $resultCheck = $this->packet_model->getPacketList($currentPage, $pageSize);
-        
-        if ($resultCheck == 'Success') {
+		
+        if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
-            $result['info'] = $resultCheck;
+            $result['info']['packet'] = $resultCheck ;
         } else {
             $result['code'] = 0;
-            $result['message'] = "Fail";
-            $result['info'] = $resultCheck;
+            $result['message'] = "Fail";			
+            $result['info']['packet'] = $resultCheck ;
         }
         echo json_encode($result);
 	}
@@ -68,7 +70,7 @@ class Packet extends App_Controller{
 		// Implements work
 		$resultCheck = $this->packet_model->insertPacket($title, $imageUrl, $partner_id);
 		
-		if ($resultCheck == 'Success') {
+		if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
         } else{

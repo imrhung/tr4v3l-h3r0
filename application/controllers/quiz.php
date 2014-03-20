@@ -29,8 +29,26 @@ class Quiz extends App_Controller{
 	/* Get a quiz function from databases */
 				/* Last 11-March-2014 */
 	public function getQuiz(){
+	
+		$result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = array();
+
+		$result['info']['quiz'] = "";
+		
 		$id = $this->input->post("id");
-		$result = $this->quiz_model->getQuiz($id);
+		$resultCheck = $this->quiz_model->getQuiz($id);
+		
+		if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";  
+            $result['info']['quiz'] = $resultCheck; 
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+            $result['info']['quiz'] = $resultCheck;
+        }
 		echo json_encode($result);
 	}
 
@@ -39,7 +57,9 @@ class Quiz extends App_Controller{
 		$result = array();
         $result['code'] = -1;
         $result['message'] = "";
-        $result['info'] = null;
+        $result['info'] = array();
+
+		$result['info']['quiz'] = "";
 
         $currentPage = $_POST['pageNumber'];
         $pageSize = $_POST['pageSize'];
@@ -56,11 +76,11 @@ class Quiz extends App_Controller{
 		if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";  
-            $result['info'] = $resultCheck; 
+            $result['info']['quiz'] = $resultCheck; 
         } else {
             $result['code'] = 0;
             $result['message'] = "Fail";
-            $result['info'] = $resultCheck;
+            $result['info']['quiz'] = $resultCheck;
         }
         echo json_encode($result);
 	}
@@ -73,7 +93,7 @@ class Quiz extends App_Controller{
 		$currentDate = $this->quiz_model->getTime();
 		
 		// Get infomation from user      
-        $partnerId = $this->input->post('partnerId');
+        $partnerId = $this->input->post('partner_id');
 		$questCategory = $this->input->post('category');
         $questQuestion = $this->input->post('question');
 		$answerA = $this->input->post('answer_a');
@@ -143,10 +163,13 @@ class Quiz extends App_Controller{
         $result = array();
         $result['code'] = -1;
         $result['message'] = "";
-				
+		$result['info'] = array();
+		
+		$result['info']['quiz'] = "";		
+		
 		// Get minChoiceId
 		$minChoiceId = (int)$this->quiz_model->getMinChoiceId($Id);
-
+		
 		// Update Answer
 		if(!is_null($answerA))
 			$this->quiz_model->updateChoice($minChoiceId, $answerA);
@@ -156,15 +179,19 @@ class Quiz extends App_Controller{
 			$this->quiz_model->updateChoice($minChoiceId + 2, $answerC);
 		if(!is_null($answerD))
 			$this->quiz_model->updateChoice($minChoiceId + 3, $answerD);
+		
 			
 		//	Update correct answer
 		$CorrectChoiceId = $minChoiceId + (int)$CorrectChoiceNumber; 
 		$resultCheck = $this->quiz_model->updateQuiz($Id, $questCategory, $questQuestion, $CorrectChoiceId,
 																		$sharingInfo, $linkURL, $createDate);
+		 $result1 = $this->quiz_model->getQuiz($Id);
+		
 		//	Notification
 		if ($resultCheck == 'Success') {
             $result['code'] = 1;
             $result['message'] = "Success";
+			$result['info']['quiz'] = $result1;
         } else{
             $result['code'] = 0;
             $result['message'] = "Fail";

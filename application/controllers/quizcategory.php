@@ -33,8 +33,10 @@ class QuizCategory extends App_Controller{
 		$result = array();
         $result['code'] = -1;
         $result['message'] = "";
-        $result['info'] = null;
-
+        $result['info'] = array();
+		
+		$result['info']['category'] = "";
+		
         $currentPage = $_POST['pageNumber'];
         $pageSize = $_POST['pageSize'];
 
@@ -43,11 +45,11 @@ class QuizCategory extends App_Controller{
         if ($resultCheck == 'Success') {
             $result['code'] = 1;
             $result['message'] = "Success";
-            $result['info'] = $resultCheck;
+            $result['info']['category'] = $resultCheck;
         } else {
             $result['code'] = 0;
             $result['message'] = "Fail";
-            $result['info'] = $resultCheck;
+            $result['info']['category'] = $resultCheck;
         }
         echo json_encode($result);
 	}

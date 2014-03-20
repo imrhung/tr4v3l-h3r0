@@ -18,7 +18,7 @@
 		public function getQuiz($Id){
 			$sql = 'CALL sp_Get_Quiz(?)';
 			$result = $this->db->query($sql, array($Id));
-			return $result->result();
+			return $result->row();
 		}
 		
 		/*	Get quiz list function from databases*/
@@ -29,8 +29,7 @@
 			
 				$sql = 'CALL sp_Get_QuizList(?, ?)';
 				$query = $this->db->query($sql, array($currentPage, $pageSize));
-								
-			
+									
 			return $query->result();
         }
     

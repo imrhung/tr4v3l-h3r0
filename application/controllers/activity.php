@@ -29,24 +29,25 @@ class Activity extends App_Controller{
 				/* Last 14-March-2014 */
 	public function getActivity(){
 		$id = $this->input->post("id");
-		$partner_id = $this->input->post("partner_id");
 		
 		// Initialization Array
         $result = array();
         $result['code'] = -1;
         $result['message'] = "";
-        $result['info'] = null;
+        $result['info'] = array();
+
+		$result['info']['activity'] = null;
 		
-		$resultCheck= $this->activity_model->getActivity($id, $partner_id);
+		$resultCheck= $this->activity_model->getActivity($id);
 	
 		if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
-            $result['info'] = $resultCheck;
+            $result['info']['activity'] = $resultCheck;
         } else{
             $result['code'] = 0;
             $result['message'] = "Fail";
-            $result['info'] = $resultCheck;
+            $result['info']['activity'] = $resultCheck;
         }
 		
 		echo json_encode($result);
@@ -57,21 +58,23 @@ class Activity extends App_Controller{
 		$result = array();
         $result['code'] = -1;
         $result['message'] = "";
-        $result['info'] = null;
+        $result['info'] = array();
 
+		$result['info']['activity'] = "";
+		
         $currentPage = $_POST['pageNumber'];
         $pageSize = $_POST['pageSize'];
 
         $resultCheck = $this->activity_model->getActivityList($currentPage, $pageSize);
         
-        if ($resultCheck == 'Success') {
+        if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
-            $result['info'] = $resultCheck;
+            $result['info']['activity'] = $resultCheck;
         } else {
             $result['code'] = 0;
             $result['message'] = "Fail";
-            $result['info'] = $resultCheck;
+            $result['info']['activity'] = $resultCheck;
         }
         echo json_encode($result);
 	}
@@ -105,6 +108,41 @@ class Activity extends App_Controller{
 	}
 						/*****UPDATE*****/
 					/* Last 17-March-2014 */
+	
+	/* Update activity function from Activity Table*/
+					// Last 19-March-2014
+	public function updateActivity(){
+			
+		// Get infomation from user
+		$Id = $this->input->post('id');
+		$partner_id = $this->input->post('partner_id');
+		$title = $this->input->post('title');
+		$description = $this->input->post('description');
+		$action_id = $this->input->post('action_id');
+		$action_content = $this->input->post('action_content'); 
+		$point = $this->input->post('point');
+		$approve = $this->input->post('approve');
+		
+		// Initialization notification Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+				
+		// 	Update data
+		$resultCheck = $this->activity_model->updateActivity($Id, $partner_id, $title, $description,
+														     $action_id, $action_content, $point, (int)$approve);
+		
+		//	Notification
+		if ($resultCheck == 'Success') {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+        } else{
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+        echo json_encode($result);
+	}
+	
 	/* Update BonusPoint function into Activity table*/
 	public function updateBonusPoint(){
 			
