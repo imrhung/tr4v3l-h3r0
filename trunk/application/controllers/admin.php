@@ -164,6 +164,37 @@ class Admin extends App_Controller {
         echo json_encode($data);
     }
     
+    public function getCategory(){
+        echo '{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "category": [
+      {
+        "Id": 1,
+        "CategoryName": "Children"
+      },
+      {
+        "Id": 1,
+        "CategoryName": "Children2"
+      },
+      {
+        "Id": 1,
+        "CategoryName": "Children3"
+      },
+      {
+        "Id": 1,
+        "CategoryName": "Children4"
+      },
+      {
+        "Id": 1,
+        "CategoryName": "Children5"
+      }
+    ]
+  }
+}';
+    }
+    
     public function getQuest(){
         echo '{
   "code": 1,
