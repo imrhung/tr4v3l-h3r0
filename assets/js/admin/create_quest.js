@@ -128,7 +128,7 @@ function createQuest() {
     var baseUrl = $("#base-url").attr("href");
 
     // Get the input data:
-    var partner_id = 1;
+    var partner_id = $("#partner-id").val();
     var packet_id = $("#packet").val();
     var name = $("#name").val();
     var point = $("#point").val();
@@ -180,8 +180,6 @@ function createQuest() {
             },
             "json"
         );
-
-    console.log("he");
     return false;
 }
 

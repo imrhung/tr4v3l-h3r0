@@ -46,7 +46,7 @@ class QuizCategory extends App_Controller{
             $result['info'] = $resultCheck;
         } else {
             $result['code'] = 0;
-            $result['message'] = "Fail";s
+            $result['message'] = "Fail";
             $result['info'] = $resultCheck;
         }
         echo json_encode($result);

@@ -3,7 +3,7 @@ function createActivity() {
     var baseUrl = $("#base-url").attr("href");
 
     // Get the input data:
-    var partner_id = 1;
+    var partner_id = $("#partner-id").val();
     var title = $("#title").val();
     var description = $("#description").val();
     var actionId = parseInt($("input[name='action']:checked", '#activity-form').val());

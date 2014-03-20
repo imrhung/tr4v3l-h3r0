@@ -5,18 +5,16 @@
         <h1>Create Quest</h1>
         <p>Please select the fields below to create a quest.</p>
 
-        <form class="form-horizontal" onSubmit="createDonation();
-                return false;"></form>
-
         <form class="form-horizontal" onSubmit="createQuest(); return false;">
             <fieldset>
 
                 <!-- Form Name -->
                 <legend></legend>
 
+                <input type="hidden" name="partner-id" id="partner-id" value="<?php echo $partnerId ?>">
                 <!-- Select Basic -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="packet">Choose Quest Packet:</label>
+                    <label class="col-md-4 control-label" for="packet">Choose Quest Packet</label>
                     <div class="col-md-8" id="select-packet"></div>
                 </div>
 

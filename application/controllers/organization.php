@@ -21,21 +21,24 @@ class Organization extends App_Controller {
         $this->assets_js[] = 'organization/create_activity.js';
         $this->assets_js[] = 'datepicker/moment.js';
         $this->assets_js[] = 'datepicker/bootstrap-datetimepicker.min.js';
-        $this->render_page("organization/create_activity");
+        $data['partnerId']= $this->session->userdata('partner_id');
+        $this->render_page("organization/create_activity", $data);
     }
     
     public function create_donation(){
         $this->current_section = 'donation';
         $this->assets_css[] = 'admin.css';
         $this->assets_js[] = 'organization/create_donation.js';
-        $this->render_page("organization/create_donation");
+        $data['partnerId']= $this->session->userdata('partner_id');
+        $this->render_page("organization/create_donation", $data);
     }
     
     public function create_quiz(){
         $this->current_section = 'quiz';
         $this->assets_css[] = 'admin.css';
         $this->assets_js[] = 'organization/create_quiz.js';
-        $this->render_page("organization/create_quiz");
+        $data['partnerId']= $this->session->userdata('partner_id');
+        $this->render_page("organization/create_quiz", $data);
     }
     
      public function under_construction(){

@@ -132,20 +132,7 @@
 
                     <!-- Select Basic -->
                     <div class="form-group">
-                        <label class=" control-label" for="packet">Packet:</label>
-                        <div class="">
-                            <select id="packet" name="packet" class="form-control" onChange="updatePacket(<?php echo $quizId ?>, this.value);">
-                                <option value="1">Ho Chi Minh City</option>
-                                <option value="2">Ha Noi</option>
-                                <option value="3">Da Nang</option>
-                                <option value="4">Binh Duong</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Select Basic -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="point">Point</label>
+                        <label class="control-label" for="point">Point</label>
                         <div class="">
                             <select id="point" name="point" class="form-control" onChange="updatePoint(<?php echo $quizId;?> , this.value);">
                                 <option value="100">100pts</option>
