@@ -10,6 +10,7 @@
 
                 <!-- Form Name -->
                 <legend></legend>
+                <input type="hidden" name="partner-id" id="partner-id" value="<?php echo $partnerId ?>">
 
                 <!-- Select Basic -->
                 <div class="form-group">

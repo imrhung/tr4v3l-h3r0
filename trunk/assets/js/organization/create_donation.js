@@ -3,7 +3,7 @@ function createDonation() {
     var baseUrl = $("#base-url").attr("href");
 
     // Get the input data:
-    var partner_id = 1;
+    var partner_id = $("#partner-id").val();
     var title = $("#title").val();
     var description = $("#description").val();
     
@@ -40,7 +40,6 @@ function createDonation() {
             "json"
         );
 
-    console.log("he");
     return false;
 }
 

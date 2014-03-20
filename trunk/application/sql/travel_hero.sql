@@ -45,6 +45,9 @@ CREATE TABLE `activity` (
   `ActionContent` varchar(140) DEFAULT NULL,
   `Description` varchar(140) DEFAULT NULL,
   `ActionId` int(11) DEFAULT NULL,
+  `BonusPoint` int(11) DEFAULT '100',
+  `IsApproved` bit(1) DEFAULT NULL,
+  `CreateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -96,6 +99,8 @@ CREATE TABLE `donation` (
   `RequiredPoint` int(11) DEFAULT NULL,
   `MedalId` int(11) DEFAULT NULL,
   `PartnerId` int(11) DEFAULT NULL,
+  `IsApproved` bit(1) DEFAULT NULL,
+  `CreateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -189,7 +194,7 @@ CREATE TABLE `packet` (
   `ImageURL` varchar(140) DEFAULT NULL,
   `PartnerId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,7 +206,7 @@ DROP TABLE IF EXISTS `partner`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `partner` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(45) DEFAULT NULL,
+  `PartnerName` varchar(45) DEFAULT NULL,
   `OrganizationTypeId` int(11) DEFAULT NULL,
   `Address` varchar(200) DEFAULT NULL,
   `PhoneNumber` varchar(45) DEFAULT NULL,
@@ -210,7 +215,7 @@ CREATE TABLE `partner` (
   `Longtitude` float DEFAULT NULL,
   `Description` varchar(140) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -282,6 +287,23 @@ CREATE TABLE `quest_temp` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `questcondition`
+--
+
+DROP TABLE IF EXISTS `questcondition`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `questcondition` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Type` int(11) DEFAULT NULL,
+  `Value` int(11) DEFAULT NULL,
+  `VituralQuestId` int(11) DEFAULT NULL,
+  `ObjectId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `quiz`
 --
 
@@ -294,7 +316,7 @@ CREATE TABLE `quiz` (
   `PartnerId` int(11) DEFAULT NULL,
   `CreatedDate` datetime DEFAULT NULL,
   `Content` varchar(1000) DEFAULT NULL,
-  `BonusPoint` float DEFAULT NULL,
+  `BonusPoint` int(11) DEFAULT '100',
   `CorrectChoiceId` int(11) DEFAULT NULL,
   `SharingInfo` varchar(1000) DEFAULT NULL,
   `LearnMoreURL` varchar(500) DEFAULT NULL,
@@ -315,7 +337,7 @@ CREATE TABLE `quizcategory` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `CategoryName` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -526,10 +548,15 @@ DROP TABLE IF EXISTS `virtualquest`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `virtualquest` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(45) DEFAULT NULL,
+  `Title` varchar(100) DEFAULT NULL,
+  `QuestName` varchar(45) DEFAULT NULL,
   `PacketId` int(11) DEFAULT NULL,
+  `PartnerId` int(11) DEFAULT NULL,
+  `AnimationId` int(11) DEFAULT NULL,
+  `UnlockPoint` int(11) DEFAULT NULL,
+  `CreateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -541,4 +568,4 @@ CREATE TABLE `virtualquest` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-17 12:17:24
+-- Dump completed on 2014-03-19 11:13:21

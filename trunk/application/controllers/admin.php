@@ -6,9 +6,7 @@ class Admin extends App_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->helper('cookie');
-        $partnerId = $this->session->userdata('partner_id');
-        set_cookie('partner_id', $partnerId);
+        
     }
 
     public function index() {
@@ -23,7 +21,7 @@ class Admin extends App_Controller {
         $this->render_page_admin('admin/index');
     }
     
-    public function edit_quiz($id = NULl){
+    public function edit_quiz($id = NULL){
         if ($id == NULL) {
             redirect("admin/index");
         } else {
@@ -38,14 +36,71 @@ class Admin extends App_Controller {
         }
     }
     
+    public function edit_activity($id=NULL){
+        if ($id == NULL){
+            redirect("admin/index");
+        } else {
+            $this->current_section = "edit_quiz";
+            $this->assets_css[] = "admin.css";
+            $this->assets_css[] = 'datepicker/bootstrap-datetimepicker.min.css';
+            $this->assets_js[] = 'admin/edit_activity.js';
+            $this->assets_js[] = 'bootbox/bootbox.min.js';
+            $this->assets_js[] = 'datepicker/moment.js';
+            $this->assets_js[] = 'datepicker/bootstrap-datetimepicker.min.js';
+            
+            $data = array(
+                'activityId' => $id
+            );
+            $this->render_page_admin('admin/edit_activity', $data);
+        }
+    }
+    
+    public function edit_donation($id=NULL){
+        if ($id == NULL){
+            redirect("admin/index");
+        } else {
+            $this->current_section = "edit_donation";
+            $this->assets_css[] = "admin.css";
+            $this->assets_js[] = 'admin/edit_donation.js';
+            $this->assets_js[] = 'bootbox/bootbox.min.js';
+            
+            $data = array(
+                'donationId' => $id
+            );
+            $this->render_page_admin('admin/edit_donation', $data);
+        }
+    }
+    
+    public function edit_quest($id=NULL){
+        if ($id == NULL){
+            redirect("admin/index");
+        } else {
+            $this->current_section = "edit_quest";
+            $this->assets_css[] = "admin.css";
+            $this->assets_js[] = 'admin/edit_quest.js';
+            $this->assets_js[] = 'bootbox/bootbox.min.js';
+            
+            $data = array(
+                'questId' => $id
+            );
+            $this->render_page_admin('admin/edit_quest', $data);
+        }
+    }
+    
     public function create_quest(){
+        
         $this->current_section = 'create_quest';
-        $this->assets_js[] = 'datatables/jquery.dataTables.js';
         $this->assets_js[] = 'admin/create_quest.js';
-        $this->assets_js[] = 'bootstrap/dynamicform.js';
-        $this->assets_css[] = 'datatables/jquery.dataTables.css';
         $this->assets_css[] = "admin.css";
-        $this->render_page_admin('admin/create_quest');
+        $data['partnerId']= $this->session->userdata('partner_id');
+        $this->render_page_admin('admin/create_quest', $data);
+    }
+    
+    public function packet(){
+        $this->current_section = 'packet';
+        $this->assets_css[] = 'admin.css';
+        $this->assets_js[] = 'admin/packet.js';
+        $this->render_page_admin('admin/packet');
     }
     
     public function under_construction(){
@@ -107,6 +162,102 @@ class Admin extends App_Controller {
             'info' => "Ehh!!!",
         );
         echo json_encode($data);
+    }
+    
+    public function getQuest(){
+        echo '{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "quest": {
+      "Id": 1,
+      "QuestName": "abcxyz",
+      "Title": "http://abcxyz",
+      "PartnerName": "Actions Name",
+      "UnlockPoint": 200,
+      "CreatedDate": "2014/03/02",
+      "PacketName": "HCM",
+      "PacketId": 2
+    },
+    "condition": [
+      {
+        "Id": 1,
+        "Type": 1,
+        "ObjectId": 1,
+        "ObjectName": "Donation 4$",
+        "Value": 500
+      },
+      {
+        "Id": 1,
+        "Type": 1,
+        "ObjectId": 1,
+        "ObjectName": "Donation 4$",
+        "Value": 500
+      },
+      {
+        "Id": 1,
+        "Type": 2,
+        "ObjectId": 1,
+        "ObjectName": "Donation 4$",
+        "Value": 500
+      },
+      {
+        "Id": 1,
+        "Type": 2,
+        "ObjectId": 1,
+        "ObjectName": "Donation 4$",
+        "Value": 500
+      },
+      {
+        "Id": 1,
+        "Type": 2,
+        "ObjectId": 1,
+        "ObjectName": "Donation 4$",
+        "Value": 500
+      }
+    ]
+  }
+}';
+    }
+    
+    public function getDonation(){
+        echo '{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "donation": {
+      "Id": 1,
+      "PartnerId": 2,
+      "Description": "abcxyz",
+      "Title": "Donate, please",
+      "PartnerName": "Partner Name",
+      "RequiredPoint": 200,
+      "CreatedDate": "2014/03/02",
+      "IsApproved": 0
+    }
+  }
+}';
+    }
+    
+    public function getActivity(){
+        echo '{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "activity": {
+      "Id": 1,
+      "PartnerId": 2,
+      "ActionId": 1,
+      "ActionContent": "Shere me",
+      "Description": "Share to get more",
+      "Title": "Share",
+      "PartnerName": " Name",
+      "BonusPoint": 300,
+      "CreatedDate": "2014/03/02",
+      "IsApproved": 0
+    }
+  }
+}';
     }
     
     public function testactivity(){

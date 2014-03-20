@@ -4,7 +4,7 @@ function createQuiz() {
 
     // Get the input data:
     // TODO : partner ID
-    var partner_id = 1;
+    var partner_id = $("#partner-id").val();
     var category = $("#category").val();
     var question = $("#question").val();
     var answer_a = $("#answer_a").val();

@@ -11,6 +11,7 @@
                 <!-- Form Name -->
                 <legend></legend>
 
+                <input type="hidden" name="partner-id" id="partner-id" value="<?php echo $partnerId ?>">
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="title">Title of Activity</label>  
