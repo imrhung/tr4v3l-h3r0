@@ -8,11 +8,11 @@
 				/* Last 18-March-2014 */
 				
 		/*	Get a donation function from databases*/			
-		public function getActivity($id, $partner_id){
-			$sql = 'CALL sp_Get_Activity(?, ?)';
-			$result = $this->db->query($sql, array($id, $partner_id));
+		public function getDonation($id){
+			$sql = 'CALL sp_Get_Donation(?)';
+			$result = $this->db->query($sql, array($id));
 			
-			return $result->result();//$result->row()->{'Id'} ;//$result->result();
+			return $result->row();
 		}
 		
 		/*	Get Donation list function from databases*/
@@ -42,6 +42,22 @@
 		
 						/*****UPDATE*****/
 					/* Last 17-March-2014 */
+		
+		/* Update donation function from Activity Table*/
+		public function updateDonation($Id, $partner_id, $title, $description,
+														 $point, $approve){
+			try{
+				// Call sp_Update_BonusPoint_Quiz StoreProcedure
+				$sql = 'Call sp_Update_Donation(?, ?, ?, ?, ?, ?)';
+				$result = $this->db->query($sql, array($Id, $partner_id, $title, $description,
+														 $point, $approve));
+				return "Success";
+			}catch(Exception $e){
+				return $e->getMessage();
+			}
+			
+		}
+		
 		/* Update RequiredPoint function from Donation Table*/
 		public function updateRequiredPoint($Id, $BonusPoint){
 			try{

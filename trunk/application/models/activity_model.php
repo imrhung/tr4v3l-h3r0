@@ -9,11 +9,11 @@
 				/* Last 14-March-2014 */
 				
 		/*	Get a activity function from databases*/			
-		public function getActivity($id, $partner_id){
-			$sql = 'CALL sp_Get_Activity(?, ?)';
-			$result = $this->db->query($sql, array($id, $partner_id));
+		public function getActivity($id){
+			$sql = 'CALL sp_Get_Activity(?)';
+			$result = $this->db->query($sql, array($id));
 			
-			return $result->result();
+			return $result->row();
 		}
 		
 		/*	Get Activity list function from databases*/
@@ -47,6 +47,20 @@
 		}
 						/*****UPDATE*****/
 					/* Last 17-March-2014 */
+        /* Update activity function from Activity Table*/
+		public function updateActivity($Id, $partner_id, $title, $description,
+														$action_id, $action_content, $point, $approve){
+			try{
+				// Call sp_Update_BonusPoint_Quiz StoreProcedure
+				$sql = 'Call sp_Update_Activity(?, ?, ?, ?, ?, ?, ?, ?)';
+				$result = $this->db->query($sql, array($Id, $partner_id, $title, $description,
+														$action_id, $action_content, $point, $approve));
+				return "Success";
+			}catch(Exception $e){
+				return $e->getMessage();
+			}
+			
+		}
 		/* Update BonusPoint function from Activity Table*/
 		public function updateBonusPoint($Id, $BonusPoint){
 			try{

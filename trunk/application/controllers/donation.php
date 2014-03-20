@@ -26,26 +26,54 @@ class Donation extends App_Controller{
     }
 							/*****SELECT*****/
 						/* Last 18-March-2014 */
+	
+	public function getDonation(){
+		$id = $this->input->post("id");
+		
+		// Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = array();
+
+		$result['info']['donation'] = null;
+		
+		$resultCheck= $this->donation_model->getDonation($id);
+	
+		if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['info']['donation'] = $resultCheck;
+        } else{
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+            $result['info']['donation'] = $resultCheck;
+        }
+		
+		echo json_encode($result);
+	}
 	/* Get Donation list function from database*/
 	public function getDonationList(){
 		$result = array();
         $result['code'] = -1;
         $result['message'] = "";
-        $result['info'] = null;
+        $result['info'] = array();
+
+		$result['info']['donation'] = "";
 
         $currentPage = $_POST['pageNumber'];
         $pageSize = $_POST['pageSize'];
 
         $resultCheck = $this->donation_model->getDonationList($currentPage, $pageSize);
         
-        if ($resultCheck == 'Success') {
+        if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
-            $result['info'] = $resultCheck;
+            $result['info']['donation'] = $resultCheck;
         } else {
             $result['code'] = 0;
             $result['message'] = "Fail";
-            $result['info'] = $resultCheck;
+            $result['info']['donation'] = $resultCheck;
         }
         echo json_encode($result);
 	}
@@ -77,6 +105,36 @@ class Donation extends App_Controller{
 	}
 						/*****UPDATE*****/
 					/* Last 17-March-2014 */
+	// Update donation
+	public function updateDonation(){
+			
+		// Get infomation from user
+		$Id = $this->input->post('id');
+		$partner_id = $this->input->post('partner_id');
+		$title = $this->input->post('title');
+		$description = $this->input->post('description');
+		$point = $this->input->post('point');
+		$approve = $this->input->post('approve');
+		
+		// Initialization notification Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+				
+		// 	Update data
+		$resultCheck = $this->donation_model->updateDonation($Id, $partner_id, $title, $description,
+														      $point, (int)$approve);
+		
+		//	Notification
+		if ($resultCheck == 'Success') {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+        } else{
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+        echo json_encode($result);
+	}
 	/* Update RequiredPoint function into Donation table*/
 	public function updateRequiredPoint(){
 			

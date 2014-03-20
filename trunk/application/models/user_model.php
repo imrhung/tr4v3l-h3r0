@@ -87,7 +87,7 @@ class User_model extends CI_Model {
         
         // Save to Partner table
         $data = array(
-            'Name'=> $name,
+            'PartnerName'=> $name,
             'OrganizationTypeId' => $type,
             'Description' => $description,
             'Address' => $address,

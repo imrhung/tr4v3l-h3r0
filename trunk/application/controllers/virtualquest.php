@@ -26,25 +26,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 								/*****SELECT*****/
 							/* Last 18-March-2014 */
-		/* Get VirtualQuest list function from database*/
+		/* Get a VirtualQuest function from database*/
 		public function getVirtualQuest(){
 			$result = array();
 			$result['code'] = -1;
 			$result['message'] = "";
 			$result['info'] = null;
-
+		
+			
+			// $result['info']['condition'] = "";
+			
 			$id = $_POST['id'];
 
-			$resultCheck = $this->virtualquest_model->getVirtualQuest($id);
-			
-			if ($resultCheck == 'Success') {
+			$VirtualQuestValues = array();
+			// $QuestConditionValues = $this->virtualquest_model->getQuestCondition($id);
+			$VirtualQuestValues = $this->virtualquest_model->getVirtualQuest($id);
+			if ($VirtualQuestValues) {
 				$result['code'] = 1;
 				$result['message'] = "Success";
-				$result['info'] = $resultCheck;
+				$result['info'] = $VirtualQuestValues;
+				// $result['info']['condition'] = $QuestConditionValues;
 			} else {
 				$result['code'] = 0;
 				$result['message'] = "Fail";
-				$result['info'] = $resultCheck;
+				$result['info'] = $VirtualQuestValues;
+				// $result['info']['condition'] = $QuestConditionValues;
 			}
 			echo json_encode($result);
 		}
@@ -54,25 +60,75 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$result = array();
 			$result['code'] = -1;
 			$result['message'] = "";
-			$result['info'] = null;
-
+			$result['info'] = array();
+		
+			$result['info']['quest'] = "";
 			$currentPage = $_POST['pageNumber'];
 			$pageSize = $_POST['pageSize'];
 
 			$resultCheck = $this->virtualquest_model->getVirtualQuestList($currentPage, $pageSize);
 			
-			if ($resultCheck == 'Success') {
+			if ($resultCheck) {
 				$result['code'] = 1;
 				$result['message'] = "Success";
-				$result['info'] = $resultCheck;
+				$result['info']['quest'] = $resultCheck;
 			} else {
 				$result['code'] = 0;
 				$result['message'] = "Fail";
-				$result['info'] = $resultCheck;
+				$result['info']['quest'] = $resultCheck;
 			}
 			echo json_encode($result);
 		}
 		
+								/*****INSERT*****/
+	/* Insert a new virtualquest function into databases */
+	public function insertVirtualQuest(){
+				
+		// Get infomation from user      
+        $partnerId = $this->input->post('partner_id');
+		$packetId = $this->input->post('packet_id');
+        $name = $this->input->post('name');
+		$point = $this->input->post('point');
+        $activity_id_1 = $this->input->post('activity_id_1');
+		$activity_id_2 = $this->input->post('activity_id_2');
+        $activity_id_3 = $this->input->post('activity_id_3');
+		$donation_id_1 = $this->input->post('donation_id_1');
+        $donation_id_2 = $this->input->post('donation_id_2');
+		$donation_id_3 = $this->input->post('donation_id_3');       
+		
+		// Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+							
+		// Insert Quiz
+        $resultCheck = $this->virtualquest_model->insertVirtualQuest($partnerId, $packetId, $name, $point);
+		
+		// Insert ConditionQuest activity action
+		if($activity_id_1 != 0)
+			$this->virtualquest_model->insertConditionQuest(1, $activity_id_1);	
+		if($activity_id_2 != 0)
+			$this->virtualquest_model->insertConditionQuest(1, $activity_id_2);	
+		if($activity_id_3 != 0)
+			$this->virtualquest_model->insertConditionQuest(1, $activity_id_3);				
+		
+		// Insert ConditionQuest activity action
+		if($donation_id_1 != 0)
+			$this->virtualquest_model->insertConditionQuest(2, $activity_id_1);	
+		if($donation_id_2 != 0)
+			$this->virtualquest_model->insertConditionQuest(2, $donation_id_2);	
+		if($donation_id_3 != 0)
+			$this->virtualquest_model->insertConditionQuest(2, $donation_id_3);	
+			
+        if ($resultCheck == 'Success') {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+        } else{
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+        echo json_encode($result);
+	}
 								/****DELETE****/
 							/* Last 12-March-2014 */
 		/* Delete virtualquest function */
