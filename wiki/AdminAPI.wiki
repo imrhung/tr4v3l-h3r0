@@ -134,7 +134,7 @@ Response:
       "Title": "http://abcxyz",
       "PartnerName": "Action's Name",
       "BonusPoint": 100,
-      "CreatedDate": "2014/03/02",
+      "CreateDate": "2014/03/02",
       "IsApproved": 1
     }
   }
