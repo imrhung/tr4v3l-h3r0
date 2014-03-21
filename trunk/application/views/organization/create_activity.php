@@ -40,7 +40,7 @@
                     <div class="col-md-8">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="action" id="check_facebook" value="0" checked>
+                                <input type="radio" name="action" id="check_facebook" value="1" checked>
                                 Share on their Facebook
                             </label>
                         </div>
@@ -62,7 +62,7 @@
                     <div class="col-md-8">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="action" id="check_newsletter" value="1">
+                                <input type="radio" name="action" id="check_newsletter" value="2">
                                 Sign up for Your news letter
                             </label>
                         </div>
@@ -84,7 +84,7 @@
                     <div class="col-md-8">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="action" id="check_facebook_page" value="2">
+                                <input type="radio" name="action" id="check_facebook_page" value="3">
                                 Like our facebook page
                             </label>
                         </div>
@@ -106,7 +106,7 @@
                     <div class="col-md-8">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="action" id="check_calendar" value="3">
+                                <input type="radio" name="action" id="check_calendar" value="4">
                                 Add to User's calendar
                             </label>
                         </div>

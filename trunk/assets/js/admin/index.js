@@ -26,7 +26,7 @@ function loadQuestTable(){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testQuest",
+            baseUrl + "virtualquest/getVirtualQuestList",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -78,7 +78,7 @@ function deleteQuest(questId){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "virtualquest/deleteVirtualQuest",
             {
                 id: questId,
             },
@@ -109,7 +109,7 @@ $(document).ready(function(){
     quizTable = $('#quiz-table').dataTable({
         "aoColumns":[
             { "sTitle": "Author" },
-            { "sTitle": "Quest Category", "sClass": "center" },
+            { "sTitle": "Quiz Category", "sClass": "center" },
             { "sTitle": "Approve?", "sClass": "center" },
             { "sTitle": "Action", "sClass": "center" }
         ],
@@ -126,7 +126,7 @@ function loadQuizTable(){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "quiz/getQuizList",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -172,19 +172,15 @@ function approveQuiz(quizId, state){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "quiz/updateIsApproved",
             {
                 id: quizId,
-                state: state
+                is_approved: state
             },
             function(data) {
                 console.log(data);
                 if (data.code === 1) { // Successful
-                    if (data.info.state ===1){
-                        loadQuizTable();
-                    } else {
-                        
-                    }
+                    // TODO
                 } else { // Fail
 
                 }
@@ -212,7 +208,7 @@ function deleteQuiz(quizId){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "quiz/deleteQuiz",
             {
                 id: quizId,
             },
@@ -261,7 +257,7 @@ function loadActivityTable(){
     // Make the spining when waiting
     // Post to api
     $.post(
-            baseUrl + "admin/testactivity",
+            baseUrl + "activity/getActivityList",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -276,7 +272,7 @@ function loadActivityTable(){
                     var action;
                     for (var i=0; i<actArray.length; i++){
                         act = actArray[i];
-                        if (act.IsApproved === 1){
+                        if (act.IsApproved == 1){
                             isApproved = "Yes";
                         }else {
                             isApproved = '<button id="approve" name="approve" class="btn btn-success" onclick="approveActivity('+act.Id+', 1);">Yes</button> <button id="deny" name="deny" class="btn btn-danger">No</button>';
@@ -308,19 +304,15 @@ function approveActivity(activityId, state){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "activity/updateIsApproved",
             {
                 id: activityId,
-                state: state
+                is_approved: state
             },
             function(data) {
                 console.log(data);
                 if (data.code === 1) { // Successful
-                    if (data.info.state ===1){
-                        loadActivityTable();
-                    } else {
-                        
-                    }
+                    // TODO
                 } else { // Fail
 
                 }
@@ -348,7 +340,7 @@ function deleteActivity(activityId){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "activity/deleteActivity",
             {
                 id: activityId,
             },
@@ -397,7 +389,7 @@ function loadDonationTable(){
     // Make the spining when waiting
     // Post to api
     $.post(
-            baseUrl + "admin/testDonation",
+            baseUrl + "donation/getDonationList",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -412,7 +404,7 @@ function loadDonationTable(){
                     var action;
                     for (var i=0; i<donationArray.length; i++){
                         donation = donationArray[i];
-                        if (donation.IsApproved === 1){
+                        if (donation.IsApproved == 1){
                             isApproved = "Yes";
                         }else {
                             isApproved = '<button id="approve" name="approve" class="btn btn-success" onclick="approveDonation('+donation.Id+', 1);">Yes</button> <button id="deny" name="deny" class="btn btn-danger">No</button>';
@@ -444,19 +436,15 @@ function approveDonation(activityId, state){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "donation/updateIsApproved",
             {
                 id: activityId,
-                state: state
+                is_approved: state
             },
             function(data) {
                 console.log(data);
                 if (data.code === 1) { // Successful
-                    if (data.info.state ===1){
-                        loadDonationTable();
-                    } else {
-                        
-                    }
+                    // TODO
                 } else { // Fail
 
                 }
@@ -484,7 +472,7 @@ function deleteDonation(donationId){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "donation/deleteDonation",
             {
                 id: donationId,
             },

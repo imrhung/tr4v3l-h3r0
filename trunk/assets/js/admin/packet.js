@@ -8,7 +8,7 @@ function drawPacketTable(){
     
     // Post to api
     $.post(
-            baseUrl + "admin/testPackets",
+            baseUrl + "packet/getPacketList",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -39,7 +39,7 @@ function drawCategoryTable(){
     
     // Post to api
     $.post(
-            baseUrl + "admin/getCategory",
+            baseUrl + "quizcategory/getQuizCategoryList",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -70,7 +70,7 @@ function createPacket(){
     var title = $('#packet').val();
     // Post to api
     $.post(
-            baseUrl + "admin/getCategory",
+            baseUrl + "packet/insertPacket",
             {
                 title: title,
                 image_url:'http://google.com/image',
@@ -103,7 +103,7 @@ function createCategory(){
     var category = $('#category').val();
     // Post to api
     $.post(
-            baseUrl + "admin/getCategory",
+            baseUrl + "quizcategory/insertQuizCategory",
             {
                 category_name: category
             },
@@ -112,12 +112,20 @@ function createCategory(){
                 if (data.code == 1) { // Successful
                     
                     // Draw that new row in table
+                    /*
                     var categoryTable = $('#category-table');
                     var row = $('<tr></tr>');
                     var name = $('<td></td>').text(category);
                     var background = $('<td></td>').text('');
                     row.append(name).append(background);
                     categoryTable.append(row);
+                    */
+                   
+                   // Remove old table
+                   $('#category-table tbody').remove();
+                   
+                   // Draw new table
+                   drawCategoryTable();
                     
                     // Clear the input
                     $('#category').val("");

@@ -14,25 +14,17 @@
 
                 <!-- Select Basic -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="category">Quest Category</label>
-                    <div class="col-md-8">
-                        <select id="category" name="category" class="form-control">
-                            <option value="1">Helping Children</option>
-                            <option value="2">Giving Food</option>
-                            <option value="3">Donating Time</option>
-                            <option value="4">Health Care</option>
-                            <option value="5">Volunteer</option>
-                            <option value="6">Teaching</option>
-                            <option value="7">Donation</option>
-                        </select>
+                    <label class="col-md-4 control-label" for="category">Quiz Category</label>
+                    <div class="col-md-8" id="select-category">
+                        
                     </div>
                 </div>
 
                 <!-- Textarea -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="question">Quest Question</label>
+  <label class="col-md-4 control-label" for="question">Quiz Question</label>
   <div class="col-md-8">                     
-    <textarea class="form-control" id="question" name="question"></textarea>
+    <textarea class="form-control" id="question" name="question" required=""></textarea>
   </div>
 </div>
 
@@ -40,7 +32,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_a">Answer A:</label>  
                     <div class="col-md-8">
-                        <input id="answer_a" name="answer_a" type="text" placeholder="Limits to 50 characters" class="form-control input-md">
+                        <input id="answer_a" name="answer_a" type="text" placeholder="Limits to 50 characters" required="" class="form-control input-md">
 
                     </div>
                 </div>
@@ -99,7 +91,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="sharing">Sharing Information</label>
   <div class="col-md-8">                     
-    <textarea class="form-control" id="sharing" name="sharing">Write down a fact related to the question you would like the user to share. Limit to 140 characters.</textarea>
+    <textarea class="form-control" id="sharing" placeholder="Write down a fact related to the question you would like the user to share. Limit to 140 characters." name="sharing"></textarea>
   </div>
 </div>
 

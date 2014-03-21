@@ -10,7 +10,7 @@ function getDonation(donationId) {
 
     // Post to api
     $.post(
-            baseUrl + "admin/getDonation",
+            baseUrl + "donation/getDonation",
             {
                 id: donationId
             },
@@ -26,7 +26,7 @@ function getDonation(donationId) {
                     
                     $('#point').val(data.info.donation.RequiredPoint);
                     
-                    if (data.info.donation.IsApproved === 1){
+                    if (data.info.donation.IsApproved == 1){
                         $('div#approve-donation').html('Yes');
                         approve = 1;
                     }
@@ -52,7 +52,7 @@ function updateDonation(donationId){
     
     // Post to api
     $.post(
-            baseUrl + "admin/testapi_s",
+            baseUrl + "donation/updateDonation",
             {
                 id: donationId,
                 partner_id: partnerId,
@@ -96,7 +96,7 @@ function deleteDonation(donationId){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "donation/deleteDonation",
             {
                 id: donationId,
             },
@@ -126,10 +126,10 @@ function approveDonation(donationId, state){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "donation/updateIsApproved",
             {
                 id: donationId,
-                state: state
+                is_approved: state
             },
             function(data) {
                 console.log(data);

@@ -83,8 +83,9 @@ class Donation extends App_Controller{
 	public function insertDonation(){
 		$title 		 = $this->input->post('title');
 		$description = $this->input->post('description'); 
-		$partner_id  = $this->input->post('partner_id');
-		
+		$partner_id  = $this->input->post('partner_id');				
+		$createDate = $this->donation_model->getTime();
+
 		// Initialization Array
         $result = array();
         $result['code'] = -1;
@@ -92,7 +93,7 @@ class Donation extends App_Controller{
         $result['info'] = null;
 		
 		// Implements work
-		$resultCheck = $this->donation_model->insertDonation($title, $description, $partner_id);
+		$resultCheck = $this->donation_model->insertDonation($title, $description, $partner_id, $createDate);
 		
 		if ($resultCheck == 'Success') {
             $result['code'] = 1;
@@ -122,7 +123,7 @@ class Donation extends App_Controller{
         $result['message'] = "";
 				
 		// 	Update data
-		$resultCheck = $this->donation_model->updateDonation($Id, $partner_id, $title, $description,
+		$resultCheck = $this->donation_model->updateDonation( (int) $Id, $partner_id, $title, $description,
 														      $point, (int)$approve);
 		
 		//	Notification
@@ -175,7 +176,7 @@ class Donation extends App_Controller{
         $result['message'] = "";
 				
 		// 	Update data
-		$resultCheck = $this->donation_model->updateIsApproved($Id, $IsApproved);
+		$resultCheck = $this->donation_model->updateIsApproved($Id, (int)$IsApproved);
 		
 		//	Notification
 		if ($resultCheck == 'Success') {

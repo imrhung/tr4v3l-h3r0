@@ -6,7 +6,7 @@
         <p>Edit activity information.</p>
 
         <div class="col-lg-8">
-            <form id="activity-form" class="form-horizontal" onSubmit="updateActivity();
+            <form id="activity-form" class="form-horizontal" onSubmit="updateActivity(<?php echo $activityId?>);
                 return false;">
                 <fieldset>
 
@@ -42,7 +42,7 @@
                         <div class="col-md-8">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="action" id="check_facebook" value="0" checked>
+                                    <input type="radio" name="action" id="check_facebook" value="1" checked>
                                     Share on their Facebook
                                 </label>
                             </div>
@@ -64,7 +64,7 @@
                         <div class="col-md-8">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="action" id="check_newsletter" value="1">
+                                    <input type="radio" name="action" id="check_newsletter" value="2">
                                     Sign up for Your news letter
                                 </label>
                             </div>
@@ -86,7 +86,7 @@
                         <div class="col-md-8">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="action" id="check_facebook_page" value="2">
+                                    <input type="radio" name="action" id="check_facebook_page" value="3">
                                     Like our facebook page
                                 </label>
                             </div>
@@ -108,7 +108,7 @@
                         <div class="col-md-8">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="action" id="check_calendar" value="3">
+                                    <input type="radio" name="action" id="check_calendar" value="4">
                                     Add to User's calendar
                                 </label>
                             </div>
@@ -132,7 +132,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="submit"></label>
                         <div class="col-md-8">
-                            <button id="submit" name="submit" class="btn btn-primary">Submit Activity</button>
+                            <button id="submit" name="submit" class="btn btn-primary">Update Activity</button>
                             <div id="alert_placeholder"></div>
                         </div>
                     </div>
@@ -159,6 +159,8 @@
                                 <option value="100">100pts</option>
                                 <option value="200">200pts</option>
                                 <option value="300">300pts</option>
+                                <option value="400">400pts</option>
+                                <option value="500">500pts</option>
                             </select>
                         </div>
                     </div>

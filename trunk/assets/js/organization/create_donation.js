@@ -13,7 +13,7 @@ function createDonation() {
     
     // Post to api
     $.post(
-            baseUrl + "admin/testapi_s",
+            baseUrl + "donation/insertDonation",
             {
                 partner_id: partner_id,
                 title: title,

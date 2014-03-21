@@ -1,3 +1,8 @@
+$(function (){
+    drawSelectCategory();
+});
+
+
 function createQuiz() {
     //var baseUrl = window.location.protocol + "//" + window.location.host + "/";
     var baseUrl = $("#base-url").attr("href");
@@ -21,7 +26,7 @@ function createQuiz() {
     
     // Post to api
     $.post(
-            baseUrl + "admin/testapi_s",
+            baseUrl + "quiz/insertQuiz",
             {
                 partner_id: partner_id,
                 category: category,
@@ -54,12 +59,37 @@ function createQuiz() {
             },
             "json"
         );
-
-    console.log("he");
     return false;
 }
 
 successfulAlert = function(message) {
     var baseUrl = $("#base-url").attr("href");
     $('#alert_placeholder').html('<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>' + message + '</span> <a href="'+baseUrl+'organization/create_quiz">Create another Quiz</a></div>')
+}
+
+function drawSelectCategory(){
+    var baseUrl = $("#base-url").attr("href");
+    
+    // Post to api
+    $.post(
+            baseUrl + "quizcategory/getQuizCategoryList",
+            {
+                pageSize: 0,
+                pageNumber: 0
+            },
+            function(data) {
+                console.log(data);
+                if (data.code == 1) { // Successful
+                    var category = data.info.category;
+                    var select = $('<select id="category" name="category" class="form-control">').appendTo('#select-category');
+                    select.append($("<option>").attr('value', 0).text('Please select a category'));
+                    for (var i=0; i<category.length; i++){
+                        select.append($("<option>").attr('value', category[i].Id).text(category[i].CategoryName));
+                    }
+                } else { // Fail
+                    
+                }
+            },
+            "json"
+        );
 }

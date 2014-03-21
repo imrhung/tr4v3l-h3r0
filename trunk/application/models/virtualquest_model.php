@@ -73,11 +73,11 @@
 			return "Success";
 		}
 		// Insert VirtualQuest function
-		public function insertVirtualQuest($partnerId, $packetId, $name, $point){
+		public function insertVirtualQuest($partnerId, $packetId, $name, $point, $create_date){
 			
 			try{
-				$sql = 'CALL sp_Insert_VirtualQuest(?, ?, ?, ?)';
-				$result = $this->db->query($sql, array($partnerId, $packetId, $name, $point));
+				$sql = 'CALL sp_Insert_VirtualQuest(?, ?, ?, ?, ?)';
+				$result = $this->db->query($sql, array($partnerId, $packetId, $name, $point, $create_date));
 				
 			}catch(Exception $e){
 				

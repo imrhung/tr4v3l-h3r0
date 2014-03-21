@@ -6,7 +6,7 @@
         <p>Edit donation information.</p>
 
         <div class="col-lg-8">
-            <form id="donation-form" class="form-horizontal" onSubmit="updateDonation();
+            <form id="donation-form" class="form-horizontal" onSubmit="updateDonation(<?php echo $donationId?>);
                     return false;">
                 <fieldset>
 
@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="submit"></label>
                         <div class="col-md-8">
-                            <button id="submit" name="submit" class="btn btn-primary">Submit Donation</button>
+                            <button id="submit" name="submit" class="btn btn-primary">Update Donation</button>
                             <div id="alert_placeholder"></div>
                         </div>
                     </div>
@@ -60,6 +60,8 @@
                                 <option value="100">100pts</option>
                                 <option value="200">200pts</option>
                                 <option value="300">300pts</option>
+                                <option value="400">400pts</option>
+                                <option value="500">500pts</option>
                             </select>
                         </div>
                     </div>

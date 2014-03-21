@@ -1,3 +1,7 @@
+$(function (){
+    drawSelectCategory();
+});
+
 function getQuiz(quizId) {
     //var baseUrl = window.location.protocol + "//" + window.location.host + "/";
     var baseUrl = $("#base-url").attr("href");
@@ -6,7 +10,7 @@ function getQuiz(quizId) {
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "quiz/getQuiz",
             {
                 id: quizId
             },
@@ -80,7 +84,7 @@ function updateQuiz(quizId){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "quiz/updateQuiz",
             {
                 id: quizId,
                 category: category,
@@ -97,6 +101,8 @@ function updateQuiz(quizId){
                 console.log(data);
                 if (data.code === 1) { // Successful
                     
+                    // Update form from server data
+                    /*
                     // Update the first form
                     $('#category').val(data.info.quiz.CategoryId);
                     $('#question').val(data.info.quiz.Content);
@@ -129,6 +135,12 @@ function updateQuiz(quizId){
                     $('#packet').val(data.info.quiz.PacketId);
                     $('#point').val(data.info.quiz.BonusPoint);
                     $('#date').val(data.info.quiz.PublishedDate);
+                    */
+                   
+                   /*
+                    * Just simple left the form unchange.
+                    */
+                   successfulAlert("Your Quiz has been updated!");
                 } else { // Fail
 
                 }
@@ -137,6 +149,12 @@ function updateQuiz(quizId){
             );
 }
 
+successfulAlert = function(message) {
+    var baseUrl = $("#base-url").attr("href");
+    $('#alert_placeholder').html('<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>' + message + '</span> </div>')
+}
+
+// Not used
 function updatePacket(quizId, packetId){
     var baseUrl = $("#base-url").attr("href");
     
@@ -172,7 +190,7 @@ function updatePoint(quizId, point){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "quiz/updateBonusPoint",
             {
                 id: quizId,
                 point: point
@@ -199,21 +217,15 @@ function approveQuiz(quizId, state){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "quiz/updateIsApproved",
             {
                 id: quizId,
-                state: state
+                is_approved: state
             },
             function(data) {
                 console.log(data);
                 if (data.code === 1) { // Successful
-                    if (data.info.state ===1){
-                        $('#approve').attr('disabled', 'true');
-                        $('#deny').removeAttr("disabled");
-                    } else {
-                        $('#deny').attr('disabled', 'true');
-                        $('#approve').removeAttr("disabled");
-                    }
+                    
                 } else { // Fail
 
                 }
@@ -241,7 +253,7 @@ function deleteQuiz(quizId){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "quiz/deleteQuiz",
             {
                 id: quizId,
             },
@@ -261,4 +273,31 @@ function deleteQuiz(quizId){
             },
             "json"
             );
+}
+
+function drawSelectCategory(){
+    var baseUrl = $("#base-url").attr("href");
+    
+    // Post to api
+    $.post(
+            baseUrl + "quizcategory/getQuizCategoryList",
+            {
+                pageSize: 0,
+                pageNumber: 0
+            },
+            function(data) {
+                console.log(data);
+                if (data.code == 1) { // Successful
+                    var category = data.info.category;
+                    var select = $('<select id="category" name="category" class="form-control">').appendTo('#select-category');
+                    select.append($("<option>").attr('value', 0).text('Please select a category'));
+                    for (var i=0; i<category.length; i++){
+                        select.append($("<option>").attr('value', category[i].Id).text(category[i].CategoryName));
+                    }
+                } else { // Fail
+                    
+                }
+            },
+            "json"
+        );
 }

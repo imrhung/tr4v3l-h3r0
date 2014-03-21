@@ -9,7 +9,7 @@ function getActivity(activityId) {
 
     // Post to api
     $.post(
-            baseUrl + "admin/getActivity",
+            baseUrl + "activity/getActivity",
             {
                 id: activityId
             },
@@ -24,26 +24,26 @@ function getActivity(activityId) {
                     
                     // Base on action id to set content.
                      var $radios = $('input:radio[name=action]');
-                    switch (data.info.activity.ActionId){
-                        case 0:
+                    switch ( parseInt(data.info.activity.ActionId)){
+                        case 1:
                             $('#facebook_share').val(data.info.activity.ActionContent);
-                            $radios.filter('[value=0]').prop('checked', true);
-                            break;
-                        case 1: 
-                            $('#newsletter_link').val(data.info.activity.ActionContent);
                             $radios.filter('[value=1]').prop('checked', true);
                             break;
-                        case 2:
-                            $('#facebook_page').val(data.info.activity.ActionContent);
+                        case 2: 
+                            $('#newsletter_link').val(data.info.activity.ActionContent);
                             $radios.filter('[value=2]').prop('checked', true);
                             break;
                         case 3:
-                            $('#calendar').val(data.info.activity.ActionContent);
+                            $('#facebook_page').val(data.info.activity.ActionContent);
                             $radios.filter('[value=3]').prop('checked', true);
+                            break;
+                        case 4:
+                            $('#calendar').val(data.info.activity.ActionContent);
+                            $radios.filter('[value=4]').prop('checked', true);
                             break;
                         default:
                             $('#facebook_share').val(data.info.activity.ActionContent);
-                            $radios.filter('[value=0]').prop('checked', true);
+                            $radios.filter('[value=1]').prop('checked', true);
                     }
                     
                     $('#point').val(data.info.activity.BonusPoint);
@@ -52,13 +52,16 @@ function getActivity(activityId) {
                         approve = 1;
                     }
                 } else { // Fail
-
+                    // TODO : what if id not exists
+                    bootbox.alert("Activity not exists, or has been deleted!", 
+                        function(){
+                            window.location.replace(baseUrl + "admin/index");
+                        });
                 }
             },
             "json"
             );
 }
-
 
 function updateActivity(activityId){
     //var baseUrl = window.location.protocol + "//" + window.location.host + "/";
@@ -70,17 +73,17 @@ function updateActivity(activityId){
     var description = $("#description").val();
     var actionId = parseInt($("input[name='action']:checked", '#activity-form').val());
     var actionContent='';
-    switch (actionId){
-        case 0:
+    switch (parseInt(actionId)){
+        case 1:
             actionContent = $('#facebook_share').val();
             break;
-        case 1:
+        case 2:
             actionContent = $('#newsletter_link').val();
             break;
-        case 2:
+        case 3:
             actionContent = $('#facebook_page').val();
             break;
-        case 3:
+        case 4:
             actionContent = $('#calendar').val();
             break;
         default:
@@ -93,7 +96,7 @@ function updateActivity(activityId){
     
     // Post to api
     $.post(
-            baseUrl + "admin/testapi_s",
+            baseUrl + "activity/updateActivity",
             {
                 id: activityId,
                 partner_id: partner_id,
@@ -137,9 +140,9 @@ function deleteActivity(activityId){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "activity/deleteActivity",
             {
-                id: activityId,
+                id: activityId
             },
             function(data) {
                 console.log(data);
@@ -167,10 +170,10 @@ function approveActivity(activityId, state){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "activity/updateIsApproved",
             {
                 id: activityId,
-                state: state
+                is_approved: state
             },
             function(data) {
                 console.log(data);
