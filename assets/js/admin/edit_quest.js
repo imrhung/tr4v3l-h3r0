@@ -9,7 +9,7 @@ function getQuest(questId) {
 
     // Post to api
     $.post(
-            baseUrl + "admin/getQuest",
+            baseUrl + "virtualquest/getVirtualQuest",
             {
                 id: questId
             },
@@ -143,7 +143,7 @@ function deleteQuest(questId){
 
     // Post to api
     $.post(
-            baseUrl + "admin/testapi",
+            baseUrl + "virtualquest/deleteVirtualQuest",
             {
                 id: questId,
             },
@@ -183,7 +183,7 @@ function drawSelectPacket(){
     
     // Post to api
     $.post(
-            baseUrl + "admin/testPackets",
+            baseUrl + "packet/getPacketList",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -209,7 +209,7 @@ function drawSelectActivity(){
     
     // Post to api
     $.post(
-            baseUrl + "admin/testactivity",
+            baseUrl + "activity/getActivityList",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -242,7 +242,7 @@ function drawSelectDonation(){
     
     // Post to api
     $.post(
-            baseUrl + "admin/testDonation",
+            baseUrl + "donation/getDonation",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -277,7 +277,7 @@ function drawSelectCategory(){
     
     // Post to api
     $.post(
-            baseUrl + "admin/testCate",
+            baseUrl + "quizcategory/getQuizCategoryList",
             {
                 pageSize: 0,
                 pageNumber: 0

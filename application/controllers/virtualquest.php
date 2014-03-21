@@ -95,14 +95,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$donation_id_1 = $this->input->post('donation_id_1');
         $donation_id_2 = $this->input->post('donation_id_2');
 		$donation_id_3 = $this->input->post('donation_id_3');       
-		
+		$createDate = $this->virtualquest_model->getTime();
 		// Initialization Array
         $result = array();
         $result['code'] = -1;
         $result['message'] = "";
 							
 		// Insert Quiz
-        $resultCheck = $this->virtualquest_model->insertVirtualQuest($partnerId, $packetId, $name, $point);
+        $resultCheck = $this->virtualquest_model->insertVirtualQuest($partnerId, $packetId, $name, $point, $createDate);
 		
 		// Insert ConditionQuest activity action
 		if($activity_id_1 != 0)

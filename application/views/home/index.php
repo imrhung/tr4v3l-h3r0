@@ -7,7 +7,6 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" media="screen" />
         
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.9.1.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/admin/login.js"></script>
     </head>
     <body>
         <div class="container">

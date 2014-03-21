@@ -8,17 +8,17 @@ function createActivity() {
     var description = $("#description").val();
     var actionId = parseInt($("input[name='action']:checked", '#activity-form').val());
     var actionContent='';
-    switch (actionId){
-        case 0:
+    switch (parseInt(actionId)){
+        case 1:
             actionContent = $('#facebook_share').val();
             break;
-        case 1:
+        case 2:
             actionContent = $('#newsletter_link').val();
             break;
-        case 2:
+        case 3:
             actionContent = $('#facebook_page').val();
             break;
-        case 3:
+        case 4:
             actionContent = $('#calendar').val();
             break;
         default:
@@ -31,7 +31,7 @@ function createActivity() {
     
     // Post to api
     $.post(
-            baseUrl + "admin/testapi_s",
+            baseUrl + "activity/insertActivity",
             {
                 partner_id: partner_id,
                 title: title,

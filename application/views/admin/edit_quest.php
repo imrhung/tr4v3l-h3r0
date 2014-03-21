@@ -6,7 +6,7 @@
         <p>Edit quest information.</p>
 
         <div class="col-lg-8">
-            <form id="quest-form" class="form-horizontal" onSubmit="updateQuest();
+            <form id="quest-form" class="form-horizontal" onSubmit="updateQuest(<?php echo $questId?>);
                     return false;">
                 <fieldset>
 

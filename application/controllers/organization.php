@@ -50,7 +50,7 @@ class Organization extends App_Controller {
     public function help(){
         $this->current_section = 'help';
         $this->assets_css[] = "admin.css";
-        $this->render_page_admin('home/help');
+        $this->render_page('home/help');
     }
     
     

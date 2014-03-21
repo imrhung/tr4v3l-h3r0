@@ -42,7 +42,7 @@ class QuizCategory extends App_Controller{
 
         $resultCheck = $this->quizcategory_model->getQuizCategoryList($currentPage, $pageSize);
         
-        if ($resultCheck == 'Success') {
+        if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
             $result['info']['category'] = $resultCheck;

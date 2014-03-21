@@ -6,7 +6,12 @@
 		}
 					 /*****SELECT*****/
 				/* Last 18-March-2014 */
-				
+		/*	Get System time*/
+		public function getTime(){
+			$time = getdate(); 
+			$currentDate = $time["year"] . "-" . $time["mon"] . "-" . $time["mday"].' '.$time["hours"] . ":" . $time["minutes"] . ":" . $time["seconds"]; 
+			return $currentDate;
+		}				
 		/*	Get a donation function from databases*/			
 		public function getDonation($id){
 			$sql = 'CALL sp_Get_Donation(?)';
@@ -28,11 +33,11 @@
 			
         }
 		/*	Donation insert function*/
-		public function insertDonation($title, $description, $partner_id){
+		public function insertDonation($title, $description, $partner_id, $date){
 			
 			try{
-				$sql = 'CALL sp_Insert_Donation(?, ?, ?)';
-				$result = $this->db->query($sql, array($title, $description, $partner_id));
+				$sql = 'CALL sp_Insert_Donation(?, ?, ?, ?)';
+				$result = $this->db->query($sql, array($title, $description, $partner_id, $date));
 				return 'Success';
 			}catch(Exception $e){
 				return $e->getMessage();

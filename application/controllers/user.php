@@ -73,6 +73,7 @@ class User extends App_Controller {
         }
     }
 
+    // Not in used
     public function process() {
         //This method will have the credentials validation
         $this->load->library('form_validation');
@@ -89,6 +90,7 @@ class User extends App_Controller {
         }
     }
 
+    // NOt in used
     function check_database($password) {
         //Field validation succeeded.  Validate against database
         $username = $this->input->post('username');

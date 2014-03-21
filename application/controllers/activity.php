@@ -87,7 +87,7 @@ class Activity extends App_Controller{
 		$partner_id  = $this->input->post('partner_id');
 		$action_id	 = $this->input->post('action_id');
 		$action_content = $this->input->post('action_content');
-		
+		$createDate = $this->activity_model->getTime();
 		// Initialization Array
         $result = array();
         $result['code'] = -1;
@@ -95,7 +95,7 @@ class Activity extends App_Controller{
 		
 		// Implements work
 		$resultCheck = $this->activity_model->insertActivity($title, $description, $partner_id,
-																		$action_id, $action_content);
+																		$action_id, $action_content, $createDate);
 		
 		if ($resultCheck == 'Success') {
             $result['code'] = 1;
@@ -183,7 +183,7 @@ class Activity extends App_Controller{
         $result['message'] = "";
 				
 		// 	Update data
-		$resultCheck = $this->activity_model->updateIsApproved($Id, $IsApproved);
+		$resultCheck = $this->activity_model->updateIsApproved($Id, (int)$IsApproved);
 		
 		//	Notification
 		if ($resultCheck == 'Success') {

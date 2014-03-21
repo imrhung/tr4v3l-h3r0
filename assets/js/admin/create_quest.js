@@ -10,7 +10,7 @@ function drawSelectPacket(){
     
     // Post to api
     $.post(
-            baseUrl + "admin/testPackets",
+            baseUrl + "packet/getPacketList",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -36,7 +36,7 @@ function drawSelectActivity(){
     
     // Post to api
     $.post(
-            baseUrl + "admin/testactivity",
+            baseUrl + "activity/getActivityList",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -69,7 +69,7 @@ function drawSelectDonation(){
     
     // Post to api
     $.post(
-            baseUrl + "admin/testDonation",
+            baseUrl + "donation/getDonationList",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -102,7 +102,7 @@ function drawSelectCategory(){
     
     // Post to api
     $.post(
-            baseUrl + "admin/testCate",
+            baseUrl + "quizcategory/getQuizCategoryList",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -146,7 +146,7 @@ function createQuest() {
     
     // Post to api
     $.post(
-            baseUrl + "admin/testapi_s",
+            baseUrl + "virtualquest/insertVirtualQuest",
             {
                 partner_id: partner_id,
                 packet_id: packet_id,

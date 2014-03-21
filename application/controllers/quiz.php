@@ -242,7 +242,7 @@ class Quiz extends App_Controller{
         $result['message'] = "";
 				
 		// 	Update data
-		$resultCheck = $this->quiz_model->updateIsApproved($Id, $IsApproved);
+		$resultCheck = $this->quiz_model->updateIsApproved($Id, (int)$IsApproved);
 		
 		//	Notification
 		if ($resultCheck == 'Success') {

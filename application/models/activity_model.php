@@ -7,7 +7,12 @@
 		}
 				  /*****SELECT*****/
 				/* Last 14-March-2014 */
-				
+		/*	Get System time*/
+		public function getTime(){
+			$time = getdate(); 
+			$currentDate = $time["year"] . "-" . $time["mon"] . "-" . $time["mday"].' '.$time["hours"] . ":" . $time["minutes"] . ":" . $time["seconds"]; 
+			return $currentDate;
+		}		
 		/*	Get a activity function from databases*/			
 		public function getActivity($id){
 			$sql = 'CALL sp_Get_Activity(?)';
@@ -34,12 +39,12 @@
 				
 		/*	Donation insert function*/
 		public function insertActivity($title, $description, $partner_id, 
-												$action_id, $action_content){
+												$action_id, $action_content, $date){
 			
 			try{
-				$sql = 'CALL sp_Insert_Activity(?, ?, ?, ?, ?)';
+				$sql = 'CALL sp_Insert_Activity(?, ?, ?, ?, ?, ?)';
 				$result = $this->db->query($sql, array($title, $description, $partner_id,
-																$action_id, $action_content));
+																$action_id, $action_content, $date));
 				return 'Success';
 			}catch(Exception $e){
 				return $e->getMessage();
