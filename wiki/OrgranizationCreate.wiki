@@ -1,6 +1,6 @@
 =Create Quest=
 
-Link: 
+Link:  virtualquest/insertVirtualQuest
 
  * POST with params: 
    * partner_id
