@@ -90,37 +90,99 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $name = $this->input->post('name');
 		$point = $this->input->post('point');
         $activity_id_1 = $this->input->post('activity_id_1');
+        $quiz_category = $this->input->post('quiz_category');
 		$activity_id_2 = $this->input->post('activity_id_2');
         $activity_id_3 = $this->input->post('activity_id_3');
 		$donation_id_1 = $this->input->post('donation_id_1');
         $donation_id_2 = $this->input->post('donation_id_2');
 		$donation_id_3 = $this->input->post('donation_id_3');       
 		$createDate = $this->virtualquest_model->getTime();
+		
 		// Initialization Array
         $result = array();
         $result['code'] = -1;
         $result['message'] = "";
 							
-		// Insert Quiz
-        $resultCheck = $this->virtualquest_model->insertVirtualQuest($partnerId, $packetId, $name, $point, $createDate);
+		// Insert VirtualQuest
+        $Id = $this->virtualquest_model->insertVirtualQuest($partnerId, $packetId, $name, $point, $createDate);
+			
+		// Insert ConditionQuest quiz action
+		if($quiz_category != 0)
+			$this->virtualquest_model->insertQuestCondition(0, $quiz_category, $Id);	
 		
 		// Insert ConditionQuest activity action
 		if($activity_id_1 != 0)
-			$this->virtualquest_model->insertConditionQuest(1, $activity_id_1);	
+			$this->virtualquest_model->insertQuestCondition(1, $activity_id_1, $Id);	
 		if($activity_id_2 != 0)
-			$this->virtualquest_model->insertConditionQuest(1, $activity_id_2);	
+			$this->virtualquest_model->insertQuestCondition(1, $activity_id_2, $Id);	
 		if($activity_id_3 != 0)
-			$this->virtualquest_model->insertConditionQuest(1, $activity_id_3);				
+			$this->virtualquest_model->insertQuestCondition(1, $activity_id_3, $Id);				
 		
 		// Insert ConditionQuest activity action
 		if($donation_id_1 != 0)
-			$this->virtualquest_model->insertConditionQuest(2, $activity_id_1);	
+			$this->virtualquest_model->insertQuestCondition(2, $activity_id_1, $Id);	
 		if($donation_id_2 != 0)
-			$this->virtualquest_model->insertConditionQuest(2, $donation_id_2);	
+			$this->virtualquest_model->insertQuestCondition(2, $donation_id_2, $Id);	
 		if($donation_id_3 != 0)
-			$this->virtualquest_model->insertConditionQuest(2, $donation_id_3);	
+			$this->virtualquest_model->insertQuestCondition(2, $donation_id_3, $Id);	
 			
-        if ($resultCheck == 'Success') {
+        if ($Id) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+        } else{
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+        echo json_encode($result);
+	}
+								/*****UPDATE*****/
+							/* Last 24-March-2014 */
+	/* Update a virtualquest function into databases */
+	public function updateVirtualQuest(){
+				
+		// Get infomation from user   
+		$Id = $this->input->post('id');		
+        $partnerId = $this->input->post('partner_id');
+		$packetId = $this->input->post('packet_id');
+        $name = $this->input->post('name');
+		$point = $this->input->post('point');
+        $activity_id_1 = $this->input->post('activity_id_1');
+        $quiz_category = $this->input->post('quiz_category');
+		$activity_id_2 = $this->input->post('activity_id_2');
+        $activity_id_3 = $this->input->post('activity_id_3');
+		$donation_id_1 = $this->input->post('donation_id_1');
+        $donation_id_2 = $this->input->post('donation_id_2');
+		$donation_id_3 = $this->input->post('donation_id_3');       
+		
+		// Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+		
+		// Delete questCondition
+        $resultCheck = $this->virtualquest_model->deleteQuestCondition($Id);
+					
+		// Insert ConditionQuest quiz action
+		if($quiz_category != 0)
+			$this->virtualquest_model->insertQuestCondition(0, $quiz_category, $Id);	
+		
+		// Insert ConditionQuest activity action
+		if($activity_id_1 != 0)
+			$this->virtualquest_model->insertQuestCondition(1, $activity_id_1, $Id);	
+		if($activity_id_2 != 0)
+			$this->virtualquest_model->insertQuestCondition(1, $activity_id_2, $Id);	
+		if($activity_id_3 != 0)
+			$this->virtualquest_model->insertQuestCondition(1, $activity_id_3, $Id);				
+		
+		// Insert ConditionQuest activity action
+		if($donation_id_1 != 0)
+			$this->virtualquest_model->insertQuestCondition(2, $activity_id_1, $Id);	
+		if($donation_id_2 != 0)
+			$this->virtualquest_model->insertQuestCondition(2, $donation_id_2, $Id);	
+		if($donation_id_3 != 0)
+			$this->virtualquest_model->insertQuestCondition(2, $donation_id_3, $Id);	
+			
+        if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
         } else{

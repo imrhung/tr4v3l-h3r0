@@ -33,7 +33,7 @@ function loadQuestTable(){
             },
             function(data) {
                 console.log(data);
-                if (data.code === 1) { // Successful
+                if (data.code == 1) { // Successful
                     var quesetArray = data.info.quest;
                     var tableData = new Array();
                     var quest;
@@ -84,7 +84,7 @@ function deleteQuest(questId){
             },
             function(data) {
                 console.log(data);
-                if (data.code === 1) { // Successful
+                if (data.code == 1) { // Successful
                     loadQuestTable();
                 } else { // Fail
                     bootbox.alert("Some error happened that we cannot delete the quest. Please try again later.", 
@@ -133,7 +133,7 @@ function loadQuizTable(){
             },
             function(data) {
                 console.log(data);
-                if (data.code === 1) { // Successful
+                if (data.code == 1) { // Successful
                     var quizArray = data.info.quiz;
                     var tableData = new Array();
                     var quiz;
@@ -141,7 +141,7 @@ function loadQuizTable(){
                     var action;
                     for (var i=0; i<quizArray.length; i++){
                         quiz = quizArray[i];
-                        if (quiz.IsApproved === 1){
+                        if (quiz.IsApproved == 1){
                             isApproved = "Yes";
                         }else {
                             isApproved = '<button id="approve" name="approve" class="btn btn-success" onclick="approveQuiz('+quiz.Id+', 1);">Yes</button> <button id="deny" name="deny" class="btn btn-danger">No</button>';
@@ -214,7 +214,7 @@ function deleteQuiz(quizId){
             },
             function(data) {
                 console.log(data);
-                if (data.code === 1) { // Successful
+                if (data.code == 1) { // Successful
                     loadQuizTable();
                 } else { // Fail
                     bootbox.alert("Some error happened that we cannot delete the quest. Please try again later.", 

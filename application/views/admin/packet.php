@@ -2,7 +2,7 @@
 
     <div id="page-wrapper">
 
-        <h1>Create Donation</h1>
+        <h1>Packet and Category</h1>
         <p>Each quest must belong to a city or a packet. You must first create that city or packet, then you can associate that packet/city with your quest.</p>
 
         

@@ -60,11 +60,11 @@
         }
 								/****INSERT****/
 							/* Last 19-March-2014 */
-		public function insertConditionQuest($type, $name){
+		public function insertQuestCondition($type, $name, $Id){
 			
 			try{
-				$sql = 'CALL sp_Insert_ConditionQuest(?, ?)';
-				$result = $this->db->query($sql, array($type, $name));
+				$sql = 'CALL sp_Insert_ConditionQuest(?, ?, ?)';
+				$result = $this->db->query($sql, array($type, $name, $Id));
 				
 			}catch(Exception $e){
 				
@@ -76,8 +76,50 @@
 		public function insertVirtualQuest($partnerId, $packetId, $name, $point, $create_date){
 			
 			try{
+			$this->db->trans_start();
 				$sql = 'CALL sp_Insert_VirtualQuest(?, ?, ?, ?, ?)';
 				$result = $this->db->query($sql, array($partnerId, $packetId, $name, $point, $create_date));
+				
+				$this->db->trans_complete();
+				
+				$sql1 = 'SELECT MAX(virtualquest.Id) FROM travel_hero.virtualquest';
+				$result1 = $this->db->query($sql1, array());
+				$Id = $result1->row()->{'MAX(virtualquest.Id)'};
+				
+			}catch(Exception $e){
+				
+				return $e->getMessage();
+			}
+			return $Id;
+		}
+								/****UPDATE****/
+							/* Last 24-March-2014 */
+		/* Update virtualquest function */
+		public function updateVirtualQuest($Id, $partnerId, $packetId, $name, $point, $create_date){
+			
+			try{
+			$this->db->trans_start();
+				$sql = 'CALL sp_Update_VirtualQuest(?, ?, ?, ?, ?)';
+				$result = $this->db->query($sql, array($partnerId, $packetId, $name, $point, $create_date));
+				
+				$this->db->trans_complete();
+				
+				$sql1 = 'SELECT MIN(questcondition.Id) FROM travel_hero.questcondition WHERE VirtualQuestId = ?';
+				$result1 = $this->db->query($sql1, array($Id));
+				$minId = $result1->row()->{'MIN(questcondition.Id)'};
+				
+			}catch(Exception $e){
+				
+				return $e->getMessage();
+			}
+			return $minId;
+		}
+		/* Update ConditionQuest function */
+		public function updateQuestCondition($name, $Id){
+			
+			try{
+				$sql = 'CALL sp_Update_QuestCondition(?, ?)';
+				$result = $this->db->query($sql, array($name, $Id));
 				
 			}catch(Exception $e){
 				
@@ -91,6 +133,17 @@
 		public function deleteVirtualQuest($Id){
 			try{
 				$sql = 'CALL sp_Delete_VirtualQuest(?)';
+				$result = $this->db->query($sql, array($Id));
+				
+				return 'Success';
+			}catch(Exception $e){
+				return $e->getMessage();
+			}
+		}
+		/* Delete questcondition function */
+		public function deleteQuestCondition($Id){
+			try{
+				$sql = 'CALL sp_Delete_QuestCondition(?)';
 				$result = $this->db->query($sql, array($Id));
 				
 				return 'Success';

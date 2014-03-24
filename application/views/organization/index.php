@@ -23,7 +23,7 @@
 
         <div class="alert alert-info alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <strong>Awesome!</strong><br> It looks like one of your recent question was approved and published! Congratulation!
+            <strong>Awesome!</strong><br> Now you can create quiz, activity or donation by the tab beside.
         </div>
 
     </div><!-- /#page-wrapper -->

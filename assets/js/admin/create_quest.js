@@ -7,7 +7,6 @@ $(document).ready(function(){
 
 function drawSelectPacket(){
     var baseUrl = $("#base-url").attr("href");
-    
     // Post to api
     $.post(
             baseUrl + "packet/getPacketList",
