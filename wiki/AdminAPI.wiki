@@ -69,7 +69,7 @@
 }
 }}}
 
-=Edit Virtual Quest=
+=Edit Virtual Quest(F)=
 Link:
 
 * POST with params:
