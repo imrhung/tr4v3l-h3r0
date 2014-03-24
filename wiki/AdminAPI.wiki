@@ -435,25 +435,36 @@ Response:
   "message": "Success",
   "info": {
     "quiz": {
-      "Id": 1,
-        "Content": "abcxyz",
-        "BonusPoint": 100,
-        "CreatedDate": 1002,
-        "CorrectChoiceId": 1,
-        "SharingInfo": "abcxyz",
-        "LearnMoreURL": "http://abcxyz",
-        "ImageURL": "http://abcxyz",
-        "IsApproved": 1,
-        "CategoryName": "Teaching",
-        "PartnerName": "Partner's Name",
-        "AnswerA": "1234",
-        "AnswerB": "1234",
-        "AnswerC": "1234",
-        "AnswerD": "1234",
-        "AnswerAId": 2,
-        "AnswerBId": 3,
-        "AnswerCId": 4,
-        "AnswerDId": 5
+      "quiz": {
+        "Id": "25",
+        "BonusPoint": "1",
+        "CreatedDate": "2014-03-19 03:42:56",
+        "CorrectChoiceId": "20",
+        "SharingInfo": "b",
+        "LearnMoreURL": "b",
+        "ImageURL": null,
+        "IsApproved": "1",
+        "CategoryName": "ocean4",
+        "PartnerName": "UNICEF"
+      },
+      "choice": [
+        {
+          "0": "17",
+          "answerContent0": "a"
+        },
+        {
+          "1": "18",
+          "answerContent1": "b"
+        },
+        {
+          "2": "19",
+          "answerContent2": "c"
+        },
+        {
+          "3": "20",
+          "answerContent3": "ai"
+        }
+      ]
     }
   }
 }
