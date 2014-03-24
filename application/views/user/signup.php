@@ -10,6 +10,7 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.9.1.min.js"></script>
     </head>
     <body>
+        <div class="container">
         <div class='content-center'>
 
             <form class="form-horizontal" method='POST'>
@@ -142,6 +143,7 @@
             </form>
 
 
+        </div>
         </div>
     </body>
 </html>

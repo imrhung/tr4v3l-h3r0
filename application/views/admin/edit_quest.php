@@ -126,6 +126,6 @@
 
 <script>
     $(function() {
-        getQuest(<?php echo $questId; ?>);
+        draw(<?php echo $questId; ?>);
     });
 </script>
