@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2014 at 03:28 PM
+-- Generation Time: Mar 24, 2014 at 10:15 AM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.3
 
@@ -74,6 +74,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Delete_Donation`(Id INT)
 BEGIN
 		DELETE FROM travel_hero.Donation
 			WHERE Donation.Id = Id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Delete_QuestCondition`(Id INT)
+BEGIN
+	DELETE FROM travel_hero.questcondition WHERE VirtualQuestId = Id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Delete_Quiz`(Id INT)
@@ -269,7 +274,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Quiz`(Id Int)
 BEGIN
-	SELECT quiz.*, quizcategory.CategoryName, choice.Id, choice.Content, partner.PartnerName 
+	SELECT quiz.*, quizcategory.CategoryName, choice.Id, choice.Content as answer, partner.PartnerName 
 	FROM quizcategory, 
 		 quiz,
 		 choice, 
@@ -434,18 +439,21 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Insert_ConditionQuest`(
 	type INT,
-	objectId INT
+	objectId INT,
+	Id INT
 )
 BEGIN
 	INSERT INTO travel_hero.questcondition
 				(
 					questcondition.Type,
-					ObjectId
+					ObjectId,
+					VirtualQuestId
 				)
 			VALUES
 				(
 					type,
-					objectId
+					objectId,
+					Id
 				);
 END$$
 
@@ -671,6 +679,18 @@ BEGIN
 			choice.Id = Id;	
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Update_ConditionQuest`(
+	objectId INT,
+	Id INT
+)
+BEGIN
+	UPDATE travel_hero.questcondition
+				SET
+					ObjectId = objectId 
+				WHERE	Id = Id;
+				
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Update_Donation`(
 	id INT,
 	partner_id INT,
@@ -744,6 +764,25 @@ BEGIN
 		donation.RequiredPoint = point
 	WHERE 
 		donation.Id = Id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Update_VirtualQuest`(
+	id INT,
+	partner_id INT,
+	packet_id INT,
+	name nvarchar(140),
+	point INT
+	
+)
+BEGIN
+	UPDATE travel_hero.virtualquest
+				SET
+					PacketId = partner_id,
+					PartnerId = packet_id,
+					QuestName = name,
+					UnlockPoint = point
+				WHERE  Id = id;
+					
 END$$
 
 CREATE DEFINER=`user_hau`@`localhost` PROCEDURE `sp_useracceptquest`(IN iUserId INT, IN iQuestId INT, IN iParentQuestId INT)
@@ -914,7 +953,7 @@ CREATE TABLE IF NOT EXISTS `app_sessions` (
 --
 
 INSERT INTO `app_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('fc14b2873ceeb225b58a26abe9064083', '::1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1395404937, '');
+('5929427b9f850fdc14c490f52782edcc', '::1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1395652063, '');
 
 -- --------------------------------------------------------
 
@@ -1324,15 +1363,13 @@ CREATE TABLE IF NOT EXISTS `questcondition` (
   `VirtualQuestId` int(11) DEFAULT NULL,
   `ObjectId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=110 ;
 
 --
 -- Dumping data for table `questcondition`
 --
 
 INSERT INTO `questcondition` (`Id`, `Type`, `Value`, `VirtualQuestId`, `ObjectId`) VALUES
-(2, 1, 0, 3, 4),
-(3, 2, NULL, 3, 3),
 (4, 1, NULL, NULL, 1),
 (5, 1, NULL, NULL, 2),
 (6, 1, NULL, NULL, 3),
@@ -1344,7 +1381,88 @@ INSERT INTO `questcondition` (`Id`, `Type`, `Value`, `VirtualQuestId`, `ObjectId
 (12, 1, NULL, NULL, 3),
 (13, 2, NULL, NULL, 1),
 (14, 2, NULL, NULL, 2),
-(15, 2, NULL, NULL, 3);
+(15, 2, NULL, NULL, 3),
+(16, 1, NULL, 0, 1),
+(17, 1, NULL, 0, 2),
+(18, 1, NULL, 0, 3),
+(19, 2, NULL, 0, 1),
+(20, 2, NULL, 0, 2),
+(21, 2, NULL, 0, 3),
+(22, 1, NULL, 0, 1),
+(23, 1, NULL, 0, 2),
+(24, 1, NULL, 0, 3),
+(25, 2, NULL, 0, 1),
+(26, 2, NULL, 0, 2),
+(27, 2, NULL, 0, 3),
+(28, 1, NULL, 9, 1),
+(29, 1, NULL, 9, 2),
+(30, 1, NULL, 9, 3),
+(31, 2, NULL, 9, 1),
+(32, 2, NULL, 9, 2),
+(33, 2, NULL, 9, 3),
+(34, 1, NULL, 9, 1),
+(35, 1, NULL, 9, 2),
+(36, 1, NULL, 9, 3),
+(37, 2, NULL, 9, 1),
+(38, 2, NULL, 9, 2),
+(39, 2, NULL, 9, 3),
+(40, 1, NULL, 9, 1),
+(41, 1, NULL, 9, 2),
+(42, 1, NULL, 9, 3),
+(43, 2, NULL, 9, 1),
+(44, 2, NULL, 9, 2),
+(45, 2, NULL, 9, 3),
+(46, 1, NULL, 9, 1),
+(47, 1, NULL, 9, 2),
+(48, 1, NULL, 9, 3),
+(49, 2, NULL, 9, 1),
+(50, 2, NULL, 9, 2),
+(51, 2, NULL, 9, 3),
+(52, 1, NULL, 9, 1),
+(53, 1, NULL, 9, 2),
+(54, 1, NULL, 9, 3),
+(55, 2, NULL, 9, 1),
+(56, 2, NULL, 9, 2),
+(57, 2, NULL, 9, 3),
+(58, 1, NULL, 0, 1),
+(59, 1, NULL, 0, 2),
+(60, 1, NULL, 0, 3),
+(61, 2, NULL, 0, 1),
+(62, 2, NULL, 0, 2),
+(63, 2, NULL, 0, 3),
+(70, 1, NULL, 16, 1),
+(71, 1, NULL, 16, 2),
+(72, 1, NULL, 16, 3),
+(73, 2, NULL, 16, 1),
+(74, 2, NULL, 16, 2),
+(75, 2, NULL, 16, 3),
+(76, 1, NULL, 17, 1),
+(77, 1, NULL, 17, 2),
+(78, 1, NULL, 17, 3),
+(79, 2, NULL, 17, 1),
+(80, 2, NULL, 17, 2),
+(81, 2, NULL, 17, 3),
+(82, 1, NULL, 18, 1),
+(83, 1, NULL, 18, 1),
+(84, 1, NULL, 18, 2),
+(85, 1, NULL, 18, 3),
+(86, 2, NULL, 18, 1),
+(87, 2, NULL, 18, 2),
+(88, 2, NULL, 18, 3),
+(89, 0, NULL, 19, 1),
+(90, 1, NULL, 19, 1),
+(91, 1, NULL, 19, 2),
+(92, 1, NULL, 19, 3),
+(93, 2, NULL, 19, 1),
+(94, 2, NULL, 19, 2),
+(95, 2, NULL, 19, 3),
+(103, 0, NULL, 15, 1),
+(104, 1, NULL, 15, 1),
+(105, 1, NULL, 15, 2),
+(106, 1, NULL, 15, 3),
+(107, 2, NULL, 15, 1),
+(108, 2, NULL, 15, 2),
+(109, 2, NULL, 15, 3);
 
 -- --------------------------------------------------------
 
@@ -1373,7 +1491,6 @@ CREATE TABLE IF NOT EXISTS `quiz` (
 
 INSERT INTO `quiz` (`Id`, `CategoryId`, `PartnerId`, `CreatedDate`, `Content`, `BonusPoint`, `CorrectChoiceId`, `SharingInfo`, `LearnMoreURL`, `ImageURL`, `IsApproved`) VALUES
 (25, 1, 1, '2014-03-19 03:42:56', 'who?', 1, 20, 'b', 'b', NULL, b'1'),
-(26, 1, 1, '2014-03-19 03:42:33', 'who?', NULL, 3, 'b', 'b', NULL, NULL),
 (27, 1, 2, '2014-03-19 03:42:48', 'who?', NULL, 25, 'b', 'b', NULL, NULL),
 (31, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 1, 'b', 'b', NULL, NULL),
 (34, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 1, 'b', 'b', NULL, NULL),
@@ -1699,7 +1816,7 @@ CREATE TABLE IF NOT EXISTS `virtualquest` (
   `UnlockPoint` int(11) DEFAULT NULL,
   `CreateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `virtualquest`
@@ -1709,7 +1826,20 @@ INSERT INTO `virtualquest` (`Id`, `QuestName`, `PacketId`, `PartnerId`, `Animati
 (3, 'Nutrition of Chidren', 1, 1, NULL, NULL, NULL),
 (4, 'Unicef Next Generation', 2, 1, NULL, 100, NULL),
 (5, 'Blue Dragon', 1, 1, NULL, 100, NULL),
-(6, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-21 12:35:31');
+(6, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-21 12:35:31'),
+(7, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:02:35'),
+(8, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:03:33'),
+(9, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:08:36'),
+(10, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:10:20'),
+(11, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:13:08'),
+(12, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:13:42'),
+(13, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:18:02'),
+(14, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:20:33'),
+(15, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:23:45'),
+(16, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:26:38'),
+(17, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:26:58'),
+(18, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:38:26'),
+(19, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:38:59');
 
 --
 -- Constraints for dumped tables
