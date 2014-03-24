@@ -86,7 +86,7 @@ function updateQuest(questId){
     
     // Post to api
     $.post(
-            baseUrl + "admin/testapi_s",
+            baseUrl + "virtualquest/updateVirtualQuest",
             {
                 id: questId,
                 partner_id: partnerId,
@@ -170,13 +170,12 @@ successfulAlert = function(message) {
     $('#alert_placeholder').html('<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>' + message + '</span> </div>')
 }
 
-$(document).ready(function(){
+function draw(questId){
     drawSelectPacket();
     drawSelectCategory();
     drawSelectActivity();
-    drawSelectDonation();
-    getQuest();
-});
+    drawSelectDonation(questId);
+}
 
 function drawSelectPacket(){
     var baseUrl = $("#base-url").attr("href");
@@ -237,12 +236,12 @@ function drawSelectActivity(){
         );
 }
 
-function drawSelectDonation(){
+function drawSelectDonation(questId){
     var baseUrl = $("#base-url").attr("href");
     
     // Post to api
     $.post(
-            baseUrl + "donation/getDonation",
+            baseUrl + "donation/getDonationList",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -263,7 +262,7 @@ function drawSelectDonation(){
                         select3.append($("<option>").attr('value', donation[i].Id).text(donation[i].Title));
                     }
                     
-                    getQuest();
+                    getQuest(questId);
                 } else { // Fail
                     
                 }

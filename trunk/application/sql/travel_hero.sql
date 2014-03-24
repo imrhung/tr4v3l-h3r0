@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2014 at 10:15 AM
--- Server version: 5.6.11
--- PHP Version: 5.5.3
+-- Generation Time: Mar 24, 2014 at 05:01 PM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -272,7 +272,7 @@ BEGIN
 	END if;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Quiz`(Id Int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Quiz`(IN `Id` INT)
 BEGIN
 	SELECT quiz.*, quizcategory.CategoryName, choice.Id, choice.Content as answer, partner.PartnerName 
 	FROM quizcategory, 
@@ -766,22 +766,14 @@ BEGIN
 		donation.Id = Id;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Update_VirtualQuest`(
-	id INT,
-	partner_id INT,
-	packet_id INT,
-	name nvarchar(140),
-	point INT
-	
-)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Update_VirtualQuest`(IN `id` INT, IN `partner_id` INT, IN `packet_id` INT, IN `name` VARCHAR(140), IN `point` INT)
 BEGIN
 	UPDATE travel_hero.virtualquest
 				SET
-					PacketId = partner_id,
-					PartnerId = packet_id,
+					PacketId = packet_id,
 					QuestName = name,
 					UnlockPoint = point
-				WHERE  Id = id;
+				WHERE  virtualquest.Id = id;
 					
 END$$
 
@@ -900,7 +892,7 @@ CREATE TABLE IF NOT EXISTS `action` (
 
 INSERT INTO `action` (`Id`, `Name`) VALUES
 (1, 'Share on their Facebook'),
-(2, '2'),
+(2, 'Signup for newsletter'),
 (3, 'Like our facebook pages'),
 (4, 'Add to User''s calendar');
 
@@ -921,7 +913,7 @@ CREATE TABLE IF NOT EXISTS `activity` (
   `CreateDate` datetime DEFAULT NULL,
   `ActionContent` varchar(140) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `activity`
@@ -930,7 +922,8 @@ CREATE TABLE IF NOT EXISTS `activity` (
 INSERT INTO `activity` (`Id`, `PartnerId`, `Title`, `Description`, `ActionId`, `BonusPoint`, `IsApproved`, `CreateDate`, `ActionContent`) VALUES
 (1, 1, 'Sign Up for newsletters', '', 3, 100, b'0', NULL, NULL),
 (2, 2, 'ocean4', 'ocean4 team', 1, NULL, NULL, NULL, NULL),
-(3, 1, 'hello1', 'hello world1', 1, 100, b'0', '2014-03-21 12:55:42', '2');
+(3, 1, 'hello1', 'hello world1', 1, 100, b'0', '2014-03-21 12:55:42', '2'),
+(4, 3, 'Share us on facebook', 'Share to let many of your friends know about this program', 2, 100, b'0', '2014-03-24 15:59:48', 'Here!!!');
 
 -- --------------------------------------------------------
 
@@ -953,7 +946,14 @@ CREATE TABLE IF NOT EXISTS `app_sessions` (
 --
 
 INSERT INTO `app_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('5929427b9f850fdc14c490f52782edcc', '::1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1395652063, '');
+('2928182f982c8790fb7b1154ba6e931c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1395676863, ''),
+('2af19e050e66c94816aaf10ce0e53a26', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1395676852, ''),
+('687ac1ab69bc5735f96f0e921796c3f7', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1395676858, ''),
+('83dc8ef3d52bf487a83f862800ac528a', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1395676858, ''),
+('b0f5b91e1f38404e69215be0371a3413', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1395676847, ''),
+('d3db6b7aaf6555834f6d4677baada962', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1395676859, ''),
+('e2449fca4dce40c1060362e1562c582c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1395676855, ''),
+('f7d68611a9413c345311032395b114ec', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1395675026, 'a:3:{s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:4;}');
 
 -- --------------------------------------------------------
 
@@ -966,128 +966,17 @@ CREATE TABLE IF NOT EXISTS `choice` (
   `QuestionId` int(11) DEFAULT NULL,
   `Content` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=138 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=142 ;
 
 --
 -- Dumping data for table `choice`
 --
 
 INSERT INTO `choice` (`Id`, `QuestionId`, `Content`) VALUES
-(17, 25, 'a'),
-(18, 25, 'b'),
-(19, 25, 'c'),
-(20, 25, 'ai'),
-(22, 27, 'a'),
-(23, 27, 'b'),
-(28, 30, NULL),
-(30, 31, NULL),
-(31, 31, NULL),
-(32, 31, NULL),
-(33, 31, NULL),
-(34, 31, NULL),
-(35, 31, NULL),
-(36, 31, NULL),
-(37, 31, NULL),
-(38, 31, NULL),
-(39, 31, 'fad'),
-(40, 32, NULL),
-(41, 32, NULL),
-(42, 33, NULL),
-(43, 33, NULL),
-(44, 33, NULL),
-(45, 33, NULL),
-(46, 34, NULL),
-(47, 34, NULL),
-(48, 35, NULL),
-(49, 35, NULL),
-(50, 35, NULL),
-(51, 35, NULL),
-(52, 36, NULL),
-(53, 36, NULL),
-(54, 36, NULL),
-(55, 36, NULL),
-(56, 37, NULL),
-(57, 37, NULL),
-(58, 38, NULL),
-(59, 38, NULL),
-(60, 39, NULL),
-(61, 39, NULL),
-(62, 40, NULL),
-(63, 40, NULL),
-(64, 41, NULL),
-(65, 41, NULL),
-(66, 43, 'd'),
-(67, 43, 'c'),
-(68, 43, 'f'),
-(69, 43, 'd'),
-(70, 44, 'd'),
-(71, 44, 'c'),
-(72, 44, 'f'),
-(73, 44, 'd'),
-(74, 45, 'd'),
-(75, 45, 'c'),
-(76, 45, 'f'),
-(77, 45, 'd'),
-(78, 46, 'd'),
-(79, 46, 'c'),
-(80, 46, 'f'),
-(81, 46, 'd'),
-(82, 47, 'd'),
-(83, 47, 'c'),
-(84, 47, 'f'),
-(85, 47, 'd'),
-(86, 47, 'd'),
-(87, 47, 'c'),
-(88, 47, 'f'),
-(89, 47, 'd'),
-(90, 48, 'd'),
-(91, 48, 'c'),
-(92, 48, 'f'),
-(93, 48, 'd'),
-(94, 48, 'd'),
-(95, 48, 'c'),
-(96, 48, 'f'),
-(97, 48, 'd'),
-(98, 49, 'd'),
-(99, 49, 'c'),
-(100, 49, 'f'),
-(101, 49, 'd'),
-(102, 50, 'd'),
-(103, 50, 'c'),
-(104, 50, 'f'),
-(105, 50, 'd'),
-(106, 51, 'd'),
-(107, 51, 'c'),
-(108, 51, 'f'),
-(109, 51, 'd'),
-(110, 51, 'd'),
-(111, 51, 'c'),
-(112, 51, 'f'),
-(113, 51, 'd'),
-(114, 52, 'd'),
-(115, 52, 'c'),
-(116, 52, 'f'),
-(117, 52, 'd'),
-(118, 53, 'd'),
-(119, 53, 'c'),
-(120, 53, 'f'),
-(121, 53, 'd'),
-(122, 54, 'd'),
-(123, 54, 'c'),
-(124, 54, 'f'),
-(125, 54, 'd'),
-(126, 55, 'a'),
-(127, 55, 'b'),
-(128, 55, 'c'),
-(129, 55, 'ai'),
-(130, 56, 'a'),
-(131, 56, 'b'),
-(132, 56, 'c'),
-(133, 56, 'd'),
-(134, 57, 'a'),
-(135, 57, 'b'),
-(136, 57, 'c'),
-(137, 57, 'd');
+(138, 58, '1M'),
+(139, 58, '2M'),
+(140, 58, '14M'),
+(141, 58, '8M');
 
 -- --------------------------------------------------------
 
@@ -1105,19 +994,14 @@ CREATE TABLE IF NOT EXISTS `donation` (
   `IsApproved` bit(1) DEFAULT NULL,
   `CreateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `donation`
 --
 
 INSERT INTO `donation` (`Id`, `Title`, `Description`, `RequiredPoint`, `MedalId`, `PartnerId`, `IsApproved`, `CreateDate`) VALUES
-(1, 'Sign Up for newsletter', '', 100, NULL, 1, b'0', NULL),
-(3, 'ocean4', 'ocean4 team', NULL, NULL, 1, NULL, NULL),
-(4, 'ocean4', 'ocean4 team', NULL, NULL, 2, NULL, NULL),
-(5, 'ocean4', 'ocean4 team', NULL, NULL, 1, NULL, NULL),
-(6, 'ocean4', 'ocean4 team', NULL, NULL, 3, NULL, NULL),
-(7, '2', '2', 100, NULL, 1, NULL, '2014-03-21 12:44:57');
+(8, 'Donate your old clothes', 'Some of your friends even don''t have enough clothes for winter. So just share what you have but don''t need.', 200, NULL, 3, b'0', '2014-03-24 16:01:01');
 
 -- --------------------------------------------------------
 
@@ -1205,15 +1089,17 @@ CREATE TABLE IF NOT EXISTS `packet` (
   `ImageURL` varchar(140) DEFAULT NULL,
   `PartnerId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `packet`
 --
 
 INSERT INTO `packet` (`Id`, `Title`, `ImageURL`, `PartnerId`) VALUES
-(1, 'HCM', '', 1),
-(2, 'HANOI', 'https://code.google.com/p/tr4v3l-h3r0/wiki/Packet_Category', 1);
+(3, 'Ho Chi Minh City', 'http://google.com/image', 1),
+(4, 'Ha Noi', 'http://google.com/image', 1),
+(5, 'Da Nang', 'http://google.com/image', 1),
+(6, 'Nha Trang', 'http://google.com/image', 1);
 
 -- --------------------------------------------------------
 
@@ -1232,15 +1118,15 @@ CREATE TABLE IF NOT EXISTS `partner` (
   `Longtitude` float DEFAULT NULL,
   `Description` varchar(140) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `partner`
 --
 
 INSERT INTO `partner` (`Id`, `PartnerName`, `OrganizationTypeId`, `Address`, `PhoneNumber`, `WebsiteURL`, `Latitude`, `Longtitude`, `Description`) VALUES
-(1, 'UNICEF', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'KOTO', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(3, 'Ocean 4', 1, '65/13 Phan Sao Nam', '84912880656', '', NULL, NULL, 'Yeah'),
+(4, 'Unicef VietNam', 3, 'here', '0987654321', '', NULL, NULL, 'Go for it');
 
 -- --------------------------------------------------------
 
@@ -1315,6 +1201,35 @@ INSERT INTO `quest` (`id`, `name`, `description`, `latitude`, `longitude`, `movi
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `questcondition`
+--
+
+CREATE TABLE IF NOT EXISTS `questcondition` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Type` int(11) DEFAULT NULL,
+  `Value` int(11) DEFAULT NULL,
+  `VirtualQuestId` int(11) DEFAULT NULL,
+  `ObjectId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=193 ;
+
+--
+-- Dumping data for table `questcondition`
+--
+
+INSERT INTO `questcondition` (`Id`, `Type`, `Value`, `VirtualQuestId`, `ObjectId`) VALUES
+(185, 1, NULL, 23, 4),
+(186, 1, NULL, 23, 4),
+(187, 2, NULL, 23, 8),
+(188, 1, NULL, 22, 4),
+(189, 1, NULL, 22, 4),
+(190, 1, NULL, 22, 4),
+(191, 2, NULL, 22, 8),
+(192, 2, NULL, 22, 8);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `quest_temp`
 --
 
@@ -1353,120 +1268,6 @@ INSERT INTO `quest_temp` (`id`, `name`, `description`, `latitude`, `longitude`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `questcondition`
---
-
-CREATE TABLE IF NOT EXISTS `questcondition` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Type` int(11) DEFAULT NULL,
-  `Value` int(11) DEFAULT NULL,
-  `VirtualQuestId` int(11) DEFAULT NULL,
-  `ObjectId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=110 ;
-
---
--- Dumping data for table `questcondition`
---
-
-INSERT INTO `questcondition` (`Id`, `Type`, `Value`, `VirtualQuestId`, `ObjectId`) VALUES
-(4, 1, NULL, NULL, 1),
-(5, 1, NULL, NULL, 2),
-(6, 1, NULL, NULL, 3),
-(7, 2, NULL, NULL, 1),
-(8, 2, NULL, NULL, 2),
-(9, 2, NULL, NULL, 3),
-(10, 1, NULL, NULL, 1),
-(11, 1, NULL, NULL, 2),
-(12, 1, NULL, NULL, 3),
-(13, 2, NULL, NULL, 1),
-(14, 2, NULL, NULL, 2),
-(15, 2, NULL, NULL, 3),
-(16, 1, NULL, 0, 1),
-(17, 1, NULL, 0, 2),
-(18, 1, NULL, 0, 3),
-(19, 2, NULL, 0, 1),
-(20, 2, NULL, 0, 2),
-(21, 2, NULL, 0, 3),
-(22, 1, NULL, 0, 1),
-(23, 1, NULL, 0, 2),
-(24, 1, NULL, 0, 3),
-(25, 2, NULL, 0, 1),
-(26, 2, NULL, 0, 2),
-(27, 2, NULL, 0, 3),
-(28, 1, NULL, 9, 1),
-(29, 1, NULL, 9, 2),
-(30, 1, NULL, 9, 3),
-(31, 2, NULL, 9, 1),
-(32, 2, NULL, 9, 2),
-(33, 2, NULL, 9, 3),
-(34, 1, NULL, 9, 1),
-(35, 1, NULL, 9, 2),
-(36, 1, NULL, 9, 3),
-(37, 2, NULL, 9, 1),
-(38, 2, NULL, 9, 2),
-(39, 2, NULL, 9, 3),
-(40, 1, NULL, 9, 1),
-(41, 1, NULL, 9, 2),
-(42, 1, NULL, 9, 3),
-(43, 2, NULL, 9, 1),
-(44, 2, NULL, 9, 2),
-(45, 2, NULL, 9, 3),
-(46, 1, NULL, 9, 1),
-(47, 1, NULL, 9, 2),
-(48, 1, NULL, 9, 3),
-(49, 2, NULL, 9, 1),
-(50, 2, NULL, 9, 2),
-(51, 2, NULL, 9, 3),
-(52, 1, NULL, 9, 1),
-(53, 1, NULL, 9, 2),
-(54, 1, NULL, 9, 3),
-(55, 2, NULL, 9, 1),
-(56, 2, NULL, 9, 2),
-(57, 2, NULL, 9, 3),
-(58, 1, NULL, 0, 1),
-(59, 1, NULL, 0, 2),
-(60, 1, NULL, 0, 3),
-(61, 2, NULL, 0, 1),
-(62, 2, NULL, 0, 2),
-(63, 2, NULL, 0, 3),
-(70, 1, NULL, 16, 1),
-(71, 1, NULL, 16, 2),
-(72, 1, NULL, 16, 3),
-(73, 2, NULL, 16, 1),
-(74, 2, NULL, 16, 2),
-(75, 2, NULL, 16, 3),
-(76, 1, NULL, 17, 1),
-(77, 1, NULL, 17, 2),
-(78, 1, NULL, 17, 3),
-(79, 2, NULL, 17, 1),
-(80, 2, NULL, 17, 2),
-(81, 2, NULL, 17, 3),
-(82, 1, NULL, 18, 1),
-(83, 1, NULL, 18, 1),
-(84, 1, NULL, 18, 2),
-(85, 1, NULL, 18, 3),
-(86, 2, NULL, 18, 1),
-(87, 2, NULL, 18, 2),
-(88, 2, NULL, 18, 3),
-(89, 0, NULL, 19, 1),
-(90, 1, NULL, 19, 1),
-(91, 1, NULL, 19, 2),
-(92, 1, NULL, 19, 3),
-(93, 2, NULL, 19, 1),
-(94, 2, NULL, 19, 2),
-(95, 2, NULL, 19, 3),
-(103, 0, NULL, 15, 1),
-(104, 1, NULL, 15, 1),
-(105, 1, NULL, 15, 2),
-(106, 1, NULL, 15, 3),
-(107, 2, NULL, 15, 1),
-(108, 2, NULL, 15, 2),
-(109, 2, NULL, 15, 3);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `quiz`
 --
 
@@ -1483,40 +1284,16 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `ImageURL` varchar(200) DEFAULT NULL,
   `IsApproved` bit(1) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
 
 --
 -- Dumping data for table `quiz`
 --
 
 INSERT INTO `quiz` (`Id`, `CategoryId`, `PartnerId`, `CreatedDate`, `Content`, `BonusPoint`, `CorrectChoiceId`, `SharingInfo`, `LearnMoreURL`, `ImageURL`, `IsApproved`) VALUES
-(25, 1, 1, '2014-03-19 03:42:56', 'who?', 1, 20, 'b', 'b', NULL, b'1'),
-(27, 1, 2, '2014-03-19 03:42:48', 'who?', NULL, 25, 'b', 'b', NULL, NULL),
-(31, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 1, 'b', 'b', NULL, NULL),
-(34, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 1, 'b', 'b', NULL, NULL),
-(35, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 1, 'b', 'b', NULL, NULL),
-(36, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(37, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(38, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(39, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(40, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(41, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(42, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(43, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(44, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(45, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(46, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(47, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(48, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(49, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(50, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(51, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(52, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(53, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 0, 'b', 'b', NULL, NULL),
-(54, 1, 2, '0000-00-00 00:00:00', '1+3=?', NULL, 122, 'b', 'b', NULL, NULL),
-(55, 1, 1, '2014-03-12 11:22:42', 'ch? cái ??u tiên trong b?ng ch? cái ti?ng anh', NULL, 129, 'b', 'b', NULL, NULL),
 (56, 1, 1, '0000-00-00 00:00:00', '?', NULL, 133, 'b', 'b', NULL, NULL),
-(57, 1, 1, '2014-03-14 07:55:11', 'What is this?', NULL, 136, 'b', 'b', NULL, NULL);
+(57, 1, 1, '2014-03-14 07:55:11', 'What is this?', NULL, 136, 'b', 'b', NULL, NULL),
+(58, 4, 3, '2014-03-24 16:31:42', 'What is the number of children in Viet Nam', 100, 140, 'We are a young nation', 'www.vietnam.com', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1528,16 +1305,17 @@ CREATE TABLE IF NOT EXISTS `quizcategory` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `CategoryName` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `quizcategory`
 --
 
 INSERT INTO `quizcategory` (`Id`, `CategoryName`) VALUES
-(1, 'ocean4'),
-(2, 'chidrend'),
-(3, 'chirdrend Vietnamese');
+(4, 'Base knowledge'),
+(5, 'Figures'),
+(6, 'Local information'),
+(7, 'International information');
 
 -- --------------------------------------------------------
 
@@ -1642,35 +1420,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `PhoneNumber` varchar(45) DEFAULT NULL,
   `Address` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Table structure for table `user_quest`
+-- Dumping data for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `user_quest` (
-  `user_id` int(11) DEFAULT NULL,
-  `quest_id` int(11) DEFAULT NULL,
-  `parent_quest_id` int(11) DEFAULT NULL,
-  `status_quest` int(11) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `user_quest`
---
-
-INSERT INTO `user_quest` (`user_id`, `quest_id`, `parent_quest_id`, `status_quest`) VALUES
-(1, 2, 1, 0),
-(27, 8, 5, 0),
-(1, 3, 1, 0),
-(27, 6, 5, 0),
-(27, 9, 5, 0),
-(27, 2, 1, 0),
-(6, 2, 1, 0),
-(1, 7, 5, 0),
-(1, 4, 1, 0);
+INSERT INTO `user` (`Id`, `FullName`, `Email`, `RegisterDate`, `PhoneNumber`, `Address`) VALUES
+(1, NULL, 'imrhung@yahoo.com', '2014-03-24 10:45:14', '84912880656', NULL),
+(2, NULL, 'imrhung2@yahoo.com', '2014-03-24 10:46:35', '0987654321', NULL);
 
 -- --------------------------------------------------------
 
@@ -1711,7 +1469,15 @@ CREATE TABLE IF NOT EXISTS `userpartner` (
   `UserName` varchar(45) DEFAULT NULL,
   `Password` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`UserId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `userpartner`
+--
+
+INSERT INTO `userpartner` (`UserId`, `PartnerId`, `UserName`, `Password`) VALUES
+(1, 3, 'imrhung', 'e10adc3949ba59abbe56e057f20f883e'),
+(2, 4, 'unicef', 'e10adc3949ba59abbe56e057f20f883e');
 
 -- --------------------------------------------------------
 
@@ -1724,6 +1490,14 @@ CREATE TABLE IF NOT EXISTS `userrole` (
   `RoleId` int(11) DEFAULT NULL,
   PRIMARY KEY (`UserId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `userrole`
+--
+
+INSERT INTO `userrole` (`UserId`, `RoleId`) VALUES
+(1, 4),
+(2, 3);
 
 -- --------------------------------------------------------
 
@@ -1804,6 +1578,34 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `user_quest`
+--
+
+CREATE TABLE IF NOT EXISTS `user_quest` (
+  `user_id` int(11) DEFAULT NULL,
+  `quest_id` int(11) DEFAULT NULL,
+  `parent_quest_id` int(11) DEFAULT NULL,
+  `status_quest` int(11) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `user_quest`
+--
+
+INSERT INTO `user_quest` (`user_id`, `quest_id`, `parent_quest_id`, `status_quest`) VALUES
+(1, 2, 1, 0),
+(27, 8, 5, 0),
+(1, 3, 1, 0),
+(27, 6, 5, 0),
+(27, 9, 5, 0),
+(27, 2, 1, 0),
+(6, 2, 1, 0),
+(1, 7, 5, 0),
+(1, 4, 1, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `virtualquest`
 --
 
@@ -1816,30 +1618,15 @@ CREATE TABLE IF NOT EXISTS `virtualquest` (
   `UnlockPoint` int(11) DEFAULT NULL,
   `CreateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `virtualquest`
 --
 
 INSERT INTO `virtualquest` (`Id`, `QuestName`, `PacketId`, `PartnerId`, `AnimationId`, `UnlockPoint`, `CreateDate`) VALUES
-(3, 'Nutrition of Chidren', 1, 1, NULL, NULL, NULL),
-(4, 'Unicef Next Generation', 2, 1, NULL, 100, NULL),
-(5, 'Blue Dragon', 1, 1, NULL, 100, NULL),
-(6, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-21 12:35:31'),
-(7, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:02:35'),
-(8, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:03:33'),
-(9, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:08:36'),
-(10, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:10:20'),
-(11, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:13:08'),
-(12, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:13:42'),
-(13, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:18:02'),
-(14, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:20:33'),
-(15, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:23:45'),
-(16, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:26:38'),
-(17, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:26:58'),
-(18, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:38:26'),
-(19, 'Blue Dragon', 1, 1, NULL, 100, '2014-03-24 06:38:59');
+(22, 'Get book for library', 5, 4, NULL, 500, '2014-03-24 16:06:28'),
+(23, 'Clean the beach', 6, 0, NULL, 800, '2014-03-24 16:49:57');
 
 --
 -- Constraints for dumped tables

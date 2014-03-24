@@ -19,25 +19,25 @@ function getQuiz(quizId) {
                 if (data.code === 1) { // Successful
                     
                     // Update the first form
-                    $('#category').val(data.info.quiz.CategoryId);
+                    $('#category').val(parseInt(data.info.quiz.CategoryId));
                     $('#question').val(data.info.quiz.Content);
-                    $('#answer_a').val(data.info.quiz.AnswerA);
-                    $('#answer_b').val(data.info.quiz.AnswerB);
-                    $('#answer_c').val(data.info.quiz.AnswerC);
-                    $('#answer_d').val(data.info.quiz.AnswerD);
+                    $('#answer_a').val(data.info.choice[0].answerContent);
+                    $('#answer_b').val(data.info.choice[1].answerContent);
+                    $('#answer_c').val(data.info.choice[2].answerContent);
+                    $('#answer_d').val(data.info.choice[3].answerContent);
                     // Set the correct answer:
                     var $radios = $('input:radio[name=answer]');
-                    switch (data.info.quiz.CorrectChoiceId) {
-                        case data.info.quiz.AnswerAId:
+                    switch (parseInt(data.info.quiz.CorrectChoiceId)) {
+                        case parseInt(data.info.choice[0].Id):
                             $radios.filter('[value=0]').prop('checked', true);
                             break;
-                        case data.info.quiz.AnswerBId:
+                        case parseInt(data.info.choice[1].Id):
                             $radios.filter('[value=1]').prop('checked', true);
                             break;
-                        case data.info.quiz.AnswerCId:
+                        case parseInt(data.info.choice[2].Id):
                             $radios.filter('[value=2]').prop('checked', true);
                             break;
-                        case data.info.quiz.AnswerDId:
+                        case parseInt(data.info.choice[3].Id):
                             $radios.filter('[value=3]').prop('checked', true);
                             break;
                         default:
@@ -47,10 +47,9 @@ function getQuiz(quizId) {
                     $('#link').val(data.info.quiz.LearnMoreURL);
                     
                     // Update the second form:
-                    $('#packet').val(data.info.quiz.PacketId);
                     $('#point').val(data.info.quiz.BonusPoint);
-                    $('#date').val(data.info.quiz.PublishedDate);
-                    if (data.info.quiz.IsApproved ===1){
+                    $('#date').val(data.info.quiz.CreatedDate);
+                    if (parseInt(data.info.quiz.IsApproved ===1)){
                         $('#approve').attr('disabled', 'true');
                         $('#deny').removeAttr("disabled");
                     } else {
@@ -290,7 +289,7 @@ function drawSelectCategory(){
                 if (data.code == 1) { // Successful
                     var category = data.info.category;
                     var select = $('<select id="category" name="category" class="form-control">').appendTo('#select-category');
-                    select.append($("<option>").attr('value', 0).text('Please select a category'));
+                    //select.append($("<option>").attr('value', 0).text('Please select a category'));
                     for (var i=0; i<category.length; i++){
                         select.append($("<option>").attr('value', category[i].Id).text(category[i].CategoryName));
                     }

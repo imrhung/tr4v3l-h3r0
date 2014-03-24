@@ -5,7 +5,7 @@
         <h1>Edit a Quiz</h1>
         <p>You can edit the Quiz to be more accurate.</p>
         <div class="col-lg-8">
-            <form class="form-horizontal" onsubmit="updateQuiz(<?php echo $quizId ?>); return false;">
+            <form id="quiz-form" class="form-horizontal" onsubmit="updateQuiz(<?php echo $quizId ?>); return false;">
                 <fieldset>
 
                     <!-- Form Name -->
