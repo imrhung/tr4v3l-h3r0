@@ -281,7 +281,7 @@ Response:
 }}}
 =Get donation list(F)=
 Order by newest first.
- * Link: donation/getDonation
+ * Link: donation/getDonationList
  * Request: 
   params: 
    * pageSize (pageSize == 0 will return full list)
