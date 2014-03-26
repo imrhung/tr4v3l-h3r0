@@ -6,6 +6,11 @@ class Organization extends App_Controller {
 
     public function __construct() {
         parent::__construct();
+        
+        // Check if login
+        if (!$this->session->userdata('islogin')){
+            redirect('home/unauthorized');
+        }
     }
 
     public function index() {

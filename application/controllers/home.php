@@ -18,7 +18,11 @@ class Home extends App_Controller {
                 redirect('organization');
             }
         }
-        $this->load->view('home/index');
+        redirect('login');
+    }
+    
+    public function unauthorized(){
+        $this->load->view('home/unauthorized');
     }
 
 }
