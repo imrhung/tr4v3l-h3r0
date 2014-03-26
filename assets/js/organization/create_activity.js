@@ -11,18 +11,63 @@ function createActivity() {
     switch (parseInt(actionId)){
         case 1:
             actionContent = $('#facebook_share').val();
+            // Check if content is not empty:
+            if (!actionContent || actionContent.length === 0){
+                $('#facebook_share').focus();
+                $('#facebook_share').attr("placeholder", "Please enter this field");
+                $('#newsletter_link').attr("placeholder", "");
+                $('#facebook_page').attr("placeholder", "");
+                $('#calendar').attr("placeholder", "");
+                return false;
+            }
             break;
         case 2:
             actionContent = $('#newsletter_link').val();
+            // Check if content is not empty:
+            if (!actionContent || actionContent.length === 0){
+                $('#newsletter_link').focus();
+                $('#facebook_share').attr("placeholder", "");
+                $('#newsletter_link').attr("placeholder", "Please enter this field");
+                $('#facebook_page').attr("placeholder", "");
+                $('#calendar').attr("placeholder", "");
+                return false;
+            }
             break;
         case 3:
             actionContent = $('#facebook_page').val();
+            // Check if content is not empty:
+            if (!actionContent || actionContent.length === 0){
+                $('#facebook_page').focus();
+                $('#facebook_share').attr("placeholder", "");
+                $('#newsletter_link').attr("placeholder", "");
+                $('#facebook_page').attr("placeholder", "Please enter this field");
+                $('#calendar').attr("placeholder", "");
+                return false;
+            }
             break;
         case 4:
             actionContent = $('#calendar').val();
+            // Check if content is not empty:
+            if (!actionContent || actionContent.length === 0){
+                $('#calendar').focus();
+                $('#facebook_share').attr("placeholder", "");
+                $('#newsletter_link').attr("placeholder", "");
+                $('#facebook_page').attr("placeholder", "");
+                $('#calendar').attr("placeholder", "Please enter this field");
+                return false;
+            }
             break;
         default:
             actionContent = $('#facebook_share').val();
+            // Check if content is not empty:
+            if (!actionContent || actionContent.length === 0){
+                $('#facebook_share').focus();
+                $('#facebook_share').attr("placeholder", "Please enter this field");
+                $('#newsletter_link').attr("placeholder", "");
+                $('#facebook_page').attr("placeholder", "");
+                $('#calendar').attr("placeholder", "");
+                return false;
+            }
     }
     
     // Make the spining when waiting

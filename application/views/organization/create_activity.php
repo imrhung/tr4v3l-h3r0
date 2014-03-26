@@ -4,6 +4,8 @@
 
         <h1>Create Activity</h1>
         <p>To Create an Activity please fill out the information below.</p>
+        
+        <div id="alert_placeholder"></div>
 
         <form id="activity-form" class="form-horizontal" onSubmit="createActivity(); return false;">
             <fieldset>
@@ -25,7 +27,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="description">Description</label>
                     <div class="col-md-8">                     
-                        <textarea class="form-control" id="description" name="description"></textarea>
+                        <textarea class="form-control" id="description" name="description" required=""></textarea>
                     </div>
                 </div>
 
@@ -129,7 +131,7 @@
                     <label class="col-md-4 control-label" for="submit"></label>
                     <div class="col-md-8">
                         <button id="submit" name="submit" class="btn btn-primary">Submit Activity</button>
-                        <div id="alert_placeholder"></div>
+                        
                     </div>
                 </div>
 

@@ -5,6 +5,8 @@
         <h1>Create a Quiz</h1>
         <p>To Create a Quiz please fill out the information below.</p>
 
+        
+        <div id="alert_placeholder"></div>
         <form id="quiz-form" class="form-horizontal" onSubmit="createQuiz(); return false;">
             <fieldset>
 
@@ -109,7 +111,6 @@
                     <label class="col-md-4 control-label" for="submit"></label>
                     <div class="col-md-8">
                         <button id="submit" name="submit" class="btn btn-primary">Submit Quiz</button>
-                        <div id="alert_placeholder"></div>
                     </div>
                 </div>
 

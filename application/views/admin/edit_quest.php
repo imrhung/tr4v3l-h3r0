@@ -5,6 +5,7 @@
         <h1>Edit Quest</h1>
         <p>Edit quest information.</p>
 
+        <div id="alert_placeholder"></div>
         <div class="col-lg-8">
             <form id="quest-form" class="form-horizontal" onSubmit="updateQuest(<?php echo $questId?>);
                     return false;">
@@ -91,7 +92,6 @@
                         <label class="col-md-4 control-label" for="submit"></label>
                         <div class="col-md-8">
                             <button id="submit" name="submit" class="btn btn-primary">Update Quest</button>
-                            <div id="alert_placeholder"></div>
                         </div>
                     </div>
                 </fieldset>
