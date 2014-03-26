@@ -7,6 +7,17 @@ class Admin extends App_Controller {
     public function __construct() {
         parent::__construct();
         
+        // Check if login
+        if ($this->session->userdata('islogin')){
+            if ($this->session->userdata('role') == 'admin'){
+                //redirect('admin');
+            } else if ($this->session->userdata('role') == 'organization'){
+                //redirect('organization');
+                //$this->load->view('home/unauthorized');
+                redirect('home/unauthorized');
+            }
+        }
+        
     }
 
     public function index() {
