@@ -12,7 +12,7 @@ class User_model extends CI_Model {
 
     function login($username, $password) {
         $this->db->select('UserId, PartnerId, UserName, Password');
-        $this->db->from('UserPartner');
+        $this->db->from('userpartner');
         $this->db->where('UserName', $username);
         $this->db->where('Password', md5($password));
         $this->db->limit(1);
@@ -28,7 +28,7 @@ class User_model extends CI_Model {
     
     function getRoleId($userId){
         $this->db->select("RoleId");
-        $this->db->from("UserRole");
+        $this->db->from("userrole");
         $this->db->where("UserId", $userId);
         $this->db->limit(1);
         $query = $this->db->get();

@@ -131,7 +131,7 @@ class User extends App_Controller {
             array(
                 'field'=> 'username',
                 'label'=> 'Username',
-                'rules'=> 'trim|required|min_length[6]|is_unique[UserPartner.UserName]|xss_clean'
+                'rules'=> 'trim|required|min_length[6]|is_unique[userpartner.UserName]|xss_clean'
             ),
             array(
                 'field'=> 'password',
