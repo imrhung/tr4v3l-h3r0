@@ -5,6 +5,7 @@
         <h1>Create Quest</h1>
         <p>Please select the fields below to create a quest.</p>
 
+        <div id="alert_placeholder"></div>
         <form class="form-horizontal" onSubmit="createQuest(); return false;">
             <fieldset>
 
@@ -90,7 +91,7 @@
                     <label class="col-md-4 control-label" for="submit"></label>
                     <div class="col-md-8">
                         <button id="submit" name="submit" class="btn btn-primary">Add Quest</button>
-                        <div id="alert_placeholder"></div>
+                        
                     </div>
                 </div>
 

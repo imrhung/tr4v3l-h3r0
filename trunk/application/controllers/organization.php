@@ -44,7 +44,7 @@ class Organization extends App_Controller {
      public function under_construction(){
         $this->current_section = 'construct';
         $this->assets_css[] = "admin.css";
-        $this->render_page_admin('home/under_construction');
+        $this->render_page('home/under_construction');
     }
     
     public function help(){

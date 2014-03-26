@@ -89,6 +89,8 @@ class App_Controller extends CI_Controller
 
         $this->template->set('is_frontend', true);
 
+        // Init System:
+        date_default_timezone_set('GMT');
         //$this->output->enable_profiler(TRUE);
     }
     
@@ -128,7 +130,11 @@ class App_Controller extends CI_Controller
                 $this->template->append_metadata('<link rel="stylesheet" type="text/css" href="' . $this->config->item('base_url') . 'assets/css/' . $asset . '" media="screen" />');
         }
 
-        // Webkit based browsers
+        /* Favicon */
+        $this->template->append_metadata('<link rel="shortcut icon" href="'.base_url().'assets/img/favicon.ico" type="image/x-ico">');
+        $this->template->append_metadata('<link rel="icon" href="'.base_url().'assets/img/favicon.ico" type="image/x-ico">');
+        
+// Webkit based browsers
         $this->template->append_metadata('<link rel="stylesheet" type="text/css" href="' . $this->config->item('base_url') . 'assets/css/cross_browser/webkit.css" media="screen" />');
         
         // Internet Explorer styles

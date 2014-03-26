@@ -13,8 +13,7 @@ class Quiz_Model extends CI_Model {
     /* 	Get System time */
 
     public function getTime() {
-        $time = getdate();
-        $currentDate = $time["year"] . "-" . $time["mon"] . "-" . $time["mday"] . ' ' . $time["hours"] . ":" . $time["minutes"] . ":" . $time["seconds"];
+        $currentDate = date("Y-m-d H:i:s");
         return $currentDate;
     }
 

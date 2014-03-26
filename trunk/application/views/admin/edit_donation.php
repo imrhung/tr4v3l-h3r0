@@ -5,6 +5,7 @@
         <h1>Edit Donation</h1>
         <p>Edit donation information.</p>
 
+        <div id="alert_placeholder"></div>
         <div class="col-lg-8">
             <form id="donation-form" class="form-horizontal" onSubmit="updateDonation(<?php echo $donationId?>);
                     return false;">
@@ -34,7 +35,6 @@
                         <label class="col-md-4 control-label" for="submit"></label>
                         <div class="col-md-8">
                             <button id="submit" name="submit" class="btn btn-primary">Update Donation</button>
-                            <div id="alert_placeholder"></div>
                         </div>
                     </div>
 
