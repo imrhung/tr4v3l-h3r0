@@ -16,6 +16,8 @@ class Admin extends App_Controller {
                 //$this->load->view('home/unauthorized');
                 redirect('home/unauthorized');
             }
+        } else {
+            redirect('home/unauthorized');
         }
         
     }
