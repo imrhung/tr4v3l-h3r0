@@ -97,14 +97,14 @@ class User_model extends CI_Model {
         $this->db->insert("partner", $data);
         $partnerId = $this->db->insert_id();
         
-        // Save to userPartner table
+        // Save to userpartner table
         $data = array(
             'UserId'=> $userId,
             'PartnerId' => $partnerId,
             'UserName' => $username,
             'Password' => md5($password),
         );
-        $this->db->insert("UserPartner", $data);
+        $this->db->insert("userpartner", $data);
         return $partnerId;
     }
 
