@@ -46,19 +46,17 @@
 
                 <!-- Multiple Checkboxes (inline) -->
                 <div class="form-group">
-                    <div class=''>
                     <label class="col-md-4 control-label" for="remember"></label>
-                    <div class="col-md-3">
-                        <label class="checkbox-inline checkbox" for="remember">
-                            <input type="checkbox" name="remember" id="remember" value="1">
-                            Keep me sign in
-                        </label>
+                    <div class="col-md-4">
+                        <div class="col-md-7">
+                                <input type="checkbox" name="remember" id="remember" value="1">
+                                Keep me sign in
+                        </div>
+                        <div class="col-md-5">
+                            <a href='<?php echo base_url(); ?>signup'> Sign me up </a>
+                        </div>
                     </div>
                     </div>
-                    <div class=''>
-                        <a href='<?php echo base_url(); ?>signup'> Sign me up </a>
-                    </div>
-                </div>
 
             </fieldset>
         </form>

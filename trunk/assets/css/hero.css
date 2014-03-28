@@ -124,3 +124,7 @@ body{
 #navbar-btn{
     background-color: burlywood;
 }
+
+.form-horizontal .control-label {
+    text-align: left;
+}
