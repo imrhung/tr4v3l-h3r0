@@ -36,9 +36,9 @@ hr {
 }
 
 .navbar-nav li a {
-border-bottom: 1px solid #447294;
-padding: 10px;
-color: #fff;
+    border-bottom: 1px solid #447294;
+    padding: 10px;
+    color: #fff;
 }
 
 .navbar-nav li a:hover{
@@ -76,25 +76,25 @@ color: #fff;
 }
 
 #create-quest-btn{
-    
+
 }
 .bottom-left-nav{
     margin-left: -225px;
-	left: 225px;
-	width: 225px;
-	position: fixed;
-        top: auto;
-	bottom: 0px;
-        height: 110px;
-	border-radius: 0;
-	border: none;
-	overflow-y: auto;
-        padding: 10px;
+    left: 225px;
+    width: 225px;
+    position: fixed;
+    top: auto;
+    bottom: 0px;
+    height: 110px;
+    border-radius: 0;
+    border: none;
+    overflow-y: auto;
+    padding: 10px;
 }
 .bottom-left-nav>li>a {
-	width: 200px;
-  }
-  
+    width: 200px;
+}
+
 div#watermark {
     position: fixed;
     width: 235px;
@@ -113,7 +113,7 @@ body{
 .top-alert{
     margin-left: 225px;
     margin-bottom: 0px;
-    
+
 }
 
 .input-group{
@@ -128,3 +128,31 @@ body{
 .form-horizontal .control-label {
     text-align: left;
 }
+
+/* Set background for the "Create" button in organization. */
+
+.list-background{
+    background: url('../img/gray_background.png') no-repeat left center;
+}
+
+.list-background a .fa{
+    color: #000 !important;
+}
+
+.list-background a{
+    color: #000 !important;
+}
+
+.list-background.active a, .list-background.active a .fa{
+    color: #447294 !important;
+}
+
+#list-background-top{
+    background-position: top left;
+}
+
+#list-background-bottom{
+    background-position: bottom left;
+}
+
+/* End of set Background */
