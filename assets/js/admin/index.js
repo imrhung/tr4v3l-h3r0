@@ -144,7 +144,7 @@ function loadQuizTable(){
                         if (quiz.IsApproved == 1){
                             isApproved = "Yes";
                         }else {
-                            isApproved = '<button id="approve" name="approve" class="btn btn-success" onclick="approveQuiz('+quiz.Id+', 1);">Yes</button> <button id="deny" name="deny" class="btn btn-danger">No</button>';
+                            isApproved = 'No';
                         }
                         action = '<a href="'+baseUrl+'admin/edit_quiz/'+quiz.Id+'">View</a>  <a onclick="callDelete('+quiz.Id+')" href="javacript:void(0);">Delete</a>';
                         tableData.push([
@@ -275,7 +275,7 @@ function loadActivityTable(){
                         if (act.IsApproved == 1){
                             isApproved = "Yes";
                         }else {
-                            isApproved = '<button id="approve" name="approve" class="btn btn-success" onclick="approveActivity('+act.Id+', 1);">Yes</button> <button id="deny" name="deny" class="btn btn-danger">No</button>';
+                            isApproved = 'No';
                         }
                         action = '<a href="'+baseUrl+'admin/edit_activity/'+act.Id+'">View</a>  <a onclick="callDeleteAct('+act.Id+')" href="javacript:void(0);">Delete</a>';
                         tableData.push([
@@ -407,7 +407,7 @@ function loadDonationTable(){
                         if (donation.IsApproved == 1){
                             isApproved = "Yes";
                         }else {
-                            isApproved = '<button id="approve" name="approve" class="btn btn-success" onclick="approveDonation('+donation.Id+', 1);">Yes</button> <button id="deny" name="deny" class="btn btn-danger">No</button>';
+                            isApproved = 'No';
                         }
                         action = '<a href="'+baseUrl+'admin/edit_donation/'+donation.Id+'">View</a>  <a onclick="callDeleteDonation('+donation.Id+')" href="javacript:void(0);">Delete</a>';
                         tableData.push([
