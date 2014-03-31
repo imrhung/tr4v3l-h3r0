@@ -85,6 +85,7 @@ class App_Controller extends CI_Controller
             'jquery-1.9.1.min.js',
             'bootstrap.min.js',
             'core.js',
+            'analytics/analyticstracking.js'
             );
 
         $this->template->set('is_frontend', true);
@@ -146,6 +147,7 @@ class App_Controller extends CI_Controller
     
     /**
      * Set Javascript Meta
+     * Add atribute "defer" to script to make this script run after html loaded. This help speed up the page.
      */
     private function set_javascript()
     {
@@ -153,9 +155,9 @@ class App_Controller extends CI_Controller
         {
             foreach($this->assets_js as $asset)
                 if (stristr($asset, 'http') === FALSE)
-                    $this->template->append_metadata('<script type="text/javascript" src="' . $this->config->item('base_url') . 'assets/js/' . $asset . '"></script>');
+                    $this->template->append_metadata('<script type="text/javascript" src="' . $this->config->item('base_url') . 'assets/js/' . $asset . '" defer></script>');
                 else
-                    $this->template->append_metadata('<script type="text/javascript" src="' . $asset . '"></script>');
+                    $this->template->append_metadata('<script type="text/javascript" src="' . $asset . '" defer></script>');
         }
 
         $this->template->append_metadata('<!--[if lt IE 9]><script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->');

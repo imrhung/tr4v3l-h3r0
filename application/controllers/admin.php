@@ -24,7 +24,6 @@ class Admin extends App_Controller {
 
     public function index() {
         $this->current_section = 'home';
-        $this->assets_css[] = "admin.css";
         $this->assets_css[] = 'datatables/jquery.dataTables.css';
         $this->assets_css[] = 'datatables/data-bootstrap.css';
         $this->assets_js[] = 'datatables/jquery.dataTables.js';
@@ -39,7 +38,6 @@ class Admin extends App_Controller {
             redirect("admin/index");
         } else {
             $this->current_section = "edit_quiz";
-            $this->assets_css[] = "admin.css";
             $this->assets_js[] = 'admin/edit_quiz.js';
             $this->assets_js[] = 'bootbox/bootbox.min.js';
             $data = array(
@@ -54,7 +52,6 @@ class Admin extends App_Controller {
             redirect("admin/index");
         } else {
             $this->current_section = "edit_quiz";
-            $this->assets_css[] = "admin.css";
             $this->assets_css[] = 'datepicker/bootstrap-datetimepicker.min.css';
             $this->assets_js[] = 'admin/edit_activity.js';
             $this->assets_js[] = 'bootbox/bootbox.min.js';
@@ -73,7 +70,6 @@ class Admin extends App_Controller {
             redirect("admin/index");
         } else {
             $this->current_section = "edit_donation";
-            $this->assets_css[] = "admin.css";
             $this->assets_js[] = 'admin/edit_donation.js';
             $this->assets_js[] = 'bootbox/bootbox.min.js';
             
@@ -89,7 +85,6 @@ class Admin extends App_Controller {
             redirect("admin/index");
         } else {
             $this->current_section = "edit_quest";
-            $this->assets_css[] = "admin.css";
             $this->assets_js[] = 'admin/edit_quest.js';
             $this->assets_js[] = 'bootbox/bootbox.min.js';
             
@@ -104,27 +99,23 @@ class Admin extends App_Controller {
         
         $this->current_section = 'create_quest';
         $this->assets_js[] = 'admin/create_quest.js';
-        $this->assets_css[] = "admin.css";
         $data['partnerId']= $this->session->userdata('partner_id');
         $this->render_page_admin('admin/create_quest', $data);
     }
     
     public function packet(){
         $this->current_section = 'packet';
-        $this->assets_css[] = 'admin.css';
         $this->assets_js[] = 'admin/packet.js';
         $this->render_page_admin('admin/packet');
     }
     
     public function under_construction(){
         $this->current_section = 'construct';
-        $this->assets_css[] = "admin.css";
         $this->render_page_admin('home/under_construction');
     }
     
     public function help(){
         $this->current_section = 'help';
-        $this->assets_css[] = "admin.css";
         $this->render_page_admin('home/help');
     }
     
