@@ -1,3 +1,14 @@
+/* 
+    Document   : hero.css
+    Created on : Mar 3, 2014, 11:39:53 AM
+    Author     : MrHung
+    Description:
+        This CSS will style all custom style in the whole website.
+        If any page have special style, there will be their own style sheet.
+*/
+
+
+
 .navbar-nav li a {
     color: #777;
 }
@@ -156,3 +167,43 @@ body{
 }
 
 /* End of set Background */
+
+
+/* Style for admin  page */
+
+root { 
+    display: block;
+}
+
+.blue {
+    border-color: #447294;
+    color: #447294;
+}
+
+.big-btn{
+    width: 227px;
+    height: 47px;
+    background: none;
+    border-color: #447294;
+    color: #447294;
+}
+
+.fload-left{
+    float: left;
+    margin-right: 20px;
+}
+
+* {
+ font-family: 'Lato', sans-serif;
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(http://themes.googleusercontent.com/static/fonts/lato/v7/9k-RPmcnxYEPm8CNFsH2gg.woff) format('woff');
+}
+
+.left-border{
+    border-left: solid 1px #447294;
+}
