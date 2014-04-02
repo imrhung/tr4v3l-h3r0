@@ -1,0 +1,81 @@
+= Introduction =
+
+This page consists API for manage user functions.
+
+=Get Partner's List=
+Order by Register Date: recent first.
+ * Request:
+   * pageSize, (=0 will return all list)
+   * pageNumber
+ * Response:
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "partners": [
+      {
+        "Id": 1,
+        "PartnerName": "Earth Hour",
+        "OrganizationTypeId": 2,
+        "Address": "2323 tesdf",
+        "PhoneNumber": 1234,
+        "WebsiteURL": "http://sdf",
+        "Latitude": 12.234,
+        "Longitude": 14.1203,
+        "Description": "We save the world."
+      },
+      {
+        "Id": 2,
+        "PartnerName": "Earth Hour",
+        "OrganizationTypeId": 2,
+        "Address": "2323 tesdf",
+        "PhoneNumber": 1234,
+        "WebsiteURL": "http://sdf",
+        "Latitude": 12.234,
+        "Longitude": 14.1203,
+        "Description": "We save the world."
+      },
+      {
+        "Id": 3,
+        "PartnerName": "Earth Hour",
+        "OrganizationTypeId": 2,
+        "Address": "2323 tesdf",
+        "PhoneNumber": 1234,
+        "WebsiteURL": "http://sdf",
+        "Latitude": 12.234,
+        "Longitude": 14.1203,
+        "Description": "We save the world."
+      }
+    ]
+  }
+}
+}}}
+
+=Get one partner=
+ * Request
+   * id
+ * Response
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "partner": [
+      {
+        "Id": 1,
+        "PartnerName": "Earth Hour",
+        "OrganizationTypeId": 2,
+        "Address": "2323 tesdf",
+        "PhoneNumber": 1234,
+        "WebsiteURL": "http://sdf",
+        "Latitude": 12.234,
+        "Longitude": 14.1203,
+        "Description": "We save the world.",
+        "UserName": "imrhung",
+        "Email": "imrhung@yahoo.com"
+      }
+    ]
+  }
+}
+}}}
