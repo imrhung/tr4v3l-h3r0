@@ -23,9 +23,9 @@ Order by Register Date: recent first.
         "WebsiteURL": "http://sdf",
         "Latitude": 12.234,
         "Longitude": 14.1203,
-        "Description": "We save the world."
-      },
-      {
+        "Description": "We save the world.",
+        "IsApproved": 1
+      },{
         "Id": 2,
         "PartnerName": "Earth Hour",
         "OrganizationTypeId": 2,
@@ -34,18 +34,8 @@ Order by Register Date: recent first.
         "WebsiteURL": "http://sdf",
         "Latitude": 12.234,
         "Longitude": 14.1203,
-        "Description": "We save the world."
-      },
-      {
-        "Id": 3,
-        "PartnerName": "Earth Hour",
-        "OrganizationTypeId": 2,
-        "Address": "2323 tesdf",
-        "PhoneNumber": 1234,
-        "WebsiteURL": "http://sdf",
-        "Latitude": 12.234,
-        "Longitude": 14.1203,
-        "Description": "We save the world."
+        "Description": "We save the world.",
+        "IsApproved": 1
       }
     ]
   }
