@@ -51,22 +51,20 @@ Order by Register Date: recent first.
   "code": 1,
   "message": "Success",
   "info": {
-    "partner": [
-      {
-        "Id": 1,
-        "PartnerName": "Earth Hour",
-        "OrganizationTypeId": 2,
-        "Address": "2323 tesdf",
-        "PhoneNumber": 1234,
-        "WebsiteURL": "http://sdf",
-        "Latitude": 12.234,
-        "Longitude": 14.1203,
-        "Description": "We save the world.",
-        "UserName": "imrhung",
-        "Email": "imrhung@yahoo.com",
-        "IsApproved": 1
-      }
-    ]
+    "partner": {
+      "Id": 1,
+      "PartnerName": "Earth Hour",
+      "OrganizationTypeId": 2,
+      "Address": "2323 tesdf",
+      "PhoneNumber": 1234,
+      "WebsiteURL": "http://sdf",
+      "Latitude": 12.234,
+      "Longitude": 14.1203,
+      "Description": "We save the world.",
+      "UserName": "imrhung",
+      "Email": "imrhung@yahoo.com",
+      "IsApproved": 1
+    }
   }
 }
 }}}
