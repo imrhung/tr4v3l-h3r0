@@ -63,7 +63,8 @@ Order by Register Date: recent first.
         "Longitude": 14.1203,
         "Description": "We save the world.",
         "UserName": "imrhung",
-        "Email": "imrhung@yahoo.com"
+        "Email": "imrhung@yahoo.com",
+        "IsApproved": 1
       }
     ]
   }
