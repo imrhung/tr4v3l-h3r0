@@ -99,7 +99,7 @@ class Quiz extends App_Controller{
         $answerB = $this->input->post('answer_b');
 		$answerC = $this->input->post('answer_c');
         $answerD = $this->input->post('answer_d');
-		$CorrectChoiceNumber = $this->input->post('correct_answer');
+		$CorrectChoiceId = $this->input->post('correct_answer');
         $sharingInfo = $this->input->post('sharing');
 		$linkURL = $this->input->post('link');       
 		$createDate = $currentDate;
@@ -109,23 +109,10 @@ class Quiz extends App_Controller{
         $result['code'] = -1;
         $result['message'] = "";
 				
-		// Insert Answer
-		if(!is_null($answerA))
-			$this->quiz_model->insertChoice($answerA);
-		if(!is_null($answerB))
-			$this->quiz_model->insertChoice($answerB);
-		if(!is_null($answerC))
-			$this->quiz_model->insertChoice($answerC);
-		if(!is_null($answerD))
-			$this->quiz_model->insertChoice($answerD);
-			
-		// Get correct choice Id 
-		$CorrectChoiceId = $this->quiz_model->getChoiceId() + (int)$CorrectChoiceNumber;
 		
 		// Insert Quiz
-        $resultCheck = $this->quiz_model->insertQuiz($questCategory, $questQuestion, 
-														$CorrectChoiceId, $sharingInfo, 
-															$linkURL, $partnerId, $createDate);
+        $resultCheck = $this->quiz_model->insertQuiz($questCategory, $questQuestion, $CorrectChoiceId, $sharingInfo, 
+								$linkURL, $partnerId, $createDate, $answerA,$answerB, $answerC, $answerD);
 		
         if ($resultCheck == 'Success') {
             $result['code'] = 1;
