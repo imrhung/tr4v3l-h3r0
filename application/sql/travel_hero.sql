@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2014 at 01:04 PM
+-- Generation Time: Apr 04, 2014 at 04:28 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `travel_hero`
 --
-CREATE DATABASE IF NOT EXISTS `travel_hero` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `travel_hero` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `travel_hero`;
 
 DELIMITER $$
@@ -209,6 +209,32 @@ BEGIN
 	else
 		SELECT Id, Title FROM travel_hero.packet;
 	END if;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_PartnerList`(IN currentPage INT, IN pageSize INT)
+BEGIN
+	DECLARE rowNumber INT;
+	SET currentPage = currentPage;
+	SET rowNumber = currentPage * pageSize;
+	
+	if (pageSize != 0) 
+	then
+		SELECT activity.Id, activity.Title, activity.ActionContent, partner.PartnerName, activity.BonusPoint,  activity.IsApproved, activity.CreateDate
+		FROM 
+				travel_hero.activity,
+				travel_hero.partner
+		WHERE 
+				activity.PartnerId = partner.Id
+		LIMIT  rowNumber, pageSize;
+	
+	else  
+		SELECT activity.Id, activity.Title, activity.ActionContent, partner.PartnerName, activity.BonusPoint,  activity.IsApproved, activity.CreateDate
+		FROM 
+				travel_hero.activity,
+				travel_hero.partner
+		WHERE 
+				activity.PartnerId = partner.Id;
+		end if;	
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_QuestCondition`(Id INT)
@@ -553,6 +579,104 @@ BEGIN
 				);
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Insert_Quiz_Choice`(
+	questCategory 	int,
+	questQuestion	nvarchar(140),
+	correctChoiceId int,
+	sharingInfo		nvarchar(8000),
+	linkURL	     	nvarchar(200),
+	partnerId		int,
+	createdDate	  	datetime,
+	answerA nvarchar(50),
+	answerB nvarchar(50),
+	answerC nvarchar(50),
+	answerD nvarchar(50)
+)
+BEGIN
+	# Parameter for main Store Proceduce
+	declare QuestionId int;
+	declare choiceId int;
+	
+	# Using transaction for query
+	DECLARE exit handler for sqlexception
+	BEGIN
+		-- ERROR
+		ROLLBACK;
+	END;
+
+	DECLARE exit handler for sqlwarning
+	BEGIN
+		-- WARNING
+		ROLLBACK;
+	END;
+
+	START TRANSACTION;
+	
+	# Insert infomation into Quiz table
+	INSERT INTO quiz(
+						CategoryId,
+						PartnerId,
+                        CreatedDate,
+						Content,
+						SharingInfo,
+						LearnMoreURL,
+						BonusPoint
+					)
+				VALUES(
+						questCategory,
+						partnerId,
+						createdDate,
+						questQuestion,
+						sharingInfo,
+						linkURL,
+						100
+					);
+	
+	# Get quiz id insert after
+	set QuestionId = (SELECT LAST_INSERT_ID()) ;
+
+	INSERT INTO choice(
+						QuestionId,
+						Content
+						)
+			VALUES(
+					QuestionId,
+					answerA
+					);
+	INSERT INTO choice(
+						QuestionId,
+						Content
+						)
+			VALUES(
+					QuestionId,
+					answerB
+					);
+	INSERT INTO choice(
+						QuestionId,
+						Content
+						)
+			VALUES(
+					QuestionId,
+					answerC
+					);
+	INSERT INTO choice(
+						QuestionId,
+						Content
+						)
+			VALUES(
+					QuestionId,
+					answerD
+					);
+
+	# Get choice id insert after
+	set choiceId = (select LAST_INSERT_ID()) - 3 + correctChoiceId;
+	
+	UPDATE travel_hero.quiz
+			SET quiz.correctChoiceId = choiceId
+			WHERE Id = QuestionId;	
+	COMMIT;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Insert_VirtualQuest`(
 	partner_id Int,
 	packet_id Int,
@@ -882,9 +1006,9 @@ DELIMITER ;
 
 CREATE TABLE IF NOT EXISTS `action` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(45) DEFAULT NULL,
+  `Name` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `action`
@@ -905,15 +1029,22 @@ INSERT INTO `action` (`Id`, `Name`) VALUES
 CREATE TABLE IF NOT EXISTS `activity` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `PartnerId` int(11) DEFAULT NULL,
-  `Title` varchar(140) DEFAULT NULL,
-  `Description` varchar(140) DEFAULT NULL,
+  `Title` varchar(140) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Description` varchar(140) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ActionId` int(11) DEFAULT NULL,
   `BonusPoint` int(11) DEFAULT '100',
   `IsApproved` bit(1) DEFAULT NULL,
   `CreateDate` datetime DEFAULT NULL,
-  `ActionContent` varchar(140) DEFAULT NULL,
+  `ActionContent` varchar(140) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `activity`
+--
+
+INSERT INTO `activity` (`Id`, `PartnerId`, `Title`, `Description`, `ActionId`, `BonusPoint`, `IsApproved`, `CreateDate`, `ActionContent`) VALUES
+(1, 3, '?i nhà sách', 'Ha ha ', 2, 100, NULL, '2014-04-04 09:17:49', 'Yeah');
 
 -- --------------------------------------------------------
 
@@ -922,22 +1053,25 @@ CREATE TABLE IF NOT EXISTS `activity` (
 --
 
 CREATE TABLE IF NOT EXISTS `app_sessions` (
-  `session_id` varchar(40) NOT NULL DEFAULT '0',
-  `ip_address` varchar(45) NOT NULL DEFAULT '0',
-  `user_agent` varchar(120) NOT NULL,
+  `session_id` varchar(40) CHARACTER SET utf8 NOT NULL DEFAULT '0',
+  `ip_address` varchar(45) CHARACTER SET utf8 NOT NULL DEFAULT '0',
+  `user_agent` varchar(120) CHARACTER SET utf8 NOT NULL,
   `last_activity` int(10) unsigned NOT NULL DEFAULT '0',
-  `user_data` text NOT NULL,
+  `user_data` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`session_id`),
   KEY `last_activity_idx` (`last_activity`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `app_sessions`
 --
 
 INSERT INTO `app_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('22e3c1be7115256e77c27bc01e984a8b', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1396436258, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:3;}'),
-('bb5eff66f644f71158f608b5f058d5fc', '::1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1395663839, '');
+('1b4acb4625e36195a426a0c92e4e5c0a', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1396593592, ''),
+('8f5bd76f66ae66b4c6529b916e0da1a0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1396577580, ''),
+('95b8adedcf488a93bc8595d617ce53e3', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1396621400, 'a:3:{s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:3;}'),
+('a274f2517c355dba8576b52d71f3918c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1396581583, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:3;}'),
+('aa1b5d2b11bb8f1ae6f8f5c3c9c6c1eb', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1396577561, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:3;}');
 
 -- --------------------------------------------------------
 
@@ -948,9 +1082,9 @@ INSERT INTO `app_sessions` (`session_id`, `ip_address`, `user_agent`, `last_acti
 CREATE TABLE IF NOT EXISTS `choice` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `QuestionId` int(11) DEFAULT NULL,
-  `Content` varchar(1000) DEFAULT NULL,
+  `Content` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=138 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=170 ;
 
 -- --------------------------------------------------------
 
@@ -960,15 +1094,24 @@ CREATE TABLE IF NOT EXISTS `choice` (
 
 CREATE TABLE IF NOT EXISTS `donation` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Title` varchar(150) DEFAULT NULL,
-  `Description` varchar(8000) DEFAULT NULL,
+  `Title` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Description` varchar(8000) COLLATE utf8_unicode_ci DEFAULT NULL,
   `RequiredPoint` int(11) DEFAULT NULL,
   `MedalId` int(11) DEFAULT NULL,
   `PartnerId` int(11) DEFAULT NULL,
   `IsApproved` bit(1) DEFAULT NULL,
   `CreateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `donation`
+--
+
+INSERT INTO `donation` (`Id`, `Title`, `Description`, `RequiredPoint`, `MedalId`, `PartnerId`, `IsApproved`, `CreateDate`) VALUES
+(8, 'M? r?ng tr??ng h?c', 'Yeah', 100, NULL, 3, b'0', '2014-04-04 13:54:28'),
+(9, '?óng góp xây nhà', 'Xây nhà ?ó mà', 100, NULL, 3, NULL, '2014-04-04 14:18:51'),
+(10, 'Mùa xuân tình nguy?n', 'Ýe', 100, NULL, 3, NULL, '2014-04-04 14:23:35');
 
 -- --------------------------------------------------------
 
@@ -978,11 +1121,11 @@ CREATE TABLE IF NOT EXISTS `donation` (
 
 CREATE TABLE IF NOT EXISTS `function` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(45) DEFAULT NULL,
-  `IconURL` varchar(150) DEFAULT NULL,
-  `FuncURL` varchar(150) DEFAULT NULL,
+  `Name` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `IconURL` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `FuncURL` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -992,10 +1135,10 @@ CREATE TABLE IF NOT EXISTS `function` (
 
 CREATE TABLE IF NOT EXISTS `groups` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL,
-  `description` varchar(100) NOT NULL,
+  `name` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `description` varchar(100) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `groups`
@@ -1014,10 +1157,10 @@ INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 CREATE TABLE IF NOT EXISTS `login_attempts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `ip_address` varbinary(16) NOT NULL,
-  `login` varchar(100) NOT NULL,
+  `login` varchar(100) CHARACTER SET utf8 NOT NULL,
   `time` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1027,10 +1170,10 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
 
 CREATE TABLE IF NOT EXISTS `medal` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(45) DEFAULT NULL,
-  `ImageURL` varchar(150) DEFAULT NULL,
+  `Name` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ImageURL` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1040,9 +1183,9 @@ CREATE TABLE IF NOT EXISTS `medal` (
 
 CREATE TABLE IF NOT EXISTS `organizationtype` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `TypeName` varchar(100) DEFAULT NULL,
+  `TypeName` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `organizationtype`
@@ -1063,11 +1206,11 @@ INSERT INTO `organizationtype` (`Id`, `TypeName`) VALUES
 
 CREATE TABLE IF NOT EXISTS `packet` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Title` varchar(140) DEFAULT NULL,
-  `ImageURL` varchar(140) DEFAULT NULL,
+  `Title` varchar(140) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ImageURL` varchar(140) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PartnerId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `packet`
@@ -1087,24 +1230,25 @@ INSERT INTO `packet` (`Id`, `Title`, `ImageURL`, `PartnerId`) VALUES
 
 CREATE TABLE IF NOT EXISTS `partner` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `PartnerName` varchar(45) DEFAULT NULL,
+  `PartnerName` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `OrganizationTypeId` int(11) DEFAULT NULL,
-  `Address` varchar(200) DEFAULT NULL,
-  `PhoneNumber` varchar(45) DEFAULT NULL,
-  `WebsiteURL` varchar(100) DEFAULT NULL,
+  `Address` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `PhoneNumber` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `WebsiteURL` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Latitude` float DEFAULT NULL,
   `Longtitude` float DEFAULT NULL,
-  `Description` varchar(140) DEFAULT NULL,
+  `Description` varchar(140) COLLATE utf8_unicode_ci DEFAULT NULL,
   `IsApproved` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `partner`
 --
 
 INSERT INTO `partner` (`Id`, `PartnerName`, `OrganizationTypeId`, `Address`, `PhoneNumber`, `WebsiteURL`, `Latitude`, `Longtitude`, `Description`, `IsApproved`) VALUES
-(3, 'Unicef VietNam', 3, '65/13 Phan Sao Nam', '84912880656', '', NULL, NULL, 'We save the world', b'0');
+(3, 'Unicef VietNam', 3, '65/13 Phan Sao Nam', '84912880656', '', NULL, NULL, 'We save the world', b'0'),
+(4, 'NamAgape Childrens Home', 3, '65/13 Phan Sao Nam', '84912880656', '', NULL, NULL, 'we help eartn', b'0');
 
 -- --------------------------------------------------------
 
@@ -1116,7 +1260,7 @@ CREATE TABLE IF NOT EXISTS `partnerdonation` (
   `DonationId` int(11) NOT NULL AUTO_INCREMENT,
   `PartnerId` int(11) DEFAULT NULL,
   PRIMARY KEY (`DonationId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1189,7 +1333,7 @@ CREATE TABLE IF NOT EXISTS `questcondition` (
   `VirtualQuestId` int(11) DEFAULT NULL,
   `ObjectId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=187 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=187 ;
 
 -- --------------------------------------------------------
 
@@ -1240,15 +1384,15 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `CategoryId` int(11) DEFAULT NULL,
   `PartnerId` int(11) DEFAULT NULL,
   `CreatedDate` datetime DEFAULT NULL,
-  `Content` varchar(1000) DEFAULT NULL,
+  `Content` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
   `BonusPoint` int(11) DEFAULT '100',
   `CorrectChoiceId` int(11) DEFAULT NULL,
-  `SharingInfo` varchar(1000) DEFAULT NULL,
-  `LearnMoreURL` varchar(500) DEFAULT NULL,
-  `ImageURL` varchar(200) DEFAULT NULL,
+  `SharingInfo` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `LearnMoreURL` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ImageURL` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `IsApproved` bit(1) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=68 ;
 
 -- --------------------------------------------------------
 
@@ -1258,9 +1402,9 @@ CREATE TABLE IF NOT EXISTS `quiz` (
 
 CREATE TABLE IF NOT EXISTS `quizcategory` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `CategoryName` varchar(500) DEFAULT NULL,
+  `CategoryName` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `quizcategory`
@@ -1268,7 +1412,10 @@ CREATE TABLE IF NOT EXISTS `quizcategory` (
 
 INSERT INTO `quizcategory` (`Id`, `CategoryName`) VALUES
 (4, 'General Knowledge'),
-(5, 'Fact');
+(5, 'Fact'),
+(6, 'Protection'),
+(7, 'Education'),
+(8, 'Nutritions');
 
 -- --------------------------------------------------------
 
@@ -1299,9 +1446,9 @@ INSERT INTO `reward` (`id`, `reward_name`, `image_url`) VALUES
 
 CREATE TABLE IF NOT EXISTS `role` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(45) DEFAULT NULL,
+  `Name` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `role`
@@ -1324,7 +1471,7 @@ CREATE TABLE IF NOT EXISTS `rolefunction` (
   `RoleId` int(11) NOT NULL AUTO_INCREMENT,
   `FunctionId` int(11) DEFAULT NULL,
   PRIMARY KEY (`RoleId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1378,20 +1525,21 @@ INSERT INTO `test` (`id`, `fullname`) VALUES
 
 CREATE TABLE IF NOT EXISTS `user` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `FullName` varchar(45) DEFAULT NULL,
-  `Email` varchar(50) DEFAULT NULL,
+  `FullName` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Email` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `RegisterDate` datetime DEFAULT NULL,
-  `PhoneNumber` varchar(45) DEFAULT NULL,
-  `Address` varchar(150) DEFAULT NULL,
+  `PhoneNumber` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Address` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`Id`, `FullName`, `Email`, `RegisterDate`, `PhoneNumber`, `Address`) VALUES
-(1, NULL, 'imrhung@yahoo.com', '2014-04-02 10:05:53', '84912880656', NULL);
+(1, NULL, 'imrhung@yahoo.com', '2014-04-02 10:05:53', '84912880656', NULL),
+(2, NULL, 'imrhung@yahoo.com', '2014-04-04 02:56:19', '84912880656', NULL);
 
 -- --------------------------------------------------------
 
@@ -1405,7 +1553,7 @@ CREATE TABLE IF NOT EXISTS `userapplication` (
   `Points` int(11) DEFAULT NULL,
   `CurrentLevel` int(11) DEFAULT NULL,
   PRIMARY KEY (`UserId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1418,7 +1566,7 @@ CREATE TABLE IF NOT EXISTS `usermedal` (
   `UserId` int(11) DEFAULT NULL,
   `MedalId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1429,17 +1577,18 @@ CREATE TABLE IF NOT EXISTS `usermedal` (
 CREATE TABLE IF NOT EXISTS `userpartner` (
   `UserId` int(11) NOT NULL AUTO_INCREMENT,
   `PartnerId` int(11) DEFAULT NULL,
-  `UserName` varchar(45) DEFAULT NULL,
-  `Password` varchar(45) DEFAULT NULL,
+  `UserName` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Password` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`UserId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `userpartner`
 --
 
 INSERT INTO `userpartner` (`UserId`, `PartnerId`, `UserName`, `Password`) VALUES
-(1, 3, 'unicef', 'e10adc3949ba59abbe56e057f20f883e');
+(1, 3, 'unicef', 'e10adc3949ba59abbe56e057f20f883e'),
+(2, 4, 'username', 'e10adc3949ba59abbe56e057f20f883e');
 
 -- --------------------------------------------------------
 
@@ -1451,14 +1600,15 @@ CREATE TABLE IF NOT EXISTS `userrole` (
   `UserId` int(11) NOT NULL,
   `RoleId` int(11) DEFAULT NULL,
   PRIMARY KEY (`UserId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `userrole`
 --
 
 INSERT INTO `userrole` (`UserId`, `RoleId`) VALUES
-(1, 3);
+(1, 3),
+(2, 4);
 
 -- --------------------------------------------------------
 
@@ -1469,37 +1619,37 @@ INSERT INTO `userrole` (`UserId`, `RoleId`) VALUES
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `ip_address` varbinary(16) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(80) NOT NULL,
-  `salt` varchar(40) DEFAULT NULL,
-  `email` varchar(100) NOT NULL,
-  `activation_code` varchar(40) DEFAULT NULL,
-  `forgotten_password_code` varchar(40) DEFAULT NULL,
+  `username` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `password` varchar(80) CHARACTER SET utf8 NOT NULL,
+  `salt` varchar(40) CHARACTER SET utf8 DEFAULT NULL,
+  `email` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `activation_code` varchar(40) CHARACTER SET utf8 DEFAULT NULL,
+  `forgotten_password_code` varchar(40) CHARACTER SET utf8 DEFAULT NULL,
   `forgotten_password_time` int(11) unsigned DEFAULT NULL,
-  `remember_code` varchar(40) DEFAULT NULL,
+  `remember_code` varchar(40) CHARACTER SET utf8 DEFAULT NULL,
   `created_on` int(11) unsigned NOT NULL,
   `last_login` int(11) unsigned DEFAULT NULL,
   `active` tinyint(1) unsigned DEFAULT NULL,
-  `first_name` varchar(50) DEFAULT NULL,
-  `last_name` varchar(50) DEFAULT NULL,
-  `company` varchar(100) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
+  `first_name` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `last_name` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `company` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `phone` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `gender` int(1) NOT NULL,
-  `url` varchar(256) NOT NULL,
-  `bio` text NOT NULL,
+  `url` varchar(256) CHARACTER SET utf8 NOT NULL,
+  `bio` text CHARACTER SET utf8 NOT NULL,
   `birthday` date NOT NULL,
-  `location` varchar(56) NOT NULL,
-  `full_name` varchar(100) NOT NULL,
-  `hero_name` varchar(100) NOT NULL,
-  `phone_number` varchar(20) NOT NULL,
-  `facebook_id` varchar(100) NOT NULL,
-  `address` varchar(200) NOT NULL,
+  `location` varchar(56) CHARACTER SET utf8 NOT NULL,
+  `full_name` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `hero_name` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `phone_number` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `facebook_id` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `address` varchar(200) CHARACTER SET utf8 NOT NULL,
   `current_level` int(11) NOT NULL DEFAULT '0',
   `point` int(11) NOT NULL DEFAULT '0',
   `accept_tou` bit(1) NOT NULL DEFAULT b'0',
   `register_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `users`
@@ -1524,7 +1674,7 @@ CREATE TABLE IF NOT EXISTS `users_groups` (
   UNIQUE KEY `uc_users_groups` (`user_id`,`group_id`),
   KEY `fk_users_groups_users1_idx` (`user_id`),
   KEY `fk_users_groups_groups1_idx` (`group_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `users_groups`
@@ -1572,14 +1722,14 @@ INSERT INTO `user_quest` (`user_id`, `quest_id`, `parent_quest_id`, `status_ques
 
 CREATE TABLE IF NOT EXISTS `virtualquest` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `QuestName` varchar(45) DEFAULT NULL,
+  `QuestName` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PacketId` int(11) DEFAULT NULL,
   `PartnerId` int(11) DEFAULT NULL,
   `AnimationId` int(11) DEFAULT NULL,
   `UnlockPoint` int(11) DEFAULT NULL,
   `CreateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
 
 --
 -- Constraints for dumped tables

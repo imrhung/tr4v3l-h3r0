@@ -68,24 +68,27 @@ class Quiz_Model extends CI_Model {
     /* Last 11-March-2014 */
     /* Insert a new quiz function into databases			
       Parameter passed:
-      questCategory int,
-      questQuestion nvarchar(140),
-      answerA 	  nvarchar(50),
-      answerB       nvarchar(50),
-      answerC 	  nvarchar(50),
-      answerD       nvarchar(50),
-      CorrectChoiceId int,
-      sharingInfo	  nvarchar(8000),
-      linkURL	      nvarchar(200),
-      partnerId	  int,
-      createdDate	  datetime */
+        questCategory 	int,
+	questQuestion	nvarchar(140),
+	correctChoiceId int,
+	sharingInfo		nvarchar(8000),
+	linkURL	     	nvarchar(200),
+	partnerId		int,
+	createdDate	  	datetime,
+	answerA nvarchar(50),
+	answerB nvarchar(50),
+	answerC nvarchar(50),
+	answerD nvarchar(50) */
 
-    public function insertQuiz($questCategory, $questQuestion, $CorrectChoiceId, $sharingInfo, $linkURL, $partnerId, $createDate) {
+    public function insertQuiz($questCategory, $questQuestion, $CorrectChoiceId,
+                                     $sharingInfo, $linkURL, $partnerId, $createDate,
+                                        $answerA, $answerB, $answerC, $answerD) {
 
         try {
-            $sql = 'CALL sp_Insert_Quiz(?, ?, ?, ?, ?, ?, ?)';
+            $sql = 'CALL sp_Insert_Quiz_Choice(?, ?, ?, ?, ?, ?, ?, ?, ? ,? , ?)';
             $result = $this->db->query($sql, array($questCategory, $questQuestion, $CorrectChoiceId,
-                $sharingInfo, $linkURL, $partnerId, $createDate));
+                                                         $sharingInfo, $linkURL, $partnerId, $createDate,
+                                                             $answerA, $answerB, $answerC, $answerD));
         } catch (Exception $e) {
 
             return $e->getMessage();
