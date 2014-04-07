@@ -6,7 +6,7 @@
         <p>Người dùng sẽ phải đóng góp một phần số điểm họ có cho hoạt động này.</p>
 
         <div id="alert_placeholder"></div>
-        <form class="form-horizontal" onSubmit="createDonation(); return false;">
+        <form id="donation-form" class="form-horizontal" onSubmit="createDonation(); return false;">
             <fieldset>
                 
                 <!-- Form Name -->

@@ -104,7 +104,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="website">Website (if applicable)</label>  
                         <div class="col-md-4">
-                            <input id="website" name="website" type="url" value="<?php echo set_value('website'); ?>" placeholder="" class="form-control input-md">
+                            <input id="website" name="website" type="text" value="<?php echo set_value('website'); ?>" placeholder="" class="form-control input-md">
 
                         </div>
                     </div>

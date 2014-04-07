@@ -49,8 +49,14 @@ function createQuiz() {
 
                     // Redirect to admin page
                     //return false;
-                    successfulAlert("Your Quiz has been created successfully. Do you want to ");
+                    successfulAlert("Your Quiz has been created successfully. ");
                     //window.location.replace(baseUrl + "organization/create_activity");
+                    
+                    
+                    // Reset the form
+                    $('#submit').removeAttr("disabled");
+                    $('#quiz-form')[0].reset();
+                    
                     return false;
                 } else { // Fail
                     bootstrap_alert.warning("Some error occurred, please try again!");

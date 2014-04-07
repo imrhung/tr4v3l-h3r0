@@ -6,7 +6,7 @@
         <p>To Create a Donation please fill out the information below.</p>
 
         <div id="alert_placeholder"></div>
-        <form class="form-horizontal" onSubmit="createDonation(); return false;">
+        <form id="donation-form" class="form-horizontal" onSubmit="createDonation(); return false;">
             <fieldset>
                 
                 <!-- Form Name -->

@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2014 at 04:28 PM
--- Server version: 5.6.16
--- PHP Version: 5.5.9
+-- Generation Time: Apr 07, 2014 at 12:48 PM
+-- Server version: 5.5.36
+-- PHP Version: 5.4.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -1037,14 +1037,23 @@ CREATE TABLE IF NOT EXISTS `activity` (
   `CreateDate` datetime DEFAULT NULL,
   `ActionContent` varchar(140) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `activity`
 --
 
 INSERT INTO `activity` (`Id`, `PartnerId`, `Title`, `Description`, `ActionId`, `BonusPoint`, `IsApproved`, `CreateDate`, `ActionContent`) VALUES
-(1, 3, '?i nhà sách', 'Ha ha ', 2, 100, NULL, '2014-04-04 09:17:49', 'Yeah');
+(2, 5, 'Join NextGen on Facebook ', 'Join NextGen on Facebook to find other 18-35 year old leaders concerned about children!', 1, 100, NULL, '2014-04-07 10:23:41', 'Join NextGen on Facebook to find other 18-35 year old leaders concerned about children!'),
+(3, 5, 'Change your profile to “Believe in ZERO”. ', 'Change your profile to “Believe in ZERO”. ', 1, 100, NULL, '2014-04-07 10:23:59', 'Change your profile to “Believe in ZERO”. '),
+(4, 5, 'Share this fact about children on your FB ', 'Share this fact about children on your FB – “100 children die every day in Vietnam of preventable causes.”', 1, 100, NULL, '2014-04-07 10:24:34', '100 children die every day in Vietnam of preventable causes.'),
+(5, 5, 'Sign up for newsletter to keep updated with UNICEF activities in Vietnam', 'Sign up for newsletter to keep updated with UNICEF activities in Vietnam: partnershipvietnam@unicef.org', 2, 100, NULL, '2014-04-07 10:25:28', 'partnershipvietnam@unicef.org'),
+(6, 5, 'Share this fact about children on your FB ', 'Share this fact about children on your FB – “Every hour a child dies in Vietnam of an injury caused by traffic accidents or drowning.”', 1, 100, NULL, '2014-04-07 10:25:55', 'Every hour a child dies in Vietnam of an injury caused by traffic accidents or drowning.'),
+(7, 5, 'Volunteer to be a swimming coach and teach kids in the Mekong Delta how to swim!', 'Volunteer to be a swimming coach and teach kids in the Mekong Delta how to swim!', 1, 100, NULL, '2014-04-07 10:26:15', 'Volunteer to be a swimming coach and teach kids in the Mekong Delta how to swim!'),
+(8, 6, 'Visit our children’s home in Vung Tau and teach English', 'Visit our children’s home in Vung Tau and teach English', 1, 100, NULL, '2014-04-07 10:33:17', 'Visit our children’s home in Vung Tau and teach English'),
+(9, 6, 'Sponsor a child on our website. Achvn.org/sponsor', 'Sponsor a child on our website. Achvn.org/sponsor', 1, 100, NULL, '2014-04-07 10:34:34', 'Sponsor a child on our website. Achvn.org/sponsor'),
+(10, 6, 'Like us on facebook and follow our feed.', 'Like us on facebook and follow our feed.', 3, 100, NULL, '2014-04-07 10:35:05', 'Like us on facebook and follow our feed.'),
+(11, 6, 'Share us on facebook', 'Just share make different', 1, 100, NULL, '2014-04-07 10:47:05', 'Hero for Zero');
 
 -- --------------------------------------------------------
 
@@ -1067,11 +1076,7 @@ CREATE TABLE IF NOT EXISTS `app_sessions` (
 --
 
 INSERT INTO `app_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('1b4acb4625e36195a426a0c92e4e5c0a', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1396593592, ''),
-('8f5bd76f66ae66b4c6529b916e0da1a0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1396577580, ''),
-('95b8adedcf488a93bc8595d617ce53e3', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1396621400, 'a:3:{s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:3;}'),
-('a274f2517c355dba8576b52d71f3918c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1396581583, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:3;}'),
-('aa1b5d2b11bb8f1ae6f8f5c3c9c6c1eb', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1396577561, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:3;}');
+('8cbe00d1a71cef5f2a8df314d1e0cd8a', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1396867460, 'a:5:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:10:"partner_id";i:6;s:4:"role";s:12:"organization";s:8:"language";s:2:"vi";}');
 
 -- --------------------------------------------------------
 
@@ -1084,7 +1089,33 @@ CREATE TABLE IF NOT EXISTS `choice` (
   `QuestionId` int(11) DEFAULT NULL,
   `Content` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=170 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=190 ;
+
+--
+-- Dumping data for table `choice`
+--
+
+INSERT INTO `choice` (`Id`, `QuestionId`, `Content`) VALUES
+(170, 68, '10'),
+(171, 68, '100'),
+(172, 68, '1000'),
+(173, 68, '10000'),
+(174, 69, 'Run and Hide'),
+(175, 69, 'Ignore it'),
+(176, 69, 'Call the 113 or 18001567 hotline to report'),
+(177, 69, 'Confront the aggressor'),
+(178, 70, 'Government'),
+(179, 70, 'Family'),
+(180, 70, 'Society'),
+(181, 70, 'All correct'),
+(182, 71, 'Children with disability'),
+(183, 71, 'Street children'),
+(184, 71, 'Poor children'),
+(185, 71, 'All correct'),
+(186, 72, 'Keep it for myself, otherwise other will tease me '),
+(187, 72, 'Report to parents or relatives '),
+(188, 72, 'Report to the local police, teachers or other trus'),
+(189, 72, '2 & 3 correct');
 
 -- --------------------------------------------------------
 
@@ -1102,16 +1133,19 @@ CREATE TABLE IF NOT EXISTS `donation` (
   `IsApproved` bit(1) DEFAULT NULL,
   `CreateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `donation`
 --
 
 INSERT INTO `donation` (`Id`, `Title`, `Description`, `RequiredPoint`, `MedalId`, `PartnerId`, `IsApproved`, `CreateDate`) VALUES
-(8, 'M? r?ng tr??ng h?c', 'Yeah', 100, NULL, 3, b'0', '2014-04-04 13:54:28'),
-(9, '?óng góp xây nhà', 'Xây nhà ?ó mà', 100, NULL, 3, NULL, '2014-04-04 14:18:51'),
-(10, 'Mùa xuân tình nguy?n', 'Ýe', 100, NULL, 3, NULL, '2014-04-04 14:23:35');
+(11, 'Donate 65 cents ', 'Donate 65 cents – equivalent to the cost one measles vaccine that can save a child’ life', 100, NULL, 5, NULL, '2014-04-07 10:26:39'),
+(12, 'Donate 50 dollars ', 'Donate 50 dollars – equivalent to the cost of Emergency support for children victims of abused, and exploitation. ', 100, NULL, 5, NULL, '2014-04-07 10:26:56'),
+(13, 'Donate 65 cents ', 'Donate 65 cents – equivalent to the cost one measles vaccine that can save a child’ life', 100, NULL, 6, NULL, '2014-04-07 10:36:05'),
+(14, 'Donate 50 dollars ', 'Donate 50 dollars – equivalent to the cost of Emergency support for children victims of abused, and exploitation. ', 100, NULL, 6, NULL, '2014-04-07 10:36:24'),
+(15, 'Donate $1', 'Just one dollar to save lives.', 100, NULL, 6, NULL, '2014-04-07 10:45:18'),
+(16, 'Donate 2$', 'Just 2 dollars save many lives.', 100, NULL, 6, NULL, '2014-04-07 10:46:15');
 
 -- --------------------------------------------------------
 
@@ -1240,7 +1274,7 @@ CREATE TABLE IF NOT EXISTS `partner` (
   `Description` varchar(140) COLLATE utf8_unicode_ci DEFAULT NULL,
   `IsApproved` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `partner`
@@ -1248,7 +1282,9 @@ CREATE TABLE IF NOT EXISTS `partner` (
 
 INSERT INTO `partner` (`Id`, `PartnerName`, `OrganizationTypeId`, `Address`, `PhoneNumber`, `WebsiteURL`, `Latitude`, `Longtitude`, `Description`, `IsApproved`) VALUES
 (3, 'Unicef VietNam', 3, '65/13 Phan Sao Nam', '84912880656', '', NULL, NULL, 'We save the world', b'0'),
-(4, 'NamAgape Childrens Home', 3, '65/13 Phan Sao Nam', '84912880656', '', NULL, NULL, 'we help eartn', b'0');
+(4, 'NamAgape Childrens Home', 3, '65/13 Phan Sao Nam', '84912880656', '', NULL, NULL, 'we help eartn', b'0'),
+(5, 'UNICEF Viet Nam', 2, 'Sun Wah Tower, Suite 504, 115 Nguyen Hue, District 1, HCMC', '+84 3821-9413', 'http://www.unicef.org/vietnam', NULL, NULL, 'UNICEFs mission in Vietnam is to fulfill the rights of every child in Vietnam, particularly those most disadvantaged or vulnerable.', b'0'),
+(6, 'Agape Childrens Home', 3, '4232 Vermon Ave. S Minneapolis, MN 45234', '01217799140', 'achvn.org', NULL, NULL, 'Agape Childrens Home (ACH) mission is to give hope to the abandoned and impoverished children of Vietnam by providing them with a safe and l', b'0');
 
 -- --------------------------------------------------------
 
@@ -1392,7 +1428,18 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `ImageURL` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `IsApproved` bit(1) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=68 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=73 ;
+
+--
+-- Dumping data for table `quiz`
+--
+
+INSERT INTO `quiz` (`Id`, `CategoryId`, `PartnerId`, `CreatedDate`, `Content`, `BonusPoint`, `CorrectChoiceId`, `SharingInfo`, `LearnMoreURL`, `ImageURL`, `IsApproved`) VALUES
+(68, 5, 5, '2014-04-07 10:11:19', 'How many children die everyday of preventable causes in Vietnam?', 100, 171, '', '', NULL, b'1'),
+(69, 5, 5, '2014-04-07 10:15:36', 'What should you do in Vietnam if you see a child in situation where he/she looks like he/she needs help from an aggressor?', 100, 176, '', '', NULL, b'1'),
+(70, 6, 5, '2014-04-07 10:16:13', 'Who is responsible for of the protection of children?', 100, 181, '', '', NULL, NULL),
+(71, 6, 5, '2014-04-07 10:17:11', 'Which group of children do you think is vulnerable to abuse?', 100, 185, '', '', NULL, NULL),
+(72, 6, 5, '2014-04-07 10:17:58', 'If being abused, what should children do?', 100, 189, '', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1411,8 +1458,7 @@ CREATE TABLE IF NOT EXISTS `quizcategory` (
 --
 
 INSERT INTO `quizcategory` (`Id`, `CategoryName`) VALUES
-(4, 'General Knowledge'),
-(5, 'Fact'),
+(5, 'Health services'),
 (6, 'Protection'),
 (7, 'Education'),
 (8, 'Nutritions');
@@ -1531,7 +1577,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `PhoneNumber` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Address` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `user`
@@ -1539,7 +1585,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`Id`, `FullName`, `Email`, `RegisterDate`, `PhoneNumber`, `Address`) VALUES
 (1, NULL, 'imrhung@yahoo.com', '2014-04-02 10:05:53', '84912880656', NULL),
-(2, NULL, 'imrhung@yahoo.com', '2014-04-04 02:56:19', '84912880656', NULL);
+(2, NULL, 'imrhung@yahoo.com', '2014-04-04 02:56:19', '84912880656', NULL),
+(3, NULL, 'partnershipvietnam@unicef.org', '2014-04-07 09:59:04', '+84 3821-9413', NULL),
+(4, NULL, 'info@achvn.org', '2014-04-07 10:32:43', '01217799140', NULL);
 
 -- --------------------------------------------------------
 
@@ -1580,7 +1628,7 @@ CREATE TABLE IF NOT EXISTS `userpartner` (
   `UserName` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Password` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`UserId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `userpartner`
@@ -1588,7 +1636,9 @@ CREATE TABLE IF NOT EXISTS `userpartner` (
 
 INSERT INTO `userpartner` (`UserId`, `PartnerId`, `UserName`, `Password`) VALUES
 (1, 3, 'unicef', 'e10adc3949ba59abbe56e057f20f883e'),
-(2, 4, 'username', 'e10adc3949ba59abbe56e057f20f883e');
+(2, 4, 'username', 'e10adc3949ba59abbe56e057f20f883e'),
+(3, 5, 'unicef_vietnam', 'e10adc3949ba59abbe56e057f20f883e'),
+(4, 6, 'agapevn', 'e10adc3949ba59abbe56e057f20f883e');
 
 -- --------------------------------------------------------
 
@@ -1608,7 +1658,9 @@ CREATE TABLE IF NOT EXISTS `userrole` (
 
 INSERT INTO `userrole` (`UserId`, `RoleId`) VALUES
 (1, 3),
-(2, 4);
+(2, 4),
+(3, 3),
+(4, 4);
 
 -- --------------------------------------------------------
 
