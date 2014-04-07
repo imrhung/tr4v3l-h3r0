@@ -68,6 +68,10 @@ class User_model extends CI_Model {
         }
     }
     
+    /*
+     * Register user.
+     * Not use AdminName field yet. :)
+     */
     function register($username, $password, $name, $adminName, $email, $address, $phone, $website, $type, $description){
         // Save to user table
         $data = array(

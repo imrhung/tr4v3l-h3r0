@@ -6,12 +6,12 @@ class Admin extends App_Controller {
 
     public function __construct() {
         parent::__construct();
-        
+
         // Check if login
-        if ($this->session->userdata('islogin')){
-            if ($this->session->userdata('role') == 'admin'){
+        if ($this->session->userdata('islogin')) {
+            if ($this->session->userdata('role') == 'admin') {
                 //redirect('admin');
-            } else if ($this->session->userdata('role') == 'organization'){
+            } else if ($this->session->userdata('role') == 'organization') {
                 //redirect('organization');
                 //$this->load->view('home/unauthorized');
                 redirect('home/unauthorized');
@@ -19,10 +19,10 @@ class Admin extends App_Controller {
         } else {
             redirect('home/unauthorized');
         }
-        
     }
 
     public function index() {
+        $this->page_title = 'Home';
         $this->current_section = 'home';
         $this->assets_css[] = 'datatables/jquery.dataTables.css';
         $this->assets_css[] = 'datatables/data-bootstrap.css';
@@ -32,11 +32,12 @@ class Admin extends App_Controller {
         $this->assets_js[] = 'bootbox/bootbox.min.js';
         $this->render_page_admin('admin/index');
     }
-    
-    public function edit_quiz($id = NULL){
+
+    public function edit_quiz($id = NULL) {
         if ($id == NULL) {
             redirect("admin/index");
         } else {
+            $this->page_title = 'Edit Quiz';
             $this->current_section = "edit_quiz";
             $this->assets_js[] = 'admin/edit_quiz.js';
             $this->assets_js[] = 'bootbox/bootbox.min.js';
@@ -46,93 +47,125 @@ class Admin extends App_Controller {
             $this->render_page_admin('admin/edit_quiz', $data);
         }
     }
-    
-    public function edit_activity($id=NULL){
-        if ($id == NULL){
+
+    public function edit_activity($id = NULL) {
+        if ($id == NULL) {
             redirect("admin/index");
         } else {
+            $this->page_title = 'Edit Activity';
             $this->current_section = "edit_quiz";
             $this->assets_css[] = 'datepicker/bootstrap-datetimepicker.min.css';
             $this->assets_js[] = 'admin/edit_activity.js';
             $this->assets_js[] = 'bootbox/bootbox.min.js';
             $this->assets_js[] = 'datepicker/moment.js';
             $this->assets_js[] = 'datepicker/bootstrap-datetimepicker.min.js';
-            
+
             $data = array(
                 'activityId' => $id
             );
             $this->render_page_admin('admin/edit_activity', $data);
         }
     }
-    
-    public function edit_donation($id=NULL){
-        if ($id == NULL){
+
+    public function edit_donation($id = NULL) {
+        if ($id == NULL) {
             redirect("admin/index");
         } else {
+            $this->page_title = 'Edit Donation';
             $this->current_section = "edit_donation";
             $this->assets_js[] = 'admin/edit_donation.js';
             $this->assets_js[] = 'bootbox/bootbox.min.js';
-            
+
             $data = array(
                 'donationId' => $id
             );
             $this->render_page_admin('admin/edit_donation', $data);
         }
     }
-    
-    public function edit_quest($id=NULL){
-        if ($id == NULL){
+
+    public function edit_quest($id = NULL) {
+        if ($id == NULL) {
             redirect("admin/index");
         } else {
+            $this->page_title = 'Edit Quest';
             $this->current_section = "edit_quest";
             $this->assets_js[] = 'admin/edit_quest.js';
             $this->assets_js[] = 'bootbox/bootbox.min.js';
-            
+
             $data = array(
                 'questId' => $id
             );
             $this->render_page_admin('admin/edit_quest', $data);
         }
     }
-    
-    public function create_quest(){
-        
+
+    public function create_quest() {
+        $this->page_title = 'Create Quest';
         $this->current_section = 'create_quest';
         $this->assets_js[] = 'admin/create_quest.js';
-        $data['partnerId']= $this->session->userdata('partner_id');
+        $data['partnerId'] = $this->session->userdata('partner_id');
         $this->render_page_admin('admin/create_quest', $data);
     }
-    
-    public function packet(){
+
+    public function packet() {
+        $this->page_title = 'Packet and Category';
         $this->current_section = 'packet';
         $this->assets_js[] = 'admin/packet.js';
         $this->render_page_admin('admin/packet');
     }
+
+    public function partners() {
+        $this->page_title = 'Partners';
+        $this->current_section = 'partners';
+        $this->assets_css[] = 'datatables/jquery.dataTables.css';
+        $this->assets_css[] = 'datatables/data-bootstrap.css';
+        $this->assets_js[] = 'datatables/jquery.dataTables.js';
+        $this->assets_js[] = 'datatables/pagebootstrap.js';
+        $this->assets_js[] = 'bootbox/bootbox.min.js';
+        $this->assets_js[] = 'admin/partners.js';
+        $this->render_page_admin('admin/partners');
+    }
     
-    public function under_construction(){
+    public function partner($id = NULL){
+        if ($id == NULL) {
+            redirect("admin/index");
+        } else {
+            $this->page_title = 'Partner';
+            $this->current_section = "partner";
+            $this->assets_js[] = 'admin/partner.js';
+            $this->assets_js[] = 'bootbox/bootbox.min.js';
+
+            $data = array(
+                'partnerId' => $id
+            );
+            $this->render_page_admin('admin/partner', $data);
+        }
+    }
+
+    public function under_construction() {
+        $this->page_title = 'Under Construction';
         $this->current_section = 'construct';
         $this->render_page_admin('home/under_construction');
     }
-    
-    public function help(){
+
+    public function help() {
+        $this->page_title = 'Help';
         $this->current_section = 'help';
         $this->render_page_admin('home/help');
     }
-    
-    
-    
-    public function questform(){
+
+    public function questform() {
         $this->current_section = 'quest';
         $this->assets_js[] = "core.js";
         $this->render_page_admin('admin/createquest');
     }
-    
-    public function partnerform(){
+
+    public function partnerform() {
         $this->current_section = 'profile';
         $this->render_page_admin('admin/partnerform');
     }
-    
-    public function questlist(){
+
+    public function questlist() {
         $this->page_title = 'Quests List';
         $this->assets_css[] = "simplePagination.css";
         $this->assets_css[] = "ngo.css";
@@ -141,15 +174,15 @@ class Admin extends App_Controller {
         $this->current_section = 'quests';
         $this->render_page_admin('admin/questlist');
     }
-    
-    public function test(){
+
+    public function test() {
         $this->load->view('login/login.inc.php');
     }
-    
+
     /**
-     * Test API
+     * Fake API to test. 
      */
-    public  function testapi_s(){
+    public function testapi_s() {
         //$title= $this->input->post("title");
         $data = array(
             'code' => 1,
@@ -158,8 +191,8 @@ class Admin extends App_Controller {
         );
         echo json_encode($data);
     }
-    
-    public  function testapi_f(){
+
+    public function testapi_f() {
         $data = array(
             'code' => 0,
             'message' => "Quest Unsuccessful",
@@ -167,8 +200,66 @@ class Admin extends App_Controller {
         );
         echo json_encode($data);
     }
+
+    public function getPartner(){
+        echo '{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "partner": {
+      "Id": 1,
+      "PartnerName": "Earth Hour",
+      "OrganizationTypeId": 2,
+      "Address": "2323 tesdf",
+      "PhoneNumber": 1234,
+      "WebsiteURL": "http://sdf",
+      "Latitude": 12.234,
+      "Longitude": 14.1203,
+      "Description": "We save the world.",
+      "UserName": "imrhung",
+      "Email": "imrhung@yahoo.com",
+      "IsApproved": 1
+    }
+  }
+}';
+    }
     
-    public function getCategory(){
+    public function getPartners(){
+        echo '{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "partners": [
+      {
+        "Id": 1,
+        "PartnerName": "Earth Hour",
+        "OrganizationTypeId": 2,
+        "Address": "2323 tesdf",
+        "PhoneNumber": 1234,
+        "WebsiteURL": "http://sdf",
+        "Latitude": 12.234,
+        "Longitude": 14.1203,
+        "Description": "We save the world.",
+        "IsApproved": 1
+      },
+      {
+        "Id": 1,
+        "PartnerName": "Earth Hour",
+        "OrganizationTypeId": 2,
+        "Address": "2323 tesdf",
+        "PhoneNumber": 1234,
+        "WebsiteURL": "http://sdf",
+        "Latitude": 12.234,
+        "Longitude": 14.1203,
+        "Description": "We save the world.",
+        "IsApproved": 0
+      }
+    ]
+  }
+}';
+    }
+    
+    public function getCategory() {
         echo '{
   "code": 1,
   "message": "Success",
@@ -198,8 +289,8 @@ class Admin extends App_Controller {
   }
 }';
     }
-    
-    public function getQuest(){
+
+    public function getQuest() {
         echo '{
   "code": 1,
   "message": "Success",
@@ -254,8 +345,8 @@ class Admin extends App_Controller {
   }
 }';
     }
-    
-    public function getDonation(){
+
+    public function getDonation() {
         echo '{
   "code": 1,
   "message": "Success",
@@ -273,8 +364,8 @@ class Admin extends App_Controller {
   }
 }';
     }
-    
-    public function getActivity(){
+
+    public function getActivity() {
         echo '{
   "code": 1,
   "message": "Success",
@@ -294,8 +385,8 @@ class Admin extends App_Controller {
   }
 }';
     }
-    
-    public function testactivity(){
+
+    public function testactivity() {
         $data = '{
   "code": 1,
   "message": "Success",
@@ -344,10 +435,10 @@ class Admin extends App_Controller {
     ]
   }
 }';
-       echo json_encode(json_decode($data));
+        echo json_encode(json_decode($data));
     }
-    
-    public function testapi(){
+
+    public function testapi() {
         $data = '{
   "code": 1,
   "message": "Success",
@@ -498,9 +589,9 @@ class Admin extends App_Controller {
 }';
         echo json_encode(json_decode($data));
     }
-    
-    public function testDonation(){
-        $data='{
+
+    public function testDonation() {
+        $data = '{
   "code": 1,
   "message": "Success",
   "info": {
@@ -580,8 +671,8 @@ class Admin extends App_Controller {
 }';
         echo json_encode(json_decode($data));
     }
-    
-    public function testQuest(){
+
+    public function testQuest() {
         $data = '{
   "code": 1,
   "message": "Success",
@@ -669,8 +760,8 @@ class Admin extends App_Controller {
 }';
         echo $data;
     }
-    
-    public function testPackets(){
+
+    public function testPackets() {
         $data = '{
   "code": 1,
   "message": "Success",
@@ -693,8 +784,8 @@ class Admin extends App_Controller {
 }';
         echo $data;
     }
-    
-    public function testCate(){
+
+    public function testCate() {
         echo '{
   "code": 1,
   "message": "Success",
@@ -724,4 +815,5 @@ class Admin extends App_Controller {
   }
 }';
     }
+
 }
