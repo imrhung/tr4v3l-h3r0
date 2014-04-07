@@ -29,8 +29,13 @@ function createDonation() {
 
                     // Redirect to admin page
                     //return false;
-                    successfulAlert("Your donation has been created successfully. Do you want to ");
+                    successfulAlert("Your donation has been created successfully. ");
                     //window.location.replace(baseUrl + "organization/create_activity");
+                    
+                    // Reset the form
+                    $('#submit').removeAttr("disabled");
+                    $('#donation-form')[0].reset();
+                    
                     return false;
                 } else { // Fail
                     bootstrap_alert.warning("Some error occurred, please try again!");

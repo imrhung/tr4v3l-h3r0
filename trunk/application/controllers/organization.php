@@ -27,7 +27,7 @@ class Organization extends App_Controller {
         $this->page_title = 'Home';
         $this->current_section = 'home';
         $this->assets_css[] = "admin.css";
-        $this->render_page('organization/index'.$this->language);
+        $this->render_page('organization'.$this->language.'/index');
     }
     
     public function create_activity(){
@@ -39,7 +39,7 @@ class Organization extends App_Controller {
         $this->assets_js[] = 'datepicker/moment.js';
         $this->assets_js[] = 'datepicker/bootstrap-datetimepicker.min.js';
         $data['partnerId']= $this->session->userdata('partner_id');
-        $this->render_page("organization/create_activity".$this->language, $data);
+        $this->render_page("organization".$this->language.'/create_activity', $data);
     }
     
     public function create_donation(){
@@ -48,7 +48,7 @@ class Organization extends App_Controller {
         $this->assets_css[] = 'admin.css';
         $this->assets_js[] = 'organization/create_donation.js';
         $data['partnerId']= $this->session->userdata('partner_id');
-        $this->render_page("organization/create_donation".$this->language, $data);
+        $this->render_page("organization".$this->language.'/create_donation', $data);
     }
     
     public function create_quiz(){
@@ -57,7 +57,7 @@ class Organization extends App_Controller {
         $this->assets_css[] = 'admin.css';
         $this->assets_js[] = 'organization/create_quiz.js';
         $data['partnerId']= $this->session->userdata('partner_id');
-        $this->render_page("organization/create_quiz".$this->language, $data);
+        $this->render_page("organization".$this->language.'/create_quiz', $data);
     }
     
      public function under_construction(){
