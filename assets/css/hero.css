@@ -96,7 +96,7 @@ hr {
     position: fixed;
     top: auto;
     bottom: 0px;
-    height: 110px;
+    height: 125px;
     border-radius: 0;
     border: none;
     overflow-y: auto;
@@ -207,3 +207,5 @@ root {
 .left-border{
     border-left: solid 1px #447294;
 }
+
+/* End of styling for admin page */

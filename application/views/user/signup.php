@@ -6,6 +6,7 @@
 
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/login.css" media="screen" />
+        <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.ico" type="image/x-ico">
         
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.9.1.min.js"></script>
     </head>
@@ -108,15 +109,17 @@
                         </div>
                     </div>
 
+                    <!-- TODO : Load dynamically this type -->
                     <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="type">Organization Type</label>
                         <div class="col-md-4">
                             <select id="type" name="type" class="form-control">
-                                <option value="1" <?php echo set_select('type', '1', TRUE); ?> >Goverment</option>
-                                <option value="2" <?php echo set_select('type', '2'); ?> >Local NGO</option>
-                                <option value="3" <?php echo set_select('type', '3'); ?> >International NGO</option>
-                                <option value="4" <?php echo set_select('type', '4'); ?> >Charity</option>
+                                <option value="1" <?php echo set_select('type', '1', TRUE); ?> >Local Non-profit organization</option>
+                                <option value="2" <?php echo set_select('type', '2'); ?> >International Non-profit organization</option>
+                                <option value="3" <?php echo set_select('type', '3'); ?> >Child Care Center or Shelter</option>
+                                <option value="4" <?php echo set_select('type', '4'); ?> >Mass Organization</option>
+                                <option value="5" <?php echo set_select('type', '4'); ?> >Religious Organization</option>
                             </select>
                         </div>
                     </div>

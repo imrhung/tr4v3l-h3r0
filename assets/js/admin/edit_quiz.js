@@ -8,6 +8,7 @@ function getQuiz(quizId) {
     // Make the spining when waiting
     // Disable submit button
 
+    console.log("haha");
     // Post to api
     $.post(
             baseUrl + "quiz/getQuiz",

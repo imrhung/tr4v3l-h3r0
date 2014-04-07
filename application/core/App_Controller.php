@@ -147,7 +147,9 @@ class App_Controller extends CI_Controller
     
     /**
      * Set Javascript Meta
-     * Add atribute "defer" to script to make this script run after html loaded. This help speed up the page.
+     * TODO : To speed up loading javascript, consider using suitalbe method.
+     *  - Not using "defer"
+     *  - http://www.feedthebot.com/pagespeed/defer-loading-javascript.html
      */
     private function set_javascript()
     {
@@ -217,6 +219,14 @@ class App_Controller extends CI_Controller
             ->set_partial('flash_messages', 'partials/flash_messages')
             ->set_partial('header', 'partials/header')
             ->set_partial('footer', 'partials/footer');
+        
+        /* Check language to load header */
+        if ($this->session->userdata('language') == 'vi'){
+            $this->template->set_partial('header', 'partials/header_vi');
+        } else {
+            
+        }
+        /* End of check language */
         
         // Renders the main layout
         $this->template->build($page, $data);
