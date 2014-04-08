@@ -84,8 +84,7 @@ class App_Controller extends CI_Controller
         $this->assets_js = array(
             'jquery-1.9.1.min.js',
             'bootstrap.min.js',
-            'core.js',
-            'analytics/analyticstracking.js'
+            'core.js'
             );
 
         $this->template->set('is_frontend', true);
