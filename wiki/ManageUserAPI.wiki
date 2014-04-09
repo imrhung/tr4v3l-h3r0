@@ -68,3 +68,26 @@ Order by Register Date: recent first.
   }
 }
 }}}
+
+=Delete Partner=
+ * Request to: 
+    * id (id of that partner)
+ * Responsse:
+{{{
+{
+  "code": 1,
+  "message": "Success"
+}
+}}}
+
+=Approve/Deny partner=
+ * Request to:
+    * id
+    * is_approved (0:not set yet, 1: approved, 2: denied)
+ * Response
+{{{
+{
+  "code": 1,
+  "message": "Success"
+}
+}}}
