@@ -31,14 +31,13 @@
                     </div>
                     
                     <br>
-                    <hr class ="hr-blue">
-                    <!-- Button -->
+                    <!-- Button 
                     <div class="form-group">
                         <label class="control-label" for="delete"></label>
                         <div class="col-md-12">
                             <button type="button" id="delete" name="delete" class="btn btn-danger btn-block" onclick="callDelete(<?php echo $partnerId ?>)"> Delete Partner</button>
                         </div>
-                    </div>
+                    </div> -->
 
                 </fieldset>
             </form>

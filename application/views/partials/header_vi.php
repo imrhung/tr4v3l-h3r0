@@ -13,7 +13,7 @@
                     </a>
                     
                     </div></li>
-                    <br><br><br>
+                    <br>
                     <hr class="hr-light-blue">
                 
                 <!-- Create button -->

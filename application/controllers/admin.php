@@ -119,7 +119,7 @@ class Admin extends App_Controller {
         $this->page_title = 'Partners';
         $this->current_section = 'partners';
         $this->assets_css[] = 'datatables/jquery.dataTables.css';
-        $this->assets_css[] = 'datatables/data-bootstrap.css';
+        $this->assets_css[] = 'datatables/dataTables.bootstrap.css';
         $this->assets_js[] = 'datatables/jquery.dataTables.js';
         $this->assets_js[] = 'datatables/pagebootstrap.js';
         $this->assets_js[] = 'bootbox/bootbox.min.js';

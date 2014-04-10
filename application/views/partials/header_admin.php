@@ -18,6 +18,7 @@
                 </div>       
                 <li class="<?php echo ($current_section == 'home') ? 'active' : '' ?>"><a id="base-url" href="<?php echo site_url() ?>"><i class="fa fa-home"></i>  Home</a></li>
                 <li class="<?php echo ($current_section == 'packet') ? 'active' : '' ?>"><a href="<?php echo site_url('admin/packet'); ?>"><i class="fa fa-folder"></i>  Packet</a></li>
+                <li class="<?php echo ($current_section == 'partners') ? 'active' : '' ?>"><a href="<?php echo site_url('admin/partners'); ?>"><i class="fa fa-group"></i>  Partners</a></li>
                 
                 <li class="<?php echo ($current_section == 'profile') ? 'active' : '' ?> disable"><a href="<?php echo site_url('admin/under_construction') ?>"><i class="fa fa-pencil"></i>  Edit profile</a></li>
                 <li class="<?php echo ($current_section == 'notification') ? 'active' : '' ?> disable"><a href="<?php echo site_url('admin/under_construction') ?>" TITLE="Function under construction"><i class="fa fa-bell"></i><span class="badge pull-right badge-green"></span>  Notifications</a></li>
