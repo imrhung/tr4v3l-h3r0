@@ -10,7 +10,7 @@ function getPartner(partnerId) {
     var partnerInfo ='';
     // Post to api
     $.post(
-            baseUrl + "admin/getPartner",
+            baseUrl + "partner/getPartner",
             {
                 id: partnerId
             },
@@ -26,7 +26,7 @@ function getPartner(partnerId) {
                     partnerInfo += '<tr><td>Website </td><td>'+data.info.partner.WebsiteURL+'</td></tr>';
                     partnerInfo += '<tr><td>Description </td><td>'+data.info.partner.Description+'</td></tr>';
                     partnerInfo += '<tr><td>Is Approved? </td><td>';
-                    partnerInfo += data.info.partner.IsApproved ? 'Yes': 'No'+'</td></tr>';
+                    partnerInfo += data.info.partner.IsApproved === '1' ? 'Yes': 'No'+'</td></tr>';
                     partnerInfo += '</table>';
                     $('#partner-info').html(partnerInfo);
                 } else { // Fail
@@ -83,7 +83,7 @@ function approvePartner(partnerId, state){
 
     // Post to api
     $.post(
-            baseUrl + "donation/updateIsApproved",
+            baseUrl + "partner/updateIsApproved",
             {
                 id: partnerId,
                 is_approved: state

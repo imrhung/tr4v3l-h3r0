@@ -30,7 +30,7 @@ function loadPartnersTable() {
 
     // Post to api
     $.post(
-            baseUrl + "admin/getPartners",
+            baseUrl + "partner/getPartnerList",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -45,12 +45,12 @@ function loadPartnersTable() {
                     var action;
                     for (var i = 0; i < partnersArray.length; i++) {
                         partner = partnersArray[i];
-                        if (partner.IsApproved === 1) {
+                        if (partner.IsApproved === '1') {
                             isApproved = "Yes";
                         } else {
                             isApproved = 'No';
                         }
-                        action = '<a href="' + baseUrl + 'admin/partner/' + partner.Id + '">View</a>  <a onclick="callDelete(' + partner.Id + ')" href="javacript:void(0);">Delete</a>';
+                        action = '<a href="' + baseUrl + 'admin/partner/' + partner.Id + '">View</a>';
                         tableData.push([
                             partner.PartnerName,
                             partner.Description,
