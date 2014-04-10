@@ -15,27 +15,28 @@ Order by Register Date: recent first.
   "info": {
     "partners": [
       {
-        "Id": 1,
-        "PartnerName": "Earth Hour",
-        "OrganizationTypeId": 2,
-        "Address": "2323 tesdf",
-        "PhoneNumber": 1234,
-        "WebsiteURL": "http://sdf",
-        "Latitude": 12.234,
-        "Longitude": 14.1203,
-        "Description": "We save the world.",
-        "IsApproved": 1
-      },{
-        "Id": 2,
-        "PartnerName": "Earth Hour",
-        "OrganizationTypeId": 2,
-        "Address": "2323 tesdf",
-        "PhoneNumber": 1234,
-        "WebsiteURL": "http://sdf",
-        "Latitude": 12.234,
-        "Longitude": 14.1203,
-        "Description": "We save the world.",
-        "IsApproved": 1
+        "Id": "4",
+        "PartnerName": "NamAgape Childrens Home",
+        "OrganizationTypeId": "3",
+        "Address": "65/13 Phan Sao Nam",
+        "PhoneNumber": "84912880656",
+        "WebsiteURL": "",
+        "Latitude": null,
+        "Longtitude": null,
+        "Description": "we help eartn",
+        "IsApproved": "0"
+      },
+      {
+        "Id": "3",
+        "PartnerName": "Unicef VietNam",
+        "OrganizationTypeId": "3",
+        "Address": "65/13 Phan Sao Nam",
+        "PhoneNumber": "84912880656",
+        "WebsiteURL": "",
+        "Latitude": null,
+        "Longtitude": null,
+        "Description": "We save the world",
+        "IsApproved": "0"
       }
     ]
   }
@@ -52,18 +53,18 @@ Order by Register Date: recent first.
   "message": "Success",
   "info": {
     "partner": {
-      "Id": 1,
-      "PartnerName": "Earth Hour",
-      "OrganizationTypeId": 2,
-      "Address": "2323 tesdf",
-      "PhoneNumber": 1234,
-      "WebsiteURL": "http://sdf",
-      "Latitude": 12.234,
-      "Longitude": 14.1203,
-      "Description": "We save the world.",
-      "UserName": "imrhung",
-      "Email": "imrhung@yahoo.com",
-      "IsApproved": 1
+      "Id": "3",
+      "PartnerName": "Unicef VietNam",
+      "OrganizationTypeId": "3",
+      "Address": "65/13 Phan Sao Nam",
+      "PhoneNumber": "84912880656",
+      "WebsiteURL": "",
+      "Latitude": null,
+      "Longtitude": null,
+      "Description": "We save the world",
+      "UserName": "unicef",
+      "IsApproved": "0",
+      "Email": "imrhung@yahoo.com"
     }
   }
 }
