@@ -4,7 +4,7 @@
 
         <h1>Partner Information</h1>
         <p></p>
-
+        
         <div id="alert_placeholder"></div>
         <div class="col-lg-8">
             <div id="partner-info">

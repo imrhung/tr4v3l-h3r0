@@ -129,7 +129,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="description">Description/Mission</label>
   <div class="col-md-4">                     
-    <textarea class="form-control" id="description" name="description" value="<?php echo set_value('description'); ?>" required=""></textarea>
+    <textarea class="form-control" id="description" name="description" required=""><?php echo set_value('description'); ?></textarea>
   </div>
 </div>
 

@@ -168,6 +168,16 @@ class User extends App_Controller {
                 'role' => "organization"
             );
             $this->session->set_userdata($sess_array);
+            
+            /*
+             *  Send mail stuff.
+             * Not in use yet.
+             *
+            $this->sendWaitMail($this->input->post('email'));
+            $this->sendAnnouceAdminMail('nguyenvanhungbkit@gmail.com');
+            /*
+             * End of mail stuff.
+             */
 
             // Redirect to proper page.
             redirect('organization/index');
@@ -184,6 +194,33 @@ class User extends App_Controller {
      * Untill now, this function still run with main process, so that the process may
      * a little bit slow.
      */
+    
+    /*
+     * Mail API to approve user.
+     */
+    public function sendApproveMail(){
+        $approve = $this->input->post("is_approved");
+        $email = $this->input->post('email');
+        
+        // Send mail.
+        $sendState = false;
+        if ($approve === '1'){
+            $sendState = $this->sendSuccessMail($email);
+        } else {
+            $sendState = $this->sendDenyMail($email);
+        }
+        
+        // Return result API
+        $result = array();
+        if ($sendState){ // Send mail successful
+            $result['code'] = 1;
+            $result['message'] = "Success";
+        } else { // Send mail fail
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+        echo json_encode($result);
+    }    
 
     /**
      * Send mail to user announce that they had registered successfully. Now they will until
@@ -203,10 +240,10 @@ class User extends App_Controller {
     /**
      * Send mail to admin announce that there are a new user registered.
      */
-    private function sendAnnouceAdminMail($emailTo) {
+    private function sendAnnouceAdminMail($emailTo ){
         $subject = 'A new NGO registered in Hero for Zero Program';
         $message = 'Hi admin,'
-                . 'There are a new NGO registered. Please go to admin panel (on http://www.travelhero.be ) and approve or deny them.';
+                . 'There are a new NGO registered. Please go to admin panel (on http://www.heroforzero.be ) to approve or deny them.';
         
         // Send mail:
         return $this->simple_mail->sendMail($emailTo, $subject, $message);
@@ -217,7 +254,7 @@ class User extends App_Controller {
      */
     private function sendSuccessMail($emailTo) {
         $subject = 'You had been approved to Hero for Zero program';
-        $message = 'Welcome to "Hero for Zero" program. You can visit page on http://www.travelhero.be';
+        $message = 'Welcome to "Hero for Zero" program. You can visit page on http://www.heroforzero.be';
         
         // Send mail:
         return $this->simple_mail->sendMail($emailTo, $subject, $message);
@@ -226,7 +263,7 @@ class User extends App_Controller {
     /**
      * Send mail to user announce that they have been denied by the admin.
      */
-    public function sendDenyMail() {
+    public function sendDenyMail($emailTo) {
         $subject = 'Hero for Zero program - Please sign up again.';
         $message = 'Some of your information may not correct so we cannot approve your account right now. '
                 . 'Please consider to register again with more detail informaiton. '

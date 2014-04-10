@@ -52,7 +52,7 @@ function loadPartnersTable() {
                         }
                         action = '<a href="' + baseUrl + 'admin/partner/' + partner.Id + '">View</a>';
                         tableData.push([
-                            partner.PartnerName,
+                            '<strong>'+partner.PartnerName+'</strong>',
                             partner.Description,
                             isApproved,
                             action

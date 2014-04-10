@@ -1,6 +1,8 @@
 /**
  * This file load information of one partner
  */
+var email;
+
 function getPartner(partnerId) {
     //var baseUrl = window.location.protocol + "//" + window.location.host + "/";
     var baseUrl = $("#base-url").attr("href");
@@ -29,6 +31,8 @@ function getPartner(partnerId) {
                     partnerInfo += data.info.partner.IsApproved === '1' ? 'Yes': 'No'+'</td></tr>';
                     partnerInfo += '</table>';
                     $('#partner-info').html(partnerInfo);
+                    
+                    email = data.info.partner.Email;
                 } else { // Fail
 
                 }
@@ -91,6 +95,25 @@ function approvePartner(partnerId, state){
             function(data) {
                 console.log(data);
                 if (data.code === 1) { // Successful
+                    successfulAlert('Approve successfully!');
+                } else { // Fail
+
+                }
+            },
+            "json"
+            );
+    
+    // Send mail confirm
+    /* But not in use yet.
+    $.post(
+            baseUrl + "user/sendApproveMail",
+            {
+                email: email,
+                is_approved: state
+            },
+            function(data) {
+                console.log(data);
+                if (data.code === 1) { // Successful
                     
                 } else { // Fail
 
@@ -98,6 +121,7 @@ function approvePartner(partnerId, state){
             },
             "json"
             );
+    */
 }
 
 

@@ -134,7 +134,7 @@ function approveDonation(donationId, state){
             function(data) {
                 console.log(data);
                 if (data.code === 1) { // Successful
-                    
+                    successfulAlert("Approve successfully!");
                 } else { // Fail
 
                 }
