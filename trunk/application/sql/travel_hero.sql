@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2014 at 12:48 PM
+-- Generation Time: Apr 14, 2014 at 06:53 AM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.25
 
@@ -211,6 +211,19 @@ BEGIN
 	END if;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Partner`(Id INT)
+BEGIN
+	SELECT partner.Id, partner.PartnerName, partner.OrganizationTypeId, partner.Address,  partner.PhoneNumber, partner.WebsiteURL, partner.Latitude, partner.Longtitude, partner.Description, userpartner.UserName, partner.IsApproved, user.Email
+		FROM 
+				travel_hero.user,
+				travel_hero.userpartner,
+				travel_hero.partner
+		WHERE 
+				partner.Id = Id
+		AND		partner.Id = userpartner.PartnerId
+		AND 	userpartner.UserId = user.Id;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_PartnerList`(IN currentPage INT, IN pageSize INT)
 BEGIN
 	DECLARE rowNumber INT;
@@ -219,22 +232,18 @@ BEGIN
 	
 	if (pageSize != 0) 
 	then
-		SELECT activity.Id, activity.Title, activity.ActionContent, partner.PartnerName, activity.BonusPoint,  activity.IsApproved, activity.CreateDate
+		SELECT partner.Id, partner.PartnerName, partner.OrganizationTypeId, partner.Address,  partner.PhoneNumber, partner.WebsiteURL, partner.Latitude, partner.Longtitude, partner.Description, partner.IsApproved
 		FROM 
-				travel_hero.activity,
 				travel_hero.partner
-		WHERE 
-				activity.PartnerId = partner.Id
+		order by partner.Id DESC
 		LIMIT  rowNumber, pageSize;
 	
 	else  
-		SELECT activity.Id, activity.Title, activity.ActionContent, partner.PartnerName, activity.BonusPoint,  activity.IsApproved, activity.CreateDate
+		SELECT partner.Id, partner.PartnerName, partner.OrganizationTypeId, partner.Address,  partner.PhoneNumber, partner.WebsiteURL, partner.Latitude, partner.Longtitude, partner.Description, partner.IsApproved
 		FROM 
-				travel_hero.activity,
 				travel_hero.partner
-		WHERE 
-				activity.PartnerId = partner.Id;
-		end if;	
+		order by partner.Id DESC;
+	END if;	
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_QuestCondition`(Id INT)
@@ -844,6 +853,16 @@ BEGIN
 				donation.Id = Id;	
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Update_Partner_IsApproved`(Id int, IsApproved bit)
+BEGIN
+			
+	UPDATE travel_hero.partner
+		   SET 
+				partner.IsApproved = IsApproved
+		   WHERE
+				partner.Id = Id;	
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Update_Quiz`(
 	Id 				int,
 	questCategory 	int,
@@ -1058,6 +1077,25 @@ INSERT INTO `activity` (`Id`, `PartnerId`, `Title`, `Description`, `ActionId`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `animation`
+--
+
+CREATE TABLE IF NOT EXISTS `animation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `time` float NOT NULL,
+  `hero_anim_walking` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `hero_anim_standby` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `monster_anim` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `kid_frame` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `color_R` int(11) NOT NULL,
+  `color_G` int(11) NOT NULL,
+  `color_B` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `app_sessions`
 --
 
@@ -1076,7 +1114,10 @@ CREATE TABLE IF NOT EXISTS `app_sessions` (
 --
 
 INSERT INTO `app_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('8cbe00d1a71cef5f2a8df314d1e0cd8a', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36', 1396867460, 'a:5:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:10:"partner_id";i:6;s:4:"role";s:12:"organization";s:8:"language";s:2:"vi";}');
+('19c4f339bf543a3cd27555717b3511a7', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397446454, 'a:5:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;s:8:"language";s:2:"en";}'),
+('73bf8cf20e48241800106cad26e84024', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397446787, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}'),
+('c07047d314cea7c4f8d4f2a565b41be2', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397447761, 'a:3:{s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}'),
+('e8e322cf4548aee54085d786646af3b5', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397442933, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}');
 
 -- --------------------------------------------------------
 
@@ -1089,7 +1130,7 @@ CREATE TABLE IF NOT EXISTS `choice` (
   `QuestionId` int(11) DEFAULT NULL,
   `Content` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=190 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=198 ;
 
 --
 -- Dumping data for table `choice`
@@ -1115,7 +1156,15 @@ INSERT INTO `choice` (`Id`, `QuestionId`, `Content`) VALUES
 (186, 72, 'Keep it for myself, otherwise other will tease me '),
 (187, 72, 'Report to parents or relatives '),
 (188, 72, 'Report to the local police, teachers or other trus'),
-(189, 72, '2 & 3 correct');
+(189, 72, '2 & 3 correct'),
+(190, 73, '10'),
+(191, 73, '20'),
+(192, 73, '30'),
+(193, 73, '40'),
+(194, 74, '111'),
+(195, 74, '112'),
+(196, 74, '113'),
+(197, 74, '114');
 
 -- --------------------------------------------------------
 
@@ -1140,7 +1189,7 @@ CREATE TABLE IF NOT EXISTS `donation` (
 --
 
 INSERT INTO `donation` (`Id`, `Title`, `Description`, `RequiredPoint`, `MedalId`, `PartnerId`, `IsApproved`, `CreateDate`) VALUES
-(11, 'Donate 65 cents ', 'Donate 65 cents – equivalent to the cost one measles vaccine that can save a child’ life', 100, NULL, 5, NULL, '2014-04-07 10:26:39'),
+(11, 'Donate 65 cents ', 'Donate 65 cents – equivalent to the cost one measles vaccine that can save a child’ life', 100, NULL, 5, b'1', '2014-04-07 10:26:39'),
 (12, 'Donate 50 dollars ', 'Donate 50 dollars – equivalent to the cost of Emergency support for children victims of abused, and exploitation. ', 100, NULL, 5, NULL, '2014-04-07 10:26:56'),
 (13, 'Donate 65 cents ', 'Donate 65 cents – equivalent to the cost one measles vaccine that can save a child’ life', 100, NULL, 6, NULL, '2014-04-07 10:36:05'),
 (14, 'Donate 50 dollars ', 'Donate 50 dollars – equivalent to the cost of Emergency support for children victims of abused, and exploitation. ', 100, NULL, 6, NULL, '2014-04-07 10:36:24'),
@@ -1244,7 +1293,7 @@ CREATE TABLE IF NOT EXISTS `packet` (
   `ImageURL` varchar(140) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PartnerId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `packet`
@@ -1281,10 +1330,8 @@ CREATE TABLE IF NOT EXISTS `partner` (
 --
 
 INSERT INTO `partner` (`Id`, `PartnerName`, `OrganizationTypeId`, `Address`, `PhoneNumber`, `WebsiteURL`, `Latitude`, `Longtitude`, `Description`, `IsApproved`) VALUES
-(3, 'Unicef VietNam', 3, '65/13 Phan Sao Nam', '84912880656', '', NULL, NULL, 'We save the world', b'0'),
-(4, 'NamAgape Childrens Home', 3, '65/13 Phan Sao Nam', '84912880656', '', NULL, NULL, 'we help eartn', b'0'),
-(5, 'UNICEF Viet Nam', 2, 'Sun Wah Tower, Suite 504, 115 Nguyen Hue, District 1, HCMC', '+84 3821-9413', 'http://www.unicef.org/vietnam', NULL, NULL, 'UNICEFs mission in Vietnam is to fulfill the rights of every child in Vietnam, particularly those most disadvantaged or vulnerable.', b'0'),
-(6, 'Agape Childrens Home', 3, '4232 Vermon Ave. S Minneapolis, MN 45234', '01217799140', 'achvn.org', NULL, NULL, 'Agape Childrens Home (ACH) mission is to give hope to the abandoned and impoverished children of Vietnam by providing them with a safe and l', b'0');
+(5, 'UNICEF Viet Nam', 2, 'Sun Wah Tower, Suite 504, 115 Nguyen Hue, District 1, HCMC', '+84 3821-9413', 'http://www.unicef.org/vietnam', NULL, NULL, 'UNICEFs mission in Vietnam is to fulfill the rights of every child in Vietnam, particularly those most disadvantaged or vulnerable.', b'1'),
+(6, 'Agape Childrens Home', 3, '4232 Vermon Ave. S Minneapolis, MN 45234', '01217799140', 'achvn.org', NULL, NULL, 'Agape Childrens Home (ACH) mission is to give hope to the abandoned and impoverished children of Vietnam by providing them with a safe and l', b'1');
 
 -- --------------------------------------------------------
 
@@ -1369,7 +1416,7 @@ CREATE TABLE IF NOT EXISTS `questcondition` (
   `VirtualQuestId` int(11) DEFAULT NULL,
   `ObjectId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=187 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1428,7 +1475,7 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `ImageURL` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `IsApproved` bit(1) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=73 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=75 ;
 
 --
 -- Dumping data for table `quiz`
@@ -1439,7 +1486,9 @@ INSERT INTO `quiz` (`Id`, `CategoryId`, `PartnerId`, `CreatedDate`, `Content`, `
 (69, 5, 5, '2014-04-07 10:15:36', 'What should you do in Vietnam if you see a child in situation where he/she looks like he/she needs help from an aggressor?', 100, 176, '', '', NULL, b'1'),
 (70, 6, 5, '2014-04-07 10:16:13', 'Who is responsible for of the protection of children?', 100, 181, '', '', NULL, NULL),
 (71, 6, 5, '2014-04-07 10:17:11', 'Which group of children do you think is vulnerable to abuse?', 100, 185, '', '', NULL, NULL),
-(72, 6, 5, '2014-04-07 10:17:58', 'If being abused, what should children do?', 100, 189, '', '', NULL, NULL);
+(72, 6, 5, '2014-04-07 10:17:58', 'If being abused, what should children do?', 100, 189, '', '', NULL, NULL),
+(73, 5, 6, '2014-04-09 02:50:18', 'How old are you?', 100, 190, '', '', NULL, b'1'),
+(74, 6, 6, '2014-04-07 10:52:51', 'What is the emergency number', 100, 196, '', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1584,8 +1633,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`Id`, `FullName`, `Email`, `RegisterDate`, `PhoneNumber`, `Address`) VALUES
-(1, NULL, 'imrhung@yahoo.com', '2014-04-02 10:05:53', '84912880656', NULL),
-(2, NULL, 'imrhung@yahoo.com', '2014-04-04 02:56:19', '84912880656', NULL),
 (3, NULL, 'partnershipvietnam@unicef.org', '2014-04-07 09:59:04', '+84 3821-9413', NULL),
 (4, NULL, 'info@achvn.org', '2014-04-07 10:32:43', '01217799140', NULL);
 
@@ -1635,8 +1682,6 @@ CREATE TABLE IF NOT EXISTS `userpartner` (
 --
 
 INSERT INTO `userpartner` (`UserId`, `PartnerId`, `UserName`, `Password`) VALUES
-(1, 3, 'unicef', 'e10adc3949ba59abbe56e057f20f883e'),
-(2, 4, 'username', 'e10adc3949ba59abbe56e057f20f883e'),
 (3, 5, 'unicef_vietnam', 'e10adc3949ba59abbe56e057f20f883e'),
 (4, 6, 'agapevn', 'e10adc3949ba59abbe56e057f20f883e');
 
@@ -1657,8 +1702,6 @@ CREATE TABLE IF NOT EXISTS `userrole` (
 --
 
 INSERT INTO `userrole` (`UserId`, `RoleId`) VALUES
-(1, 3),
-(2, 4),
 (3, 3),
 (4, 4);
 
@@ -1781,7 +1824,7 @@ CREATE TABLE IF NOT EXISTS `virtualquest` (
   `UnlockPoint` int(11) DEFAULT NULL,
   `CreateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
 -- Constraints for dumped tables
