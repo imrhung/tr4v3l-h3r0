@@ -65,15 +65,79 @@ function drawCategoryTable(){
         );
 }
 
-function createPacket(){
+$(function() {
+    // Variable to store your files
+    var files;
+    var baseUrl = $("#base-url").attr("href");
+
+    // Add events
+    $('input[type=file]').on('change', prepareUpload);
+    $('form').on('submit', uploadFiles);
+
+    // Grab the files and set them to our variable
+    function prepareUpload(event) {
+        files = event.target.files;
+    }
+    
+    function uploadFiles(event){
+        // Stop stuff happening.
+        event.stopPropagation();
+        event.preventDefault();
+        
+        // START A LOADING SPINNER HERE
+        
+        // Create a formdata object and add the files.
+        var data = new FormData();
+        $.each(files, function(key, value){
+            data.append('userfile', value);
+        });
+        
+        $.ajax({
+            url: baseUrl + "process/upload",
+            type: 'POST',
+            data: data,
+            cache: false,
+            dataType: 'json',
+            processData: false, // Do not process the file.
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function(data){
+                if (data.code === 1){
+                    // SUCCESS.
+                    // Call function to create packet.
+                    createPacket(event, data);
+                } else {
+                    // Error
+                    console.log('ERRORS: '+ data.error);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                console.log("ERRORS: " + textStatus);
+                
+                // STOP LOADING SPINNER
+            }
+        });
+    }
+    
+    function submitForm(event, data){
+        // Create a jQuery object from the form
+        $form = $(event.target);
+        
+        // Serialize the form data
+        var formData = $form.serialize();
+    }
+    
+});
+
+function createPacket(event, data){
     var baseUrl = $("#base-url").attr("href");
     var title = $('#packet').val();
+    
     // Post to api
     $.post(
             baseUrl + "packet/insertPacket",
             {
                 title: title,
-                image_url:'http://google.com/image',
+                image_url:baseUrl+'assets/uploads/'+data.info.file_name,
                 partner_id:1
             },
             function(data) {
@@ -90,6 +154,7 @@ function createPacket(){
                     
                     // Clear the input
                     $('#packet').val("");
+                    // TODO : clear file also.
                 } else { // Fail
                     
                 }
