@@ -25,9 +25,9 @@
             <div class="row">
                 <br><br>
                 <div class="panel panel-danger">
-                    <div class="panel-heading">Access not authorized</div>
+                    <div class="panel-heading">Please be waiting</div>
                     <div class="panel-body">
-                        You are not authorized access this function. Please contact the website administrator if you need help.
+                        Your registration is still in approving process. You need administrator approve your account before continuing using this application.
                     </div>
 
                 </div>

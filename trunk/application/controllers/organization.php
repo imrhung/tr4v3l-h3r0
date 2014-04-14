@@ -11,11 +11,22 @@ class Organization extends App_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->model('organization_model');
         
         // Check if login
         if (!$this->session->userdata('islogin')){
             redirect('home/unauthorized');
         }
+        
+        // Check user approval.
+        /* Not in use
+        $partnerId = $this->session->userdata('partner_id');
+        if ( ! $this->organization_model->checkUserApprove($partnerId)){
+            redirect('home/not_approved');
+        }
+         */
+        
+        // Set language
         if ($this->session->userdata('language') == 'vi'){
             $this->language = '_vi';
         } else {
