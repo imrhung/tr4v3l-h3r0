@@ -24,5 +24,9 @@ class Home extends App_Controller {
     public function unauthorized(){
         $this->load->view('home/unauthorized');
     }
+    
+    public function not_approved(){
+        $this->load->view('home/not_approved');
+    }
 
 }

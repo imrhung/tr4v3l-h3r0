@@ -155,31 +155,6 @@ class Admin extends App_Controller {
         $this->render_page_admin('home/help');
     }
 
-    public function questform() {
-        $this->current_section = 'quest';
-        $this->assets_js[] = "core.js";
-        $this->render_page_admin('admin/createquest');
-    }
-
-    public function partnerform() {
-        $this->current_section = 'profile';
-        $this->render_page_admin('admin/partnerform');
-    }
-
-    public function questlist() {
-        $this->page_title = 'Quests List';
-        $this->assets_css[] = "simplePagination.css";
-        $this->assets_css[] = "ngo.css";
-        $this->assets_js[] = "vendor/jquery.simplePagination.js";
-        $this->assets_js[] = "vendor/nhpopup.js";
-        $this->current_section = 'quests';
-        $this->render_page_admin('admin/questlist');
-    }
-
-    public function test() {
-        $this->load->view('login/login.inc.php');
-    }
-
     /**
      * Fake API to test. 
      */

@@ -35,7 +35,6 @@
                 <li class="<?php echo ($current_section == 'signout') ? 'active' : '' ?>"><a href="<?php echo site_url('logout') ?>"><i class="fa fa-power-off"></i>  Sign me out</a></li>
                 <li style="padding-left: 50px;">
                     <select id="language" name="language" class="" onchange="var href=this[this.selectedIndex].value; if (href!=''){window.location.href =href};">
-                        <option value="0">Language...</option>
                         <option value="/organization/lang/en">English</option>
                         <option value="/organization/lang/vi">Tiếng Việt</option>
                     </select></li>
