@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2014 at 06:53 AM
+-- Generation Time: Apr 15, 2014 at 05:02 AM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.25
 
@@ -1081,16 +1081,16 @@ INSERT INTO `activity` (`Id`, `PartnerId`, `Title`, `Description`, `ActionId`, `
 --
 
 CREATE TABLE IF NOT EXISTS `animation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `time` float NOT NULL,
-  `hero_anim_walking` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `hero_anim_standby` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `monster_anim` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `kid_frame` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `color_R` int(11) NOT NULL,
-  `color_G` int(11) NOT NULL,
-  `color_B` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `HeroAnimWalking` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `HeroAnimStandby` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `MonsterAnim` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `KidFrame` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `ColorR` int(11) NOT NULL,
+  `ColorG` int(11) NOT NULL,
+  `ColorB` int(11) NOT NULL,
+  PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -1114,9 +1114,10 @@ CREATE TABLE IF NOT EXISTS `app_sessions` (
 --
 
 INSERT INTO `app_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
+('06f12db7cb81ef890cb7001f5ee88666', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397474985, 'a:3:{s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}'),
+('09354106c1b574a427080bd6bf714dfe', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397527496, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}'),
 ('19c4f339bf543a3cd27555717b3511a7', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397446454, 'a:5:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;s:8:"language";s:2:"en";}'),
 ('73bf8cf20e48241800106cad26e84024', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397446787, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}'),
-('c07047d314cea7c4f8d4f2a565b41be2', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397447761, 'a:3:{s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}'),
 ('e8e322cf4548aee54085d786646af3b5', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397442933, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}');
 
 -- --------------------------------------------------------
@@ -1293,7 +1294,7 @@ CREATE TABLE IF NOT EXISTS `packet` (
   `ImageURL` varchar(140) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PartnerId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `packet`
@@ -1780,6 +1781,18 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (2, 1, 2),
 (6, 5, 2),
 (13, 8, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `uservirtualquest`
+--
+
+CREATE TABLE IF NOT EXISTS `uservirtualquest` (
+  `UserId` int(11) NOT NULL,
+  `QuestId` int(11) NOT NULL,
+  `Status` int(11) NOT NULL COMMENT 'Status: 1 = lock, 1 = unlock, 2 = solve'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
