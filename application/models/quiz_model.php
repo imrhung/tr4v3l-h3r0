@@ -80,13 +80,13 @@ class Quiz_Model extends CI_Model {
 	answerC nvarchar(50),
 	answerD nvarchar(50) */
 
-    public function insertQuiz($questCategory, $questQuestion, $CorrectChoiceId,
+    public function insertQuiz($questCategory, $questQuestion, $imageUrl, $CorrectChoiceId,
                                      $sharingInfo, $linkURL, $partnerId, $createDate,
                                         $answerA, $answerB, $answerC, $answerD) {
 
         try {
-            $sql = 'CALL sp_Insert_Quiz_Choice(?, ?, ?, ?, ?, ?, ?, ?, ? ,? , ?)';
-            $result = $this->db->query($sql, array($questCategory, $questQuestion, $CorrectChoiceId,
+            $sql = 'CALL sp_Insert_Quiz_Choice(?, ?, ?, ?, ?, ?, ?, ?, ? ,? , ?, ?)';
+            $result = $this->db->query($sql, array($questCategory, $questQuestion, $imageUrl, $CorrectChoiceId,
                                                          $sharingInfo, $linkURL, $partnerId, $createDate,
                                                              $answerA, $answerB, $answerC, $answerD));
         } catch (Exception $e) {

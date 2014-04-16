@@ -118,14 +118,6 @@ $(function() {
         });
     }
     
-    function submitForm(event, data){
-        // Create a jQuery object from the form
-        $form = $(event.target);
-        
-        // Serialize the form data
-        var formData = $form.serialize();
-    }
-    
 });
 
 function createPacket(event, data){

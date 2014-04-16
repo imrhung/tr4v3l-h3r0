@@ -36,8 +36,12 @@
                         If you're already a member, <a href='<?php echo base_url(); ?>login'> Login </a>
                     </p>
                     <br><br><br><br>
-                    <div class='col-md-12 img-center'>
+                    <div class='row img-center'>
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="alert alert-danger">
                         <?php echo validation_errors(); ?>
+                            </div>
+                            </div>
                     </div>
                     <!-- Text input-->
                     <div class="form-group">
@@ -75,6 +79,22 @@
 
                         </div>
                     </div>
+                    
+                    <!-- File Button --> 
+<div class="form-group">
+  <label class="col-md-4 control-label" for="userfile">Organization's Logo</label>
+  <div class="col-md-4">
+      <input id="userfile" name="userfile" class="input-file" type="file">Keep size to 139x29px
+  </div>
+</div>
+
+<!-- File Button --> 
+<div class="form-group">
+  <label class="col-md-4 control-label" for="userfile">Organization's Icon</label>
+  <div class="col-md-4">
+      <input id="userfile" name="userfile" class="input-file" type="file">Keep size to 78x78px
+  </div>
+</div>
 
                     <!-- Text input-->
                     <div class="form-group">

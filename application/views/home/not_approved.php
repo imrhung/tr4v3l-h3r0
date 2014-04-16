@@ -2,7 +2,7 @@
 <html lang='en'>
     <head>
         <meta name="viewport" content='width=device-width, initial-scale=1'>
-        <title>Welcome</title>
+        <title>Please be patient</title>
 
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" media="screen" />
 
