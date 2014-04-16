@@ -30,10 +30,10 @@ class Organization extends App_Controller {
          */
         
         // Set language
-        if ($this->session->userdata('language') == 'vi'){
-            $this->language = '_vi';
-        } else {
+        if ($this->session->userdata('language') == 'en'){
             $this->language = '';
+        } else {
+            $this->language = '_vi';
         }
         
         // Setup common data for pages:
@@ -91,15 +91,6 @@ class Organization extends App_Controller {
         $this->current_section = 'help';
         $this->assets_css[] = "admin.css";
         $this->render_page('home/help', $this->data);
-    }
-    
-    public function lang($language){
-        $sess_array = array(
-            'language' => $language
-        );
-        $this->session->set_userdata($sess_array);
-        //var_dump($this->session->all_userdata());
-        redirect('organization');
     }
     
     

@@ -3,11 +3,23 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends App_Controller {
+    
+    /*
+     * Language variable: store the language option of site.
+     */
+    public $language;
 
     public function __construct() {
         parent::__construct();
         $this->load->model('user_model');
         $this->load->library('simple_mail');
+        
+        // Set language
+        if ($this->session->userdata('language') == 'en'){
+            $this->language = '';
+        } else {
+            $this->language = '_vi';
+        }
     }
 
     public function index() {
@@ -31,7 +43,7 @@ class User extends App_Controller {
         $this->form_validation->set_rules('password', 'Password', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('user/login');
+            $this->load->view('user'.$this->language.'/login');
         } else {
             // Check username and password.
             $username = $this->input->post('username');
@@ -66,14 +78,17 @@ class User extends App_Controller {
                 }
             } else {
                 // Incorrect login
-                $this->load->view('user/login');
+                $this->load->view('user'.$this->language.'/login');
             }
         }
     }
 
     public function logout() {
         // log the user out
-        $this->session->sess_destroy();
+        //$this->session->sess_destroy();
+        
+        // Just unset 'islogin'. Keep other variable.
+        $this->session->unset_userdata('islogin');
 
         // redirect them back to the login page
         redirect('/user/login');
@@ -145,7 +160,7 @@ class User extends App_Controller {
         $this->form_validation->set_rules($config);
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('user/signup');
+            $this->load->view('user'.$this->language.'/signup');
         } else {
             // Add user
             
