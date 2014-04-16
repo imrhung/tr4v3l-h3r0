@@ -14,8 +14,8 @@ class Process extends App_Controller {
         $config['upload_path'] = './assets/uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size']	= '1000';
-        $config['max_width']  = '1024';
-        $config['max_height']  = '768';
+        $config['max_width']  = '2024';
+        $config['max_height']  = '1768';
 
         //set filename in config for upload
         $config['file_name'] = md5(time());

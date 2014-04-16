@@ -37,7 +37,7 @@
                     <!-- File Button --> 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="userfile">Background</label>
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <input id="userfile" name="userfile" class="input-file" type="file" required="">
                         </div>
                     </div>

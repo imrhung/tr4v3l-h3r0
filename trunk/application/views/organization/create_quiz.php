@@ -7,7 +7,7 @@
 
         
         <div id="alert_placeholder"></div>
-        <form id="quiz-form" class="form-horizontal" onSubmit="createQuiz(); return false;">
+        <form id="quiz-form" class="form-horizontal" onSubmit="return false;">
             <fieldset>
 
                 <!-- Form Name -->
@@ -27,6 +27,14 @@
   <label class="col-md-4 control-label" for="question">Quiz Question</label>
   <div class="col-md-8">                     
     <textarea class="form-control" id="question" name="question" required=""></textarea>
+  </div>
+</div>
+                
+                <!-- File Button --> 
+<div class="form-group">
+  <label class="col-md-4 control-label" for="userfile"></label>
+  <div class="col-md-8">
+    <input id="userfile" name="userfile" class="input-file" type="file"><p id="fileLabel">Choose an image for your question</p>
   </div>
 </div>
 
