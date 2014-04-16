@@ -34,7 +34,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="userfile"></label>
   <div class="col-md-8">
-    <input id="userfile" name="userfile" class="input-file" type="file"><p id="fileLabel">Choose an image for your question</p>
+    <input id="userfile" name="userfile" class="input-file form-control" type="file"><p id="fileLabel">Choose an image for your question</p>
   </div>
 </div>
 

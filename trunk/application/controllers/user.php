@@ -227,7 +227,7 @@ class User extends App_Controller {
                 
         if ($this->upload->do_upload($field)){
             // Upload successful
-            return site_url().'assets/uploads/'.$this->upload->file_name;
+            return '/assets/uploads/'.$this->upload->file_name;
         } else {
             // Upload error
             return false;
