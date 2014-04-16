@@ -93,7 +93,7 @@ $(function() {
         });
         
         $.ajax({
-            url: baseUrl + "process/upload",
+            url: baseUrl + "process/upload_s3",
             type: 'POST',
             data: data,
             cache: false,
@@ -129,7 +129,7 @@ function createPacket(event, data){
             baseUrl + "packet/insertPacket",
             {
                 title: title,
-                image_url:baseUrl+'assets/uploads/'+data.info.file_name,
+                image_url:data.info.file_name,
                 partner_id:1
             },
             function(data) {

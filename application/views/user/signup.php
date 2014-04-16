@@ -93,7 +93,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="logo_image">Organization's Logo</label>
   <div class="col-md-4">
-      <input id="logo_image" name="logo_image" class="input-file" type="file">Keep size to 139x29px
+      <input id="logo_image" name="logo_image" class="input-file form-control" type="file">Keep size to 139x29px
   </div>
 </div>
 
@@ -101,7 +101,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="icon_image">Organization's Icon</label>
   <div class="col-md-4">
-      <input id="icon_image" name="icon_image" class="input-file" type="file">Keep size to 78x78px
+      <input id="icon_image" name="icon_image" class="input-file form-control" type="file">Keep size to 78x78px
   </div>
 </div>
 
