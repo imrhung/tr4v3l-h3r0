@@ -25,6 +25,13 @@ class Partner_Model extends CI_Model {
 
         return $result->row();
     }
+    
+    public function getPartnerTable($id){
+        $sql = "SELECT * FROM partner WHERE Id = ?";
+        $result = $this->db->query($sql, $id);
+        
+        return $result->row();
+    }
 
     /* 	Get partner list function from databases */
 

@@ -8,10 +8,13 @@ class Organization extends App_Controller {
      * Language variable: store the language option of site.
      */
     public $language;
+    
+    private $data = array();
 
     public function __construct() {
         parent::__construct();
         $this->load->model('organization_model');
+        $this->load->model('partner_model');
         
         // Check if login
         if (!$this->session->userdata('islogin')){
@@ -32,13 +35,18 @@ class Organization extends App_Controller {
         } else {
             $this->language = '';
         }
+        
+        // Setup common data for pages:
+        $this->data['partnerId']= $this->session->userdata('partner_id');
+        $partner = $this->partner_model->getPartnerTable($this->data['partnerId']);
+        $this->data['logo_url'] = $partner->{'LogoURL'} ?  $partner->{'LogoURL'}: site_url('assets/img/ngo_logo.jpg');
     }
 
     public function index() {
         $this->page_title = 'Home';
         $this->current_section = 'home';
         $this->assets_css[] = "admin.css";
-        $this->render_page('organization'.$this->language.'/index');
+        $this->render_page('organization'.$this->language.'/index', $this->data);
     }
     
     public function create_activity(){
@@ -49,8 +57,8 @@ class Organization extends App_Controller {
         $this->assets_js[] = 'organization/create_activity.js';
         $this->assets_js[] = 'datepicker/moment.js';
         $this->assets_js[] = 'datepicker/bootstrap-datetimepicker.min.js';
-        $data['partnerId']= $this->session->userdata('partner_id');
-        $this->render_page("organization".$this->language.'/create_activity', $data);
+        $this->data['partnerId']= $this->session->userdata('partner_id');
+        $this->render_page("organization".$this->language.'/create_activity', $this->data);
     }
     
     public function create_donation(){
@@ -58,8 +66,8 @@ class Organization extends App_Controller {
         $this->current_section = 'donation';
         $this->assets_css[] = 'admin.css';
         $this->assets_js[] = 'organization/create_donation.js';
-        $data['partnerId']= $this->session->userdata('partner_id');
-        $this->render_page("organization".$this->language.'/create_donation', $data);
+        $this->data['partnerId']= $this->session->userdata('partner_id');
+        $this->render_page("organization".$this->language.'/create_donation', $this->data);
     }
     
     public function create_quiz(){
@@ -67,22 +75,22 @@ class Organization extends App_Controller {
         $this->current_section = 'quiz';
         $this->assets_css[] = 'admin.css';
         $this->assets_js[] = 'organization/create_quiz.js';
-        $data['partnerId']= $this->session->userdata('partner_id');
-        $this->render_page("organization".$this->language.'/create_quiz', $data);
+        $this->data['partnerId']= $this->session->userdata('partner_id');
+        $this->render_page("organization".$this->language.'/create_quiz', $this->data);
     }
     
      public function under_construction(){
         $this->page_title = 'Under Construction';
         $this->current_section = 'construct';
         $this->assets_css[] = "admin.css";
-        $this->render_page('home/under_construction');
+        $this->render_page('home/under_construction', $this->data);
     }
     
     public function help(){
         $this->page_title = 'Help';
         $this->current_section = 'help';
         $this->assets_css[] = "admin.css";
-        $this->render_page('home/help');
+        $this->render_page('home/help', $this->data);
     }
     
     public function lang($language){

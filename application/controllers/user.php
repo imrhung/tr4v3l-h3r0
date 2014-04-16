@@ -148,6 +148,13 @@ class User extends App_Controller {
             $this->load->view('user/signup');
         } else {
             // Add user
+            
+            /*
+             * Get user image: logo and icon
+             */
+            $logoImage = $this->upload_image('logo_image');
+            $iconImage = $this->upload_image('icon_image');
+            
             $partnerId = $this->user_model->register(
                     $this->input->post('username'), 
                     $this->input->post('password'), 
@@ -158,7 +165,9 @@ class User extends App_Controller {
                     $this->input->post('phone'), 
                     $this->input->post('website'), 
                     $this->input->post('type'), 
-                    $this->input->post('description')
+                    $this->input->post('description'),
+                    $logoImage,
+                    $iconImage
             );
 
             // Store to session
@@ -168,7 +177,7 @@ class User extends App_Controller {
                 'role' => "organization"
             );
             $this->session->set_userdata($sess_array);
-            
+                        
             /*
              *  Send mail stuff.
              * Not in use yet.
@@ -181,6 +190,32 @@ class User extends App_Controller {
 
             // Redirect to proper page.
             redirect('organization/index');
+        }
+    }
+    
+    /*
+     * Upload image to server.
+     * Return: the url of that image.
+     */
+    public function upload_image($field){
+        // Codeigniter config
+        $config['upload_path'] = './assets/uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size']	= '1000';
+        $config['max_width']  = '2024';
+        $config['max_height']  = '1768';
+
+        //set filename in config for upload
+        $config['file_name'] = md5(time());
+        
+        $this->load->library('upload', $config);
+                
+        if ($this->upload->do_upload($field)){
+            // Upload successful
+            return site_url().'assets/uploads/'.$this->upload->file_name;
+        } else {
+            // Upload error
+            return false;
         }
     }
     
