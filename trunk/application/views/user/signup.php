@@ -26,7 +26,7 @@
         <div class="container">
         <div class='content-center'>
 
-            <form class="form-horizontal" method='POST'>
+            <form class="form-horizontal" method='POST' enctype="multipart/form-data">
                 <fieldset>
 
                     <img src='<?php echo base_url(); ?>assets/img/sign_up_logo.png' class='img-responsive img-center' alt='Hero For Zero'>
@@ -38,10 +38,10 @@
                     <br><br><br><br>
                     <div class='row img-center'>
                         <div class="col-md-8 col-md-offset-2">
-                            <div class="alert alert-danger">
+                            <div class="">
                         <?php echo validation_errors(); ?>
                             </div>
-                            </div>
+                        </div>
                     </div>
                     <!-- Text input-->
                     <div class="form-group">
@@ -82,17 +82,17 @@
                     
                     <!-- File Button --> 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="userfile">Organization's Logo</label>
+  <label class="col-md-4 control-label" for="logo_image">Organization's Logo</label>
   <div class="col-md-4">
-      <input id="userfile" name="userfile" class="input-file" type="file">Keep size to 139x29px
+      <input id="logo_image" name="logo_image" class="input-file" type="file">Keep size to 139x29px
   </div>
 </div>
 
 <!-- File Button --> 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="userfile">Organization's Icon</label>
+  <label class="col-md-4 control-label" for="icon_image">Organization's Icon</label>
   <div class="col-md-4">
-      <input id="userfile" name="userfile" class="input-file" type="file">Keep size to 78x78px
+      <input id="icon_image" name="icon_image" class="input-file" type="file">Keep size to 78x78px
   </div>
 </div>
 

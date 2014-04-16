@@ -72,33 +72,35 @@ class User_model extends CI_Model {
      * Register user.
      * Not use AdminName field yet. :)
      */
-    function register($username, $password, $name, $adminName, $email, $address, $phone, $website, $type, $description){
+    function register($username, $password, $name, $adminName, $email, $address, $phone, $website, $type, $description, $logoImage, $iconImage){
         // Save to user table
-        $data = array(
+        $dataUser = array(
             'Email'=> $email,
             'RegisterDate' => date("Y-m-d H:i:s"),
             'PhoneNumber' => $phone
         );
-        $this->db->insert("user", $data);
+        $this->db->insert("user", $dataUser);
         $userId = $this->db->insert_id();
         
         // Save to userRole table: Here default is 4=partner
-         $data = array(
+         $dataRole = array(
             'UserId'=> $userId,
             'RoleId' => 4
         );
-        $this->db->insert("userrole", $data);
+        $this->db->insert("userrole", $dataRole);
         
         // Save to Partner table
-        $data = array(
+        $dataPartner = array(
             'PartnerName'=> $name,
             'OrganizationTypeId' => $type,
             'Description' => $description,
             'Address' => $address,
             'PhoneNumber' => $phone,
             'WebsiteURL' => $website,
+            'LogoURL' => $logoImage,
+            'IconURL' => $iconImage
         );
-        $this->db->insert("partner", $data);
+        $this->db->insert("partner", $dataPartner);
         $partnerId = $this->db->insert_id();
         
         // Save to userpartner table

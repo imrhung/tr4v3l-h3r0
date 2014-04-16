@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="hero-side-nav">
             <ul class="nav navbar-nav side-nav">
                 <li><div class="navbar-pad-left nav-header header-image"><a class="navbar-brand" href="<?php echo site_url('organization/index') ?>">
-                        <input type="image" alt="NGO" src="<?php echo base_url() ?>assets/img/ngo_logo.png"/>
+                        <img src="<?php echo $logo_url ?>" alt="Your logo" width="139" height="29">
                     </a>
                     
                     </div></li>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2014 at 05:02 AM
+-- Generation Time: Apr 16, 2014 at 07:02 AM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.25
 
@@ -543,6 +543,7 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Insert_Quiz`(
 	questCategory 	int,
 	questQuestion	nvarchar(140),
+	ImageURL		nvarchar(200),
 	CorrectChoiceId int,
 	sharingInfo		nvarchar(8000),
 	linkURL	     	nvarchar(200),
@@ -561,7 +562,8 @@ BEGIN
 						CorrectChoiceId,
 						SharingInfo,
 						LearnMoreURL,
-						BonusPoint
+						BonusPoint,
+						ImageURL
 					)
 				VALUES(
 						questCategory,
@@ -571,7 +573,8 @@ BEGIN
 						CorrectChoiceId,
 						sharingInfo,
 						linkURL,
-						100
+						100,
+						ImageURL
 					);
 	
 END$$
@@ -591,6 +594,7 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Insert_Quiz_Choice`(
 	questCategory 	int,
 	questQuestion	nvarchar(140),
+	imageURL		nvarchar(200),
 	correctChoiceId int,
 	sharingInfo		nvarchar(8000),
 	linkURL	     	nvarchar(200),
@@ -629,7 +633,8 @@ BEGIN
 						Content,
 						SharingInfo,
 						LearnMoreURL,
-						BonusPoint
+						BonusPoint,
+						ImageURL
 					)
 				VALUES(
 						questCategory,
@@ -638,7 +643,8 @@ BEGIN
 						questQuestion,
 						sharingInfo,
 						linkURL,
-						100
+						100,
+						imageURL
 					);
 	
 	# Get quiz id insert after
@@ -1115,10 +1121,13 @@ CREATE TABLE IF NOT EXISTS `app_sessions` (
 
 INSERT INTO `app_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
 ('06f12db7cb81ef890cb7001f5ee88666', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397474985, 'a:3:{s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}'),
-('09354106c1b574a427080bd6bf714dfe', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397527496, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}'),
-('19c4f339bf543a3cd27555717b3511a7', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397446454, 'a:5:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;s:8:"language";s:2:"en";}'),
-('73bf8cf20e48241800106cad26e84024', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397446787, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}'),
-('e8e322cf4548aee54085d786646af3b5', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397442933, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}');
+('1544f2a9c710216d50a2e6107c90d1a5', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397551621, ''),
+('2b218147fc55220c137bf0e15b0d8ee2', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397624246, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:10:"partner_id";i:16;s:4:"role";s:12:"organization";}'),
+('51d8d01d3f4571cd31c67da338f33c55', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397552007, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}'),
+('9167c83d0973e4d3d65589651069cab4', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397531485, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}'),
+('9969c604eaa06d7042fa16eecf828cb9', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397551621, 'a:4:{s:9:"user_data";s:0:"";s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}'),
+('acd320f1b6188fbba84fe7cbb14a4a77', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397551621, ''),
+('db9608070501d9417c81c59b44e437a5', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36', 1397621625, 'a:3:{s:7:"islogin";b:1;s:4:"role";s:5:"admin";s:10:"partner_id";i:5;}');
 
 -- --------------------------------------------------------
 
@@ -1131,7 +1140,7 @@ CREATE TABLE IF NOT EXISTS `choice` (
   `QuestionId` int(11) DEFAULT NULL,
   `Content` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=198 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=222 ;
 
 --
 -- Dumping data for table `choice`
@@ -1165,7 +1174,31 @@ INSERT INTO `choice` (`Id`, `QuestionId`, `Content`) VALUES
 (194, 74, '111'),
 (195, 74, '112'),
 (196, 74, '113'),
-(197, 74, '114');
+(197, 74, '114'),
+(198, 75, '2014-04-15 08:18:31'),
+(199, 75, '111'),
+(200, 75, '112'),
+(201, 75, '113'),
+(202, 76, '2014-04-15 08:21:52'),
+(203, 76, '115'),
+(204, 76, ''),
+(205, 76, ''),
+(206, 77, 'Call Police'),
+(207, 77, 'Call 115'),
+(208, 77, 'Leave it'),
+(209, 77, 'Cry'),
+(210, 78, '1'),
+(211, 78, '2'),
+(212, 78, '3'),
+(213, 78, '4'),
+(214, 79, '2'),
+(215, 79, '2'),
+(216, 79, '2'),
+(217, 79, ''),
+(218, 80, 'Everything'),
+(219, 80, 'Some'),
+(220, 80, 'Nope'),
+(221, 80, '');
 
 -- --------------------------------------------------------
 
@@ -1323,16 +1356,18 @@ CREATE TABLE IF NOT EXISTS `partner` (
   `Longtitude` float DEFAULT NULL,
   `Description` varchar(140) COLLATE utf8_unicode_ci DEFAULT NULL,
   `IsApproved` bit(1) NOT NULL DEFAULT b'0',
+  `LogoURL` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `IconURL` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `partner`
 --
 
-INSERT INTO `partner` (`Id`, `PartnerName`, `OrganizationTypeId`, `Address`, `PhoneNumber`, `WebsiteURL`, `Latitude`, `Longtitude`, `Description`, `IsApproved`) VALUES
-(5, 'UNICEF Viet Nam', 2, 'Sun Wah Tower, Suite 504, 115 Nguyen Hue, District 1, HCMC', '+84 3821-9413', 'http://www.unicef.org/vietnam', NULL, NULL, 'UNICEFs mission in Vietnam is to fulfill the rights of every child in Vietnam, particularly those most disadvantaged or vulnerable.', b'1'),
-(6, 'Agape Childrens Home', 3, '4232 Vermon Ave. S Minneapolis, MN 45234', '01217799140', 'achvn.org', NULL, NULL, 'Agape Childrens Home (ACH) mission is to give hope to the abandoned and impoverished children of Vietnam by providing them with a safe and l', b'1');
+INSERT INTO `partner` (`Id`, `PartnerName`, `OrganizationTypeId`, `Address`, `PhoneNumber`, `WebsiteURL`, `Latitude`, `Longtitude`, `Description`, `IsApproved`, `LogoURL`, `IconURL`) VALUES
+(5, 'UNICEF Viet Nam', 2, 'Sun Wah Tower, Suite 504, 115 Nguyen Hue, District 1, HCMC', '+84 3821-9413', 'http://www.unicef.org/vietnam', NULL, NULL, 'UNICEFs mission in Vietnam is to fulfill the rights of every child in Vietnam, particularly those most disadvantaged or vulnerable.', b'1', 'http://www.unicef.org/vietnam/unicef-logo.gif', ''),
+(6, 'Agape Childrens Home', 3, '4232 Vermon Ave. S Minneapolis, MN 45234', '01217799140', 'achvn.org', NULL, NULL, 'Agape Childrens Home (ACH) mission is to give hope to the abandoned and impoverished children of Vietnam by providing them with a safe and l', b'1', '', '');
 
 -- --------------------------------------------------------
 
@@ -1476,7 +1511,7 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `ImageURL` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `IsApproved` bit(1) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=75 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=81 ;
 
 --
 -- Dumping data for table `quiz`
@@ -1489,7 +1524,13 @@ INSERT INTO `quiz` (`Id`, `CategoryId`, `PartnerId`, `CreatedDate`, `Content`, `
 (71, 6, 5, '2014-04-07 10:17:11', 'Which group of children do you think is vulnerable to abuse?', 100, 185, '', '', NULL, NULL),
 (72, 6, 5, '2014-04-07 10:17:58', 'If being abused, what should children do?', 100, 189, '', '', NULL, NULL),
 (73, 5, 6, '2014-04-09 02:50:18', 'How old are you?', 100, 190, '', '', NULL, b'1'),
-(74, 6, 6, '2014-04-07 10:52:51', 'What is the emergency number', 100, 196, '', '', NULL, NULL);
+(74, 6, 6, '2014-04-07 10:52:51', 'What is the emergency number', 100, 196, '', '', NULL, NULL),
+(75, 6, 0, '0000-00-00 00:00:00', 'What is the number of firemen?', 100, 198, '3', '', NULL, NULL),
+(76, 6, 0, '0000-00-00 00:00:00', 'What is ambulance number', 100, 202, '0', '', NULL, NULL),
+(77, 5, 5, '2014-04-15 08:38:11', 'What should you do when you get injured?', 100, 207, '', '', '', NULL),
+(78, 1, 1, '2014-04-15 08:41:59', 'What do you do?', 100, 212, '0', '0', 'https://dl.dropboxusercontent.com/u/64958885/HeroForZero/Image/activity/Compass-Black-icon.png', NULL),
+(79, 0, 5, '2014-04-15 08:44:14', 'adfasd', 100, 215, '', '', 'http://travel.hero/assets/uploads/a7d39678395556cf1308cd0caee7a334.jpg', NULL),
+(80, 6, 5, '2014-04-15 08:58:51', 'What is children right?', 100, 218, '', '', 'http://travel.hero/assets/uploads/9140c2c1b21132bc305e062a030c4b20.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -1501,7 +1542,7 @@ CREATE TABLE IF NOT EXISTS `quizcategory` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `CategoryName` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `quizcategory`
@@ -1511,7 +1552,8 @@ INSERT INTO `quizcategory` (`Id`, `CategoryName`) VALUES
 (5, 'Health services'),
 (6, 'Protection'),
 (7, 'Education'),
-(8, 'Nutritions');
+(8, 'Nutritions'),
+(9, 'No Category');
 
 -- --------------------------------------------------------
 
@@ -1627,7 +1669,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `PhoneNumber` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Address` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `user`
@@ -1635,7 +1677,18 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`Id`, `FullName`, `Email`, `RegisterDate`, `PhoneNumber`, `Address`) VALUES
 (3, NULL, 'partnershipvietnam@unicef.org', '2014-04-07 09:59:04', '+84 3821-9413', NULL),
-(4, NULL, 'info@achvn.org', '2014-04-07 10:32:43', '01217799140', NULL);
+(4, NULL, 'info@achvn.org', '2014-04-07 10:32:43', '01217799140', NULL),
+(5, NULL, 'f@a.c', '2014-04-16 02:59:34', 'f', NULL),
+(6, NULL, 'imrhung@yahoo.com', '2014-04-16 04:21:03', '84912880656', NULL),
+(7, NULL, '0', '2014-04-16 04:22:46', '0', NULL),
+(8, NULL, '0', '2014-04-16 04:22:58', '0', NULL),
+(9, NULL, '0', '2014-04-16 04:23:46', '0', NULL),
+(10, NULL, 'f@a.c', '2014-04-16 04:24:21', 'f', NULL),
+(11, NULL, 'f@a.c', '2014-04-16 04:49:06', 'f', NULL),
+(12, NULL, 'f@a.c', '2014-04-16 04:52:28', 'f', NULL),
+(13, NULL, 'f@a.c', '2014-04-16 04:52:48', 'f', NULL),
+(14, NULL, 'imrhung@yahoo.com', '2014-04-16 04:54:59', '84912880656', NULL),
+(15, NULL, 'imrhung@yahoo.com', '2014-04-16 04:59:29', '84912880656', NULL);
 
 -- --------------------------------------------------------
 
@@ -1676,7 +1729,7 @@ CREATE TABLE IF NOT EXISTS `userpartner` (
   `UserName` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Password` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`UserId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `userpartner`
@@ -1704,7 +1757,18 @@ CREATE TABLE IF NOT EXISTS `userrole` (
 
 INSERT INTO `userrole` (`UserId`, `RoleId`) VALUES
 (3, 3),
-(4, 4);
+(4, 4),
+(5, 4),
+(6, 4),
+(7, 4),
+(8, 4),
+(9, 4),
+(10, 4),
+(11, 4),
+(12, 4),
+(13, 4),
+(14, 4),
+(15, 4);
 
 -- --------------------------------------------------------
 
