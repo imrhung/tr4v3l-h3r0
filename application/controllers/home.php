@@ -28,5 +28,17 @@ class Home extends App_Controller {
     public function not_approved(){
         $this->load->view('home/not_approved');
     }
+    
+    public function lang($language){
+        $sess_array = array(
+            'language' => $language
+        );
+        $this->session->set_userdata($sess_array);
+        //var_dump($this->session->all_userdata());
+        
+        // Get parametter to redirect page
+        $redirectUrl = $this->input->get('redirect');
+        redirect($redirectUrl);
+    }
 
 }

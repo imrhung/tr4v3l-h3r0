@@ -216,12 +216,12 @@ class App_Controller extends CI_Controller
         
         $this->template
             ->set_partial('flash_messages', 'partials/flash_messages')
-            ->set_partial('header', 'partials/header')
+            ->set_partial('header', 'partials/header_vi')
             ->set_partial('footer', 'partials/footer');
         
         /* Check language to load header */
-        if ($this->session->userdata('language') == 'vi'){
-            $this->template->set_partial('header', 'partials/header_vi');
+        if ($this->session->userdata('language') == 'en'){
+            $this->template->set_partial('header', 'partials/header');
         } else {
             
         }
