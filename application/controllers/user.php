@@ -167,8 +167,8 @@ class User extends App_Controller {
             /*
              * Get user image: logo and icon
              */
-            $logoImage = $this->upload_image('logo_image');
-            $iconImage = $this->upload_image('icon_image');
+            $logoImage = $this->upload_s3('logo_image');
+            $iconImage = $this->upload_s3('icon_image');
             
             $partnerId = $this->user_model->register(
                     $this->input->post('username'), 
@@ -231,6 +231,96 @@ class User extends App_Controller {
         } else {
             // Upload error
             return false;
+        }
+    }
+    
+    /*
+     * Upload to http://mytempbucket.s3.amazonaws.com/
+     * Return json file
+     */
+    public function upload_s3($field) {
+
+        //error_reporting(E_ALL);
+        include_once('Upload.php');
+        //print_r(get_declared_classes());
+        // retrieve eventual CLI parameters
+        $cli = (isset($argc) && $argc > 1);
+        if ($cli) {
+            if (isset($argv[1]))
+                $_GET['file'] = $argv[1];
+            if (isset($argv[2]))
+                $_GET['dir'] = $argv[2];
+            if (isset($argv[3]))
+                $_GET['pics'] = $argv[3];
+        }
+
+        // set variables
+        $dir_dest = (isset($_GET['dir']) ? $_GET['dir'] : 'test');
+        $dir_pics = (isset($_GET['pics']) ? $_GET['pics'] : $dir_dest);
+
+        // we have three forms on the test page, so we redirect accordingly
+        if (true) {
+            $handle = new Upload($_FILES[$field]);
+
+            if ($handle->uploaded) {
+                
+                // Keep origin image, no resize. :)
+                $handle->image_resize = false;
+                $handle->image_ratio_y = true;
+                $handle->image_x = 50;
+
+                $handle->Process($dir_dest);
+
+                // we check if everything went OK
+                if ($handle->processed) {
+                    $url = $dir_pics . '/' . $handle->file_dst_name;
+
+                    //$this->load->library('s3_config');
+                    $bucket = "mytempbucket";
+                    if (!class_exists('S3')){
+                        require_once('S3.php');
+                    }
+
+                    //AWS access info
+                    if (!defined('awsAccessKey'))
+                        define('awsAccessKey', 'AKIAJIWOJ6L32GWAUUUQ');
+                    if (!defined('awsSecretKey'))
+                        define('awsSecretKey', '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');
+
+                    $s3 = new S3(awsAccessKey, awsSecretKey);
+                    //$s3->putBucket($bucket, S3::ACL_PUBLIC_READ);
+                    //Rename image name. 
+                    $actual_image_name = time() . ".".$handle->file_src_name_ext;
+                    
+                    // Init result json file:
+                    $result = array();
+                    $result['code'] = -1;
+                    $result['message'] = "";
+                    $result['info'] = array();
+
+                    if ($s3->putObjectFile($url, $bucket, $actual_image_name, S3::ACL_PUBLIC_READ)) {
+                        // Upload successful
+                        $s3file = 'http://' . $bucket . '.s3.amazonaws.com/' . $actual_image_name;
+                        return $s3file;
+                    } else{
+                        // Upload error
+                        return false;
+                    }
+                } else {
+                    // one error occured
+                    // Upload error
+                    return false;
+                }
+
+                // we delete the temporary files
+                $handle->Clean();
+            } else {
+                // if we're here, the upload file failed for some reasons
+                // i.e. the server didn't receive the file
+                return false;
+            }
+        } else {
+            //echo "Something wrong";
         }
     }
     
