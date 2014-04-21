@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Activity extends App_Controller{
 
-	 function __construct() {
+	function __construct() {
         parent::__construct();
         $this->load->library('ion_auth');
         $this->load->library('form_validation');

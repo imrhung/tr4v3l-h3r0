@@ -741,7 +741,7 @@ BEGIN
 	LIMIT rowNumber, pageSize;
 END$$
 
-CREATE DEFINER=`tan_user`@`localhost` PROCEDURE `sp_paginationquest`(IN currentPage INT, IN pageSize INT)
+CREATE DEFINER=`user_hau`@`localhost` PROCEDURE `sp_paginationquest`(IN currentPage INT, IN pageSize INT)
 BEGIN
 	DECLARE rowNumber INT;
 	SET currentPage = currentPage;
