@@ -6,7 +6,7 @@
 -- Generation Time: Apr 16, 2014 at 07:02 AM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.25
-
+SET GLOBAL log_bin_trust_function_creators = 1;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
