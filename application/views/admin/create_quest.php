@@ -6,7 +6,7 @@
         <p>Please select the fields below to create a quest.</p>
 
         <div id="alert_placeholder"></div>
-        <form class="form-horizontal" onSubmit="createQuest(); return false;">
+        <form id="quest-form" class="form-horizontal" onSubmit="createQuest(); return false;">
             <fieldset>
 
                 <!-- Form Name -->

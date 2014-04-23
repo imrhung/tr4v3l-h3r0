@@ -28,6 +28,7 @@
                     <div class="panel-heading">Access not authorized</div>
                     <div class="panel-body">
                         You are not authorized access this function. Please contact the website administrator if you need help.
+                        If you'd already signed up, <a href='<?php echo base_url(); ?>login'> Login </a>
                     </div>
 
                 </div>

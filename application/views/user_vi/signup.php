@@ -47,9 +47,7 @@
                     <br><br><br><br>
                     <div class='row img-center'>
                         <div class="col-md-8 col-md-offset-2">
-                            <div class="">
-                        <?php echo validation_errors(); ?>
-                            </div>
+                            <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
                         </div>
                     </div>
                     <!-- Text input-->

@@ -211,6 +211,7 @@ class User extends App_Controller {
     /*
      * Upload image to server.
      * Return: the url of that image.
+     * TODO : This stuff should lie in model.
      */
     public function upload_image($field){
         // Codeigniter config

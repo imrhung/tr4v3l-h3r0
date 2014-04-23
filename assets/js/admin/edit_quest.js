@@ -39,7 +39,7 @@ function getQuest(questId) {
                                     $('#activity_1').val(condition[i].ObjectId);
                             }
                             selectActivity++;
-                        } else { // Donation
+                        } else if (condition[i].Type == 2){ // Donation
                             switch (selectDonation){
                                 case 0:
                                     $('#donation_1').val(condition[i].ObjectId);
@@ -54,6 +54,8 @@ function getQuest(questId) {
                                     $('#donation_1').val(condition[i].ObjectId);
                             }
                             selectDonation++;
+                        } else { // Quiz category
+                            $('#category').val(condition[i].ObjectId);
                         }
                     }
                     
