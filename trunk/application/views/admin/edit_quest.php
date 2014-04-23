@@ -111,7 +111,7 @@
                     <div class="form-group">
                         <label class="control-label" for="delete"></label>
                         <div class="col-md-12">
-                            <button type="button" id="delete" name="delete" class="btn btn-danger btn-block" onclick="callDeleteQuest(<?php echo $questId ?>)"> Delete Donation</button>
+                            <button type="button" id="delete" name="delete" class="btn btn-danger btn-block" onclick="callDeleteQuest(<?php echo $questId ?>)"> Delete Quest</button>
                         </div>
                     </div>
 

@@ -171,6 +171,9 @@ function createQuest() {
                     //return false;
                     successfulAlert("Your Quest has been created successfully. Do you want to ");
                     //window.location.replace(baseUrl + "organization/create_activity");
+                    
+                    $('#quest-form')[0].reset();
+                    $('#submit').removeAttr("disabled");
                     return false;
                 } else { // Fail
                     bootstrap_alert.warning("Some error occurred, please try again!");

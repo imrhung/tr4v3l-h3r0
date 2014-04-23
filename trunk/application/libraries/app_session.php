@@ -1,7 +1,10 @@
 <?php
-
+/*
+ * Reference from this: 
+ * http://ellislab.com/forums/viewthread/172415/
+ */
 // save as application/libraries/MY_Session
-class MY_Session extends CI_Session {
+class App_Session extends CI_Session {
    /*
     * Do not update an existing session on ajax calls
     *
