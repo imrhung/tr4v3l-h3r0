@@ -37,8 +37,8 @@ class Service extends App_Controller {
 	}
 	
 	public function getPackets() {
-		$pageSize = 3; //$this->input->post('pageSize');
-		$rowIndex = 0; //$this->input->post('pageIndex');
+		$pageSize = $this->input->post('pageSize');
+		$rowIndex = $this->input->post('pageIndex');
 	
 		// Initialization Array
         $result = array();
@@ -261,21 +261,22 @@ class Service extends App_Controller {
 		$facebookId = $this->input->post('facebookId');
 		
 		// Initialization Array
-        $result = array();
-        $result['code'] = -1;
-        $result['message'] = "";
+        //$result;
 		
 		$resultCheck= $this->service_model->insertUserFb($fullName,$email,$phone,$facebookId);
-	
-		if ($resultCheck == 'Success') {
+		//$result = $resultCheck;
+		
+		/*
+		if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
+			$result['info'] = $resultCheck;
         } else {
             $result['code'] = 0;
             $result['message'] = "Fail";
         }
-		
-		echo json_encode($result);
+		*/
+		echo json_encode($resultCheck);
 	}
 	
 	public function spentPointDonation() {

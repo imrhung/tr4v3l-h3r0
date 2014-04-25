@@ -16,34 +16,99 @@ class Service_Model extends CI_Model {
     }
 	
 	public function getPacketsBy($rowIndex, $pageSize) {
-		$arrPacket;
+		$result = array(array());
 		
 		$rowIndex = (int) $rowIndex;
 		$pageSize = (int) $pageSize;
 		
-		$resultPackets = $this->db->query('CALL sp_getPacketsBy(?,?)', array(0, 3));
-		$i = 0;
+		$resultPackets = $this->db->query('CALL sp_getPacketsBy(?,?)', array($rowIndex, $pageSize));
+		
+		$indexPacket = -1;
+		$indexQuest = -1;
+		$indexCondition = -1;
+		
+		$pId = -1;
+		$vId = -1;
+		//$cId = -1;
+		
 		foreach($resultPackets->result_array() as $row) {
-			$arrPacket[$i] = $row;
-			$row['pId']
-			$row['pTitle']
-			$row['pImageURL']
-			$row['vId']
-			$row['vQuestName']
-			$row['vPacketId']
-			$row['vPartnerId']
-			$row['vAnimationId']
-			$row['vUnlockPoint']
-			$row['vCreateDate']
-			$row['cId']
-			$row['cType']
-			$row['cValue']
-			$row['cVirtualQuestId']
-			$row['cObjectId']
 			
-			$i++;
+			if($pId != $row['pId']) {
+				
+				$pId = $row['pId'];
+				$indexPacket++;
+			
+				$result[$indexPacket]['pId'] = $row['pId'];
+				$result[$indexPacket]['pTitle'] = $row['pTitle'];
+				$result[$indexPacket]['pImageURL'] = $row['pImageURL'];
+				
+				$vId = $row['vId'];
+				$indexQuest = 0;
+				
+				$result[$indexPacket]['Quest'][$indexQuest]['vId'] = $row['vId'];
+				$result[$indexPacket]['Quest'][$indexQuest]['vQuestName'] = $row['vQuestName'];
+				$result[$indexPacket]['Quest'][$indexQuest]['vPacketId'] = $row['vPacketId'];
+				$result[$indexPacket]['Quest'][$indexQuest]['vPartnerId'] = $row['vPartnerId'];
+				$result[$indexPacket]['Quest'][$indexQuest]['vAnimationId'] = $row['vAnimationId'];
+				$result[$indexPacket]['Quest'][$indexQuest]['vUnlockPoint'] = $row['vUnlockPoint'];
+				$result[$indexPacket]['Quest'][$indexQuest]['vCreateDate'] = $row['vCreateDate'];
+				
+				$indexCondition = 0;
+				
+				$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cId'] = $row['cId'];
+				$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cType'] = $row['cType'];
+				$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cValue'] = $row['cValue'];
+				$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cVirtualQuestId'] = $row['cVirtualQuestId'];
+				$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cObjectId'] = $row['cObjectId'];
+				
+			} else {
+			
+				if($vId == $row['vId']) {
+				
+					//
+					//Van con condition chua nap
+					// Tang indexCondition len 1
+					$indexCondition++;
+					
+					$vId = $row['vId'];
+					$pId = $row['pId'];
+					
+					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cId'] = $row['cId'];
+					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cType'] = $row['cType'];
+					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cValue'] = $row['cValue'];
+					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cVirtualQuestId'] = $row['cVirtualQuestId'];
+					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cObjectId'] = $row['cObjectId'];
+					
+				} else {
+					
+					// tang indexQuest
+					$indexQuest++;
+					$vId = $row['vId'];
+					$pId = $row['pId'];
+					
+					// nap quest
+					$result[$indexPacket]['Quest'][$indexQuest]['vId'] = $row['vId'];
+					$result[$indexPacket]['Quest'][$indexQuest]['vQuestName'] = $row['vQuestName'];
+					$result[$indexPacket]['Quest'][$indexQuest]['vPacketId'] = $row['vPacketId'];
+					$result[$indexPacket]['Quest'][$indexQuest]['vPartnerId'] = $row['vPartnerId'];
+					$result[$indexPacket]['Quest'][$indexQuest]['vAnimationId'] = $row['vAnimationId'];
+					$result[$indexPacket]['Quest'][$indexQuest]['vUnlockPoint'] = $row['vUnlockPoint'];
+					$result[$indexPacket]['Quest'][$indexQuest]['vCreateDate'] = $row['vCreateDate'];
+					
+					// set lai gia tri moi cho indexCondition
+					$indexCondition = 0;
+					// nap condition
+					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cId'] = $row['cId'];
+					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cType'] = $row['cType'];
+					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cValue'] = $row['cValue'];
+					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cVirtualQuestId'] = $row['cVirtualQuestId'];
+					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cObjectId'] = $row['cObjectId'];
+					
+				}
+			}
 		}
-		return $arrPacket;
+		
+		return $result;
 	}
 	
 	public function getPacketsBy1($rowIndex, $pageSize) {
@@ -52,7 +117,7 @@ class Service_Model extends CI_Model {
 		$rowIndex = (int) $rowIndex;
 		$pageSize = (int) $pageSize;
 		
-		$resultPackets = $this->db->query('SELECT * FROM packet LIMIT ?,?', array(0, 3));
+		$resultPackets = $this->db->query('SELECT * FROM packet LIMIT ?,?', array($rowIndex, $pageSize));
 		$i=0;
 		foreach($resultPackets->result_array() as $row) {
 			$arrPacket[$i] = $row;
@@ -137,9 +202,10 @@ class Service_Model extends CI_Model {
 	
 	public function insertUserFb($fullName,$email,$phone,$facebookId) {
         try {
+			$facebookId = (int) $facebookId;
             $sql = 'CALL sp_insertUserFb(?,?,?,?)';
             $result = $this->db->query($sql, array($fullName,$email,$phone,$facebookId));
-            return 'Success';
+            return $result->row();
         } catch (Exception $e) {
             return $e->getMessage();
         }
