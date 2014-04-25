@@ -31,84 +31,88 @@ class Service_Model extends CI_Model {
 		$vId = -1;
 		//$cId = -1;
 		
-		foreach($resultPackets->result_array() as $row) {
+		if ($resultPackets->num_rows() > 0) {
 			
-			if($pId != $row['pId']) {
+			foreach($resultPackets->result_array() as $row) {
 				
-				$pId = $row['pId'];
-				$indexPacket++;
-			
-				$result[$indexPacket]['pId'] = $row['pId'];
-				$result[$indexPacket]['pTitle'] = $row['pTitle'];
-				$result[$indexPacket]['pImageURL'] = $row['pImageURL'];
+				if($pId != $row['pId']) {
+					
+					$pId = $row['pId'];
+					$indexPacket++;
 				
-				$vId = $row['vId'];
-				$indexQuest = 0;
-				
-				$result[$indexPacket]['Quest'][$indexQuest]['vId'] = $row['vId'];
-				$result[$indexPacket]['Quest'][$indexQuest]['vQuestName'] = $row['vQuestName'];
-				$result[$indexPacket]['Quest'][$indexQuest]['vPacketId'] = $row['vPacketId'];
-				$result[$indexPacket]['Quest'][$indexQuest]['vPartnerId'] = $row['vPartnerId'];
-				$result[$indexPacket]['Quest'][$indexQuest]['vAnimationId'] = $row['vAnimationId'];
-				$result[$indexPacket]['Quest'][$indexQuest]['vUnlockPoint'] = $row['vUnlockPoint'];
-				$result[$indexPacket]['Quest'][$indexQuest]['vCreateDate'] = $row['vCreateDate'];
-				
-				$indexCondition = 0;
-				
-				$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cId'] = $row['cId'];
-				$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cType'] = $row['cType'];
-				$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cValue'] = $row['cValue'];
-				$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cVirtualQuestId'] = $row['cVirtualQuestId'];
-				$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cObjectId'] = $row['cObjectId'];
-				
-			} else {
-			
-				if($vId == $row['vId']) {
-				
-					//
-					//Van con condition chua nap
-					// Tang indexCondition len 1
-					$indexCondition++;
+					$result[$indexPacket]['Id'] = $row['pId'];
+					$result[$indexPacket]['Title'] = $row['pTitle'];
+					$result[$indexPacket]['ImageURL'] = $row['pImageURL'];
 					
 					$vId = $row['vId'];
-					$pId = $row['pId'];
+					$indexQuest = 0;
 					
-					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cId'] = $row['cId'];
-					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cType'] = $row['cType'];
-					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cValue'] = $row['cValue'];
-					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cVirtualQuestId'] = $row['cVirtualQuestId'];
-					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cObjectId'] = $row['cObjectId'];
+					$result[$indexPacket]['Quests'][$indexQuest]['Id'] = $row['vId'];
+					$result[$indexPacket]['Quests'][$indexQuest]['vQuestName'] = $row['vQuestName'];
+					$result[$indexPacket]['Quests'][$indexQuest]['vPacketId'] = $row['vPacketId'];
+					$result[$indexPacket]['Quests'][$indexQuest]['vPartnerId'] = $row['vPartnerId'];
+					$result[$indexPacket]['Quests'][$indexQuest]['vAnimationId'] = $row['vAnimationId'];
+					$result[$indexPacket]['Quests'][$indexQuest]['UnlockPoint'] = $row['vUnlockPoint'];
+					$result[$indexPacket]['Quests'][$indexQuest]['vCreateDate'] = $row['vCreateDate'];
+					
+					$indexCondition = 0;
+					
+					$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Id'] = $row['cId'];
+					$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Type'] = $row['cType'];
+					$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Value'] = $row['cValue'];
+					$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['cVirtualQuestId'] = $row['cVirtualQuestId'];
+					$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['ObjectId'] = $row['cObjectId'];
 					
 				} else {
+				
+					if($vId == $row['vId']) {
 					
-					// tang indexQuest
-					$indexQuest++;
-					$vId = $row['vId'];
-					$pId = $row['pId'];
-					
-					// nap quest
-					$result[$indexPacket]['Quest'][$indexQuest]['vId'] = $row['vId'];
-					$result[$indexPacket]['Quest'][$indexQuest]['vQuestName'] = $row['vQuestName'];
-					$result[$indexPacket]['Quest'][$indexQuest]['vPacketId'] = $row['vPacketId'];
-					$result[$indexPacket]['Quest'][$indexQuest]['vPartnerId'] = $row['vPartnerId'];
-					$result[$indexPacket]['Quest'][$indexQuest]['vAnimationId'] = $row['vAnimationId'];
-					$result[$indexPacket]['Quest'][$indexQuest]['vUnlockPoint'] = $row['vUnlockPoint'];
-					$result[$indexPacket]['Quest'][$indexQuest]['vCreateDate'] = $row['vCreateDate'];
-					
-					// set lai gia tri moi cho indexCondition
-					$indexCondition = 0;
-					// nap condition
-					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cId'] = $row['cId'];
-					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cType'] = $row['cType'];
-					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cValue'] = $row['cValue'];
-					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cVirtualQuestId'] = $row['cVirtualQuestId'];
-					$result[$indexPacket]['Quest'][$indexQuest]['Condition'][$indexCondition]['cObjectId'] = $row['cObjectId'];
-					
+						//
+						//Van con condition chua nap
+						// Tang indexCondition len 1
+						$indexCondition++;
+						
+						$vId = $row['vId'];
+						$pId = $row['pId'];
+						
+						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Id'] = $row['cId'];
+						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Type'] = $row['cType'];
+						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Value'] = $row['cValue'];
+						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['cVirtualQuestId'] = $row['cVirtualQuestId'];
+						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['ObjectId'] = $row['cObjectId'];
+						
+					} else {
+						
+						// tang indexQuest
+						$indexQuest++;
+						$vId = $row['vId'];
+						$pId = $row['pId'];
+						
+						// nap quest
+						$result[$indexPacket]['Quests'][$indexQuest]['Id'] = $row['vId'];
+						$result[$indexPacket]['Quests'][$indexQuest]['vQuestName'] = $row['vQuestName'];
+						$result[$indexPacket]['Quests'][$indexQuest]['vPacketId'] = $row['vPacketId'];
+						$result[$indexPacket]['Quests'][$indexQuest]['vPartnerId'] = $row['vPartnerId'];
+						$result[$indexPacket]['Quests'][$indexQuest]['vAnimationId'] = $row['vAnimationId'];
+						$result[$indexPacket]['Quests'][$indexQuest]['UnlockPoint'] = $row['vUnlockPoint'];
+						$result[$indexPacket]['Quests'][$indexQuest]['vCreateDate'] = $row['vCreateDate'];
+						
+						// set lai gia tri moi cho indexCondition
+						$indexCondition = 0;
+						// nap condition
+						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Id'] = $row['cId'];
+						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Type'] = $row['cType'];
+						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Value'] = $row['cValue'];
+						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['cVirtualQuestId'] = $row['cVirtualQuestId'];
+						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['ObjectId'] = $row['cObjectId'];
+						
+					}
 				}
 			}
-		}
-		
-		return $result;
+			
+			return $result;
+		} else
+			return array();
 	}
 	
 	public function getPacketsBy1($rowIndex, $pageSize) {
@@ -199,16 +203,88 @@ class Service_Model extends CI_Model {
             return $e->getMessage();
         }
     }
-	
 	public function insertUserFb($fullName,$email,$phone,$facebookId) {
-        try {
-			$facebookId = (int) $facebookId;
-            $sql = 'CALL sp_insertUserFb(?,?,?,?)';
-            $result = $this->db->query($sql, array($fullName,$email,$phone,$facebookId));
-            return $result->row();
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+		
+		$result = array();
+		
+		$facebookId = (int) $facebookId;
+		
+		$resultPackets = $this->db->query('CALL sp_insertUserFb(?,?,?,?)', array($fullName,$email,$phone,$facebookId));
+		
+		$index = -1;
+		$indexQuest = -1;
+		$indexCondition = -1;
+		
+		$userId = -1;
+		$vId = -1;
+		$cId = -1;
+		
+		foreach($resultPackets->result_array() as $row) {
+			if ($userId == $row['uUserId']) {
+			
+				if ($vId != $row['vId']) {
+					$vId = $row['vId'];
+					$indexQuest++;
+					
+					$result[0]['quests'][$indexQuest]['id'] = $row['vId'];
+					$result[0]['quests'][$indexQuest]['questName'] = $row['vQuestName'];
+					$result[0]['quests'][$indexQuest]['packetId'] = $row['vPacketId'];
+					$result[0]['quests'][$indexQuest]['partnerId'] = $row['vPartnerId'];
+					$result[0]['quests'][$indexQuest]['animationId'] = $row['vAnimationId'];
+					$result[0]['quests'][$indexQuest]['unlockPoint'] = $row['vUnlockPoint'];
+					$result[0]['quests'][$indexQuest]['createDate'] = $row['vCreateDate'];
+					$result[0]['quests'][$indexQuest]['status'] = $row['qStatus'];
+					
+					$indexCondition = 0;
+				
+					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['id'] = $row['cId'];
+					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['type'] = $row['cType'];
+					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['value'] = $row['cValue'];
+					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['virtualQuestId'] = $row['cVirtualQuestId'];
+					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['objectId'] = $row['cObjectId'];
+				} else {
+					$vId = $row['vId'];
+					$indexCondition++;
+				
+					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['id'] = $row['cId'];
+					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['type'] = $row['cType'];
+					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['value'] = $row['cValue'];
+					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['virtualQuestId'] = $row['cVirtualQuestId'];
+					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['objectId'] = $row['cObjectId'];
+				}
+				
+			} else {
+				$userId = $row['uUserId'];
+				
+				$result[0]['code'] = $row['code'];
+				$result[0]['message'] = $row['message'];
+				$result[0]['userId'] = $row['uUserId'];
+				$result[0]['facebookId'] = $row['uFacebookId'];
+				$result[0]['points'] = $row['uPoints'];
+				$result[0]['currentLv'] = $row['uCurrentLevel'];
+				
+				$vId = $row['vId'];
+				$indexQuest = 0;
+				
+				$result[0]['quests'][$indexQuest]['id'] = $row['vId'];
+				$result[0]['quests'][$indexQuest]['questName'] = $row['vQuestName'];
+				$result[0]['quests'][$indexQuest]['packetId'] = $row['vPacketId'];
+				$result[0]['quests'][$indexQuest]['partnerId'] = $row['vPartnerId'];
+				$result[0]['quests'][$indexQuest]['animationId'] = $row['vAnimationId'];
+				$result[0]['quests'][$indexQuest]['unlockPoint'] = $row['vUnlockPoint'];
+				$result[0]['quests'][$indexQuest]['createDate'] = $row['vCreateDate'];
+				$result[0]['quests'][$indexQuest]['status'] = $row['qStatus'];
+				
+				$indexCondition = 0;
+				
+				$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['id'] = $row['cId'];
+				$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['type'] = $row['cType'];
+				$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['value'] = $row['cValue'];
+				$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['virtualQuestId'] = $row['cVirtualQuestId'];
+				$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['objectId'] = $row['cObjectId'];
+			}
+		}
+		
+		return $result;
     }
-	
 }

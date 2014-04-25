@@ -77,26 +77,47 @@ BEGIN
 END$$
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertUserFb`(IN iFullName VARCHAR(100),IN iEmail VARCHAR(100), IN iPhone VARCHAR(15), IN iFacebookId INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertUserFb`(IN iFullName VARCHAR(100),IN iEmail VARCHAR(100), IN iPhone VARCHAR(45), IN iFacebookId INT)
 BEGIN
+	DECLARE userId INT;
 
-	# Parameter for main Store Proceduce
-	declare userId int;
-	
-	DECLARE exit handler for sqlexception
 	BEGIN
 		-- ERROR
 		ROLLBACK;
 	END;
 
-	DECLARE exit handler for sqlwarning
 	BEGIN
 		-- WARNING
 		ROLLBACK;
 	END;
 	
 	IF EXISTS(SELECT * FROM userapplication WHERE FacebookId = iFacebookId) THEN
-		 SELECT '0' as `code`, userapplication.* FROM user WHERE facebook_id = iFacebookId;
+		SELECT '0' as `code`, 'User is Exist' as 'message',
+			u.UserId AS uUserId,
+			u.FacebookId AS uFacebookId,
+			u.Points AS uPoints,
+			u.CurrentLevel AS uCurrentLevel,
+			v.Id AS vId,
+			v.QuestName AS vQuestName,
+			v.PacketId AS vPacketId,
+			v.QuestName AS vQuestName,
+			v.PacketId AS vPacketId,
+			v.PartnerId AS vPartnerId,
+			v.AnimationId AS vAnimationId,
+			v.UnlockPoint AS vUnlockPoint,
+			v.CreateDate AS vCreateDate,
+			c.Id AS cId,
+			c.Type AS cType,
+			c.Value AS cValue,
+			c.VirtualQuestId AS cVirtualQuestId,
+			c.ObjectId AS cObjectId
+
+		FROM userapplication u
+		JOIN uservirtualquest q ON u.UserId = q.UserId
+		JOIN virtualquest v ON q.QuestId = v.Id
+		JOIN questcondition c ON c.VirtualQuestId = v.Id
+		WHERE FacebookId = iFacebookId;
+
 	ELSE
 		START TRANSACTION;
 			
@@ -104,19 +125,41 @@ BEGIN
 		
 			set @userId = (SELECT LAST_INSERT_ID());
 			
-			INSERT INTO userapplication(UserId, FacebookId, Points, CurrentLevel) VALUES(userId, iFacebookId, 0, 0);
+			INSERT INTO userapplication(UserId, FacebookId, Points, CurrentLevel) VALUES(@userId, iFacebookId, 0, 0);
 			
 			INSERT INTO uservirtualquest(UserId, QuestId, Status) VALUES (@userId, (SELECT Id FROM virtualquest LIMIT 1), 1);
 			
-			SELECT *
-			FROM virtualquest 
-			JOIN (SELECT QuestId FROM uservirtualquest WHERE UserId = @userId) ids ON Id = ids.QuestId
-			JOIN uservirtualquest 
-			ON uservirtualquest.QuestId = virtualquest.Id;
-			
+			SELECT '1' as `code`, 'Regist successful' as 'message', 
+				u.UserId AS uUserId,
+				u.FacebookId AS uFacebookId,
+				u.Points AS uPoints,
+				u.CurrentLevel AS uCurrentLevel,
+				v.Id AS vId,
+				v.QuestName AS vQuestName,
+				v.PacketId AS vPacketId,
+				v.QuestName AS vQuestName,
+				v.PacketId AS vPacketId,
+				v.PartnerId AS vPartnerId,
+				v.AnimationId AS vAnimationId,
+				v.UnlockPoint AS vUnlockPoint,
+				v.CreateDate AS vCreateDate,
+				c.Id AS cId,
+				c.Type AS cType,
+				c.Value AS cValue,
+				c.VirtualQuestId AS cVirtualQuestId,
+				c.ObjectId AS cObjectId
+
+			FROM userapplication u
+			JOIN uservirtualquest q ON u.UserId = q.UserId
+			JOIN virtualquest v ON q.QuestId = v.Id
+			JOIN questcondition c ON c.VirtualQuestId = v.Id
+			WHERE u.UserId = @userId;
+
 		COMMIT;
+			
 	END IF;
 END$$
+DELIMITER ;
 
 
 
