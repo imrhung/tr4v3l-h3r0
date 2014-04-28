@@ -17,36 +17,36 @@ class Service_Model_2 extends CI_Model {
     }
 
     /*
-    public function getPacketsBy($rowIndex, $pageSize) {
-        $arrPacket;
+      public function getPacketsBy($rowIndex, $pageSize) {
+      $arrPacket;
 
-        $rowIndex = (int) $rowIndex;
-        $pageSize = (int) $pageSize;
+      $rowIndex = (int) $rowIndex;
+      $pageSize = (int) $pageSize;
 
-        $resultPackets = $this->db->query('CALL sp_getPacketsBy(?,?)', array(0, 3));
-        $i = 0;
-        foreach ($resultPackets->result_array() as $row) {
-            $arrPacket[$i] = $row;
-            $row['pId']
-            $row['pTitle']
-            $row['pImageURL']
-            $row['vId']
-            $row['vQuestName']
-            $row['vPacketId']
-            $row['vPartnerId']
-            $row['vAnimationId']
-            $row['vUnlockPoint']
-            $row['vCreateDate']
-            $row['cId']
-            $row['cType']
-            $row['cValue']
-            $row['cVirtualQuestId']
-            $row['cObjectId']
+      $resultPackets = $this->db->query('CALL sp_getPacketsBy(?,?)', array(0, 3));
+      $i = 0;
+      foreach ($resultPackets->result_array() as $row) {
+      $arrPacket[$i] = $row;
+      $row['pId']
+      $row['pTitle']
+      $row['pImageURL']
+      $row['vId']
+      $row['vQuestName']
+      $row['vPacketId']
+      $row['vPartnerId']
+      $row['vAnimationId']
+      $row['vUnlockPoint']
+      $row['vCreateDate']
+      $row['cId']
+      $row['cType']
+      $row['cValue']
+      $row['cVirtualQuestId']
+      $row['cObjectId']
 
-            $i++;
-        }
-        return $arrPacket;
-    }
+      $i++;
+      }
+      return $arrPacket;
+      }
      * 
      */
 
@@ -93,8 +93,6 @@ class Service_Model_2 extends CI_Model {
 
         return $result->row();
     }
-
-   
 
     public function getUserAwardsBy($id) {
         $sql = 'CALL sp_getUserAwardsBy(?)';
@@ -143,46 +141,54 @@ class Service_Model_2 extends CI_Model {
             return $e->getMessage();
         }
     }
+
     /*
      * Services of Hung
      */
-     public function getLeaderBoard($pageNumber, $pageSize, $fbidString) {
+
+    public function getLeaderBoard($pageNumber, $pageSize, $fbidString) {
         $sql = 'CALL `travel_hero`.`sp_Get_Leaderboard`(?, ?, ?);';
         $result = $this->db->query($sql, array((int) $pageNumber, (int) $pageSize, $fbidString));
 
         return $result->result();
     }
     
-    public function getVirtualQuestTable($questId){
+    public function getUserMedal($pageNumber, $pageSize, $userId) {
+        $sql = 'CALL `travel_hero`.`sp_Get_UserMedal`(?,?,?);';
+        $result = $this->db->query($sql, array((int) $pageNumber, (int) $pageSize, (int) $userId));
+
+        return $result->result();
+    }
+
+    public function getVirtualQuestTable($questId) {
         $sql = "SELECT * FROM virtualquest WHERE virtualquest.Id = $questId";
         $result = $this->db->query($sql);
-        
-        return $result->row();
-    }
-    
-    public function getAnimation($animationId){
-        $sql = 'CALL `travel_hero`.`sp_Get_Animation`(?)';
-        $result = $this->db->query($sql, array((int)$animationId));
 
         return $result->row();
     }
-    
-    public function getQuizChoiceList($pageNumber, $pageSize, $quizCate){
+
+    public function getAnimation($animationId) {
+        $sql = 'CALL `travel_hero`.`sp_Get_Animation`(?)';
+        $result = $this->db->query($sql, array((int) $animationId));
+
+        return $result->row();
+    }
+
+    public function getQuizChoiceList($pageNumber, $pageSize, $quizCate) {
         // Get list of quiz first.
         $sql = 'CALL `travel_hero`.`sp_Get_QuizList_ByCategory`(?, ?, ?)';
-        $result = $this->db->query($sql, array((int)$pageNumber, (int)$pageSize, (int) $quizCate));
+        $result = $this->db->query($sql, array((int) $pageNumber, (int) $pageSize, (int) $quizCate));
         $quizList = $result->result();
-        
+
         // TODO : how to get exactly $pageSize quiz? :)
-        
         // Init return array:
         $quizChoiceArray = array();
-        
+
         // Then with each quiz/question, we extract needed data:
-        foreach ($quizList as $quiz){
+        foreach ($quizList as $quiz) {
             //$quizChoice = array();
             $choice = array();
-            
+
             // Question information
             $quizChoice = array(
                 'id' => $quiz->Id,
@@ -191,7 +197,7 @@ class Service_Model_2 extends CI_Model {
                 'correct_choice_id' => $quiz->CorrectChoiceId,
                 'learn_more_url' => $quiz->LearnMoreURL,
                 'point' => $quiz->BonusPoint,
-                'sharing_info' => $quiz->SharingInfo                
+                'sharing_info' => $quiz->SharingInfo
             );
             // Make choices list. 
             // And determine "choice_type": long or short
@@ -199,37 +205,38 @@ class Service_Model_2 extends CI_Model {
             mysqli_next_result($this->db->conn_id);
             $sql2 = 'CALL sp_Get_Quiz(?)';
             $result2 = $this->db->query($sql2, array((int) $quiz->Id));
-            foreach ($result2->result() as $row){
+            foreach ($result2->result() as $row) {
                 $choice[] = array(
                     'id' => $row->Id,
                     'content' => $row->answer
                 );
-                if (strlen($row->answer) > $maxChoiceLength){
+                if (strlen($row->answer) > $maxChoiceLength) {
                     $maxChoiceLength = strlen($row->answer);
                 }
             }
-            
-            if ($maxChoiceLength > 17){
+
+            if ($maxChoiceLength > 17) {
                 $quizChoice['choice_type'] = 0;
             } else {
                 $quizChoice['choice_type'] = 1;
             }
             $quizChoice['choice'] = $choice;
-            
+
             // Add to quiz list:
             $quizChoiceArray[] = $quizChoice;
         }
         return $quizChoiceArray;
     }
-    
+
     /*
      * Return integer value of Quiz category
      */
-    public function getQuizCategoryInQuest($questId){
+
+    public function getQuizCategoryInQuest($questId) {
         mysqli_next_result($this->db->conn_id);
         $sql = "SELECT questcondition.ObjectId FROM travel_hero.questcondition WHERE VirtualQuestId = $questId AND Type = 0";
         $result = $this->db->query($sql);
-        
+
         return (int) $result->row()->ObjectId;
     }
 

@@ -187,6 +187,60 @@ END$$
 
 DELIMITER ;
 
+USE `travel_hero`;
+DROP procedure IF EXISTS `sp_Get_UserMedal`;
+
+DELIMITER $$
+USE `travel_hero`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_UserMedal`(IN currentPage INT, IN pageSize INT, IN userId INT)
+BEGIN
+	DECLARE rowNumber INT;
+	
+	SET @pageSize = pageSize;
+	SET @rowNumber = currentPage * pageSize;
+	SET @userId = userId;
+	
+	if (pageSize != 0) 
+	then	
+		PREPARE STMT FROM
+		"SELECT usermedal.Id, usermedal.MedalId, medal.Name, medal.ImageURL FROM usermedal, medal
+		WHERE usermedal.UserId = ? AND usermedal.MedalId = medal.Id
+		ORDER BY usermedal.Id DESC
+		LIMIT ?,?";
+		EXECUTE STMT USING @userId, @rowNumber, @pageSize;
+		DEALLOCATE PREPARE STMT;
+	else
+		SELECT usermedal.Id, usermedal.MedalId, medal.Name, medal.ImageURL FROM usermedal, medal
+		WHERE usermedal.UserId = @userId AND usermedal.MedalId = medal.Id
+		ORDER BY usermedal.Id DESC;
+	END if;
+END$$
+
+DELIMITER ;
+
+
+
+
+USE `travel_hero`;
+DROP procedure IF EXISTS `sp_Delete_Partner`;
+
+DELIMITER $$
+USE `travel_hero`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Delete_Partner`(Id INT)
+BEGIN
+	SET @Id = Id;
+
+	-- Delete in 4 table:
+	DELETE userrole, user, userpartner, partner FROM userrole inner join userpartner inner join user inner join partner
+			WHERE userrole.UserId = userpartner.UserId
+			AND userpartner.UserId = user.Id
+			AND partner.Id = @Id
+			and userpartner.PartnerId = @Id ;
+END$$
+
+DELIMITER ;
+
+
 
 
 

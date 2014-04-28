@@ -57,6 +57,7 @@ class Process extends App_Controller {
     public function upload_s3() {
 
         //error_reporting(E_ALL);
+        error_reporting(E_ERROR | E_PARSE);
         include('Upload.php');
 
         // retrieve eventual CLI parameters
@@ -77,7 +78,7 @@ class Process extends App_Controller {
         // we have three forms on the test page, so we redirect accordingly
         if (true) {
             $handle = new Upload($_FILES['userfile']);
-
+            
             if ($handle->uploaded) {
                 
                 // Keep origin image, no resize. :)
@@ -126,12 +127,14 @@ class Process extends App_Controller {
                         // Upload error
                         $result['code'] = 0;
                         $result['message'] = "Fail";
+                        $result['info'] = $handle->error;
                     }
                 } else {
                     // one error occured
                     // Upload error
                     $result['code'] = 0;
                     $result['message'] = "Fail";
+                    $result['info']= $handle->error;
                 }
 
                 // we delete the temporary files
