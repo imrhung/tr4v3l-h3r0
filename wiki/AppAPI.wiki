@@ -16,26 +16,28 @@ Request: to : service/getLeaderBoard
 }
 	}}}
 Response:
-{{
+{{{
 {
+  "code": 1,
+  "message": "Success",
   "leaderboard": [
     {
-      "id": 1,
-      "name": "Manchester United",
-      "mark": 3629,
-      "facebook_id": "100000334657072",
-      "current_level": 5
+      "id": 8,
+      "name": "Luan",
+      "mark": 160,
+      "facebook_id": "100000561357440",
+      "current_level": 3
     },
     {
-      "id": 2,
-      "name": "Arsenal",
-      "mark": 2000,
-      "facebook_id": "1498934909",
-      "current_level": 5
+      "id": 8,
+      "name": "Luan",
+      "mark": 160,
+      "facebook_id": "100000561357440",
+      "current_level": 3
     }
   ]
 }
-}}
+}}}
 
 =Get Quiz List =
 Request: to : /service/getQuizz
