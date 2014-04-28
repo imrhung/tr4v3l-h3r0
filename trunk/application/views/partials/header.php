@@ -1,4 +1,4 @@
-<div class="navbar navbar-nav" role="navigation">
+<div class="navbar-nav" role="navigation">
     <div class="container">
         <button type="button" class="navbar-toggle btn-primary" id="navbar-btn" data-toggle="collapse" data-target="#hero-side-nav">
         <span class="sr-only">Toggle navigation</span>

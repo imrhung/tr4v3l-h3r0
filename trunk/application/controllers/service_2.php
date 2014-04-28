@@ -109,6 +109,32 @@ class Service_2 extends App_Controller {
         echo json_encode($result);
     }
     
+    public function getUserMedal() {
+        
+        // Get request params:
+        $pageNumber = $this->input->post('page_number');
+        $pageSize = $this->input->post('page_size');
+        $userId = $this->input->post('user_id');
+        
+        // Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+
+        // Get data
+        $resultCheck = $this->service_model_2->getUserMedal($pageNumber, $pageSize, $userId);
+        
+        if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['user_medal'] = $resultCheck;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+        echo json_encode($result);
+    }
+    
     /*
      * End of Hung's code
      */
