@@ -207,7 +207,7 @@ class Service_Model extends CI_Model {
 		
 		$result = array();
 		
-		$facebookId = (int) $facebookId;
+		//$facebookId = (int) $facebookId;
 		
 		$resultPackets = $this->db->query('CALL sp_insertUserFb(?,?,?,?)', array($fullName,$email,$phone,$facebookId));
 		

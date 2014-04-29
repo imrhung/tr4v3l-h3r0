@@ -254,29 +254,18 @@ class Service extends App_Controller {
 	}
 	
 	public function registerUserFb() {
-		// Input data
 		$fullName = $this->input->post('fullName');
 		$email = $this->input->post('email');
 		$phone = $this->input->post('phone');
 		$facebookId = $this->input->post('facebookId');
 		
-		// Initialization Array
-        //$result;
+		$resultCheck = $this->service_model->insertUserFb($fullName,$email,$phone,$facebookId);
 		
-		$resultCheck= $this->service_model->insertUserFb($fullName,$email,$phone,$facebookId);
-		//$result = $resultCheck;
-		
-		/*
-		if ($resultCheck) {
-            $result['code'] = 1;
-            $result['message'] = "Success";
-			$result['info'] = $resultCheck;
-        } else {
-            $result['code'] = 0;
-            $result['message'] = "Fail";
-        }
-		*/
-		echo json_encode($resultCheck);
+		$result['code'] = 1;
+		$result['message'] = "Success";
+		$result['info'] = $resultCheck;
+        
+		echo json_encode($result);
 	}
 	
 	public function spentPointDonation() {
