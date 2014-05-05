@@ -240,6 +240,36 @@ END$$
 
 DELIMITER ;
 
+USE `travel_hero`;
+DROP procedure IF EXISTS `sp_Get_QuizList_Random`;
+
+DELIMITER $$
+USE `travel_hero`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_QuizList_Random`(IN pageSize INT)
+BEGIN
+	
+	SET @pageSize = pageSize;
+	
+	if (pageSize != 0) 
+	then	
+		PREPARE STMT FROM
+		"SELECT *   
+		FROM 
+			 travel_hero.quiz
+		order by rand()
+		LIMIT ?";
+		EXECUTE STMT USING @pageSize;
+		DEALLOCATE PREPARE STMT;
+	 else
+		SELECT *   
+		FROM 
+			 travel_hero.quiz
+		order by RAND();
+	end if;
+END$$
+
+DELIMITER ;
+
 
 
 
@@ -247,3 +277,6 @@ DELIMITER ;
 
 -- Facebook id need to be string --
 ALTER TABLE `userapplication` CHANGE `FacebookId` `FacebookId` VARCHAR(45) NULL DEFAULT NULL;
+
+ALTER TABLE `travel_hero`.`virtualquest` 
+CHANGE COLUMN `AnimationId` `AnimationId` INT(11) NULL DEFAULT 1 ;
