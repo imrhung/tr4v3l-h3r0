@@ -3,6 +3,7 @@
  * Reference from this: 
  * http://ellislab.com/forums/viewthread/172415/
  */
+
 // save as application/libraries/MY_Session
 class App_Session extends CI_Session {
    /*
