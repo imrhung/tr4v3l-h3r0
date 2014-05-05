@@ -374,6 +374,60 @@ class Service_Model extends CI_Model {
         }
         return $quizChoiceArray;
     }
+    
+    public function getQuizChoiceListRandom($pageSize) {
+        // Get list of quiz first.
+        $sql = 'CALL `travel_hero`.`sp_Get_QuizList_Random`(?)';
+        $result = $this->db->query($sql,(int) $pageSize);
+        $quizList = $result->result();
+
+        // TODO : how to get exactly $pageSize quiz? :)
+        // Init return array:
+        $quizChoiceArray = array();
+
+        // Then with each quiz/question, we extract needed data:
+        foreach ($quizList as $quiz) {
+            //$quizChoice = array();
+            $choice = array();
+
+            // Question information
+            $quizChoice = array(
+                'id' => $quiz->Id,
+                'content' => $quiz->Content,
+                'image_url' => $quiz->ImageURL,
+                'correct_choice_id' => $quiz->CorrectChoiceId,
+                'learn_more_url' => $quiz->LearnMoreURL,
+                'point' => $quiz->BonusPoint,
+                'sharing_info' => $quiz->SharingInfo
+            );
+            // Make choices list. 
+            // And determine "choice_type": long or short
+            $maxChoiceLength = 0;
+            mysqli_next_result($this->db->conn_id);
+            $sql2 = 'CALL sp_Get_Quiz(?)';
+            $result2 = $this->db->query($sql2, array((int) $quiz->Id));
+            foreach ($result2->result() as $row) {
+                $choice[] = array(
+                    'id' => $row->Id,
+                    'content' => $row->answer
+                );
+                if (strlen($row->answer) > $maxChoiceLength) {
+                    $maxChoiceLength = strlen($row->answer);
+                }
+            }
+
+            if ($maxChoiceLength > 17) {
+                $quizChoice['choice_type'] = 0;
+            } else {
+                $quizChoice['choice_type'] = 1;
+            }
+            $quizChoice['choice'] = $choice;
+
+            // Add to quiz list:
+            $quizChoiceArray[] = $quizChoice;
+        }
+        return $quizChoiceArray;
+    }
 
     /*
      * Return integer value of Quiz category
