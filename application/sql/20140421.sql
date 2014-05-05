@@ -101,11 +101,11 @@ BEGIN
 		WHERE
 				animation.Id = id;
 				
-END
-
-----
+END$$
+DELIMITER ;
+-- --
 -- Get pagination wrong. Alter the stored procedure:
-----
+-- --
 USE `travel_hero`;
 DROP procedure IF EXISTS `sp_Get_QuizList`;
 
@@ -150,9 +150,9 @@ END$$
 
 DELIMITER ;
 
----
+-- -
 -- Get quiz list by category
----
+-- -
 USE `travel_hero`;
 DROP procedure IF EXISTS `sp_Get_QuizList_ByCategory`;
 

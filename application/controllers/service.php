@@ -296,9 +296,9 @@ class Service extends App_Controller {
         $result['message'] = "";
 
         // Get Animation first:
-        $virtualQuest = $this->service_model_2->getVirtualQuestTable($questId);
+        $virtualQuest = $this->service_model->getVirtualQuestTable($questId);
         $animationId = $virtualQuest->AnimationId;
-        $animationRaw = $this->service_model_2->getAnimation($animationId);
+        $animationRaw = $this->service_model->getAnimation($animationId);
         // Create elements like json defined.
         $animation = array(
             'id' => $animationRaw->Id,
@@ -313,8 +313,8 @@ class Service extends App_Controller {
         );
         
         // Then get the quiz list:
-        $category = $this->service_model_2->getQuizCategoryInQuest($questId);
-        $quizList = $this->service_model_2->getQuizChoiceList($pageNumber, $pageSize, $category);
+        $category = $this->service_model->getQuizCategoryInQuest($questId);
+        $quizList = $this->service_model->getQuizChoiceListRandom($pageSize);
 
         if ($quizList) {
             $result['code'] = 1;
@@ -352,7 +352,7 @@ class Service extends App_Controller {
         }
 
         // Get data
-        $resultCheck = $this->service_model_2->getLeaderBoard($pageNumber, $pageSize, $fbidString);
+        $resultCheck = $this->service_model->getLeaderBoard($pageNumber, $pageSize, $fbidString);
         
         // Because number returned from database is in String, so we need to convert it to integer:
         $leaderboard = array();
@@ -390,7 +390,7 @@ class Service extends App_Controller {
         $result['message'] = "";
 
         // Get data
-        $resultCheck = $this->service_model_2->getUserMedal($pageNumber, $pageSize, $userId);
+        $resultCheck = $this->service_model->getUserMedal($pageNumber, $pageSize, $userId);
         
         if ($resultCheck) {
             $result['code'] = 1;
