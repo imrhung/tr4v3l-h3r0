@@ -41,10 +41,9 @@ Response:
 
 =Get Quiz List =
 Request: to : /service/getQuizz
- * page_size : 
- * page_number : can use this pagination to select level quiz.
- * quest_id :
- * random : (=1 will get random question)
+ * page_size : The number of needed questions
+ * page_number : (not in use now)
+ * quest_id : 
 Response:
 {{{
 {
