@@ -51,7 +51,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_b">Answer B:</label>  
                     <div class="col-md-8">
-                        <input id="answer_b" name="answer_b" type="text" placeholder="Limits to 50 characters" class="form-control input-md">
+                        <input id="answer_b" name="answer_b" type="text" placeholder="Limits to 50 characters"  required="" class="form-control input-md">
 
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_c">Answer C:</label>  
                     <div class="col-md-8">
-                        <input id="answer_c" name="answer_c" type="text" placeholder="Limits to 50 characters" class="form-control input-md">
+                        <input id="answer_c" name="answer_c" type="text" placeholder="Limits to 50 characters"  required="" class="form-control input-md">
 
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_d">Answer D:</label>  
                     <div class="col-md-8">
-                        <input id="answer_d" name="answer_d" type="text" placeholder="Limits to 50 characters" class="form-control input-md">
+                        <input id="answer_d" name="answer_d" type="text" placeholder="Limits to 50 characters"  required="" class="form-control input-md">
 
                     </div>
                 </div>

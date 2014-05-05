@@ -270,6 +270,37 @@ END$$
 
 DELIMITER ;
 
+USE `travel_hero`;
+DROP procedure IF EXISTS `sp_Get_QuizChoiceList_Random`;
+
+DELIMITER $$
+USE `travel_hero`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_QuizChoiceList_Random`(IN pageSize INT)
+BEGIN
+	
+	SET @pageSize = pageSize;
+	
+	if (pageSize != 0) 
+	then	
+		PREPARE STMT FROM
+		"SELECT q.*, c.Id as cId, c.Content as answer
+		FROM choice c 
+		JOIN (SELECT *  FROM  quiz order by RAND() 	LIMIT ?) as q ON q.Id = c.QuestionId";
+		EXECUTE STMT USING @pageSize;
+		DEALLOCATE PREPARE STMT;
+	 else
+		SELECT q.*, c.Id as cId, c.Content as answer
+		FROM choice c 
+		JOIN (SELECT *  FROM  quiz order by RAND()) as q ON q.Id = c.QuestionId;
+	end if;
+END$$
+
+DELIMITER ;
+
+
+
+
+
 
 
 
