@@ -14,7 +14,7 @@ class Service_Model extends CI_Model {
 
         return $result->row();
     }
-	/*
+	
 	public function getPacketsBy($rowIndex, $pageSize) {
 		$result = array(array());
 		
@@ -114,7 +114,7 @@ class Service_Model extends CI_Model {
 		} else
 			return array();
 	}
-         */
+        
 	
 	public function getPacketsBy1($rowIndex, $pageSize) {
         $arrPacket;
@@ -377,6 +377,7 @@ class Service_Model extends CI_Model {
     
     public function getQuizChoiceListRandom($pageSize) {
         // Get list of quiz first.
+        mysqli_next_result($this->db->conn_id);
         $sql = 'CALL `travel_hero`.`sp_Get_QuizList_Random`(?)';
         $result = $this->db->query($sql,(int) $pageSize);
         $quizList = $result->result();
@@ -438,7 +439,11 @@ class Service_Model extends CI_Model {
         $sql = "SELECT questcondition.ObjectId FROM travel_hero.questcondition WHERE VirtualQuestId = $questId AND Type = 0";
         $result = $this->db->query($sql);
 
-        return (int) $result->row()->ObjectId;
+        if ($result->row()){
+            return (int) $result->row()->ObjectId;
+        } else {
+            return 0;
+        }
     }
 
     /*

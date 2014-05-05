@@ -297,9 +297,28 @@ class Service extends App_Controller {
 
         // Get Animation first:
         $virtualQuest = $this->service_model->getVirtualQuestTable($questId);
+        
+        // Check if virtualQuest exist:
+        if (count($virtualQuest) === 0){
+            $result['code'] = 0;
+            $result['message'] = "Quest not found!";
+        } else {
+            
         $animationId = $virtualQuest->AnimationId;
+        
+        // If animation not defined:
+        if (is_null($animationId)){
+            $animationId = 1;
+        }
+        
         $animationRaw = $this->service_model->getAnimation($animationId);
         // Create elements like json defined.
+        
+        // Check if animation exist:
+        if (count($animationRaw) === 0){
+            $result['code'] = 0;
+            $result['message'] = "Animation not found";
+        } else {
         $animation = array(
             'id' => $animationRaw->Id,
             'time' => $animationRaw->time,
@@ -313,7 +332,7 @@ class Service extends App_Controller {
         );
         
         // Then get the quiz list:
-        $category = $this->service_model->getQuizCategoryInQuest($questId);
+        //$category = $this->service_model->getQuizCategoryInQuest($questId);
         $quizList = $this->service_model->getQuizChoiceListRandom($pageSize);
 
         if ($quizList) {
@@ -325,7 +344,8 @@ class Service extends App_Controller {
             $result['code'] = 0;
             $result['message'] = "No result";
         }
-
+        }
+        }
         echo json_encode($result);
     }
 
