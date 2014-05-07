@@ -149,9 +149,14 @@ Result was order from latest to earlier.
 }
 }}}
 
-Request to: service/registerUserFb fullName,phone,email,facebookId
+= Register with FacebookId
+Request to: service/registerUserFb 
 
-Response: {
+fullName,phone,email,facebookId
+
+Response: 
+{{{
+{
 
 "code": 1, "message": "Success", "info": [
 {
@@ -171,3 +176,4 @@ Response: {
 }
 ]
 }
+}}}
