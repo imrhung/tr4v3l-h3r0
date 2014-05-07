@@ -26,7 +26,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="question">Quiz Question</label>
   <div class="col-md-8">                     
-    <textarea class="form-control" id="question" name="question" required=""></textarea>
+    <textarea class="form-control" id="question" name="question" required=""  placeholder="Limits to 140 characters" maxlength="140"></textarea>
   </div>
 </div>
                 
@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_a">Answer A:</label>  
                     <div class="col-md-8">
-                        <input id="answer_a" name="answer_a" type="text" placeholder="Limits to 50 characters" required="" class="form-control input-md">
+                        <input id="answer_a" name="answer_a" type="text" placeholder="Limits to 50 characters" required="" class="form-control input-md" maxlength="50">
 
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_b">Answer B:</label>  
                     <div class="col-md-8">
-                        <input id="answer_b" name="answer_b" type="text" placeholder="Limits to 50 characters"  required="" class="form-control input-md">
+                        <input id="answer_b" name="answer_b" type="text" placeholder="Limits to 50 characters"  required="" class="form-control input-md" maxlength="50">
 
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_c">Answer C:</label>  
                     <div class="col-md-8">
-                        <input id="answer_c" name="answer_c" type="text" placeholder="Limits to 50 characters"  required="" class="form-control input-md">
+                        <input id="answer_c" name="answer_c" type="text" placeholder="Limits to 50 characters"  required="" class="form-control input-md" maxlength="50">
 
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_d">Answer D:</label>  
                     <div class="col-md-8">
-                        <input id="answer_d" name="answer_d" type="text" placeholder="Limits to 50 characters"  required="" class="form-control input-md">
+                        <input id="answer_d" name="answer_d" type="text" placeholder="Limits to 50 characters"  required="" class="form-control input-md" maxlength="50">
 
                     </div>
                 </div>
