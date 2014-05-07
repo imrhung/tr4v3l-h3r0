@@ -299,6 +299,36 @@ DELIMITER ;
 
 
 
+USE `travel_hero`;
+DROP procedure IF EXISTS `sp_Get_PacketAvailableList`;
+
+DELIMITER $$
+USE `travel_hero`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_PacketAvailableList`(IN currentPage INT, IN pageSize INT)
+BEGIN
+	DECLARE rowNumber INT;
+	
+	SET @currentPage = currentPage;
+	SET @rowNumber = currentPage * pageSize;
+	
+	if (pageSize != 0) 
+	then	
+		PREPARE STMT FROM
+		"SELECT  * FROM packet p 
+		WHERE NOT EXISTS (SELECT PacketId, count from (SELECT PacketId, COUNT(*) as count from virtualquest GROUP BY PacketId) as c where count = 3 AND c.PacketId = p.Id)
+		LIMIT ?,?";
+		EXECUTE STMT USING @rowNumber, @pageSize;
+		DEALLOCATE PREPARE STMT;
+	else
+		SELECT  * FROM packet p 
+		WHERE NOT EXISTS (SELECT PacketId, count from (SELECT PacketId, COUNT(*) as count from virtualquest GROUP BY PacketId) as c where count = 3 AND c.PacketId = p.Id);
+	END if;
+END$$
+
+DELIMITER ;
+
+
+
 
 
 

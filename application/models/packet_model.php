@@ -23,6 +23,19 @@ class Packet_Model extends CI_Model {
 
         return $result->result();
     }
+    
+    /* 	Get Packet availble (have <3 quests) list function from databases */
+
+    public function getPacketAvailableList($currentPage, $pageSize) {
+
+        $currentPage = (int) $currentPage;
+        $pageSize = (int) $pageSize;
+
+        $sql = 'CALL sp_Get_PacketAvailableList(?, ?)';
+        $result = $this->db->query($sql, array($currentPage, $pageSize));
+
+        return $result->result();
+    }
 
     /*     * ***INSERT**** */
     /* Last 18-March-2014 */

@@ -9,7 +9,7 @@ function drawSelectPacket(){
     var baseUrl = $("#base-url").attr("href");
     // Post to api
     $.post(
-            baseUrl + "packet/getPacketList",
+            baseUrl + "packet/getPacketAvailalbeList",
             {
                 pageSize: 0,
                 pageNumber: 0

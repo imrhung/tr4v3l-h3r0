@@ -54,6 +54,33 @@ class Packet extends App_Controller {
         }
         echo json_encode($result);
     }
+    
+    /* Get Packet available (have less than 3 quests) list function from database */
+
+    public function getPacketAvailalbeList() {
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = array();
+
+        $result['info']['packet'] = "";
+
+        $currentPage = $_POST['pageNumber'];
+        $pageSize = $_POST['pageSize'];
+
+        $resultCheck = $this->packet_model->getPacketAvailableList($currentPage, $pageSize);
+
+        if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['info']['packet'] = $resultCheck;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+            $result['info']['packet'] = $resultCheck;
+        }
+        echo json_encode($result);
+    }
 
     /*     * ***INSERT**** */
     /* Last 18-March-2014 */
