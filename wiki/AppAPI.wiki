@@ -149,12 +149,12 @@ Result was order from latest to earlier.
 }
 }}}
 
-= Register with FacebookId =
-Request to: service/registerUserFb 
-*fullName
-*phone
-*email
-*facebookId
+=Register with FacebookId=
+Request to: service/registerUserFb
+ * fullName
+ * phone
+ * email
+ * facebookId
 
 Response: 
 {{{
