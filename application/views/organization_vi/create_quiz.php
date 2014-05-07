@@ -26,14 +26,14 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="question">Câu hỏi</label>
   <div class="col-md-8">                     
-    <textarea class="form-control" id="question" name="question" required=""></textarea>
+    <textarea class="form-control" id="question" name="question" required="" placeholder="Giới hạn 140 ký tự" maxlength="140"></textarea>
   </div>
 </div>
                 <!-- File Button --> 
 <div class="form-group">
   <label class="col-md-4 control-label" for="userfile"></label>
   <div class="col-md-8">
-    <input id="userfile" name="userfile" class="input-file form-control" type="file"><p id="fileLabel">Choose an image for your question</p>
+    <input id="userfile" name="userfile" class="input-file form-control" type="file"><p id="fileLabel">Chọn hình ảnh (nếu có) cho câu hỏi.</p>
   </div>
 </div>
 
@@ -41,7 +41,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_a">Phương án A:</label>  
                     <div class="col-md-8">
-                        <input id="answer_a" name="answer_a" type="text" placeholder="Giới hạn 50 ký tự" required="" class="form-control input-md">
+                        <input id="answer_a" name="answer_a" type="text" placeholder="Giới hạn 50 ký tự" required="" class="form-control input-md" maxlength="50">
 
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_b">Phương án B:</label>  
                     <div class="col-md-8">
-                        <input id="answer_b" name="answer_b" type="text" placeholder="Giới hạn 50 ký tự"  required="" class="form-control input-md">
+                        <input id="answer_b" name="answer_b" type="text" placeholder="Giới hạn 50 ký tự"  required="" class="form-control input-md" maxlength="50">
 
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_c">Phương án C:</label>  
                     <div class="col-md-8">
-                        <input id="answer_c" name="answer_c" type="text" placeholder="Giới hạn 50 ký tự" required=""  class="form-control input-md">
+                        <input id="answer_c" name="answer_c" type="text" placeholder="Giới hạn 50 ký tự" required=""  class="form-control input-md" maxlength="50">
 
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="answer_d">Phương án D:</label>  
                     <div class="col-md-8">
-                        <input id="answer_d" name="answer_d" type="text" placeholder="Giới hạn 50 ký tự"  required="" class="form-control input-md">
+                        <input id="answer_d" name="answer_d" type="text" placeholder="Giới hạn 50 ký tự"  required="" class="form-control input-md" maxlength="50">
 
                     </div>
                 </div>
