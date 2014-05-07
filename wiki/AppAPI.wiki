@@ -149,31 +149,62 @@ Result was order from latest to earlier.
 }
 }}}
 
-= Register with FacebookId
+= Register with FacebookId =
 Request to: service/registerUserFb 
-
-fullName,phone,email,facebookId
+*fullName
+*phone
+*email
+*facebookId
 
 Response: 
 {{{
 {
-
-"code": 1, "message": "Success", "info": [
-{
-"code": "1", "message": "Regist successful", "userId": "20", "facebookId": "86756578", "points": "0", "currentLv": "0", "quests": [
-{
-"id": "1", "questName": "Test A", "packetId": "1", "partnerId": "1", "animationId": "1", "unlockPoint": "500", "createDate": null, "status": "1", "conditions": [
-{
-"id": "1", "type": "1", "value": "1", "virtualQuestId": "1", "objectId": "1"
-}, {
-"id": "2", "type": "1", "value": "1", "virtualQuestId": "1", "objectId": "1"
-}, {
-"id": "3", "type": "1", "value": "1", "virtualQuestId": "1", "objectId": "1"
-}
-]
-}
-]
-}
-]
+  "code": 1,
+  "message": "Success",
+  "info": [
+    {
+      "code": "1",
+      "message": "Regist successful",
+      "userId": "20",
+      "facebookId": "86756578",
+      "points": "0",
+      "currentLv": "0",
+      "quests": [
+        {
+          "id": "1",
+          "questName": "Test A",
+          "packetId": "1",
+          "partnerId": "1",
+          "animationId": "1",
+          "unlockPoint": "500",
+          "createDate": null,
+          "status": "1",
+          "conditions": [
+            {
+              "id": "1",
+              "type": "1",
+              "value": "1",
+              "virtualQuestId": "1",
+              "objectId": "1"
+            },
+            {
+              "id": "2",
+              "type": "1",
+              "value": "1",
+              "virtualQuestId": "1",
+              "objectId": "1"
+            },
+            {
+              "id": "3",
+              "type": "1",
+              "value": "1",
+              "virtualQuestId": "1",
+              "objectId": "1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 }}}
