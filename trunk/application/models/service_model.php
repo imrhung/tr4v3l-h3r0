@@ -116,36 +116,6 @@ class Service_Model extends CI_Model {
 	}
         
 	
-	public function getPacketsBy1($rowIndex, $pageSize) {
-        $arrPacket;
-		
-		$rowIndex = (int) $rowIndex;
-		$pageSize = (int) $pageSize;
-		
-		$resultPackets = $this->db->query('SELECT * FROM packet LIMIT ?,?', array($rowIndex, $pageSize));
-		$i=0;
-		foreach($resultPackets->result_array() as $row) {
-			$arrPacket[$i] = $row;
-			$tmp = $row['Id'];
-			$resultQuets = $this->db->query('SELECT * FROM virtualquest WHERE PacketId = ?', array($tmp));
-			$y=0;
-			foreach($resultQuets->result_array() as $rowQuest) {
-				$arrPacket[$i]['Quests'][$y] = $rowQuest;
-				$tmp = $rowQuest['Id'];
-				$resultCondition = $this->db->query('SELECT * FROM questcondition WHERE VirtualQuestId = ?', array($tmp));
-				$z=0;
-				foreach($resultCondition->result_array() as $rowCondition) {
-					$arrPacket[$i]['Quests'][$y]['Condition'][$z] = $rowCondition;
-					$z++;
-				}
-				$y++;
-			}
-			$i++;
-		}
-		
-		return $arrPacket;
-    }
-	
 	public function getQuizzBy($id) {
         $sql = 'CALL sp_getQuizzBy(?)';
         $result = $this->db->query($sql, array($id));
@@ -153,9 +123,16 @@ class Service_Model extends CI_Model {
         return $result->row();
     }
 	
-	public function getUserProfileBy($id) {
+	public function getUserProfileBy($partnerId) {
         $sql = 'CALL sp_getUserProfileBy(?)';
-        $result = $this->db->query($sql, array($id));
+        $result = $this->db->query($sql, array($partnerId));
+
+        return $result->row();
+    }
+	
+	public function getDonationByPartnerId($partnerId) {
+        $sql = 'CALL sp_getDonationByPartnerId(?)';
+        $result = $this->db->query($sql, array($partnerId));
 
         return $result->row();
     }
@@ -174,9 +151,9 @@ class Service_Model extends CI_Model {
         return $result->row();
     }
 	
-	public function getActivitiesBy($id) {
-        $sql = 'CALL sp_getActivitiesBy(?)';
-        $result = $this->db->query($sql, array($id));
+	public function getActivitiesByPartnerId($partnerId) {
+        $sql = 'CALL sp_getActivitiesByPartnerId(?)';
+        $result = $this->db->query($sql, array($partnerId));
 
         return $result->row();
     }
@@ -188,9 +165,16 @@ class Service_Model extends CI_Model {
         return $result->row();
     }
 	
-	public function getNumberOfChildrenBy($id) {
-        $sql = 'CALL sp_getNumberOfChildrenBy(?)';
-        $result = $this->db->query($sql, array($id));
+	public function getNumberOfChildrenByUserId($userId) {
+        $sql = 'CALL sp_getNumberOfChildrenByUserId(?)';
+        $result = $this->db->query($sql, array($userId));
+
+        return $result->row();
+    }
+	
+	public function insertSpentPointDonation($partnerId,$donationId) {
+        $sql = 'CALL sp_insertSpentPointDonation(?,?)';
+        $result = $this->db->query($sql, array($partnerId,$donationId));
 
         return $result->row();
     }
@@ -204,6 +188,7 @@ class Service_Model extends CI_Model {
             return $e->getMessage();
         }
     }
+	
 	public function insertUserFb($fullName,$email,$phone,$facebookId) {
 		
 		$result = array();
