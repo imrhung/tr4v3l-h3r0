@@ -62,6 +62,31 @@ class Service extends App_Controller {
 		
 		echo json_encode($result);
 	}
+	
+	public function getDonation() {
+		$partnerId = $this->input->post('partnerId');
+		
+		$result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = array();
+
+		$result['info']['quizz'] = null;
+		
+		$resultCheck= $this->service_model->getDonationByPartnerId($partnerId);
+	
+		if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['info']['quizz'] = $resultCheck;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+            $result['info']['quizz'] = $resultCheck;
+        }
+		
+		echo json_encode($result);
+	}
 	/*
 	public function getQuizz() {
 		// Initialization Array
@@ -164,6 +189,8 @@ class Service extends App_Controller {
 	}
 	
 	public function getActivities() {
+		$partnerId = $this->input->post('partnerId');
+		
 		// Initialization Array
         $result = array();
         $result['code'] = -1;
@@ -172,7 +199,7 @@ class Service extends App_Controller {
 
 		$result['info']['activity'] = null;
 		
-		$resultCheck= $this->service_model->getActivitiesBy($id);
+		$resultCheck= $this->service_model->getActivitiesByPartnerId($partnerId);
 	
 		if ($resultCheck) {
             $result['code'] = 1;
@@ -212,6 +239,7 @@ class Service extends App_Controller {
 	}
 	
 	public function getNumberOfChildren() {
+		$userId = $this->input->post('userId');
 		// Initialization Array
         $result = array();
         $result['code'] = -1;
@@ -220,7 +248,7 @@ class Service extends App_Controller {
 
 		$result['info']['numberChildren'] = null;
 		
-		$resultCheck= $this->service_model->getNumberOfChildrenBy($id);
+		$resultCheck= $this->service_model->getNumberOfChildrenByUserId($userId);
 	
 		if ($resultCheck) {
             $result['code'] = 1;
@@ -273,7 +301,16 @@ class Service extends App_Controller {
 	}
 	
 	public function spentPointDonation() {
+		$partnerId = $this->input->post('partnerId');
+		$donationId = $this->input->post('donationId');
 		
+		$resultCheck = $this->service_model->insertSpentPointDonation($partnerId,$donationId);
+		
+		$result['code'] = 1;
+		$result['message'] = "Success";
+		$result['info'] = $resultCheck;
+        
+		echo json_encode($result);
 	}
 	
 	public function spentPointActivity() {
