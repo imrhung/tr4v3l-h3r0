@@ -341,3 +341,49 @@ ALTER TABLE `userapplication` CHANGE `FacebookId` `FacebookId` VARCHAR(45) NULL 
 
 ALTER TABLE `travel_hero`.`virtualquest` 
 CHANGE COLUMN `AnimationId` `AnimationId` INT(11) NULL DEFAULT 1 ;
+
+
+
+
+
+
+
+USE `travel_hero`;
+DROP procedure IF EXISTS `sp_Get_DonationList`;
+
+DELIMITER $$
+USE `travel_hero`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_DonationList`(IN currentPage INT, IN pageSize INT)
+BEGIN
+	DECLARE rowNumber INT;
+	SET @currentPage = currentPage;
+	SET @rowNumber = currentPage * pageSize;
+	
+	if (pageSize != 0) 
+	then
+		PREPARE STMT FROM
+		"SELECT donation.Id, donation.Title, partner.PartnerName, donation.RequiredPoint,  donation.IsApproved, donation.CreateDate, medal.ImageURL
+		FROM 
+				travel_hero.donation,
+				travel_hero.partner,
+				travel_hero.medal
+		WHERE 
+				donation.PartnerId = partner.Id
+				AND medal.Id = donation.MedalId
+		LIMIT  ?,?";
+		EXECUTE STMT USING @rowNumber, @pageSize;
+		DEALLOCATE PREPARE STMT;
+	else  
+		SELECT donation.Id, donation.Title, partner.PartnerName, donation.RequiredPoint,  donation.IsApproved, donation.CreateDate, medal.ImageURL
+		FROM 
+				travel_hero.donation,
+				travel_hero.partner,
+				travel_hero.medal
+		WHERE 
+				donation.PartnerId = partner.Id
+				AND medal.Id = donation.MedalId;
+		END if;	
+END$$
+
+DELIMITER ;
+
