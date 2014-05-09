@@ -1,7 +1,6 @@
 <div id="wrapper">
 
     <div id="page-wrapper">
-        <h1>Ha ha ah</h1>
         <h1>Tạo hoạt động</h1>
         <p>Điền vào thông tin bên dưới.</p>
         
@@ -75,7 +74,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="newsletter_link"></label>  
                     <div class="col-md-8">
-                        <input id="newsletter_link" name="newsletter_link" type="text" placeholder="Please enter a link to your newsletter." class="form-control input-md">
+                        <input id="newsletter_link" name="newsletter_link" type="text" placeholder="Địa chỉ trang web để người dùng đăng ký nhận tin." class="form-control input-md">
 
                     </div>
                 </div>
@@ -97,7 +96,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="facebook_page"></label>  
                     <div class="col-md-8">
-                        <input id="facebook_page" name="facebook_page" type="text" placeholder="Please enter your facebook page address." class="form-control input-md">
+                        <input id="facebook_page" name="facebook_page" type="text" placeholder="Địa chỉ trang Facebook của tổ chức." class="form-control input-md">
 
                     </div>
                 </div>
@@ -119,7 +118,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="calendar"></label>  
                     <div class="col-md-8 date input-group" id="datetimepicker">
-                        <input id="calendar" name="calendar" type="text" placeholder="Please select a date" class="form-control" data-format="YYYY/MM/DD">
+                        <input id="calendar" name="calendar" type="text" placeholder="Chọn thời gian" class="form-control" data-format="YYYY/MM/DD">
                         <span class="input-group-addon"><span data-icon-element="" class="fa fa-calendar">
                             </span>
                         </span>
