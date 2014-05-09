@@ -24,12 +24,14 @@
         "Id": 1,
         "Type": 1,
         "ObjectId": 4,
+        "Title": "500 points",
         "Value": 500
       },
       {
         "Id": 1,
         "Type": 1,
         "ObjectId": 4,
+        "Title": "400 points"
         "Value": 500
       }
     ]
