@@ -1,3 +1,113 @@
+=Edit get virtual quest 10-May=
+Request: /virtualquest/getVirtualQuest
+ * id
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": {
+    "quest": {
+      "vId": "10",
+      "vQuestName": "Heal the world",
+      "vPacketId": "4",
+      "vPartnerId": "5",
+      "vAnimationId": "1",
+      "vUnlockPoint": "500",
+      "vCreateDate": "2014-05-05 07:31:44",
+      "kTitle": "Nha Trang",
+      "kImageURL": "http://mytempbucket.s3.amazonaws.com/1398069259.jpg",
+      "kPartnerId": "1",
+      "pId": "5",
+      "pPartnerName": "UNICEF Viet Nam",
+      "pOrganizationTypeId": "2",
+      "pAddress": "Sun Wah Tower, Suite 504, 115 Nguyen Hue, District 1, HCMC",
+      "pPhoneNumber": "+84 3821-9413",
+      "pWebsiteUrl": "http://www.unicef.org/vietnam",
+      "pLatitude": null,
+      "pLongtitude": null,
+      "pDescription": "UNICEFs mission in Vietnam is to fulfill the rights of every child in Vietnam, particularly those most disadvantaged or vulnerable.",
+      "pIsApproved": "1",
+      "pLogoUrl": "http://www.unicef.org/vietnam/unicef-logo.gif",
+      "pIconUrl": "https://dl.dropboxusercontent.com/u/64958885/HeroForZero/Image/activity/avatar-unicef-big%402x.png",
+      "condition": {
+        "1": {
+          "cId": "29",
+          "cType": "1",
+          "cValue": null,
+          "cVirtualQuestId": "10",
+          "cObjectId": "12",
+          "action": {
+            "aId": "12",
+            "aPartnerId": "19",
+            "aTitle": "Working as a volunteer to raise funds.",
+            "aDescription": "Working as a volunteer to raise funds ( writing a proposal, making an event, finding sponsors,…)",
+            "aActionId": "1",
+            "aBonusPoint": "100",
+            "aIsApproved": null,
+            "aCreateDate": "2014-04-24 03:35:39",
+            "aActionContent": "Working as a volunteer to raise funds ( writing a proposal, making an event, finding sponsors,…)"
+          }
+        },
+        "2": {
+          "cId": "30",
+          "cType": "1",
+          "cValue": null,
+          "cVirtualQuestId": "10",
+          "cObjectId": "18",
+          "action": {
+            "aId": "18",
+            "aPartnerId": "23",
+            "aTitle": "Doing volunteer work at the organization. ",
+            "aDescription": "Doing volunteer work at the organization. ",
+            "aActionId": "1",
+            "aBonusPoint": "100",
+            "aIsApproved": null,
+            "aCreateDate": "2014-04-28 16:32:08",
+            "aActionContent": "Doing volunteer work at the organization. "
+          }
+        },
+        "3": {
+          "cId": "31",
+          "cType": "1",
+          "cValue": null,
+          "cVirtualQuestId": "10",
+          "cObjectId": "17",
+          "action": {
+            "aId": "17",
+            "aPartnerId": "22",
+            "aTitle": "Participating in volunteer activities to look after and orient the children at the center. ",
+            "aDescription": "Participating in volunteer activities to look after and orient the children at the center. ",
+            "aActionId": "1",
+            "aBonusPoint": "100",
+            "aIsApproved": null,
+            "aCreateDate": "2014-04-28 16:00:58",
+            "aActionContent": "Participating in volunteer activities to look after and orient the children at the center. "
+          }
+        },
+        "4": {
+          "cId": "32",
+          "cType": "2",
+          "cValue": null,
+          "cVirtualQuestId": "10",
+          "cObjectId": "12",
+          "donation": {
+            "dId": "12",
+            "dTitle": "Donate 50 dollars ",
+            "dDescription": "Donate 50 dollars – equivalent to the cost of Emergency support for children victims of abused, and exploitation. ",
+            "dRequiredPoint": "100",
+            "dMedalId": "0",
+            "dPartnerId": "5",
+            "dIsApproved": null,
+            "dCreateDate": "2014-04-07 10:26:56"
+          }
+        }
+      }
+    }
+  }
+}
+}}}
+
+
 =Get leader board=
 Request: to : service/getLeaderBoard
  * page_number
