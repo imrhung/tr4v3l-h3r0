@@ -19,12 +19,13 @@ class VirtualQuest_Model extends CI_Model {
 
     /* 	Get a VirtualQuest function from databases */
 
-    public function getVirtualQuest($id) {
+	public function getDataVirtualQuestForMobile($id) {
+	
 		$result = null;
 		
 		$id = (int) $id;
 		
-        $sql = 'CALL sp_Get_VirtualQuest(?)';
+        $sql = 'CALL sp_getVirtualQuestForMobile(?)';
         $resultPackets = $this->db->query($sql, array($id));
 		
 		if ($resultPackets->num_rows() > 0) {
@@ -90,7 +91,10 @@ class VirtualQuest_Model extends CI_Model {
 		} else 
 			return array();
 		
-		/*
+	}
+	
+    public function getVirtualQuest($id) {
+		
         $array = array();
 
         $array['quest'] = array(
@@ -114,7 +118,7 @@ class VirtualQuest_Model extends CI_Model {
         }
 
         return $array;
-		*/
+		
     }
 
     /* 	Get VirtualQuest list function from databases */

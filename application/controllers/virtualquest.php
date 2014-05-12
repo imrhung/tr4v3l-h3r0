@@ -48,7 +48,27 @@ class VirtualQuest extends App_Controller {
         }
         echo json_encode($result);
     }
+	
+	public function getVirtualQuestForMobile() {
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = null;
 
+        $id = $_POST['id'];
+
+        $data = $this->virtualquest_model->getDataVirtualQuestForMobile($id);
+        if ($data) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['info'] = $data;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+            $result['info'] = $data;
+        }
+        echo json_encode($result);
+    }
     /* Get VirtualQuest list function from database */
 
     public function getVirtualQuestList() {
