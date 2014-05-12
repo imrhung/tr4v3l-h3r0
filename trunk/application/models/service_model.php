@@ -115,6 +115,49 @@ class Service_Model extends CI_Model {
 			return array();
 	}
         
+	public function getDonationByPartnerId($pageIndex, $pageSize) {
+        $sql = 'CALL sp_getDonationBy(?,?)';
+        $result = $this->db->query($sql,array($pageIndex, $pageSize));
+
+        return $result->row();
+    }
+	
+	public function getPacketsBy1($rowIndex, $pageSize) {
+        $arrPacket;
+		
+		$rowIndex = (int) $rowIndex;
+		$pageSize = (int) $pageSize;
+		
+		$resultPackets = $this->db->query('SELECT * FROM packet LIMIT ?,?', array($rowIndex, $pageSize));
+		$i=0;
+		foreach($resultPackets->result_array() as $row) {
+			$arrPacket[$i] = $row;
+			$tmp = $row['Id'];
+			$resultQuets = $this->db->query('SELECT * FROM virtualquest WHERE PacketId = ?', array($tmp));
+			$y=0;
+			foreach($resultQuets->result_array() as $rowQuest) {
+				$arrPacket[$i]['Quests'][$y] = $rowQuest;
+				$tmp = $rowQuest['Id'];
+				$resultCondition = $this->db->query('SELECT * FROM questcondition WHERE VirtualQuestId = ?', array($tmp));
+				$z=0;
+				foreach($resultCondition->result_array() as $rowCondition) {
+					$arrPacket[$i]['Quests'][$y]['Condition'][$z] = $rowCondition;
+					$z++;
+				}
+				$y++;
+			}
+			$i++;
+		}
+		
+		return $arrPacket;
+    }
+	
+	public function insertScore($userId, $score) {
+        $sql = 'CALL sp_saveGame(?,?)';
+        $result = $this->db->query($sql, array($userId, $score));
+
+        return $result->row();
+    }
 	
 	public function getQuizzBy($id) {
         $sql = 'CALL sp_getQuizzBy(?)';

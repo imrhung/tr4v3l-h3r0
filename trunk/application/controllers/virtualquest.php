@@ -28,31 +28,23 @@ class VirtualQuest extends App_Controller {
     /*     * ***SELECT**** */
     /* Last 18-March-2014 */
     /* Get a VirtualQuest function from database */
-
-    public function getVirtualQuest() {
+	public function getVirtualQuest() {
         $result = array();
         $result['code'] = -1;
         $result['message'] = "";
         $result['info'] = null;
 
-
-        // $result['info']['condition'] = "";
-
         $id = $_POST['id'];
 
-        $VirtualQuestValues = array();
-        // $QuestConditionValues = $this->virtualquest_model->getQuestCondition($id);
-        $VirtualQuestValues = $this->virtualquest_model->getVirtualQuest($id);
-        if ($VirtualQuestValues) {
+        $data = $this->virtualquest_model->getVirtualQuest($id);
+        if ($data) {
             $result['code'] = 1;
             $result['message'] = "Success";
-            $result['info'] = $VirtualQuestValues;
-            // $result['info']['condition'] = $QuestConditionValues;
+            $result['info'] = $data;
         } else {
             $result['code'] = 0;
             $result['message'] = "Fail";
-            $result['info'] = $VirtualQuestValues;
-            // $result['info']['condition'] = $QuestConditionValues;
+            $result['info'] = $data;
         }
         echo json_encode($result);
     }
