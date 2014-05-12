@@ -239,7 +239,6 @@ class Service extends App_Controller {
 	}
 	
 	public function getNumberOfChildren() {
-		$userId = $this->input->post('userId');
 		// Initialization Array
         $result = array();
         $result['code'] = -1;
@@ -248,16 +247,16 @@ class Service extends App_Controller {
 
 		$result['info']['numberChildren'] = null;
 		
-		$resultCheck= $this->service_model->getNumberOfChildrenByUserId($userId);
+		$resultCheck= $this->service_model->getNumberOfChildrenByUserId();
 	
 		if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
-            $result['info']['numberChildren'] = $resultCheck;
+            $result['info'] = $resultCheck;
         } else {
             $result['code'] = 0;
             $result['message'] = "Fail";
-            $result['info']['numberChildren'] = $resultCheck;
+            $result['info'] = $resultCheck;
         }
 		
 		echo json_encode($result);
@@ -339,7 +338,7 @@ class Service extends App_Controller {
 		echo json_encode($result);
 	}
 	
-	public function getDonation() {
+	public function getDonationPagination() {
 		$pageIndex = $this->input->post('pageIndex');
 		$pageSize = $this->input->post('pageSize');
 	
@@ -348,7 +347,7 @@ class Service extends App_Controller {
         $result['message'] = "";
         $result['info'] = array();
 		
-		$resultCheck= $this->service_model->getDonationByPartnerId($pageIndex,$pageSize);
+		$resultCheck= $this->service_model->getDonationByPageIndex($pageIndex,$pageSize);
 	
 		if ($resultCheck) {
             $result['code'] = 1;

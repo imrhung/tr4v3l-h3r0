@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `zadmin_heroforzero` /*!40100 DEFAULT CHARACTER S
 USE `zadmin_heroforzero`;
 -- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
--- Host: 192.168.11.132    Database: travel_hero
+-- Host: 192.168.11.132    Database: zadmin_heroforzero
 -- ------------------------------------------------------
 -- Server version	5.6.14
 
@@ -127,7 +127,7 @@ CREATE TABLE `app_sessions` (
 
 LOCK TABLES `app_sessions` WRITE;
 /*!40000 ALTER TABLE `app_sessions` DISABLE KEYS */;
-INSERT INTO `app_sessions` VALUES ('046318aa1e64f1e8959ee3af1088c021','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399869767,''),('06e94510b38c78d7574029f9f791b9a0','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399872907,''),('0b6ada318ab1029eabd8479bbcc073c0','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399869124,''),('0ecef036cd8032946aaad73aa0be01aa','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399872161,''),('1403cba387f635793efd71d6486509df','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399869301,''),('1888cb2132babd9c005ed32014354a25','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399872650,''),('1cf06e9fadf86b1df0a28abcfcfa4168','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399872378,''),('1cfac755a053e5c863628f9e970668a5','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399868632,''),('1e1c6a74027b18a7b180521f8b7f4bf5','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399880850,''),('1f3cac6ba604353a1d76e3d72c0788be','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399872453,''),('2278acbaf8b0421d797a429557adeef6','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399877324,''),('22df539b877b044572de966f957ca054','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399877324,''),('252b971e8123434af36375836ed08eba','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399871221,''),('26fda9c2d4ec71c213a78ec1e20712e8','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399865615,''),('2b7d016edff31763aace2cf3245fef0d','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399872247,''),('2b9691bc76df7bc5149175ab750f4bb0','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399869222,''),('2e653e11a05399428a0755cfc1d64074','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399872191,''),('351650768a659cacd8401b62ee923233','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399869338,''),('44a37c7bab04499df1a16f59bd86ade6','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399866618,''),('50f59b73c7e6f35f0046670356777841','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399867709,''),('54b429e10c3c09600afe130d435a65fe','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399872507,''),('5b21983383d89a0a4bb8662cf331be18','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399868570,''),('5f05c17195a9df8cac29554f93ab5546','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399868570,''),('614bbf811c4fcc0ad5d67f9064888c57','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399867709,''),('621b82a7e1c977ca914a171e452f2493','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399878527,''),('66fa98dac250019ee722a6415b2d1291','192.168.11.100','Hero4Zero 1.0 (iPad; iPhone OS 7.1; en_US)',1399879021,''),('67baaf0891582c4c709f363ad9026d8f','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399878492,''),('67f2ace7260311f87578bd61a358df48','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399878527,''),('72f1ed37843fc8fc92249f4cd096f8eb','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399872471,''),('773781038dbe9fd1f67d69c68b7690b9','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399870663,''),('77d09a6685ba08703bdd7121d896e5a4','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399878492,''),('7cb8e8f3db0d5e4e33d8f557eee2e681','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399872524,''),('7d34e4bee9cee570b085080009a393e0','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399871221,''),('837a43061bd07aa40a9b3bb812a602fc','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399872161,''),('83e532308b8ed78aca69390196d5d3e1','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399869812,''),('866c613280c23107a789cb7386d3567d','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399868632,''),('9208ac26d687632eeb6ba9dfee6b968a','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399868456,''),('944eb5ee628033c0d2fe1ef705b71a82','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399872191,''),('95af03d1521f5473185f389b9aef9a89','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399869767,''),('9abe0d8aac9609c8530448fce73c5578','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399880897,''),('a141bfe2e83ffbb4d5dab5ddb98589fe','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399872471,''),('a82d8b8a347c47f98f795b2e3bf8a2ef','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399872453,''),('aa29e316c8ad15b007b85e07e458ca35','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399866098,''),('ac7aa83dc88641b1b85bf3c30480025d','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399869812,''),('ae4b615f975ebb211d3b2c14399c3648','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399871757,''),('af069ec70cef299dfa13b95c24fd5de4','192.168.11.133','Hero4Zero 1.0 (iPhone; iPhone OS 6.1.3; en_US)',1399880437,''),('b0d69a11f385621b765e1649b3511922','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399872650,''),('b10662cb52f3a4ee71c4695bb0495c7b','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399872524,''),('b4d3b6808d1feb13e9f099f2206cc1eb','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399869222,''),('ba3058622c034a2a6ec011f39f815981','192.168.11.133','Hero4Zero 1.0 (iPhone; iPhone OS 6.1.3; en_US)',1399880436,''),('c0096d846fd182cc22d4055b7f0bc6b0','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399865615,''),('c1ab30c1341085211703eb1f3f6249a5','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399880850,''),('c826a80339bfcfd01b6dee4fa508fb37','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399869301,''),('c87d709e1bb9769cda1f143bd942169a','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399872507,''),('ccb615c8e71be78d8fa9e15f7c47e6b9','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399872907,''),('cd558d80e84f16799f0298dae2f2710a','192.168.11.100','Hero4Zero 1.0 (iPad; iPhone OS 7.1; en_US)',1399879921,''),('cdbf521a57854e085d6f6bebfa5730d0','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399880897,''),('cec95bb10dbdcc746016dc5fc72ec0dd','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399871757,''),('d67168fdf884481008f8c47a7e854083','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399869065,''),('d7051983358db2d2e22b76e8adb2f22e','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399869124,''),('d7e340222944761eb91c2ec2ee3532af','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399868456,''),('dc1c98da4ca63201a06c41d7d92f4476','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399872247,''),('e14e2aa4d6f6963803e046ea4a625cdf','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399869377,''),('e24c8918db4421de533e76204dda74c1','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399871982,''),('ea953f3081f401ae1ffebbf584ec94a9','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399869338,''),('ee32f1dac3ec624f91910c588882936c','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399869065,''),('f189531ba4baf8d8c2b5e681c0b48fcc','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399871982,''),('f74b5550e865f9f54d3df64bbe5a434b','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399869377,''),('fa881d3dc6bfdb9866ae53c009983ea1','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399866098,''),('fb1d96694d80fc20ecc226f728915da5','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399870663,''),('fc4b7aab738006a404a5d5bec25caca0','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399872378,'');
+INSERT INTO `app_sessions` VALUES ('00ce8764890f6feed6f4a0ed6e921e92','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884885,''),('01e24f4bdbd6098ce25aff2133da1527','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399882843,''),('03530c281b496ca0d1678a4f4851ed8a','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399887682,''),('04a17dffaf769183debc77164a8fb849','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399885778,''),('06200c375483e6d9709fd0772c8a49c8','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399887377,''),('0636d6f47d5df07f0ea040cb9669da5a','192.168.11.122','Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36',1399886731,'a:4:{s:9:\"user_data\";s:0:\"\";s:7:\"islogin\";b:1;s:4:\"role\";s:5:\"admin\";s:10:\"partner_id\";i:5;}'),('0664226e1f9fb8c50651ab3837fbe2a2','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399887673,''),('0d204476e558e7cf54edd8a69499c809','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399883431,''),('109bd0f7aad3c4a5bf408197d4d4fef5','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399887144,''),('15e41d97161dd8adc06ad9e8bd6c6206','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884885,''),('18424e460e8da7b1023f2eb89899d87b','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399885639,''),('1a316d15f7a4c2d5cab55f4b7f0416e9','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399885604,''),('1c0e4df4e6cea749be7c2d7fe2c65c68','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399883555,''),('1e1c6a74027b18a7b180521f8b7f4bf5','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399880850,''),('1f684dc2e8b5b21b5eec9d4dd2e5730e','192.168.11.100','Hero4Zero 1.0 (iPad; iPhone OS 7.1; en_US)',1399888471,''),('20391be508753ed9e9afd951839a3ed5','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399888123,''),('219922ab233edff060e2c1dda84e7a6d','192.168.11.100','Hero4Zero 1.0 (iPad; iPhone OS 7.1; en_US)',1399888471,''),('2344344e559e302f4f760c1162ddfb32','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399885583,''),('2a4902514723d8986e88e96140b9e52f','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399885102,''),('2d6fcf48fb0a6c46eaf6e0820f4e82d5','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399883515,''),('32c1322777dcee9a5c66a7505e58d36e','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399883555,''),('33a853b0f48f1b1e950472aa1d0613f8','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399888053,''),('368b1f9cfdc12123304aaafe72913375','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399887144,''),('3a2ba36bb1dd3ef8814f4a0c19d7e489','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884062,''),('3aca54c89f4ece4320b67516c4b798e3','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399885604,''),('3dfe659c67fbf9cc0d3a2b17ebfc96af','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399883844,''),('3ff722a6eab587e97af90aebed6fdf50','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399883519,''),('406199baa174c1a1028062ddc3eaa195','192.168.11.132','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36',1399888186,''),('43c3b65530319b904bf882c585caa0de','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399886203,''),('44543aca80ef05bfd58e02e963cf6bbe','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399885003,''),('49d58ad9957620cc895d854b9b5c124e','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399886857,''),('54ae4cdce708b6bad27365fc5104e7d8','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399883519,''),('57abc9ea96b72cc64c39d98398edcd58','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884651,''),('590f2a63f9552bca14330552fc269b20','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399885583,''),('59a2a0b74e5974dbc4a2e1e6047521cc','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884389,''),('5a1bced954b893d8d6c1afaafcaa52de','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399888053,''),('5ad22dc1ae934d730aeb94548c96c8e1','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399885639,''),('5b2800120fc531ef6564cbbaef21abc6','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399886849,''),('5c7a2c36d51c058135cec5ed2763be7a','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399883515,''),('5c7d58ec520acbbdfb4b7e9e243ab984','192.168.11.103','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36',1399886522,'a:3:{s:9:\"user_data\";s:0:\"\";s:4:\"role\";s:5:\"admin\";s:10:\"partner_id\";i:5;}'),('5f6b4a5f190a8a4e8777422b6e6c8df0','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884901,''),('6190333fe2c6f2a1f4adfca21d40f8ab','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399887523,''),('685cdd89b57075ea736227d60b2cd342','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399883432,''),('6eec8a159067817790542e693d458262','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399883989,''),('6f0dbc94cb02fa0c0615e5e8bf6c8cb5','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884901,''),('6f5bde983e6a2bcbe19d7624d7ba9270','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399883844,''),('6fd16c2d2baad84cb0d8c16748945be3','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884249,''),('73ad4554fd6f26f3b987f5c2e7d7b238','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399887673,''),('74438f442df5479cf3493fd3ec610c3e','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884213,''),('7657b926e5bb21845616eadaf9cea0c6','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399888053,''),('7a477065ed2342504751421c6f7a9cb2','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884249,''),('7e8abb5fcb282a104e78fbb6604dd432','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399885003,''),('81a18013e50d63e45462a8a3f6641dbe','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399888676,''),('8b1126601fb15e31ad48fd2d3ad4a708','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399885237,''),('8bfc424adb03a5275e6762bb7de6b299','192.168.11.100','Hero4Zero 1.0 (iPad; iPhone OS 7.1; en_US)',1399885145,''),('8cb6433ef306c6b2738d01275bd32d1a','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399885778,''),('98f7ec925867527e34273877693d6fad','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399886857,''),('9abe0d8aac9609c8530448fce73c5578','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399880897,''),('a2aeb074adb086477ea9b3301048e0fe','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399883989,''),('a409786a1ee20e53d0a21e0396d47f8e','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399887523,''),('a728b764d259c0b5fa2089c4b5a69fd4','192.168.11.132','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 6.1; en_US)',1399887377,''),('a763a20e0bc6c0a9d54e8f2a3a6b046f','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399888123,''),('accbcdafa8246e5bca7bfe477afdafc1','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399885237,''),('b1f2bce3e9892f1b560b52022a276829','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399887394,''),('b4305ea5d955c0a92ff3927dc54774bc','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399886203,''),('b5a0d5edf849b5da3ed7dcf9af51268f','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884712,''),('b7c9ae24c9bd7fc678dd649e6b7d54c1','192.168.11.123','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36',1399885143,''),('bb7959a21fa270322321ea0a97938255','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884062,''),('c1ab30c1341085211703eb1f3f6249a5','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399880850,''),('c429cc843f5f7b2be9cabf3d50a2c48d','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884948,''),('cdbf521a57854e085d6f6bebfa5730d0','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399880897,''),('d2576a4af8111bd416218e398f9b7820','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884213,''),('d5414f818c0a2e1dbee945876a9f2b06','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884712,''),('d829ba375b08495f2fb6bef3b3c2bea0','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884651,''),('ddc91c20214ebae1f5fb08372a406046','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399887682,''),('df1583416da7529e91d936c6b2c83827','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399885102,''),('df8f42f3a85265beea90e053fdd4656d','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399887394,''),('e034fc7c4493820d2e5544933f084061','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399888123,''),('e92950686b8c5d284e19845cd777e04c','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399886849,''),('efcb539a3c4f6cdf54b1a802de721e7a','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884389,''),('f4205d47b6d1ac686f77ee8576b0de96','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399884948,''),('f6288ec028bff40c6e8552c0a3249260','192.168.11.123','Hero4Zero 1.0 (iPhone Simulator; iPhone OS 7.0.3; en_US)',1399888676,'');
 /*!40000 ALTER TABLE `app_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -663,7 +663,7 @@ CREATE TABLE `user` (
   `PhoneNumber` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Address` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -672,7 +672,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Vu Hoang Son','gun4boy@yahoo.com','2014-04-25 00:00:00','',NULL),(2,NULL,'hoiquangvn@gmail.com','2014-04-28 15:57:11','+84.38951014 – 0938.456.215 – 0903.005.442',NULL),(3,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:10:54','(+84) 838 388 872 – (+84) 913 639 386',NULL),(4,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:11:16','(+84) 838 388 872 – (+84) 913 639 386',NULL),(5,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:11:34','(+84) 838 388 872 – (+84) 913 639 386',NULL),(6,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:11:41','(+84) 838 388 872 – (+84) 913 639 386',NULL),(7,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:11:47','(+84) 838 388 872 – (+84) 913 639 386',NULL),(8,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:01','(+84) 838 388 872 – (+84) 913 639 386',NULL),(9,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:09','(+84) 838 388 872 – (+84) 913 639 386',NULL),(10,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:15','(+84) 838 388 872 – (+84) 913 639 386',NULL),(11,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:20','(+84) 838 388 872 – (+84) 913 639 386',NULL),(12,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:26','(+84) 838 388 872 – (+84) 913 639 386',NULL),(13,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:31','(+84) 838 388 872 – (+84) 913 639 386',NULL),(14,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:38','(+84) 838 388 872 – (+84) 913 639 386',NULL),(15,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:44','(+84) 838 388 872 – (+84) 913 639 386',NULL),(16,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:49','(+84) 838 388 872 – (+84) 913 639 386',NULL),(17,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:54','(+84) 838 388 872 – (+84) 913 639 386',NULL),(18,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:26:32','(+84) 838 388 872 – (+84) 913 639 386',NULL),(19,'test','test','2014-05-05 00:00:00','123',NULL),(20,'Test','test@gmail.com','2014-05-07 00:00:00','09013523',NULL),(21,NULL,'imrhung@yahoo.com','2014-05-07 02:21:25','84912880656',NULL);
+INSERT INTO `user` VALUES (1,'Vu Hoang Son','gun4boy@yahoo.com','2014-04-25 00:00:00','',NULL),(2,NULL,'hoiquangvn@gmail.com','2014-04-28 15:57:11','+84.38951014 – 0938.456.215 – 0903.005.442',NULL),(3,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:10:54','(+84) 838 388 872 – (+84) 913 639 386',NULL),(4,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:11:16','(+84) 838 388 872 – (+84) 913 639 386',NULL),(5,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:11:34','(+84) 838 388 872 – (+84) 913 639 386',NULL),(6,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:11:41','(+84) 838 388 872 – (+84) 913 639 386',NULL),(7,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:11:47','(+84) 838 388 872 – (+84) 913 639 386',NULL),(8,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:01','(+84) 838 388 872 – (+84) 913 639 386',NULL),(9,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:09','(+84) 838 388 872 – (+84) 913 639 386',NULL),(10,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:15','(+84) 838 388 872 – (+84) 913 639 386',NULL),(11,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:20','(+84) 838 388 872 – (+84) 913 639 386',NULL),(12,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:26','(+84) 838 388 872 – (+84) 913 639 386',NULL),(13,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:31','(+84) 838 388 872 – (+84) 913 639 386',NULL),(14,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:38','(+84) 838 388 872 – (+84) 913 639 386',NULL),(15,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:44','(+84) 838 388 872 – (+84) 913 639 386',NULL),(16,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:49','(+84) 838 388 872 – (+84) 913 639 386',NULL),(17,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:12:54','(+84) 838 388 872 – (+84) 913 639 386',NULL),(18,NULL,'cuccuvn2005@yahoo.com','2014-04-28 16:26:32','(+84) 838 388 872 – (+84) 913 639 386',NULL),(19,'test','test','2014-05-05 00:00:00','123',NULL),(20,'Test','test@gmail.com','2014-05-07 00:00:00','09013523',NULL),(21,NULL,'imrhung@yahoo.com','2014-05-07 02:21:25','84912880656',NULL),(23,'test','','2014-05-12 00:00:00','123123',NULL),(24,'Ngọc Tân','0','2014-05-12 00:00:00','',NULL),(25,'Angel Mai Mai','0','2014-05-12 00:00:00','',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -723,7 +723,7 @@ CREATE TABLE `userapplication` (
 
 LOCK TABLES `userapplication` WRITE;
 /*!40000 ALTER TABLE `userapplication` DISABLE KEYS */;
-INSERT INTO `userapplication` VALUES (1,'1498934909',86,0),(19,'34563',80,0),(20,'86756578',0,0);
+INSERT INTO `userapplication` VALUES (1,'1498934909',86,0),(19,'34563',80,0),(20,'86756578',0,0),(23,'23123',0,0),(24,'100002989569961',2,0),(25,'548597684',0,0);
 /*!40000 ALTER TABLE `userapplication` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -905,7 +905,7 @@ CREATE TABLE `uservirtualquest` (
 
 LOCK TABLES `uservirtualquest` WRITE;
 /*!40000 ALTER TABLE `uservirtualquest` DISABLE KEYS */;
-INSERT INTO `uservirtualquest` VALUES (1,1,2),(19,1,1),(20,1,1);
+INSERT INTO `uservirtualquest` VALUES (1,1,2),(19,1,1),(20,1,1),(23,1,1),(24,1,1),(25,1,1);
 /*!40000 ALTER TABLE `uservirtualquest` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -939,7 +939,7 @@ INSERT INTO `virtualquest` VALUES (1,'Test A',1,1,1,500,NULL),(2,'Test B',1,1,1,
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'travel_hero'
+-- Dumping routines for database 'zadmin_heroforzero'
 --
 /*!50003 DROP FUNCTION IF EXISTS `fnc_checkSignUpInfo` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -1215,6 +1215,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_getActivitiesByPartnerId` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE PROCEDURE `sp_getActivitiesByPartnerId`(IN partnerId INT)
+BEGIN
+	SELECT * FROM Activity WHERE PartnerId = partnerId;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_getDonationBy` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1387,6 +1406,38 @@ BEGIN
 	DECLARE userId INT;
 	SELECT id INTO userId FROM user WHERE facebook_id = facebookId;
 	SELECT *,(SELECT COUNT(*) FROM user_quest WHERE user_quest.user_id = userId) AS quest_count FROM user WHERE id = userId;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_getVirtualQuestForMobile` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE PROCEDURE `sp_getVirtualQuestForMobile`(IN inId INT)
+BEGIN
+	SELECT 
+		v.Id as vId,v.QuestName as vQuestName,v.PacketId as vPacketId,v.PartnerId as vPartnerId,v.AnimationId as vAnimationId, v.UnlockPoint as vUnlockPoint, v.CreateDate as vCreateDate
+		,k.Id AS kId,k.Title AS kTitle,k.ImageURL AS kImageURL,k.PartnerId AS kPartnerId
+		,p.Id as pId, p.PartnerName as pPartnerName, p.OrganizationTypeId as pOrganizationTypeId, p.Address as pAddress, p.PhoneNumber as pPhoneNumber, p.WebsiteURL as pWebsiteUrl, p.Latitude as pLatitude, p.Longtitude as pLongtitude, p.Description as pDescription, p.IsApproved as pIsApproved, p.LogoURL as pLogoUrl, p.IconURL as pIconUrl
+		,c.Id AS cId,c.Type AS cType,c.Value AS cValue,c.VirtualQuestId AS cVirtualQuestId,c.ObjectId AS cObjectId
+		,a.Id as aId, a.PartnerId as aPartnerId, a.Title as aTitle, a.Description as aDescription, a.ActionId as aActionId, a.BonusPoint as aBonusPoint, a.IsApproved as aIsApproved, a.CreateDate as aCreateDate, a.ActionContent as aActionContent
+		,d.Id as dId, d.Title as dTitle, d.Description as dDescription, d.RequiredPoint as dRequiredPoint, d.MedalId as dMedalId, d.PartnerId as dPartnerId, d.IsApproved as dIsApproved, d.CreateDate as dCreateDate
+	FROM virtualquest v
+	JOIN partner p ON v.PartnerId = p.Id
+	JOIN packet k ON v.PacketId = k.Id 
+	JOIN questcondition c ON v.Id = c.VirtualQuestId
+	JOIN activity a ON a.Id = c.`ObjectId`
+	JOIN donation d ON d.Id = c.`ObjectId`
+	WHERE v.Id = inId;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2128,22 +2179,28 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE PROCEDURE `sp_Get_VirtualQuest`(IN inId INT)
+CREATE PROCEDURE `sp_Get_VirtualQuest`(Id INT)
 BEGIN
 	SELECT 
-		v.Id as vId,v.QuestName as vQuestName,v.PacketId as vPacketId,v.PartnerId as vPartnerId,v.AnimationId as vAnimationId, v.UnlockPoint as vUnlockPoint, v.CreateDate as vCreateDate
-		,k.Id AS kId,k.Title AS kTitle,k.ImageURL AS kImageURL,k.PartnerId AS kPartnerId
-		,p.Id as pId, p.PartnerName as pPartnerName, p.OrganizationTypeId as pOrganizationTypeId, p.Address as pAddress, p.PhoneNumber as pPhoneNumber, p.WebsiteURL as pWebsiteUrl, p.Latitude as pLatitude, p.Longtitude as pLongtitude, p.Description as pDescription, p.IsApproved as pIsApproved, p.LogoURL as pLogoUrl, p.IconURL as pIconUrl
-		,c.Id AS cId,c.Type AS cType,c.Value AS cValue,c.VirtualQuestId AS cVirtualQuestId,c.ObjectId AS cObjectId
-		,a.Id as aId, a.PartnerId as aPartnerId, a.Title as aTitle, a.Description as aDescription, a.ActionId as aActionId, a.BonusPoint as aBonusPoint, a.IsApproved as aIsApproved, a.CreateDate as aCreateDate, a.ActionContent as aActionContent
-		,d.Id as dId, d.Title as dTitle, d.Description as dDescription, d.RequiredPoint as dRequiredPoint, d.MedalId as dMedalId, d.PartnerId as dPartnerId, d.IsApproved as dIsApproved, d.CreateDate as dCreateDate
-	FROM virtualquest v
-	JOIN partner p ON v.PartnerId = p.Id
-	JOIN packet k ON v.PacketId = k.Id 
-	JOIN questcondition c ON v.Id = c.VirtualQuestId
-	JOIN activity a ON a.Id = c.`ObjectId`
-	JOIN donation d ON d.Id = c.`ObjectId`
-	WHERE v.Id = inId;
+		virtualquest.Id,
+		QuestName,
+		partner.PartnerName,
+		UnlockPoint,
+		CreateDate,
+		PacketId,
+		packet.Title as 'PacketName',
+		questcondition.Id, 
+		questcondition.Type, 
+		questcondition.ObjectId,
+		questcondition.Value
+	FROM 
+		travel_hero.virtualquest,
+		partner, packet, questcondition
+	WHERE 
+				virtualquest.Id = Id
+		AND		virtualquest.PartnerId = partner.Id
+		AND		virtualquest.PacketId = packet.Id
+		AND     questcondition.VirtualQuestId = Id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2204,9 +2261,9 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = '' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE PROCEDURE `sp_insertUserFb`(IN iFullName VARCHAR(100),IN iEmail VARCHAR(100), IN iPhone VARCHAR(45), IN iFacebookId INT)
+CREATE PROCEDURE `sp_insertUserFb`(IN iFullName VARCHAR(100),IN iEmail VARCHAR(100), IN iPhone VARCHAR(45), IN iFacebookId VARCHAR(45))
 BEGIN
 	DECLARE userId INT;
 
@@ -3286,4 +3343,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-05-12 14:52:52
+-- Dump completed on 2014-05-12 16:59:19

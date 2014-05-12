@@ -115,7 +115,7 @@ class Service_Model extends CI_Model {
 			return array();
 	}
         
-	public function getDonationByPartnerId($pageIndex, $pageSize) {
+	public function getDonationByPageIndex($pageIndex, $pageSize) {
         $sql = 'CALL sp_getDonationBy(?,?)';
         $result = $this->db->query($sql,array($pageIndex, $pageSize));
 
@@ -208,9 +208,10 @@ class Service_Model extends CI_Model {
         return $result->row();
     }
 	
-	public function getNumberOfChildrenByUserId($userId) {
-        $sql = 'CALL sp_getNumberOfChildrenByUserId(?)';
-        $result = $this->db->query($sql, array($userId));
+	public function getNumberOfChildrenByUserId() {
+		
+        $sql = 'CALL sp_getNumberOfChildrenByUserId()';
+        $result = $this->db->query($sql);
 
         return $result->row();
     }
@@ -235,8 +236,6 @@ class Service_Model extends CI_Model {
 	public function insertUserFb($fullName,$email,$phone,$facebookId) {
 		
 		$result = array();
-		
-		//$facebookId = (int) $facebookId;
 		
 		$resultPackets = $this->db->query('CALL sp_insertUserFb(?,?,?,?)', array($fullName,$email,$phone,$facebookId));
 		
