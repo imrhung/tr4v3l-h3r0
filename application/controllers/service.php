@@ -304,8 +304,7 @@ class Service extends App_Controller {
 		$partnerId = $this->input->post('partnerId');
 		$donationId = $this->input->post('donationId');
 		
-		$resultCheck = $this->service_model->insertSpentPointDonation($partnerId,$donationId);
-		
+		$resultCheck = $this->service_model->insertSpentPointDonation($partnerId,$donationId);		
 		$result['code'] = 1;
 		$result['message'] = "Success";
 		$result['info'] = $resultCheck;
@@ -315,6 +314,53 @@ class Service extends App_Controller {
 	
 	public function spentPointActivity() {
 		
+	}
+	
+	public function saveGame() {
+		$userId = $this->input->post('userId');
+		$score = $this->input->post('score');
+		
+		$result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = array();
+		
+		$resultCheck= $this->service_model->insertScore($userId,$score);
+	
+		if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['info'] = $resultCheck;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+            $result['info'] = $resultCheck;
+        }
+		echo json_encode($result);
+	}
+	
+	public function getDonation() {
+		$pageIndex = $this->input->post('pageIndex');
+		$pageSize = $this->input->post('pageSize');
+	
+		$result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = array();
+		
+		$resultCheck= $this->service_model->getDonationByPartnerId($pageIndex,$pageSize);
+	
+		if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['info'] = $resultCheck;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+            $result['info'] = $resultCheck;
+        }
+		
+		echo json_encode($result);
 	}
         
         /*

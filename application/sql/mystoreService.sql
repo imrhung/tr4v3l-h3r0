@@ -36,46 +36,6 @@ BEGIN
 		DEALLOCATE PREPARE STMT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getQuizzBy`(IN iUserId INT)
-BEGIN
-
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getUserProfileBy`(IN iUserId INT)
-BEGIN
-
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getLeaderBoardBy`(IN iUserId INT)
-BEGIN
-
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getUserAwardsBy`(IN iUserId INT)
-BEGIN
-
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getActivitiesBy`(IN iUserId INT)
-BEGIN
-
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getUserCurrentQuestBy`(IN iUserId INT)
-BEGIN
-
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getNumberOfChildrenBy`(IN iUserId INT)
-BEGIN
-
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertUserQuest`(IN iUserId INT)
-BEGIN
-
-END$$
-
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertUserFb`(IN iFullName VARCHAR(100),IN iEmail VARCHAR(100), IN iPhone VARCHAR(45), IN iFacebookId INT)
 BEGIN
@@ -162,47 +122,127 @@ END$$
 DELIMITER ;
 
 
-
-
-
-
-
-
-
-
-
-
-
-CREATE DEFINER=`user_hau`@`localhost` FUNCTION `fnc_checkSignUpWithFacebookInfo`(iFacebookId VARCHAR(100),
-												iFullName VARCHAR(100),
-												iHeroName VARCHAR(100)) RETURNS int(11)
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertUserFb`(IN iFullName VARCHAR(100),IN iEmail VARCHAR(100), IN iPhone VARCHAR(45), IN iFacebookId INT)
 BEGIN
-	DECLARE count INT;
-	DECLARE resultCode INT;
-    
+	DECLARE userId INT;
 
-	IF EXISTS(SELECT * FROM user WHERE facebook_id = iFacebookId OR hero_name = iHeroName) THEN
-		SET resultCode = 0;
+	BEGIN
+		-- ERROR
+		ROLLBACK;
+	END;
+
+	BEGIN
+		-- WARNING
+		ROLLBACK;
+	END;
+	
+	IF EXISTS(SELECT * FROM userapplication WHERE FacebookId = iFacebookId) THEN
+		 SELECT '0' as `code`, 'User is Exist' as 'message', userapplication.* FROM userapplication WHERE FacebookId = iFacebookId;
 	ELSE
-		INSERT INTO user
-		VALUES(UUID(), iFullName, iHeroName, null, null, null, null, null, 1, 1, 0, NOW());
-		SET resultCode = 1;
+		START TRANSACTION;
+			
+			INSERT INTO user(Fullname, Email, RegisterDate, PhoneNumber) VALUES(iFullName, iEmail, curdate(), iPhone);
+		
+			set @userId = (SELECT LAST_INSERT_ID());
+			
+			INSERT INTO userapplication(UserId, FacebookId, Points, CurrentLevel) VALUES(@userId, iFacebookId, 0, 0);
+			
+			INSERT INTO uservirtualquest(UserId, QuestId, Status) VALUES (@userId, (SELECT Id FROM virtualquest LIMIT 1), 1);
+			
+			SELECT '1' as `code`, 'Regist successful' as 'message', v.*
+			FROM virtualquest v
+			JOIN uservirtualquest u 
+			ON v.Id = u.QuestId 
+			WHERE u.UserId = @userId;
+
+		COMMIT;
+			
 	END IF;
-	RETURN resultCode;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getDonationByPartnerId`(IN partnerId INT)
+BEGIN
+	SELECT * FROM Donation WHERE PartnerId = partnerId;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getActivitiesByPartnerId`(IN partnerId INT)
+BEGIN
+	SELECT * FROM Activity WHERE PartnerId = partnerId;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertSpentPointDonation`(IN partnerId INT,IN donationId INT,)
+BEGIN
+	
+	BEGIN
+		-- ERROR
+		ROLLBACK;
+	END;
+
+	BEGIN
+		-- WARNING
+		ROLLBACK;
+	END;
+	
+	START TRANSACTION;
+		INSERT INTO Donation() VALUES ();
+		
+		SET @donationId = (SELECT LAST_INSERT_ID());
+		
+		SELECT * FROM WHERE DonationId = @donationId;
+	COMMIT;
+	
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getNumberOfChildrenByUserId`(IN userId INT)
+BEGIN
+	SELECT 7000000 - COUNT(*) FROM uservirtualquest WHERE UserId = userId AND Status = 2;
+	
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_ActivityList`(IN currentPage INTEGER, IN pageSize INTEGER)
+BEGIN
+	#DECLARE rowNumber INT;
+	SET @_pageSize = pageSize;
+	SET @_currentPage = currentPage;
+	
+	SET @rowNumber = (@_currentPage * @_pageSize);
+	
+	if (@_pageSize != 0) 
+	then
+		PREPARE STMT FROM
+		"SELECT activity.Id, activity.Title, activity.ActionContent, partner.PartnerName, activity.BonusPoint,  activity.IsApproved, activity.CreateDate
+		FROM 
+				travel_hero.activity,
+				travel_hero.partner
+		WHERE 
+				activity.PartnerId = partner.Id
+		LIMIT ?,?";
+		EXECUTE STMT USING @rowNumber, @_pageSize;
+		DEALLOCATE PREPARE STMT;
+	else  
+		SELECT activity.Id, activity.Title, activity.ActionContent, partner.PartnerName, activity.BonusPoint,  activity.IsApproved, activity.CreateDate
+		FROM 
+				travel_hero.activity,
+				travel_hero.partner
+		WHERE 
+				activity.PartnerId = partner.Id;
+		end if;	
 END$$
 
 
-CREATE DEFINER=`user_hau`@`localhost` PROCEDURE `sp_checksignupwithfacebookinfo`(IN iFacebookId VARCHAR(100),
-												IN iFullName VARCHAR(100),
-												IN iHeroName VARCHAR(100),
-												IN iEmail VARCHAR(100))
-BEGIN
 
-	IF EXISTS(SELECT * FROM user WHERE facebook_id = iFacebookId OR hero_name = iHeroName) THEN
-		 SELECT '0' as `code`, user.*, (SELECT COUNT(*) FROM user_quest WHERE user_quest.user_id = (SELECT id FROM user WHERE facebook_id = iFacebookId)) AS quest_count FROM user WHERE facebook_id = iFacebookId;
-	ELSE
-		INSERT INTO user(full_name, hero_name, email, facebook_id, register_date)
-		VALUES(iFullName, iHeroName, iEmail, iFacebookId, NOW());
-		SELECT '1' as `code`, user.*, (SELECT COUNT(*) FROM user_quest WHERE user_quest.user_id = (SELECT id FROM user WHERE facebook_id = iFacebookId)) AS quest_count FROM user WHERE facebook_id = iFacebookId;
-	END IF;
-END$$
+
+
+
+

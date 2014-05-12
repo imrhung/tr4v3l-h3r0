@@ -20,10 +20,77 @@ class VirtualQuest_Model extends CI_Model {
     /* 	Get a VirtualQuest function from databases */
 
     public function getVirtualQuest($id) {
-
+		$result = null;
+		
+		$id = (int) $id;
+		
         $sql = 'CALL sp_Get_VirtualQuest(?)';
-        $result = $this->db->query($sql, array($id));
-
+        $resultPackets = $this->db->query($sql, array($id));
+		
+		if ($resultPackets->num_rows() > 0) {
+		
+			$data = $resultPackets->result_array();
+			
+			$result['quest']['vId'] = $data[0]['vId'];
+			$result['quest']['vQuestName'] = $data[0]['vQuestName'];
+			$result['quest']['vPacketId'] = $data[0]['vPacketId'];
+			$result['quest']['vPartnerId'] = $data[0]['vPartnerId'];
+			$result['quest']['vAnimationId'] = $data[0]['vAnimationId'];
+			$result['quest']['vUnlockPoint'] = $data[0]['vUnlockPoint'];
+			$result['quest']['vCreateDate'] = $data[0]['vCreateDate'];
+			$result['quest']['kTitle'] = $data[0]['kTitle'];
+			$result['quest']['kImageURL'] = $data[0]['kImageURL'];
+			$result['quest']['kPartnerId'] = $data[0]['kPartnerId'];
+			$result['quest']['pId'] = $data[0]['pId'];
+			$result['quest']['pPartnerName'] = $data[0]['pPartnerName'];
+			$result['quest']['pOrganizationTypeId'] = $data[0]['pOrganizationTypeId'];
+			$result['quest']['pAddress'] = $data[0]['pAddress'];
+			$result['quest']['pPhoneNumber'] = $data[0]['pPhoneNumber'];
+			$result['quest']['pWebsiteUrl'] = $data[0]['pWebsiteUrl'];
+			$result['quest']['pLatitude'] = $data[0]['pLatitude'];
+			$result['quest']['pLongtitude'] = $data[0]['pLongtitude'];
+			$result['quest']['pDescription'] = $data[0]['pDescription'];
+			$result['quest']['pIsApproved'] = $data[0]['pIsApproved'];
+			$result['quest']['pLogoUrl'] = $data[0]['pLogoUrl'];
+			$result['quest']['pIconUrl'] = $data[0]['pIconUrl'];
+			
+			$i = 0;
+			
+			foreach($data as $row) {
+				$i++;
+				$result['quest']['condition'][$i]['cId'] = $row['cId'];
+				$result['quest']['condition'][$i]['cType'] = $row['cType'];
+				$result['quest']['condition'][$i]['cValue'] = $row['cValue'];
+				$result['quest']['condition'][$i]['cVirtualQuestId'] = $row['cVirtualQuestId'];
+				$result['quest']['condition'][$i]['cObjectId'] = $row['cObjectId'];
+				
+				if ($row['cType'] == 1) {
+					$result['quest']['condition'][$i]['action']['aId'] = $row['aId'];
+					$result['quest']['condition'][$i]['action']['aPartnerId'] = $row['aPartnerId'];
+					$result['quest']['condition'][$i]['action']['aTitle'] = $row['aTitle'];
+					$result['quest']['condition'][$i]['action']['aDescription'] = $row['aDescription'];
+					$result['quest']['condition'][$i]['action']['aActionId'] = $row['aActionId'];
+					$result['quest']['condition'][$i]['action']['aBonusPoint'] = $row['aBonusPoint'];
+					$result['quest']['condition'][$i]['action']['aIsApproved'] = $row['aIsApproved'];
+					$result['quest']['condition'][$i]['action']['aCreateDate'] = $row['aCreateDate'];
+					$result['quest']['condition'][$i]['action']['aActionContent'] = $row['aActionContent'];
+				} else {
+					$result['quest']['condition'][$i]['donation']['dId'] = $row['dId'];
+					$result['quest']['condition'][$i]['donation']['dTitle'] = $row['dTitle'];
+					$result['quest']['condition'][$i]['donation']['dDescription'] = $row['dDescription'];
+					$result['quest']['condition'][$i]['donation']['dRequiredPoint'] = $row['dRequiredPoint'];
+					$result['quest']['condition'][$i]['donation']['dMedalId'] = $row['dMedalId'];
+					$result['quest']['condition'][$i]['donation']['dPartnerId'] = $row['dPartnerId'];
+					$result['quest']['condition'][$i]['donation']['dIsApproved'] = $row['dIsApproved'];
+					$result['quest']['condition'][$i]['donation']['dCreateDate'] = $row['dCreateDate'];
+				}
+			}
+			
+			return $result;
+		} else 
+			return array();
+		
+		/*
         $array = array();
 
         $array['quest'] = array(
@@ -47,6 +114,7 @@ class VirtualQuest_Model extends CI_Model {
         }
 
         return $array;
+		*/
     }
 
     /* 	Get VirtualQuest list function from databases */
