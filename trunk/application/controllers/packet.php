@@ -56,7 +56,6 @@ class Packet extends App_Controller {
     }
     
     /* Get Packet available (have less than 3 quests) list function from database */
-
     public function getPacketAvailalbeList() {
         $result = array();
         $result['code'] = -1;
@@ -81,6 +80,8 @@ class Packet extends App_Controller {
         }
         echo json_encode($result);
     }
+    
+    
 
     /*     * ***INSERT**** */
     /* Last 18-March-2014 */
@@ -98,6 +99,56 @@ class Packet extends App_Controller {
 
         // Implements work
         $resultCheck = $this->packet_model->insertPacket($title, $imageUrl, $partner_id);
+
+        if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+        echo json_encode($result);
+    }
+    
+    public function getPacket() {
+        $id = $this->input->post("id");
+
+        // Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = array();
+
+        $result['info']['packet'] = null;
+
+        $resultCheck = $this->packet_model->getPacket($id);
+
+        if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['info']['packet'] = $resultCheck;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+            $result['info']['packet'] = $resultCheck;
+        }
+
+        echo json_encode($result);
+    }
+    
+    public function updatePacket(){
+        $id = $this->input->post('id');
+        $title = $this->input->post('title');
+        $imageUrl = $this->input->post('image_url');
+        $partner_id = $this->input->post('partner_id');
+        
+        // Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+
+        // Implements work
+        $resultCheck = $this->packet_model->updatePacket($id, $title, $imageUrl, $partner_id);
 
         if ($resultCheck) {
             $result['code'] = 1;

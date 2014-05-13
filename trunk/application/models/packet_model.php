@@ -51,6 +51,30 @@ class Packet_Model extends CI_Model {
             return $e->getMessage();
         }
     }
+    
+    public function updatePacket($id, $title, $imageUrl, $partner_id){
+        try {
+            if ($imageUrl == NULL){
+                $sql = 'UPDATE `packet` SET Title = ? WHERE `packet`.`Id` = ?';
+                $result = $this->db->query($sql, array($title, $id));
+            } else {
+                $sql = 'UPDATE `packet` SET Title = ?, `ImageURL` = ? WHERE `packet`.`Id` = ?';
+                $result = $this->db->query($sql, array($title, $imageUrl, $id));
+            }
+            
+            return 'Success';
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+    
+    public function getPacket($id){
+
+        $sql = 'SELECT * FROM `packet` WHERE `packet`.`Id` = ?';
+        $result = $this->db->query($sql, $id);
+
+        return $result->row();
+    }
 
 }
 
