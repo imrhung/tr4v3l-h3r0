@@ -114,6 +114,23 @@ class Admin extends App_Controller {
         $this->assets_js[] = 'admin/packet.js';
         $this->render_page_admin('admin/packet');
     }
+    
+    public function edit_packet($id = NULL){
+        if ($id == NULL) {
+            redirect("admin/index");
+        } else {
+            $this->page_title = "Edit Packet";
+            $this->current_section = "edit_packet";
+            $this->assets_js[] = 'admin/edit_packet.js';
+            $this->assets_js[] = 'bootbox/bootbox.min.js';
+
+            $data = array(
+                'packetId' => $id
+            );
+            $this->render_page_admin('admin/edit_packet', $data);
+        }
+        
+    }
 
     public function partners() {
         $this->page_title = 'Partners';

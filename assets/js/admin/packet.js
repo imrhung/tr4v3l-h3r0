@@ -22,10 +22,10 @@ function drawPacketTable(){
                         var row = $('<tr></tr>');
                         var name = $('<td></td>').text(packets[i].Title);
                         var background = $('<td></td>').text("default.png");
-                        row.append(name).append(background);
+                        var action = '<td><a href="'+baseUrl+'admin/edit_packet/'+packets[i].Id+'">Edit</a></td>'
+                        row.append(name).append(background).append(action);
                         packetTable.append(row);
                     }
-                  
                 } else { // Fail
                     
                 }

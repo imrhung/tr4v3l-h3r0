@@ -14,6 +14,7 @@
                     <tr>
                         <th>Packet's Name</th>
                         <th>Packet's Background</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
