@@ -1099,7 +1099,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE PROCEDURE `sp_Delete_Activity`(Id INT)
 BEGIN
-		DELETE FROM travel_hero.activity
+		DELETE FROM zadmin_heroforzero.activity
 			WHERE activity.Id = Id;
 END ;;
 DELIMITER ;
@@ -1119,7 +1119,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE PROCEDURE `sp_Delete_Donation`(Id INT)
 BEGIN
-		DELETE FROM travel_hero.donation
+		DELETE FROM zadmin_heroforzero.donation
 			WHERE donation.Id = Id;
 END ;;
 DELIMITER ;
@@ -1165,7 +1165,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE PROCEDURE `sp_Delete_QuestCondition`(Id INT)
 BEGIN
-	DELETE FROM travel_hero.questcondition WHERE VirtualQuestId = Id;
+	DELETE FROM zadmin_heroforzero.questcondition WHERE VirtualQuestId = Id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1184,10 +1184,10 @@ DELIMITER ;
 DELIMITER ;;
 CREATE PROCEDURE `sp_Delete_Quiz`(Id INT)
 BEGIN
-	DELETE FROM travel_hero.quiz
+	DELETE FROM zadmin_heroforzero.quiz
 		WHERE quiz.Id = Id;
 				
-	DELETE FROM travel_hero.choice
+	DELETE FROM zadmin_heroforzero.choice
 		WHERE choice.QuestionId = Id;
 END ;;
 DELIMITER ;
@@ -1207,7 +1207,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE PROCEDURE `sp_Delete_VirtualQuest`(Id INT)
 BEGIN
-	DELETE FROM travel_hero.virtualquest
+	DELETE FROM zadmin_heroforzero.virtualquest
 			WHERE virtualquest.Id = Id;
 END ;;
 DELIMITER ;
@@ -1252,7 +1252,7 @@ BEGIN
 	SET @pageSize = pageSize;
 	#select @currentPage as a, @rowNumber as b, pageSize as c;
 	PREPARE STMT FROM
-	"SELECT * FROM Donation d JOIN medal m ON d.MedalId = m.Id LIMIT ?,?";
+	"SELECT * FROM donation d JOIN medal m ON d.MedalId = m.Id LIMIT ?,?";
 	EXECUTE STMT USING @rowNumber, @pageSize;
 	DEALLOCATE PREPARE STMT;
 
@@ -1456,7 +1456,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE PROCEDURE `sp_Get_Activity`(id INT)
 BEGIN
-	SELECT activity.*, partner.PartnerName FROM travel_hero.activity, travel_hero.action, travel_hero.partner
+	SELECT activity.*, partner.PartnerName FROM zadmin_heroforzero.activity, zadmin_heroforzero.action, zadmin_heroforzero.partner
 		
 			
 		WHERE
@@ -1493,8 +1493,8 @@ BEGIN
 		PREPARE STMT FROM
 		"SELECT activity.Id, activity.Title, activity.ActionContent, partner.PartnerName, activity.BonusPoint,  activity.IsApproved, activity.CreateDate, partner.IconURL, activity.Description, activity.ActionId
 		FROM 
-				travel_hero.activity,
-				travel_hero.partner
+				zadmin_heroforzero.activity,
+				zadmin_heroforzero.partner
 		WHERE 
 				activity.PartnerId = partner.Id
 		LIMIT ?,?";
@@ -1503,8 +1503,8 @@ BEGIN
 	else  
 		SELECT activity.Id, activity.Title, activity.ActionContent, partner.PartnerName, activity.BonusPoint,  activity.IsApproved, activity.CreateDate, partner.IconURL, activity.Description, activity.ActionId
 		FROM 
-				travel_hero.activity,
-				travel_hero.partner
+				zadmin_heroforzero.activity,
+				zadmin_heroforzero.partner
 		WHERE 
 				activity.PartnerId = partner.Id;
 		end if;	
@@ -1526,7 +1526,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE PROCEDURE `sp_Get_Animation`(id INT)
 BEGIN
-	SELECT * FROM travel_hero.animation			
+	SELECT * FROM zadmin_heroforzero.animation			
 		WHERE
 				animation.Id = id;
 				
@@ -1550,8 +1550,8 @@ CREATE PROCEDURE `sp_Get_Donation`(Id INT)
 BEGIN
 	SELECT donation.Id, donation.Title, donation.Description, donation.PartnerId, partner.PartnerName, donation.RequiredPoint,  donation.IsApproved, donation.CreateDate
 		FROM 
-				travel_hero.donation,
-				travel_hero.partner
+				zadmin_heroforzero.donation,
+				zadmin_heroforzero.partner
 		WHERE 
 				donation.PartnerId = partner.Id
 		AND 	donation.Id = Id;
@@ -1582,9 +1582,9 @@ BEGIN
 		PREPARE STMT FROM
 		"SELECT donation.Id, donation.Title, partner.PartnerName, donation.RequiredPoint,  donation.IsApproved, donation.CreateDate, medal.ImageURL, donation.Description
 		FROM 
-				travel_hero.donation,
-				travel_hero.partner,
-				travel_hero.medal
+				zadmin_heroforzero.donation,
+				zadmin_heroforzero.partner,
+				zadmin_heroforzero.medal
 		WHERE 
 				donation.PartnerId = partner.Id
 				AND medal.Id = donation.MedalId
@@ -1594,9 +1594,9 @@ BEGIN
 	else  
 		SELECT donation.Id, donation.Title, partner.PartnerName, donation.RequiredPoint,  donation.IsApproved, donation.CreateDate, medal.ImageURL, donation.Description
 		FROM 
-				travel_hero.donation,
-				travel_hero.partner,
-				travel_hero.medal
+				zadmin_heroforzero.donation,
+				zadmin_heroforzero.partner,
+				zadmin_heroforzero.medal
 		WHERE 
 				donation.PartnerId = partner.Id
 				AND medal.Id = donation.MedalId;
@@ -1633,7 +1633,7 @@ BEGIN
 			SET @myquery1 = 
 			"SELECT userapplication.UserId as id, user.FullName as name, userapplication.Points as mark, userapplication.FacebookId facebook_id, userapplication.CurrentLevel as current_level
 			FROM 
-					travel_hero.userapplication, travel_hero.user
+					zadmin_heroforzero.userapplication, zadmin_heroforzero.user
 			WHERE userapplication.UserId = user.Id
 				AND userapplication.FacebookId IN (";
 			set @myquery2 = ")
@@ -1647,7 +1647,7 @@ BEGIN
 		else  
 			SELECT userapplication.UserId as id, user.FullName as name, userapplication.Points as mark, userapplication.FacebookId facebook_id, userapplication.CurrentLevel as current_level
 			FROM 
-					travel_hero.userapplication, travel_hero.user
+					zadmin_heroforzero.userapplication, zadmin_heroforzero.user
 			WHERE userapplication.UserId = user.Id
 			order by userapplication.Points DESC;
 		END if;	
@@ -1667,7 +1667,7 @@ BEGIN
 			PREPARE STMT FROM
 			"SELECT userapplication.UserId as id, user.FullName as name, userapplication.Points as mark, userapplication.FacebookId facebook_id, userapplication.CurrentLevel as current_level
 			FROM 
-					travel_hero.userapplication, travel_hero.user
+					zadmin_heroforzero.userapplication, zadmin_heroforzero.user
 			WHERE userapplication.UserId = user.Id
 			order by userapplication.Points DESC
 			LIMIT  ?,?";
@@ -1677,7 +1677,7 @@ BEGIN
 		else  
 			SELECT userapplication.UserId as id, user.FullName as name, userapplication.Points as mark, userapplication.FacebookId facebook_id, userapplication.CurrentLevel as current_level
 			FROM 
-					travel_hero.userapplication, travel_hero.user
+					zadmin_heroforzero.userapplication, zadmin_heroforzero.user
 			WHERE userapplication.UserId = user.Id
 			order by userapplication.Points DESC;
 		END if;	
@@ -1743,12 +1743,12 @@ BEGIN
 	if (pageSize != 0) 
 	then	
 		PREPARE STMT FROM
-		"SELECT Id, Title FROM travel_hero.packet
+		"SELECT Id, Title FROM zadmin_heroforzero.packet
 		LIMIT ?,?";
 		EXECUTE STMT USING @rowNumber, @pageSize;
 		DEALLOCATE PREPARE STMT;
 	else
-		SELECT Id, Title FROM travel_hero.packet;
+		SELECT Id, Title FROM zadmin_heroforzero.packet;
 	END if;
 END ;;
 DELIMITER ;
@@ -1770,9 +1770,9 @@ CREATE PROCEDURE `sp_Get_Partner`(IN Id INT)
 BEGIN
 	SELECT partner.Id, partner.PartnerName, partner.OrganizationTypeId, partner.Address,  partner.PhoneNumber, partner.WebsiteURL, partner.Latitude, partner.Longtitude, partner.Description, userpartner.UserName, partner.IsApproved, user.Email
 		FROM 
-				travel_hero.user,
-				travel_hero.userpartner,
-				travel_hero.partner
+				zadmin_heroforzero.user,
+				zadmin_heroforzero.userpartner,
+				zadmin_heroforzero.partner
 		WHERE 
 				partner.Id = Id
 		AND		partner.Id = userpartner.PartnerId
@@ -1804,7 +1804,7 @@ BEGIN
 		PREPARE STMT FROM
 		"SELECT partner.Id, partner.PartnerName, partner.OrganizationTypeId, partner.Address,  partner.PhoneNumber, partner.WebsiteURL, partner.Latitude, partner.Longtitude, partner.Description, partner.IsApproved
 		FROM 
-				travel_hero.partner
+				zadmin_heroforzero.partner
 		order by partner.Id DESC
 		LIMIT  ?,?";
 		EXECUTE STMT USING @rowNumber, @_pageSize;
@@ -1813,7 +1813,7 @@ BEGIN
 	else  
 		SELECT partner.Id, partner.PartnerName, partner.OrganizationTypeId, partner.Address,  partner.PhoneNumber, partner.WebsiteURL, partner.Latitude, partner.Longtitude, partner.Description, partner.IsApproved
 		FROM 
-				travel_hero.partner
+				zadmin_heroforzero.partner
 		order by partner.Id DESC;
 	END if;	
 END ;;
@@ -1840,7 +1840,7 @@ BEGIN
 			Type, 
 			ObjectId,
 			Value
-		FROM travel_hero.questcondition
+		FROM zadmin_heroforzero.questcondition
 		WHERE questcondition.VirtualQuestId = Id;
 END ;;
 DELIMITER ;
@@ -1861,7 +1861,7 @@ DELIMITER ;;
 CREATE PROCEDURE `sp_Get_QuestCondition_before`(Id INT)
 BEGIN
 	DECLARE typeCondition INT;
-	SET typeCondition = (SELECT Type FROM travel_hero.questcondition 
+	SET typeCondition = (SELECT Type FROM zadmin_heroforzero.questcondition 
 								WHERE questcondition.VirtualQuestId = Id);
 	
 	if(typeCondition = 0) then
@@ -1871,7 +1871,7 @@ BEGIN
 			ObjectId, 
 			
 			Value
-		FROM travel_hero.virtualquest, questcondition
+		FROM zadmin_heroforzero.virtualquest, questcondition
 		WHERE questcondition.VirtualQuestId = Id;
 
 	elseif(typeCondition = 1) then
@@ -1881,7 +1881,7 @@ BEGIN
 			ObjectId, 
 			activity.Title as ObjectName,
 			Value
-		FROM travel_hero.virtualquest, questcondition, activity
+		FROM zadmin_heroforzero.virtualquest, questcondition, activity
 		WHERE 
 				questcondition.VirtualQuestId = Id
 			AND
@@ -1894,7 +1894,7 @@ BEGIN
 			ObjectId, 
 			donation.Title as ObjectName,
 			Value
-		FROM travel_hero.virtualquest, questcondition, donation
+		FROM zadmin_heroforzero.virtualquest, questcondition, donation
 		WHERE 
 				questcondition.VirtualQuestId = Id
 			AND
@@ -1955,12 +1955,12 @@ BEGIN
 	if (pageSize != 0) 
 	then
 		PREPARE STMT FROM
-		"SELECT Id, CategoryName FROM travel_hero.quizcategory
+		"SELECT Id, CategoryName FROM zadmin_heroforzero.quizcategory
 		LIMIT ?,?";
 		EXECUTE STMT USING @rowNumber, @pageSize;
 		DEALLOCATE PREPARE STMT;
 	else
-		SELECT Id, CategoryName FROM travel_hero.quizcategory;
+		SELECT Id, CategoryName FROM zadmin_heroforzero.quizcategory;
 	END if;
 END ;;
 DELIMITER ;
@@ -2024,9 +2024,9 @@ BEGIN
 		PREPARE STMT FROM
 		"SELECT quiz.Id, quizcategory.CategoryName, quiz.IsApproved, partner.PartnerName, quiz.CreatedDate  
 		FROM 
-			 travel_hero.quiz,
-			 travel_hero.partner,
-			 travel_hero.quizcategory
+			 zadmin_heroforzero.quiz,
+			 zadmin_heroforzero.partner,
+			 zadmin_heroforzero.quizcategory
 		WHERE 
 			 quiz.PartnerId  = partner.Id
 		  AND
@@ -2037,9 +2037,9 @@ BEGIN
 	 else
 		SELECT quiz.Id, quizcategory.CategoryName, quiz.IsApproved, partner.PartnerName, quiz.CreatedDate  
 		FROM 
-			 travel_hero.quiz,
-			 travel_hero.partner,
-			 travel_hero.quizcategory
+			 zadmin_heroforzero.quiz,
+			 zadmin_heroforzero.partner,
+			 zadmin_heroforzero.quizcategory
 		WHERE 
 			 quiz.PartnerId  = partner.Id
 		  AND
@@ -2076,7 +2076,7 @@ BEGIN
 		PREPARE STMT FROM
 		"SELECT *   
 		FROM 
-			 travel_hero.quiz
+			 zadmin_heroforzero.quiz
 		order by field (CategoryId, ?) desc
 		LIMIT ?,?";
 		EXECUTE STMT USING @category, @rowNumber, @pageSize;
@@ -2084,7 +2084,7 @@ BEGIN
 	 else
 		SELECT *   
 		FROM 
-			 travel_hero.quiz
+			 zadmin_heroforzero.quiz
 		WHERE 
 			 quiz.CategoryId = @category;
 	end if;
@@ -2114,7 +2114,7 @@ BEGIN
 		PREPARE STMT FROM
 		"SELECT *   
 		FROM 
-			 travel_hero.quiz
+			 zadmin_heroforzero.quiz
 		order by rand()
 		LIMIT ?";
 		EXECUTE STMT USING @pageSize;
@@ -2122,7 +2122,7 @@ BEGIN
 	 else
 		SELECT *   
 		FROM 
-			 travel_hero.quiz
+			 zadmin_heroforzero.quiz
 		order by RAND();
 	end if;
 END ;;
@@ -2194,7 +2194,7 @@ BEGIN
 		questcondition.ObjectId,
 		questcondition.Value
 	FROM 
-		travel_hero.virtualquest,
+		zadmin_heroforzero.virtualquest,
 		partner, packet, questcondition
 	WHERE 
 				virtualquest.Id = Id
@@ -2232,7 +2232,7 @@ BEGIN
 		UnlockPoint,
 		CreateDate
 				
-		FROM travel_hero.virtualquest, packet
+		FROM zadmin_heroforzero.virtualquest, packet
 		WHERE virtualquest.PacketId = packet.Id
 		LIMIT ?,?";
 		EXECUTE STMT USING @rowNumber, @pageSize;
@@ -2244,7 +2244,7 @@ SELECT virtualquest.Id,
 		UnlockPoint,
 		CreateDate
 				
-		FROM travel_hero.virtualquest, packet
+		FROM zadmin_heroforzero.virtualquest, packet
 		WHERE virtualquest.PacketId = packet.Id;
 	END if;
 END ;;
@@ -2441,7 +2441,7 @@ CREATE PROCEDURE `sp_Insert_ConditionQuest`(
 	Id INT
 )
 BEGIN
-	INSERT INTO travel_hero.questcondition
+	INSERT INTO zadmin_heroforzero.questcondition
 				(
 					questcondition.Type,
 					ObjectId,
@@ -2515,7 +2515,7 @@ CREATE PROCEDURE `sp_Insert_Packet`(
 	partnerId 	int
 )
 BEGIN
-	INSERT INTO travel_hero.packet
+	INSERT INTO zadmin_heroforzero.packet
 				(
 					packet.Title,
 					packet.ImageURL,
@@ -2600,7 +2600,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE PROCEDURE `sp_Insert_QuizCategory`(category nvarchar(140))
 BEGIN
-	INSERT INTO travel_hero.quizcategory
+	INSERT INTO zadmin_heroforzero.quizcategory
 				(
 					quizcategory.CategoryName
 				)
@@ -2719,7 +2719,7 @@ BEGIN
 	# Get choice id insert after
 	set choiceId = (select LAST_INSERT_ID()) - 3 + correctChoiceId;
 	
-	UPDATE travel_hero.quiz
+	UPDATE zadmin_heroforzero.quiz
 			SET quiz.correctChoiceId = choiceId
 			WHERE Id = QuestionId;	
 	COMMIT;
@@ -2748,7 +2748,7 @@ CREATE PROCEDURE `sp_Insert_VirtualQuest`(
 	
 )
 BEGIN
-	INSERT INTO travel_hero.virtualquest
+	INSERT INTO zadmin_heroforzero.virtualquest
 				(
 					PacketId,
 					PartnerId,
@@ -2881,7 +2881,7 @@ CREATE PROCEDURE `sp_Update_Activity`(
 	approve BIT
 )
 BEGIN
-	UPDATE travel_hero.activity
+	UPDATE zadmin_heroforzero.activity
 			SET 
 				activity.PartnerId = partner_id,
 				activity.Title = title,
@@ -2911,7 +2911,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE PROCEDURE `sp_Update_ActivityApprove`(Id int, IsApproved bit)
 BEGIN
-		UPDATE travel_hero.activity
+		UPDATE zadmin_heroforzero.activity
 		   SET 
 				activity.IsApproved = IsApproved
 		   WHERE
@@ -2960,7 +2960,7 @@ CREATE PROCEDURE `sp_Update_BonusPoint_Quiz`(
 	BonusPoint float
 )
 BEGIN
-	UPDATE  travel_hero.quiz
+	UPDATE  zadmin_heroforzero.quiz
 			SET
 				BonusPoint = BonusPoint
 			WHERE
@@ -3012,7 +3012,7 @@ CREATE PROCEDURE `sp_Update_ConditionQuest`(
 	Id INT
 )
 BEGIN
-	UPDATE travel_hero.questcondition
+	UPDATE zadmin_heroforzero.questcondition
 				SET
 					ObjectId = objectId 
 				WHERE	Id = Id;
@@ -3042,7 +3042,7 @@ CREATE PROCEDURE `sp_Update_Donation`(
 	approve BIT
 )
 BEGIN
-	UPDATE travel_hero.donation
+	UPDATE zadmin_heroforzero.donation
 			SET 
 				donation.PartnerId = partner_id,
 				donation.Title = title,
@@ -3069,7 +3069,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE PROCEDURE `sp_Update_DonationApprove`(Id int, IsApproved bit)
 BEGIN
-	UPDATE travel_hero.donation
+	UPDATE zadmin_heroforzero.donation
 		   SET 
 				donation.IsApproved = IsApproved
 		   WHERE
@@ -3093,7 +3093,7 @@ DELIMITER ;;
 CREATE PROCEDURE `sp_Update_Partner_IsApproved`(Id int, IsApproved bit)
 BEGIN
 			
-	UPDATE travel_hero.partner
+	UPDATE zadmin_heroforzero.partner
 		   SET 
 				partner.IsApproved = IsApproved
 		   WHERE
@@ -3127,7 +3127,7 @@ BEGIN
 	
 
 	# Update infomation into Quiz table
-	UPDATE travel_hero.quiz
+	UPDATE zadmin_heroforzero.quiz
 		   SET
 						quiz.CategoryId = questCategory,
 						quiz.CreatedDate = createdDate,
@@ -3158,7 +3158,7 @@ DELIMITER ;;
 CREATE PROCEDURE `sp_Update_QuizApprove`(Id int, IsApproved bit)
 BEGIN
 			
-	UPDATE travel_hero.quiz
+	UPDATE zadmin_heroforzero.quiz
 		   SET 
 				quiz.IsApproved = IsApproved
 		   WHERE
@@ -3181,7 +3181,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE PROCEDURE `sp_Update_RequiredPoint_Donation`(Id int, point float)
 BEGIN
-	UPDATE travel_hero.donation
+	UPDATE zadmin_heroforzero.donation
 	SET
 		donation.RequiredPoint = point
 	WHERE 
@@ -3204,7 +3204,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE PROCEDURE `sp_Update_VirtualQuest`(IN `id` INT, IN `partner_id` INT, IN `packet_id` INT, IN `name` nvarchar(140), point INT)
 BEGIN
-	UPDATE travel_hero.virtualquest
+	UPDATE zadmin_heroforzero.virtualquest
 				SET
 					virtualquest.PacketId = packet_id,
 					virtualquest.QuestName = name,
