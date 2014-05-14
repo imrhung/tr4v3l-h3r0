@@ -1,7 +1,7 @@
 -- This file is update change for database from 2014, April 21.
 -- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
--- Host: localhost    Database: travel_hero
+-- Host: localhost    Database: zadmin_heroforzero
 -- ------------------------------------------------------
 -- Server version	5.1.73
 
@@ -38,7 +38,7 @@ BEGIN
 			SET @myquery1 = 
 			"SELECT userapplication.UserId as id, user.FullName as name, userapplication.Points as mark, userapplication.FacebookId facebook_id, userapplication.CurrentLevel as current_level
 			FROM 
-					travel_hero.userapplication, travel_hero.user
+					zadmin_heroforzero.userapplication, zadmin_heroforzero.user
 			WHERE userapplication.UserId = user.Id
 				AND userapplication.FacebookId IN (";
 			set @myquery2 = ")
@@ -52,7 +52,7 @@ BEGIN
 		else  
 			SELECT userapplication.UserId as id, user.FullName as name, userapplication.Points as mark, userapplication.FacebookId facebook_id, userapplication.CurrentLevel as current_level
 			FROM 
-					travel_hero.userapplication, travel_hero.user
+					zadmin_heroforzero.userapplication, zadmin_heroforzero.user
 			WHERE userapplication.UserId = user.Id
 			order by userapplication.Points DESC;
 		END if;	
@@ -72,7 +72,7 @@ BEGIN
 			PREPARE STMT FROM
 			"SELECT userapplication.UserId as id, user.FullName as name, userapplication.Points as mark, userapplication.FacebookId facebook_id, userapplication.CurrentLevel as current_level
 			FROM 
-					travel_hero.userapplication, travel_hero.user
+					zadmin_heroforzero.userapplication, zadmin_heroforzero.user
 			WHERE userapplication.UserId = user.Id
 			order by userapplication.Points DESC
 			LIMIT  ?,?";
@@ -82,7 +82,7 @@ BEGIN
 		else  
 			SELECT userapplication.UserId as id, user.FullName as name, userapplication.Points as mark, userapplication.FacebookId facebook_id, userapplication.CurrentLevel as current_level
 			FROM 
-					travel_hero.userapplication, travel_hero.user
+					zadmin_heroforzero.userapplication, zadmin_heroforzero.user
 			WHERE userapplication.UserId = user.Id
 			order by userapplication.Points DESC;
 		END if;	
@@ -97,7 +97,7 @@ DELIMITER $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Animation`(id INT)
 BEGIN
-	SELECT * FROM travel_hero.animation			
+	SELECT * FROM zadmin_heroforzero.animation			
 		WHERE
 				animation.Id = id;
 				
@@ -106,11 +106,11 @@ DELIMITER ;
 -- --
 -- Get pagination wrong. Alter the stored procedure:
 -- --
-USE `travel_hero`;
+USE `zadmin_heroforzero`;
 DROP procedure IF EXISTS `sp_Get_QuizList`;
 
 DELIMITER $$
-USE `travel_hero`$$
+USE `zadmin_heroforzero`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_QuizList`(IN currentPage INT, IN pageSize INT)
 BEGIN
 	DECLARE rowNumber INT;
@@ -123,9 +123,9 @@ BEGIN
 		PREPARE STMT FROM
 		"SELECT quiz.Id, quizcategory.CategoryName, quiz.IsApproved, partner.PartnerName, quiz.CreatedDate  
 		FROM 
-			 travel_hero.quiz,
-			 travel_hero.partner,
-			 travel_hero.quizcategory
+			 zadmin_heroforzero.quiz,
+			 zadmin_heroforzero.partner,
+			 zadmin_heroforzero.quizcategory
 		WHERE 
 			 quiz.PartnerId  = partner.Id
 		  AND
@@ -136,9 +136,9 @@ BEGIN
 	 else
 		SELECT quiz.Id, quizcategory.CategoryName, quiz.IsApproved, partner.PartnerName, quiz.CreatedDate  
 		FROM 
-			 travel_hero.quiz,
-			 travel_hero.partner,
-			 travel_hero.quizcategory
+			 zadmin_heroforzero.quiz,
+			 zadmin_heroforzero.partner,
+			 zadmin_heroforzero.quizcategory
 		WHERE 
 			 quiz.PartnerId  = partner.Id
 		  AND
@@ -153,11 +153,11 @@ DELIMITER ;
 -- -
 -- Get quiz list by category
 -- -
-USE `travel_hero`;
+USE `zadmin_heroforzero`;
 DROP procedure IF EXISTS `sp_Get_QuizList_ByCategory`;
 
 DELIMITER $$
-USE `travel_hero`$$
+USE `zadmin_heroforzero`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_QuizList_ByCategory`(IN currentPage INT, IN pageSize INT, IN category INT)
 BEGIN
 	DECLARE rowNumber INT;
@@ -171,7 +171,7 @@ BEGIN
 		PREPARE STMT FROM
 		"SELECT *   
 		FROM 
-			 travel_hero.quiz
+			 zadmin_heroforzero.quiz
 		order by field (CategoryId, ?) desc
 		LIMIT ?,?";
 		EXECUTE STMT USING @category, @rowNumber, @pageSize;
@@ -179,7 +179,7 @@ BEGIN
 	 else
 		SELECT *   
 		FROM 
-			 travel_hero.quiz
+			 zadmin_heroforzero.quiz
 		WHERE 
 			 quiz.CategoryId = @category;
 	end if;
@@ -187,11 +187,11 @@ END$$
 
 DELIMITER ;
 
-USE `travel_hero`;
+USE `zadmin_heroforzero`;
 DROP procedure IF EXISTS `sp_Get_UserMedal`;
 
 DELIMITER $$
-USE `travel_hero`$$
+USE `zadmin_heroforzero`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_UserMedal`(IN currentPage INT, IN pageSize INT, IN userId INT)
 BEGIN
 	DECLARE rowNumber INT;
@@ -221,11 +221,11 @@ DELIMITER ;
 
 
 
-USE `travel_hero`;
+USE `zadmin_heroforzero`;
 DROP procedure IF EXISTS `sp_Delete_Partner`;
 
 DELIMITER $$
-USE `travel_hero`$$
+USE `zadmin_heroforzero`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Delete_Partner`(Id INT)
 BEGIN
 	SET @Id = Id;
@@ -240,11 +240,11 @@ END$$
 
 DELIMITER ;
 
-USE `travel_hero`;
+USE `zadmin_heroforzero`;
 DROP procedure IF EXISTS `sp_Get_QuizList_Random`;
 
 DELIMITER $$
-USE `travel_hero`$$
+USE `zadmin_heroforzero`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_QuizList_Random`(IN pageSize INT)
 BEGIN
 	
@@ -255,7 +255,7 @@ BEGIN
 		PREPARE STMT FROM
 		"SELECT *   
 		FROM 
-			 travel_hero.quiz
+			 zadmin_heroforzero.quiz
 		order by rand()
 		LIMIT ?";
 		EXECUTE STMT USING @pageSize;
@@ -263,18 +263,18 @@ BEGIN
 	 else
 		SELECT *   
 		FROM 
-			 travel_hero.quiz
+			 zadmin_heroforzero.quiz
 		order by RAND();
 	end if;
 END$$
 
 DELIMITER ;
 
-USE `travel_hero`;
+USE `zadmin_heroforzero`;
 DROP procedure IF EXISTS `sp_Get_QuizChoiceList_Random`;
 
 DELIMITER $$
-USE `travel_hero`$$
+USE `zadmin_heroforzero`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_QuizChoiceList_Random`(IN pageSize INT)
 BEGIN
 	
@@ -299,11 +299,11 @@ DELIMITER ;
 
 
 
-USE `travel_hero`;
+USE `zadmin_heroforzero`;
 DROP procedure IF EXISTS `sp_Get_PacketAvailableList`;
 
 DELIMITER $$
-USE `travel_hero`$$
+USE `zadmin_heroforzero`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_PacketAvailableList`(IN currentPage INT, IN pageSize INT)
 BEGIN
 	DECLARE rowNumber INT;
@@ -339,7 +339,7 @@ DELIMITER ;
 -- Facebook id need to be string --
 ALTER TABLE `userapplication` CHANGE `FacebookId` `FacebookId` VARCHAR(45) NULL DEFAULT NULL;
 
-ALTER TABLE `travel_hero`.`virtualquest` 
+ALTER TABLE `zadmin_heroforzero`.`virtualquest` 
 CHANGE COLUMN `AnimationId` `AnimationId` INT(11) NULL DEFAULT 1 ;
 
 
@@ -348,11 +348,11 @@ CHANGE COLUMN `AnimationId` `AnimationId` INT(11) NULL DEFAULT 1 ;
 
 
 
-USE `travel_hero`;
+USE `zadmin_heroforzero`;
 DROP procedure IF EXISTS `sp_Get_DonationList`;
 
 DELIMITER $$
-USE `travel_hero`$$
+USE `zadmin_heroforzero`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_DonationList`(IN currentPage INT, IN pageSize INT)
 BEGIN
 	DECLARE rowNumber INT;
@@ -364,9 +364,9 @@ BEGIN
 		PREPARE STMT FROM
 		"SELECT donation.Id, donation.Title, partner.PartnerName, donation.RequiredPoint,  donation.IsApproved, donation.CreateDate, medal.ImageURL
 		FROM 
-				travel_hero.donation,
-				travel_hero.partner,
-				travel_hero.medal
+				zadmin_heroforzero.donation,
+				zadmin_heroforzero.partner,
+				zadmin_heroforzero.medal
 		WHERE 
 				donation.PartnerId = partner.Id
 				AND medal.Id = donation.MedalId
@@ -376,9 +376,9 @@ BEGIN
 	else  
 		SELECT donation.Id, donation.Title, partner.PartnerName, donation.RequiredPoint,  donation.IsApproved, donation.CreateDate, medal.ImageURL
 		FROM 
-				travel_hero.donation,
-				travel_hero.partner,
-				travel_hero.medal
+				zadmin_heroforzero.donation,
+				zadmin_heroforzero.partner,
+				zadmin_heroforzero.medal
 		WHERE 
 				donation.PartnerId = partner.Id
 				AND medal.Id = donation.MedalId;
