@@ -21,8 +21,8 @@ function drawPacketTable(){
                     for (var i=0; i<packets.length; i++){
                         var row = $('<tr></tr>');
                         var name = $('<td></td>').text(packets[i].Title);
-                        var background = $('<td></td>').text("default.png");
-                        var action = '<td><a href="'+baseUrl+'admin/edit_packet/'+packets[i].Id+'">Edit</a></td>'
+                        var background = '<img src="'+packets[i].ImageURL+'" alt="Your logo" width="139" height="29">';
+                        var action = '<td><a href="'+baseUrl+'admin/edit_packet/'+packets[i].Id+'">Edit</a></td>';
                         row.append(name).append(background).append(action);
                         packetTable.append(row);
                     }
@@ -140,7 +140,7 @@ function createPacket(event, data){
                     var packetTable = $('#packet-table');
                     var row = $('<tr></tr>');
                     var name = $('<td></td>').text(title);
-                    var background = $('<td></td>').text("default.png");
+                    var background = $('<td></td>').text("Image");
                     row.append(name).append(background);
                     packetTable.append(row);
                     

@@ -94,6 +94,10 @@ class VirtualQuest_Model extends CI_Model {
 	}
 	
     public function getVirtualQuest($id) {
+	
+		$sql = 'CALL sp_Get_VirtualQuest(?)';
+        $result = $this->db->query($sql, array($id));
+	
 		
         $array = array();
 
@@ -108,7 +112,7 @@ class VirtualQuest_Model extends CI_Model {
         );
         $i = 0;
         foreach ($result->result_array() as $row) {
-            $array['condition'][$indexCondition] = array(
+            $array['condition'][$i] = array(
                 "Id" => $row['Id'],
                 "Type" => $row['Type'],
                 "ObjectId" => $row['ObjectId'],
