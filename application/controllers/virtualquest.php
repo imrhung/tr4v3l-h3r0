@@ -104,6 +104,7 @@ class VirtualQuest extends App_Controller {
         $partnerId = $this->input->post('partner_id');
         $packetId = $this->input->post('packet_id');
         $name = $this->input->post('name');
+        $unlock = $this->input->post('unlock');
         $point = $this->input->post('point');
         $activity_id_1 = $this->input->post('activity_id_1');
         $quiz_category = $this->input->post('quiz_category');
@@ -120,11 +121,11 @@ class VirtualQuest extends App_Controller {
         $result['message'] = "";
 
         // Insert VirtualQuest
-        $Id = $this->virtualquest_model->insertVirtualQuest($partnerId, $packetId, $name, $point, $createDate);
+        $Id = $this->virtualquest_model->insertVirtualQuest($partnerId, $packetId, $name, $unlock, $createDate);
 
         // Insert ConditionQuest quiz action
         if ($quiz_category != 0)
-            $this->virtualquest_model->insertQuestCondition(0, $quiz_category, $Id);
+            $this->virtualquest_model->insertQuestConditionPoint(0, $quiz_category, $Id, $point);
 
         // Insert ConditionQuest activity action
         if ($activity_id_1 != 0)
@@ -164,6 +165,7 @@ class VirtualQuest extends App_Controller {
         $partnerId = $this->input->post('partner_id');
         $packetId = $this->input->post('packet_id');
         $name = $this->input->post('name');
+        $unlock = $this->input->post('unlock');
         $point = $this->input->post('point');
         $activity_id_1 = $this->input->post('activity_id_1');
         $quiz_category = $this->input->post('quiz_category');
@@ -179,14 +181,14 @@ class VirtualQuest extends App_Controller {
         $result['message'] = "";
 
         // update virtual quest
-        $resultCheck = $this->virtualquest_model->updateVirtualQuest($Id, (int) $partnerId, (int) $packetId, $name, (int) $point);
+        $resultCheck = $this->virtualquest_model->updateVirtualQuest($Id, (int) $partnerId, (int) $packetId, $name, (int) $unlock);
 
         // Delete questCondition
         $this->virtualquest_model->deleteQuestCondition($Id);
 
         // Insert ConditionQuest quiz action
         if ($quiz_category != 0)
-            $this->virtualquest_model->insertQuestCondition(0, $quiz_category, $Id);
+            $this->virtualquest_model->insertQuestConditionPoint(0, $quiz_category, $Id, $point);
 
         // Insert ConditionQuest activity action
         if ($activity_id_1 != 0)

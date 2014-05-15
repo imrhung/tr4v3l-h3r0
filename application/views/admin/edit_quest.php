@@ -28,6 +28,15 @@
 
                         </div>
                     </div>
+                    
+                    <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="unlock">Unlock Point</label>  
+                    <div class="col-md-8">
+                        <input id="unlock" name="unlock" type="text" placeholder="Amount of points user must have to unlock this quest." class="form-control input-md" required="">
+                        
+                    </div>
+                </div>
 
                     <!-- Text input-->
                     <div class="form-group">

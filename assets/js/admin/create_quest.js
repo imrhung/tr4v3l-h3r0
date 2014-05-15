@@ -130,6 +130,7 @@ function createQuest() {
     var partner_id = $("#partner-id").val();
     var packet_id = $("#packet").val();
     var name = $("#name").val();
+    var unlock = $("#unlock").val();
     var point = $("#point").val();
     var quiz_category = $("#category").val();
     var activity_id_1 = $("#activity_1").val();
@@ -150,6 +151,7 @@ function createQuest() {
                 partner_id: partner_id,
                 packet_id: packet_id,
                 name: name,
+                unlock: unlock,
                 point: point,
                 quiz_category: quiz_category,
                 activity_id_1: activity_id_1,

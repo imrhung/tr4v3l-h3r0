@@ -37,7 +37,7 @@
                         If you're already a member, <a href='<?php echo base_url(); ?>login'> Login </a>
                         <br>
                         Choose language: 
-                        <select id="language" name="language" class="" 
+                        <select id="language" name="language" class=""
                                 onchange="var href=this[this.selectedIndex].value; if (href!=''){window.location.href =href};"
                                 style="background-color: black; color: white;">
                             

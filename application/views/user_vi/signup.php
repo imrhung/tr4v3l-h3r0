@@ -37,7 +37,7 @@
                         Nếu bạn đã đăng ký, <a href='<?php echo base_url(); ?>login'> Đăng nhập tại đây </a>
                         <br>
                         Chọn ngôn ngữ: 
-                        <select id="language" name="language" class="" 
+                        <select id="language" name="language" class=""
                                 onchange="var href=this[this.selectedIndex].value; if (href!=''){window.location.href =href};"
                                 style="background-color: black; color: white;">
                             
