@@ -19,7 +19,7 @@ function getQuest(questId) {
                     var quest = data.info.quest;
                     $('#packet').val(quest.PacketId);
                     $('#name').val(quest.QuestName);
-                    $('#point').val(quest.UnlockPoint);
+                    $('#unlock').val(quest.UnlockPoint);
                     var condition = data.info.condition;
                     var selectActivity = 0;
                     var selectDonation = 0;
@@ -56,6 +56,7 @@ function getQuest(questId) {
                             selectDonation++;
                         } else { // Quiz category
                             $('#category').val(condition[i].ObjectId);
+                            $('#point').val(condition[i].Value);
                         }
                     }
                     
@@ -75,6 +76,7 @@ function updateQuest(questId){
     // Get the input data:
     var packet_id = $("#packet").val();
     var name = $("#name").val();
+    var unlock = $("#unlock").val();
     var point = $("#point").val();
     var quiz_category = $("#category").val();
     var activity_id_1 = $("#activity_1").val();
@@ -94,6 +96,7 @@ function updateQuest(questId){
                 partner_id: partnerId,
                 packet_id: packet_id,
                 name: name,
+                unlock: unlock,
                 point: point,
                 quiz_category: quiz_category,
                 activity_id_1: activity_id_1,

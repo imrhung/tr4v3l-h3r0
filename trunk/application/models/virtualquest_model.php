@@ -152,6 +152,31 @@ class VirtualQuest_Model extends CI_Model {
         }
         return "Success";
     }
+    
+    public function insertQuestConditionPoint($type, $name, $Id, $point) {
+
+        try {
+            $sql = 'INSERT INTO travel_hero.questcondition
+				(
+					questcondition.Type,
+					ObjectId,
+					VirtualQuestId,
+                                        Value
+				)
+			VALUES
+				(
+					?,
+					?,
+					?,
+                                        ?
+				);';
+            $result = $this->db->query($sql, array($type, $name, $Id, $point));
+        } catch (Exception $e) {
+
+            return $e->getMessage();
+        }
+        return "Success";
+    }
 
     // Insert VirtualQuest function
     public function insertVirtualQuest($partnerId, $packetId, $name, $point, $create_date) {
