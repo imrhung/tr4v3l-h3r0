@@ -41,7 +41,7 @@ function loadQuestTable(){
                     for (var i=0; i<quesetArray.length; i++){
                         quest = quesetArray[i];
                         
-                        action = '<a href="'+baseUrl+'admin/edit_quest/'+quest.Id+'">View</a>  <a onclick="callDeleteQuest('+quest.Id+')" href="javacript:void(0);">Delete</a>';
+                        action = '<div style="float: left;"><a href="'+baseUrl+'admin/edit_quest/'+quest.Id+'">View</a></div>  <div style="float: right; font-size:11px"><a style="color: red;" onclick="callDeleteQuest('+quest.Id+')" href="javacript:void(0);">Delete</a></div>';
                         tableData.push([
                             quest.QuestName,
                             quest.PacketName,
@@ -146,7 +146,8 @@ function loadQuizTable(){
                         }else {
                             isApproved = 'No';
                         }
-                        action = '<a href="'+baseUrl+'admin/edit_quiz/'+quiz.Id+'">View</a>  <a onclick="callDelete('+quiz.Id+')" href="javacript:void(0);">Delete</a>';
+                        action = '<div style="float: left;"><a href="'+baseUrl+'admin/edit_quiz/'+quiz.Id+'">View</a></div>  <div style="float: right; font-size:11px"><a style="color: red;" onclick="callDelete('+quiz.Id+')" href="javacript:void(0);">Delete</a></div>';
+                        //action = '<a href="'+baseUrl+'admin/edit_quiz/'+quiz.Id+'">View</a>  <a onclick="callDelete('+quiz.Id+')" href="javacript:void(0);">Delete</a>';
                         tableData.push([
                             quiz.PartnerName,
                             quiz.CategoryName,
@@ -277,7 +278,8 @@ function loadActivityTable(){
                         }else {
                             isApproved = 'No';
                         }
-                        action = '<a href="'+baseUrl+'admin/edit_activity/'+act.Id+'">View</a>  <a onclick="callDeleteAct('+act.Id+')" href="javacript:void(0);">Delete</a>';
+                        action = '<div style="float: left;"><a href="'+baseUrl+'admin/edit_activity/'+act.Id+'">View</a></div>  <div style="float: right; font-size:11px"><a style="color: red;" onclick="callDeleteAct('+act.Id+')" href="javacript:void(0);">Delete</a></div>';
+                        //action = '<a href="'+baseUrl+'admin/edit_activity/'+act.Id+'">View</a>  <a onclick="callDeleteAct('+act.Id+')" href="javacript:void(0);">Delete</a>';
                         tableData.push([
                             act.Title,
                             act.PartnerName,
@@ -409,7 +411,8 @@ function loadDonationTable(){
                         }else {
                             isApproved = 'No';
                         }
-                        action = '<a href="'+baseUrl+'admin/edit_donation/'+donation.Id+'">View</a>  <a onclick="callDeleteDonation('+donation.Id+')" href="javacript:void(0);">Delete</a>';
+                        action = '<div style="float: left;"><a href="'+baseUrl+'admin/edit_donation/'+donation.Id+'">View</a></div>  <div style="float: right; font-size:11px"><a style="color: red;" onclick="callDeleteDonation('+donation.Id+')" href="javacript:void(0);">Delete</a></div>';
+                        //action = '<a href="'+baseUrl+'admin/edit_donation/'+donation.Id+'">View</a>  <a onclick="callDeleteDonation('+donation.Id+')" href="javacript:void(0);">Delete</a>';
                         tableData.push([
                             donation.Title,
                             donation.PartnerName,
