@@ -71,10 +71,37 @@
                         </div>
                     </div>
                     </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="remember"></label>
+                    <div class="col-md-4">
+                        Chọn ngôn ngữ: 
+                        <select id="language" name="language" class=""
+                                onchange="var href=this[this.selectedIndex].value; if (href!=''){window.location.href =href};"
+                                style="background-color: black; color: white;">
+                            
+                        </select>
+                    </div>
+                </div>
 
             </fieldset>
+            
         </form>
         </div>
         </div>
+        
+        
+        <script>
+            var select = document.getElementById('language');
+            opt = document.createElement("option");
+            opt.value = '/home/lang/vi?redirect='+location.href;
+            opt.textContent = 'Tiếng Việt';
+            select.appendChild(opt);
+            opt = document.createElement("option");
+            opt.value = '/home/lang/en?redirect='+location.href;
+            opt.textContent = 'English';
+            select.appendChild(opt);
+            
+        </script>
+        
     </body>
 </html>
