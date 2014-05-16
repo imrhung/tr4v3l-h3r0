@@ -66,24 +66,27 @@ class VirtualQuest_Model extends CI_Model {
 				$result['quest']['condition'][$indexCondition]['vObjectId'] = $row['cObjectId'];
 				
 				if ($row['cType'] == 1) {
-					$result['quest']['condition'][$indexCondition]['content']['Id'] = $row['aId'];
-					$result['quest']['condition'][$indexCondition]['content']['PartnerId'] = $row['aPartnerId'];
-					$result['quest']['condition'][$indexCondition]['content']['Title'] = $row['aTitle'];
-					$result['quest']['condition'][$indexCondition]['content']['Description'] = $row['aDescription'];
+					$result['quest']['condition'][$indexCondition]['content']['Id'] = $row['Id'];
+					$result['quest']['condition'][$indexCondition]['content']['PartnerId'] = $row['PartnerId'];
+					$result['quest']['condition'][$indexCondition]['content']['Title'] = $row['Title'];
+					$result['quest']['condition'][$indexCondition]['content']['Description'] = $row['Description'];
+					$result['quest']['condition'][$indexCondition]['content']['IsApproved'] = $row['IsApproved'];
+					$result['quest']['condition'][$indexCondition]['content']['CreateDate'] = $row['CreateDate'];
 					$result['quest']['condition'][$indexCondition]['content']['ActionId'] = $row['aActionId'];
 					$result['quest']['condition'][$indexCondition]['content']['BonusPoint'] = $row['aBonusPoint'];
-					$result['quest']['condition'][$indexCondition]['content']['IsApproved'] = $row['aIsApproved'];
-					$result['quest']['condition'][$indexCondition]['content']['CreateDate'] = $row['aCreateDate'];
 					$result['quest']['condition'][$indexCondition]['content']['ActionContent'] = $row['aActionContent'];
-				} else {
-					$result['quest']['condition'][$indexCondition]['content']['Id'] = $row['dId'];
-					$result['quest']['condition'][$indexCondition]['content']['Title'] = $row['dTitle'];
-					$result['quest']['condition'][$indexCondition]['content']['Description'] = $row['dDescription'];
+					
+				} elseif ($row['cType'] == 2) {
+					$result['quest']['condition'][$indexCondition]['content']['Id'] = $row['Id'];
+					$result['quest']['condition'][$indexCondition]['content']['PartnerId'] = $row['PartnerId'];
+					$result['quest']['condition'][$indexCondition]['content']['Title'] = $row['Title'];
+					$result['quest']['condition'][$indexCondition]['content']['Description'] = $row['Description'];
+					$result['quest']['condition'][$indexCondition]['content']['IsApproved'] = $row['IsApproved'];
+					$result['quest']['condition'][$indexCondition]['content']['CreateDate'] = $row['CreateDate'];
 					$result['quest']['condition'][$indexCondition]['content']['RequiredPoint'] = $row['dRequiredPoint'];
 					$result['quest']['condition'][$indexCondition]['content']['MedalId'] = $row['dMedalId'];
-					$result['quest']['condition'][$indexCondition]['content']['PartnerId'] = $row['dPartnerId'];
-					$result['quest']['condition'][$indexCondition]['content']['IsApproved'] = $row['dIsApproved'];
-					$result['quest']['condition'][$indexCondition]['content']['CreateDate'] = $row['dCreateDate'];
+				} else {
+				
 				}
 			}
 			
@@ -94,10 +97,6 @@ class VirtualQuest_Model extends CI_Model {
 	}
 	
     public function getVirtualQuest($id) {
-	
-		$sql = 'CALL sp_Get_VirtualQuest(?)';
-        $result = $this->db->query($sql, array($id));
-	
 		
         $array = array();
 
@@ -112,7 +111,7 @@ class VirtualQuest_Model extends CI_Model {
         );
         $i = 0;
         foreach ($result->result_array() as $row) {
-            $array['condition'][$i] = array(
+            $array['condition'][$indexCondition] = array(
                 "Id" => $row['Id'],
                 "Type" => $row['Type'],
                 "ObjectId" => $row['ObjectId'],
