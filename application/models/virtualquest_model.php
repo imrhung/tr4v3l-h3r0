@@ -158,7 +158,7 @@ class VirtualQuest_Model extends CI_Model {
     public function insertQuestConditionPoint($type, $name, $Id, $point) {
 
         try {
-            $sql = 'INSERT INTO travel_hero.questcondition
+            $sql = 'INSERT INTO questcondition
 				(
 					questcondition.Type,
 					ObjectId,
