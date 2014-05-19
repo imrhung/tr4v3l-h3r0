@@ -15,7 +15,7 @@ class User extends App_Controller {
         $this->load->library('simple_mail');
         
         // Set language
-        if ($this->session->userdata('language') == 'en'){
+        if ( ! $this->session->userdata('language') == 'vi'){
             $this->language = '';
         } else {
             $this->language = '_vi';

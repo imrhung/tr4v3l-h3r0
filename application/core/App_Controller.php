@@ -220,7 +220,7 @@ class App_Controller extends CI_Controller
             ->set_partial('footer', 'partials/footer');
         
         /* Check language to load header */
-        if ($this->session->userdata('language') == 'en'){
+        if ( ! $this->session->userdata('language') == 'vi'){
             $this->template->set_partial('header', 'partials/header');
         } else {
             

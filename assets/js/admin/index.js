@@ -10,7 +10,7 @@ $(document).ready(function(){
         "aoColumns":[
             { "sTitle": "Quest'name" },
             { "sTitle": "Packet" },
-            { "sTitle": "Point of Advance" },
+            { "sTitle": "Unlock Point" },
             { "sTitle": "Action", "sClass": "center" }
         ],
         "sPaginationType": "bootstrap",
