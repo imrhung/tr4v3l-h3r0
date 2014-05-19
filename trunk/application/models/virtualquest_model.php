@@ -86,7 +86,14 @@ class VirtualQuest_Model extends CI_Model {
 					$result['quest']['condition'][$indexCondition]['content']['RequiredPoint'] = $row['dRequiredPoint'];
 					$result['quest']['condition'][$indexCondition]['content']['MedalId'] = $row['dMedalId'];
 				} else {
-				
+					$result['quest']['condition'][$indexCondition]['content']['Id'] = $row['Id'];
+					$result['quest']['condition'][$indexCondition]['content']['PartnerId'] = $row['PartnerId'];
+					$result['quest']['condition'][$indexCondition]['content']['Title'] = $row['Title'];
+					$result['quest']['condition'][$indexCondition]['content']['Description'] = $row['Description'];
+					$result['quest']['condition'][$indexCondition]['content']['IsApproved'] = $row['IsApproved'];
+					$result['quest']['condition'][$indexCondition]['content']['CreateDate'] = $row['CreateDate'];
+					$result['quest']['condition'][$indexCondition]['content']['RequiredPoint'] = $row['dRequiredPoint'];
+					$result['quest']['condition'][$indexCondition]['content']['MedalId'] = $row['dMedalId'];
 				}
 			}
 			
