@@ -112,7 +112,9 @@ class VirtualQuest_Model extends CI_Model {
             "UnlockPoint" => $result->row()->{'UnlockPoint'},
             "CreateDate" => $result->row()->{'CreateDate'},
             "PacketId" => $result->row()->{'PacketId'},
-            "PacketName" => $result->row()->{'PacketName'}
+            "PacketName" => $result->row()->{'PacketName'},
+            "AnimationId" => $result->row()->{'AnimationId'},
+            "ImageURL" => $result->row()->{'ImageURL'}
         );
         $i = 0;
         foreach ($result->result_array() as $row) {
@@ -183,16 +185,16 @@ class VirtualQuest_Model extends CI_Model {
     }
 
     // Insert VirtualQuest function
-    public function insertVirtualQuest($partnerId, $packetId, $name, $point, $create_date) {
+    public function insertVirtualQuest($partnerId, $packetId, $name, $point, $create_date, $animation, $image) {
 
         try {
             $this->db->trans_start();
-            $sql = 'CALL sp_Insert_VirtualQuest(?, ?, ?, ?, ?)';
-            $result = $this->db->query($sql, array($partnerId, $packetId, $name, $point, $create_date));
+            $sql = 'CALL sp_Insert_VirtualQuest(?, ?, ?, ?, ?, ?, ?)';
+            $result = $this->db->query($sql, array($partnerId, $packetId, $name, $point, $create_date, $animation, $image));
 
             $this->db->trans_complete();
 
-            $sql1 = 'SELECT MAX(virtualquest.Id) FROM travel_hero.virtualquest';
+            $sql1 = 'SELECT MAX(virtualquest.Id) FROM virtualquest';
             $result1 = $this->db->query($sql1, array());
             $Id = $result1->row()->{'MAX(virtualquest.Id)'};
         } catch (Exception $e) {
@@ -206,12 +208,12 @@ class VirtualQuest_Model extends CI_Model {
     /* Last 24-March-2014 */
     /* Update virtualquest function */
 
-    public function updateVirtualQuest($Id, $partnerId, $packetId, $name, $point) {
+    public function updateVirtualQuest($Id, $partnerId, $packetId, $name, $point, $animation, $image) {
 
         try {
             $this->db->trans_start();
-            $sql = 'CALL sp_Update_VirtualQuest(?, ?, ?, ?, ?)';
-            $result = $this->db->query($sql, array($Id, $partnerId, $packetId, $name, $point));
+            $sql = 'CALL sp_Update_VirtualQuest(?, ?, ?, ?, ?,?,?)';
+            $result = $this->db->query($sql, array($Id, $partnerId, $packetId, $name, $point, (int)$animation, $image));
 
             $this->db->trans_complete();
         } catch (Exception $e) {

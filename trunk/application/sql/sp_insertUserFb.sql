@@ -1,5 +1,10 @@
-DELIMITER ;;
-CREATE PROCEDURE `sp_insertUserFb`(IN iFullName VARCHAR(100),IN iEmail VARCHAR(100), IN iPhone VARCHAR(45), IN iFacebookId VARCHAR(45))
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_insertUserFb`(IN iFullName VARCHAR(100),IN iEmail VARCHAR(100), IN iPhone VARCHAR(45), IN iFacebookId VARCHAR(45))
 BEGIN
 	DECLARE userId INT;
 
@@ -35,7 +40,7 @@ BEGIN
 			c.Value AS cValue,
 			c.VirtualQuestId AS cVirtualQuestId,
 			c.ObjectId AS cObjectId,
-			IF( EXISTS (SELECT * FROM usercondition WHERE UserId = u.UserId AND ConditionId = c.Id), 1, 0 ) AS  'is_complete'
+			IF( EXISTS (SELECT * FROM usercondition WHERE UserId = u.UserId AND ConditionId = c.Id), 1, 0 ) AS  'is_completed'
 			
 		FROM userapplication u
 		JOIN uservirtualquest q ON u.UserId = q.UserId
@@ -72,7 +77,7 @@ BEGIN
 				c.Value AS cValue,
 				c.VirtualQuestId AS cVirtualQuestId,
 				c.ObjectId AS cObjectId,
-				IF( EXISTS (SELECT * FROM usercondition WHERE UserId = u.UserId AND ConditionId = c.Id), 1, 0 ) AS  'is_complete'
+				IF( EXISTS (SELECT * FROM usercondition WHERE UserId = u.UserId AND ConditionId = c.Id), 1, 0 ) AS  'is_completed'
 
 			FROM userapplication u
 			JOIN uservirtualquest q ON u.UserId = q.UserId
@@ -83,5 +88,4 @@ BEGIN
 		COMMIT;
 			
 	END IF;
-END ;;
-DELIMITER ;
+END

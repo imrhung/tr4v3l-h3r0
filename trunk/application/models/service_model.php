@@ -525,7 +525,7 @@ class Service_Model extends CI_Model {
 
     public function getQuizCategoryInQuest($questId) {
         mysqli_next_result($this->db->conn_id);
-        $sql = "SELECT questcondition.ObjectId FROM travel_hero.questcondition WHERE VirtualQuestId = $questId AND Type = 0";
+        $sql = "SELECT questcondition.ObjectId FROM questcondition WHERE VirtualQuestId = $questId AND Type = 0";
         $result = $this->db->query($sql);
 
         if ($result->row()){

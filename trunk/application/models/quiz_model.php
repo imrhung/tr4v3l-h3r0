@@ -120,7 +120,7 @@ class Quiz_Model extends CI_Model {
         $Id = $QuestionId->{'MAX(quiz.Id)'} + 1;
 
         //	Get min choice Id from Choice table	
-        $sql1 = 'SELECT MIN(choice.Id) FROM travel_hero.choice WHERE choice.QuestionId = ?';
+        $sql1 = 'SELECT MIN(choice.Id) FROM choice WHERE choice.QuestionId = ?';
         $result1 = $this->db->query($sql1, array($Id));
 
         $minId = $result1->row()->{'MIN(choice.Id)'};
@@ -158,7 +158,7 @@ class Quiz_Model extends CI_Model {
     public function getMinChoiceId($Id) {
         try {
             // Select minChoiceId from Choice Table
-            $sql = 'SELECT MIN(choice.Id) FROM travel_hero.choice WHERE choice.QuestionId = ?';
+            $sql = 'SELECT MIN(choice.Id) FROM choice WHERE choice.QuestionId = ?';
             $result = $this->db->query($sql, array($Id));
 
             // Get minChoiceId

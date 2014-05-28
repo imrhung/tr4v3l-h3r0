@@ -6,13 +6,15 @@
         <p>Please select the fields below to create a quest.</p>
 
         <div id="alert_placeholder"></div>
-        <form id="quest-form" class="form-horizontal" onSubmit="createQuest(); return false;">
+        <div class="col-lg-8">
+        <form id="quest-form" class="form-horizontal" role="form" onsubmit="return false;">
             <fieldset>
 
                 <!-- Form Name -->
                 <legend></legend>
 
                 <input type="hidden" name="partner-id" id="partner-id" value="<?php echo $partnerId ?>">
+                <input type="hidden" name="quest-id" id="quest-id" value="<?php echo $questId ?>">
                 <!-- Select Basic -->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="packet">Choose Quest Packet</label>
@@ -45,6 +47,33 @@
                         
                     </div>
                 </div>
+                
+                <!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="animation">Animation</label>
+  <div class="col-md-8">
+    <select id="animation" name="animation" class="form-control image-picker">
+        <option data-img-src="/assets/img/animation/1.png" value="1">Animation 1</option>
+        <option data-img-src="/assets/img/animation/2.png" value="2">Animation 2</option>
+        <option data-img-src="/assets/img/animation/3.png" value="3">Animation 3</option>
+        <option data-img-src="/assets/img/animation/4.png" value="4">Animation 4</option>
+    </select>
+  </div>
+</div>
+                <!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="character">Quest character</label>
+  <div class="col-md-8">
+    <select id="character" name="character" class="form-control">
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/1.png" value="<?php echo base_url() ?>assets/img/quest/1.png">Nhi</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/2.png" value="<?php echo base_url() ?>assets/img/quest/2.png">Nam</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/3.png" value="<?php echo base_url() ?>assets/img/quest/3.png">My</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/4.png" value="<?php echo base_url() ?>assets/img/quest/4.png">Han</option>
+      
+    </select>
+  </div>
+</div>
+                
 
                 <!-- Select Basic -->
                 <div class="form-group">
@@ -99,13 +128,35 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="submit"></label>
                     <div class="col-md-8">
-                        <button id="submit" name="submit" class="btn btn-primary">Add Quest</button>
+                        <button id="submit" name="submit" class="btn btn-primary">Submit</button>
                         
                     </div>
                 </div>
 
             </fieldset>
         </form>
+        </div>
+        
+        <?php if ($edit_quest) : ?>
+            <div class="col-lg-4 left-border">
+            <form class="" role="form">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend></legend>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="control-label" for="delete"></label>
+                        <div class="col-md-12">
+                            <button type="button" id="delete" name="delete" class="btn btn-danger btn-block" onclick="callDeleteQuest(<?php echo $questId ?>)"> Delete Quest</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+        <?php endif; ?>
 
 
     </div><!-- /#page-wrapper -->
