@@ -68,6 +68,28 @@ class User_model extends CI_Model {
         }
     }
     
+    function changePassword($partnerId, $old, $new){
+        $this->db->select('Password');
+        $this->db->from('userpartner');
+        $this->db->where('PartnerId', $partnerId);
+        $this->db->limit(1);
+        $query = $this->db->get();
+
+        if ($query->num_rows() == 1){
+            $password = $query->row()->Password;
+            if (md5($old) == $password){
+                // Correct password
+                $data = array(
+                    'Password' => md5($new),
+                );
+                $this->db->where('PartnerId', $partnerId);
+                $this->db->update("userpartner", $data);
+                return TRUE;
+            }
+        }
+        return FALSE;
+    }
+    
     /*
      * Register user.
      * Not use AdminName field yet. :)

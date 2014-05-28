@@ -15,6 +15,7 @@ class Organization extends App_Controller {
         parent::__construct();
         $this->load->model('organization_model');
         $this->load->model('partner_model');
+        $this->load->model('user_model');
         
         // Check if login
         if (!$this->session->userdata('islogin')){
@@ -30,7 +31,7 @@ class Organization extends App_Controller {
          */
         
         // Set language
-        if ( ! $this->session->userdata('language') == 'vi'){
+        if ( ! ($this->session->userdata('language') == 'vi')){
             $this->language = '';
         } else {
             $this->language = '_vi';
@@ -77,6 +78,73 @@ class Organization extends App_Controller {
         $this->assets_js[] = 'organization/create_quiz.js';
         $this->data['partnerId']= $this->session->userdata('partner_id');
         $this->render_page("organization".$this->language.'/create_quiz', $this->data);
+    }
+    
+    //change password
+    function change_password() {
+        $this->form_validation->set_rules('old', 'Old password', 'required');
+        $this->form_validation->set_rules('new', 'New password', 'required|matches[new_confirm]|min_length[6]|max_length[32]');
+        $this->form_validation->set_rules('new_confirm', 'Confirm password', 'required');
+
+        if ( ! $this->session->userdata('islogin')) {
+            redirect('login', 'refresh');
+        }
+
+        // Get the partner ID
+        $partnerId = $this->session->userdata('partner_id');
+
+        if ($this->form_validation->run() == false) {
+            //display the form
+            //set the flash data error message if there is one
+            $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+
+            $this->data['min_password_length'] = $this->config->item('min_password_length', 'ion_auth');
+            $this->data['old_password'] = array(
+                'name' => 'old',
+                'id' => 'old',
+                'type' => 'password',
+                'required'=>'',
+                'class' => 'form-control'
+            );
+            $this->data['new_password'] = array(
+                'name' => 'new',
+                'id' => 'new',
+                'type' => 'password',
+                'required'=>'',
+                'pattern' => '.{6,}',
+                'title' => "6 characters minimum",
+                'class' => 'form-control'
+            );
+            $this->data['new_password_confirm'] = array(
+                'name' => 'new_confirm',
+                'id' => 'new_confirm',
+                'type' => 'password',
+                'required'=>'',
+                'pattern' => '.{6,}',
+                'title' => "6 characters minimum",
+                'class' => 'form-control'
+            );
+            $this->data['user_id'] = array(
+                'name' => 'user_id',
+                'id' => 'user_id',
+                'type' => 'hidden',
+                'value' => $partnerId,
+            );
+
+            //render page base on role
+            $this->render_page('user/change_password', $this->data);
+        } else {
+            $change = $this->user_model->changePassword($partnerId, $this->input->post('old'), $this->input->post('new'));
+
+            if ($change) {
+                //if the password was successfully changed
+                $this->session->set_flashdata('message', 'Change successful!');
+                redirect('organization/change_password', 'refresh');
+            } else {
+                $this->session->set_flashdata('message', 'Old password not correct!');
+                redirect('organization/change_password', 'refresh');
+            }
+        }
     }
     
      public function under_construction(){

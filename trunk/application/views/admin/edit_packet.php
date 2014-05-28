@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="submit"></label>
                     <div class="col-md-8">
-                        <button type='submit' class='btn btn-block btn-primary'>Update</button>
+                        <button id="submit" type='submit' class='btn btn-block btn-primary' data-loading-text="Saving...">Update</button>
                     </div>
                 </div>
             </fieldset>
