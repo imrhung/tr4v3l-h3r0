@@ -318,14 +318,14 @@ class Service extends App_Controller {
 	public function saveGame() {
 		$userId = $this->input->post('userId');
 		$score = $this->input->post('score');
-                $conditionId = $this->input->post('conditionId');
+		$conditionId = $this->input->post('conditionId');
 		
 		$result = array();
         $result['code'] = -1;
         $result['message'] = "";
         $result['info'] = array();
 		
-		$resultCheck= $this->service_model->insertScore($userId,$score, $conditionId);
+		$resultCheck= $this->service_model->insertScore($userId,$score,$conditionId);
 	
 		if ($resultCheck) {
             $result['code'] = 1;
