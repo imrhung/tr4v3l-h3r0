@@ -270,6 +270,7 @@ class Service_Model extends CI_Model {
 					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['value'] = $row['cValue'];
 					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['virtualQuestId'] = $row['cVirtualQuestId'];
 					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['objectId'] = $row['cObjectId'];
+					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['is_completed'] = $row['is_completed'];
 				} else {
 					$vId = $row['vId'];
 					$indexCondition++;
@@ -279,6 +280,7 @@ class Service_Model extends CI_Model {
 					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['value'] = $row['cValue'];
 					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['virtualQuestId'] = $row['cVirtualQuestId'];
 					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['objectId'] = $row['cObjectId'];
+					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['is_completed'] = $row['is_completed'];
 				}
 				
 			} else {
@@ -310,6 +312,7 @@ class Service_Model extends CI_Model {
 				$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['value'] = $row['cValue'];
 				$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['virtualQuestId'] = $row['cVirtualQuestId'];
 				$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['objectId'] = $row['cObjectId'];
+				$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['is_completed'] = $row['is_completed'];
 			}
 		}
 		
