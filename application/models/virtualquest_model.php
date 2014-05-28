@@ -32,17 +32,15 @@ class VirtualQuest_Model extends CI_Model {
 			
 			$data = $resultPackets->result_array();
 			
-			$result['quest']['vId'] = $data[0]['vId'];
-			$result['quest']['vQuestName'] = $data[0]['vQuestName'];
-			$result['quest']['vPacketId'] = $data[0]['vPacketId'];
-			$result['quest']['vPartnerId'] = $data[0]['vPartnerId'];
-			$result['quest']['vAnimationId'] = $data[0]['vAnimationId'];
-			$result['quest']['vUnlockPoint'] = $data[0]['vUnlockPoint'];
-			$result['quest']['vCreateDate'] = $data[0]['vCreateDate'];
-			$result['quest']['kTitle'] = $data[0]['kTitle'];
-			$result['quest']['kImageURL'] = $data[0]['kImageURL'];
-			$result['quest']['kPartnerId'] = $data[0]['kPartnerId'];
-			$result['quest']['pId'] = $data[0]['pId'];
+			$result['quest']['Id'] = $data[0]['vId'];
+			$result['quest']['QuestName'] = $data[0]['vQuestName'];
+			$result['quest']['PacketId'] = $data[0]['vPacketId'];
+			$result['quest']['PartnerId'] = $data[0]['vPartnerId'];
+			$result['quest']['AnimationId'] = $data[0]['vAnimationId'];
+			$result['quest']['UnlockPoint'] = $data[0]['vUnlockPoint'];
+			$result['quest']['CreateDate'] = $data[0]['vCreateDate'];
+			$result['quest']['Title'] = $data[0]['kTitle'];
+			$result['quest']['ImageURL'] = $data[0]['kImageURL'];
 			$result['quest']['pPartnerName'] = $data[0]['pPartnerName'];
 			$result['quest']['pOrganizationTypeId'] = $data[0]['pOrganizationTypeId'];
 			$result['quest']['pAddress'] = $data[0]['pAddress'];
@@ -62,12 +60,10 @@ class VirtualQuest_Model extends CI_Model {
 				$result['quest']['condition'][$indexCondition]['Id'] = $row['cId'];
 				$result['quest']['condition'][$indexCondition]['Type'] = $row['cType'];
 				$result['quest']['condition'][$indexCondition]['Value'] = $row['cValue'];
-				$result['quest']['condition'][$indexCondition]['VirtualQuestId'] = $row['cVirtualQuestId'];
-				$result['quest']['condition'][$indexCondition]['vObjectId'] = $row['cObjectId'];
+				$result['quest']['condition'][$indexCondition]['ObjectId'] = $row['cObjectId'];
 				
 				if ($row['cType'] == 1) {
 					$result['quest']['condition'][$indexCondition]['content']['Id'] = $row['Id'];
-					$result['quest']['condition'][$indexCondition]['content']['PartnerId'] = $row['PartnerId'];
 					$result['quest']['condition'][$indexCondition]['content']['Title'] = $row['Title'];
 					$result['quest']['condition'][$indexCondition]['content']['Description'] = $row['Description'];
 					$result['quest']['condition'][$indexCondition]['content']['IsApproved'] = $row['IsApproved'];
@@ -78,16 +74,15 @@ class VirtualQuest_Model extends CI_Model {
 					
 				} elseif ($row['cType'] == 2) {
 					$result['quest']['condition'][$indexCondition]['content']['Id'] = $row['Id'];
-					$result['quest']['condition'][$indexCondition]['content']['PartnerId'] = $row['PartnerId'];
 					$result['quest']['condition'][$indexCondition]['content']['Title'] = $row['Title'];
 					$result['quest']['condition'][$indexCondition]['content']['Description'] = $row['Description'];
 					$result['quest']['condition'][$indexCondition]['content']['IsApproved'] = $row['IsApproved'];
 					$result['quest']['condition'][$indexCondition]['content']['CreateDate'] = $row['CreateDate'];
 					$result['quest']['condition'][$indexCondition]['content']['RequiredPoint'] = $row['dRequiredPoint'];
 					$result['quest']['condition'][$indexCondition]['content']['MedalId'] = $row['dMedalId'];
+					$result['quest']['condition'][$indexCondition]['content']['ImageUrl'] = $row['mImageUrl'];
 				} else {
 					$result['quest']['condition'][$indexCondition]['content']['Id'] = $row['Id'];
-					$result['quest']['condition'][$indexCondition]['content']['PartnerId'] = $row['PartnerId'];
 					$result['quest']['condition'][$indexCondition]['content']['Title'] = $row['Title'];
 					$result['quest']['condition'][$indexCondition]['content']['Description'] = $row['Description'];
 					$result['quest']['condition'][$indexCondition]['content']['IsApproved'] = $row['IsApproved'];
