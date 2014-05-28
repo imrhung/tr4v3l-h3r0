@@ -152,9 +152,9 @@ class Service_Model extends CI_Model {
 		return $arrPacket;
     }
 	
-	public function insertScore($userId, $score) {
-        $sql = 'CALL sp_saveGame(?,?)';
-        $result = $this->db->query($sql, array($userId, $score));
+	public function insertScore($userId, $score, $conditionId) {
+        $sql = 'CALL sp_saveGame(?,?,?)';
+        $result = $this->db->query($sql, array($userId, $score, $conditionId));
 
         return $result->row();
     }

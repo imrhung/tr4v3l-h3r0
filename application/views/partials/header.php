@@ -32,7 +32,11 @@
             
             <ul class="nav navbar-nav side-nav bottom-left-nav">
                 <li class="<?php echo ($current_section == 'help') ? 'active' : '' ?>"><a href="<?php echo site_url('organization/help') ?>"><i class="fa fa-question"></i>  Help me!</a></li>
-                <li class="<?php echo ($current_section == 'signout') ? 'active' : '' ?>"><a href="<?php echo site_url('logout') ?>"><i class="fa fa-power-off"></i>  Sign me out</a></li>
+                <li class="<?php echo ($current_section == 'change_pass') ? 'active' : '' ?>"><a href="<?php echo site_url('organization/change_password') ?>"><i class="fa fa-edit"></i>Change Password</a></li>
+                <li><a href="<?php echo site_url('logout') ?>"><i class="fa fa-power-off"></i>  Sign me out</a></li>
+                
+                
+                
                 <li style="padding-left: 50px;">
                     <select id="language" name="language" class="" onchange="var href=this[this.selectedIndex].value; if (href!=''){window.location.href =href};">
                         

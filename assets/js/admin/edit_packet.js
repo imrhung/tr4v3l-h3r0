@@ -42,7 +42,9 @@ $(function() {
         // Stop stuff happening.
         event.stopPropagation();
         event.preventDefault();
-        
+        // Set waiting state to button.
+        var button = $('#submit');
+        button.button('loading');
         // START A LOADING SPINNER HERE
         
     if($("#userfile").val() == ''){
@@ -92,6 +94,7 @@ function updatePacket(event, data){
     } else {
         var image_url = null;
     }
+    var button = $('#submit');
     
     // Post to api
     $.post(
@@ -107,8 +110,10 @@ function updatePacket(event, data){
                 if (data.code === 1) { // Successful
                     
                     window.location.replace(baseUrl + "admin/packet");
-                } else { // Fail
                     
+                    button.button('reset');
+                } else { // Fail
+                    button.button('reset');
                 }
             },
             "json"

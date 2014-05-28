@@ -15,7 +15,7 @@ class User extends App_Controller {
         $this->load->library('simple_mail');
         
         // Set language
-        if ( ! $this->session->userdata('language') == 'vi'){
+        if ( ! ($this->session->userdata('language') == 'vi')){
             $this->language = '';
         } else {
             $this->language = '_vi';
@@ -205,6 +205,68 @@ class User extends App_Controller {
 
             // Redirect to proper page.
             redirect('organization/index');
+        }
+    }
+    
+    //change password
+    function change_password() {
+        $this->form_validation->set_rules('old', 'Old password', 'required');
+        $this->form_validation->set_rules('new', 'New password', 'required|matches[new_confirm]|min_length[6]|max_length[32]');
+        $this->form_validation->set_rules('new_confirm', 'Confirm new password', 'required');
+
+        if ( ! $this->session->userdata('islogin')) {
+            redirect('login', 'refresh');
+        }
+
+        // Get the user ID
+        $partnerId = $this->session->userdata('partner_id');
+
+        if ($this->form_validation->run() == false) {
+            //display the form
+            //set the flash data error message if there is one
+            $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+
+            $this->data['min_password_length'] = $this->config->item('min_password_length', 'ion_auth');
+            $this->data['old_password'] = array(
+                'name' => 'old',
+                'id' => 'old',
+                'type' => 'password',
+            );
+            $this->data['new_password'] = array(
+                'name' => 'new',
+                'id' => 'new',
+                'type' => 'password',
+                'pattern' => '^.{6}.*$',
+            );
+            $this->data['new_password_confirm'] = array(
+                'name' => 'new_confirm',
+                'id' => 'new_confirm',
+                'type' => 'password',
+                'pattern' => '^.{6}.*$',
+            );
+            $this->data['user_id'] = array(
+                'name' => 'user_id',
+                'id' => 'user_id',
+                'type' => 'hidden',
+                'value' => $partnerId,
+            );
+
+            //render page base on role
+            
+            $this->render_page('user/change_password', $this->data);
+        } else {
+            $identity = $this->session->userdata($this->config->item('identity', 'ion_auth'));
+
+            $change = $this->ion_auth->change_password($identity, $this->input->post('old'), $this->input->post('new'));
+
+            if ($change) {
+                //if the password was successfully changed
+                $this->session->set_flashdata('message', $this->ion_auth->messages());
+                $this->logout();
+            } else {
+                $this->session->set_flashdata('message', $this->ion_auth->errors());
+                redirect('user/change_password', 'refresh');
+            }
         }
     }
     

@@ -6,6 +6,7 @@ class Admin extends App_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->model('user_model');
 
         // Check if login
         if ($this->session->userdata('islogin')) {
@@ -120,7 +121,7 @@ class Admin extends App_Controller {
             redirect("admin/index");
         } else {
             $this->page_title = "Edit Packet";
-            $this->current_section = "edit_packet";
+            $this->current_section = "packet";
             $this->assets_js[] = 'admin/edit_packet.js';
             $this->assets_js[] = 'bootbox/bootbox.min.js';
 
@@ -149,7 +150,7 @@ class Admin extends App_Controller {
             redirect("admin/index");
         } else {
             $this->page_title = 'Partner';
-            $this->current_section = "partner";
+            $this->current_section = "partners";
             $this->assets_js[] = 'admin/partner.js';
             $this->assets_js[] = 'bootbox/bootbox.min.js';
 
@@ -157,6 +158,73 @@ class Admin extends App_Controller {
                 'partnerId' => $id
             );
             $this->render_page_admin('admin/partner', $data);
+        }
+    }
+    
+    //change password
+    function change_password() {
+        $this->form_validation->set_rules('old', 'Old password', 'required');
+        $this->form_validation->set_rules('new', 'New password', 'required|matches[new_confirm]|min_length[6]|max_length[32]');
+        $this->form_validation->set_rules('new_confirm', 'Confirm password', 'required');
+
+        if ( ! $this->session->userdata('islogin')) {
+            redirect('login', 'refresh');
+        }
+
+        // Get the partner ID
+        $partnerId = $this->session->userdata('partner_id');
+
+        if ($this->form_validation->run() == false) {
+            //display the form
+            //set the flash data error message if there is one
+            $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+
+            $this->data['min_password_length'] = $this->config->item('min_password_length', 'ion_auth');
+            $this->data['old_password'] = array(
+                'name' => 'old',
+                'id' => 'old',
+                'type' => 'password',
+                'required'=>'',
+                'class' => 'form-control'
+            );
+            $this->data['new_password'] = array(
+                'name' => 'new',
+                'id' => 'new',
+                'type' => 'password',
+                'required'=>'',
+                'pattern' => '.{6,}',
+                'title' => "6 characters minimum",
+                'class' => 'form-control'
+            );
+            $this->data['new_password_confirm'] = array(
+                'name' => 'new_confirm',
+                'id' => 'new_confirm',
+                'type' => 'password',
+                'required'=>'',
+                'pattern' => '.{6,}',
+                'title' => "6 characters minimum",
+                'class' => 'form-control'
+            );
+            $this->data['user_id'] = array(
+                'name' => 'user_id',
+                'id' => 'user_id',
+                'type' => 'hidden',
+                'value' => $partnerId,
+            );
+
+            //render page base on role
+            $this->render_page_admin('user/change_password', $this->data);
+        } else {
+            $change = $this->user_model->changePassword($partnerId, $this->input->post('old'), $this->input->post('new'));
+
+            if ($change) {
+                //if the password was successfully changed
+                $this->session->set_flashdata('message', 'Change successful!');
+                redirect('admin/change_password', 'refresh');
+            } else {
+                $this->session->set_flashdata('message', 'Old password not correct!');
+                redirect('admin/change_password', 'refresh');
+            }
         }
     }
 
