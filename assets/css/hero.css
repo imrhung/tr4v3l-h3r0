@@ -219,3 +219,14 @@ root {
 .dropdown-submenu:hover>.dropdown-menu{display:block;}
 .dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
 
+
+/* Image picker image style */
+ul.image_picker_selector li .thumbnail{
+    margin-top: 5px;
+}
+.image_picker_image {
+    max-width: 100px;
+    max-height: 70px;
+    background-color: white;
+    
+}

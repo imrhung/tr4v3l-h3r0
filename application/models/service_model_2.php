@@ -147,14 +147,14 @@ class Service_Model_2 extends CI_Model {
      */
 
     public function getLeaderBoard($pageNumber, $pageSize, $fbidString) {
-        $sql = 'CALL `travel_hero`.`sp_Get_Leaderboard`(?, ?, ?);';
+        $sql = 'CALL `sp_Get_Leaderboard`(?, ?, ?);';
         $result = $this->db->query($sql, array((int) $pageNumber, (int) $pageSize, $fbidString));
 
         return $result->result();
     }
     
     public function getUserMedal($pageNumber, $pageSize, $userId) {
-        $sql = 'CALL `travel_hero`.`sp_Get_UserMedal`(?,?,?);';
+        $sql = 'CALL `sp_Get_UserMedal`(?,?,?);';
         $result = $this->db->query($sql, array((int) $pageNumber, (int) $pageSize, (int) $userId));
 
         return $result->result();
@@ -168,7 +168,7 @@ class Service_Model_2 extends CI_Model {
     }
 
     public function getAnimation($animationId) {
-        $sql = 'CALL `travel_hero`.`sp_Get_Animation`(?)';
+        $sql = 'CALL `sp_Get_Animation`(?)';
         $result = $this->db->query($sql, array((int) $animationId));
 
         return $result->row();
@@ -176,7 +176,7 @@ class Service_Model_2 extends CI_Model {
 
     public function getQuizChoiceList($pageNumber, $pageSize, $quizCate) {
         // Get list of quiz first.
-        $sql = 'CALL `travel_hero`.`sp_Get_QuizList_ByCategory`(?, ?, ?)';
+        $sql = 'CALL `sp_Get_QuizList_ByCategory`(?, ?, ?)';
         $result = $this->db->query($sql, array((int) $pageNumber, (int) $pageSize, (int) $quizCate));
         $quizList = $result->result();
 
@@ -234,7 +234,7 @@ class Service_Model_2 extends CI_Model {
 
     public function getQuizCategoryInQuest($questId) {
         mysqli_next_result($this->db->conn_id);
-        $sql = "SELECT questcondition.ObjectId FROM travel_hero.questcondition WHERE VirtualQuestId = $questId AND Type = 0";
+        $sql = "SELECT questcondition.ObjectId FROM questcondition WHERE VirtualQuestId = $questId AND Type = 0";
         $result = $this->db->query($sql);
 
         return (int) $result->row()->ObjectId;

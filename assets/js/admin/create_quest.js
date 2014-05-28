@@ -3,6 +3,27 @@ $(document).ready(function(){
     drawSelectCategory();
     drawSelectActivity();
     drawSelectDonation();
+    
+    // Bind to function
+    $('form').on('submit', createQuest);
+    
+    // Image picker init.
+    $('#animation').imagepicker({
+        hide_select: false
+    });
+    $('#character').imagepicker({
+        hide_select: false
+    });
+    
+    // Masonry image control init.
+    // Try Masonry but not successful. :)
+//    var $container = $('.image_picker_selector');
+//    $container.imagesLoaded(function(){
+//        $container.masonry({
+//            // option
+//            columnWidth: 50,
+//            itemSelector: '.thumbnail'
+//        });
 });
 
 function drawSelectPacket(){
@@ -140,6 +161,9 @@ function createQuest() {
     var donation_id_2 = $("#donation_2").val();
     var donation_id_3 = $("#donation_3").val();
     
+    var animation_id = $('#animation').val();
+    var character_url = $('#character').val();
+    
     // Make the spining when waiting
     // Disable submit button
     $('#submit').attr('disabled', 'true');
@@ -159,7 +183,10 @@ function createQuest() {
                 activity_id_3: activity_id_3,
                 donation_id_1: donation_id_1,
                 donation_id_2: donation_id_2,
-                donation_id_3: donation_id_3
+                donation_id_3: donation_id_3,
+                
+                animation_id: animation_id,
+                image_url: character_url
             },
             function(data) {
                 console.log(data);

@@ -1,3 +1,23 @@
+$(document).ready(function(){
+    var questId = $('#quest-id').val();
+    draw(questId);
+    
+    // Bind to function
+    $('form').on('submit', function(event){
+        updateQuest(questId);
+    });
+    
+    // Image picker init.
+    $('#animation').imagepicker({
+        hide_select: false
+    });
+    $('#character').imagepicker({
+        hide_select: false
+    });
+});
+
+
+
 // global variable:
 var partnerId = 0;
 
@@ -20,6 +40,10 @@ function getQuest(questId) {
                     $('#packet').val(quest.PacketId);
                     $('#name').val(quest.QuestName);
                     $('#unlock').val(quest.UnlockPoint);
+                    $('#animation').val(quest.AnimationId);
+                    $('#character').val(quest.ImageURL);
+                    $("#animation").data('picker').sync_picker_with_select();
+                    $("#character").data('picker').sync_picker_with_select();
                     var condition = data.info.condition;
                     var selectActivity = 0;
                     var selectDonation = 0;
@@ -86,6 +110,9 @@ function updateQuest(questId){
     var donation_id_2 = $("#donation_2").val();
     var donation_id_3 = $("#donation_3").val();
     
+    var animation_id = $('#animation').val();
+    var character_url = $('#character').val();
+    
     // Make the spining when waiting
     
     // Post to api
@@ -104,7 +131,10 @@ function updateQuest(questId){
                 activity_id_3: activity_id_3,
                 donation_id_1: donation_id_1,
                 donation_id_2: donation_id_2,
-                donation_id_3: donation_id_3
+                donation_id_3: donation_id_3,
+                
+                animation_id: animation_id,
+                image_url: character_url
             },
             function(data) {
                 console.log(data);
@@ -187,7 +217,7 @@ function drawSelectPacket(){
     
     // Post to api
     $.post(
-            baseUrl + "packet/getPacketList",
+            baseUrl + "packet/getPacketAvailalbeList",
             {
                 pageSize: 0,
                 pageNumber: 0

@@ -114,6 +114,9 @@ class VirtualQuest extends App_Controller {
         $donation_id_2 = $this->input->post('donation_id_2');
         $donation_id_3 = $this->input->post('donation_id_3');
         $createDate = $this->virtualquest_model->getTime();
+        
+        $animation = $this->input->post('animation_id');
+        $image = $this->input->post('image_url');
 
         // Initialization Array
         $result = array();
@@ -121,7 +124,7 @@ class VirtualQuest extends App_Controller {
         $result['message'] = "";
 
         // Insert VirtualQuest
-        $Id = $this->virtualquest_model->insertVirtualQuest($partnerId, $packetId, $name, $unlock, $createDate);
+        $Id = $this->virtualquest_model->insertVirtualQuest($partnerId, $packetId, $name, $unlock, $createDate, $animation, $image);
 
         // Insert ConditionQuest quiz action
         if ($quiz_category != 0)
@@ -174,6 +177,9 @@ class VirtualQuest extends App_Controller {
         $donation_id_1 = $this->input->post('donation_id_1');
         $donation_id_2 = $this->input->post('donation_id_2');
         $donation_id_3 = $this->input->post('donation_id_3');
+        
+        $animation = $this->input->post('animation_id');
+        $image = $this->input->post('image_url');
 
         // Initialization Array
         $result = array();
@@ -181,7 +187,7 @@ class VirtualQuest extends App_Controller {
         $result['message'] = "";
 
         // update virtual quest
-        $resultCheck = $this->virtualquest_model->updateVirtualQuest($Id, (int) $partnerId, (int) $packetId, $name, (int) $unlock);
+        $resultCheck = $this->virtualquest_model->updateVirtualQuest($Id, (int) $partnerId, (int) $packetId, $name, (int) $unlock, $animation, $image);
 
         // Delete questCondition
         $this->virtualquest_model->deleteQuestCondition($Id);

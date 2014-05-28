@@ -91,21 +91,31 @@ class Admin extends App_Controller {
         } else {
             $this->page_title = 'Edit Quest';
             $this->current_section = "edit_quest";
+            $this->assets_css[] = 'image-picker/image-picker.css';
+            $this->assets_js[] = 'image-picker/image-picker.js';
             $this->assets_js[] = 'admin/edit_quest.js';
             $this->assets_js[] = 'bootbox/bootbox.min.js';
 
             $data = array(
-                'questId' => $id
+                'questId' => $id,
+                'edit_quest' => 1,
+                'partnerId' => $this->session->userdata('partner_id')
             );
-            $this->render_page_admin('admin/edit_quest', $data);
+            $this->render_page_admin('admin/create_quest', $data);
         }
     }
 
     public function create_quest() {
         $this->page_title = 'Create Quest';
         $this->current_section = 'create_quest';
+        $this->assets_css[] = 'image-picker/image-picker.css';
+        $this->assets_js[] = 'image-picker/image-picker.js';
         $this->assets_js[] = 'admin/create_quest.js';
-        $data['partnerId'] = $this->session->userdata('partner_id');
+        $data = array(
+                'questId' => 0,
+                'edit_quest' => 0,
+                'partnerId' => $this->session->userdata('partner_id')
+            );
         $this->render_page_admin('admin/create_quest', $data);
     }
 
