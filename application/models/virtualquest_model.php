@@ -71,6 +71,8 @@ class VirtualQuest_Model extends CI_Model {
 					$result['quest']['condition'][$indexCondition]['content']['ActionId'] = $row['aActionId'];
 					$result['quest']['condition'][$indexCondition]['content']['BonusPoint'] = $row['aBonusPoint'];
 					$result['quest']['condition'][$indexCondition]['content']['ActionContent'] = $row['aActionContent'];
+					$result['quest']['condition'][$indexCondition]['content']['WebUrl'] = $row['WebUrl'];
+					$result['quest']['condition'][$indexCondition]['content']['IconUrl'] = $row['IconUrl'];
 					
 				} elseif ($row['cType'] == 2) {
 					$result['quest']['condition'][$indexCondition]['content']['Id'] = $row['Id'];
@@ -81,6 +83,9 @@ class VirtualQuest_Model extends CI_Model {
 					$result['quest']['condition'][$indexCondition]['content']['RequiredPoint'] = $row['dRequiredPoint'];
 					$result['quest']['condition'][$indexCondition]['content']['MedalId'] = $row['dMedalId'];
 					$result['quest']['condition'][$indexCondition]['content']['ImageUrl'] = $row['mImageUrl'];
+					$result['quest']['condition'][$indexCondition]['content']['WebUrl'] = $row['WebUrl'];
+					$result['quest']['condition'][$indexCondition]['content']['IconUrl'] = $row['IconUrl'];
+					
 				} else {
 					$result['quest']['condition'][$indexCondition]['content']['Id'] = $row['Id'];
 					$result['quest']['condition'][$indexCondition]['content']['Title'] = $row['Title'];
