@@ -71,10 +71,36 @@ function drawSelectActivity(){
                     select1.append($("<option>").attr('value', 0).text('Select the Activity'));
                     select2.append($("<option>").attr('value', 0).text('Select the Activity'));
                     select3.append($("<option>").attr('value', 0).text('Select the Activity'));
+                    var partner = '';
+                    var optGroup;
                     for (var i=0; i<activity.length; i++){
-                        select1.append($("<option>").attr('value', activity[i].Id).text(activity[i].Title));
-                        select2.append($("<option>").attr('value', activity[i].Id).text(activity[i].Title));
-                        select3.append($("<option>").attr('value', activity[i].Id).text(activity[i].Title));
+                        if (i !== 0 && partner !== activity[i].PartnerName){
+                            select1.append(optGroup);
+                            var optGroup2 = optGroup.clone();
+                            select2.append(optGroup2);
+                            var optGroup3 = optGroup.clone();
+                            select3.append(optGroup3);
+                        }
+                        if (partner !== activity[i].PartnerName){
+                            // A new group
+                            optGroup = $('<optgroup>');
+                            partner = activity[i].PartnerName;
+                            optGroup.attr('label', partner);
+                        }
+                        optGroup.append($("<option>").attr('value', activity[i].Id).text(activity[i].Title));
+                        
+                        if ((i === activity.length-1)){
+                            // End of a group.
+                            select1.append(optGroup);
+                            var optGroup2 = optGroup.clone();
+                            select2.append(optGroup2);
+                            var optGroup3 = optGroup.clone();
+                            select3.append(optGroup3);
+                        }
+                        
+//                        select1.append($("<option>").attr('value', activity[i].Id).text(activity[i].Title));
+//                        select2.append($("<option>").attr('value', activity[i].Id).text(activity[i].Title));
+//                        select3.append($("<option>").attr('value', activity[i].Id).text(activity[i].Title));
                     }
                 } else { // Fail
                     
@@ -104,10 +130,38 @@ function drawSelectDonation(){
                     select1.append($("<option>").attr('value', 0).text('Select the Donation'));
                     select2.append($("<option>").attr('value', 0).text('Select the Donation'));
                     select3.append($("<option>").attr('value', 0).text('Select the Donation'));
+                    
+                    var partner = '';
+                    var optGroup;
                     for (var i=0; i<donation.length; i++){
-                        select1.append($("<option>").attr('value', donation[i].Id).text(donation[i].Title));
-                        select2.append($("<option>").attr('value', donation[i].Id).text(donation[i].Title));
-                        select3.append($("<option>").attr('value', donation[i].Id).text(donation[i].Title));
+                        if (i !== 0 && partner !== donation[i].PartnerName){
+                            select1.append(optGroup);
+                            var optGroup2 = optGroup.clone();
+                            select2.append(optGroup2);
+                            var optGroup3 = optGroup.clone();
+                            select3.append(optGroup3);
+                        }
+                        if (partner !== donation[i].PartnerName){
+                            // A new group
+                            optGroup = $('<optgroup>');
+                            partner = donation[i].PartnerName;
+                            optGroup.attr('label', partner);
+                        }
+                        optGroup.append($("<option>").attr('value', donation[i].Id).text(donation[i].Title));
+                        
+                        if ((i === donation.length-1)){
+                            // End of a group.
+                            select1.append(optGroup);
+                            var optGroup2 = optGroup.clone();
+                            select2.append(optGroup2);
+                            var optGroup3 = optGroup.clone();
+                            select3.append(optGroup3);
+                        }
+                        
+                        
+//                        select1.append($("<option>").attr('value', donation[i].Id).text(donation[i].Title));
+//                        select2.append($("<option>").attr('value', donation[i].Id).text(donation[i].Title));
+//                        select3.append($("<option>").attr('value', donation[i].Id).text(donation[i].Title));
                     }
                 } else { // Fail
                     
