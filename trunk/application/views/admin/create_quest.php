@@ -2,7 +2,7 @@
 
     <div id="page-wrapper">
 
-        <h1>Create Quest</h1>
+        <h1>Create a Quest</h1>
         <p>Please select the fields below to create a quest.</p>
 
         <div id="alert_placeholder"></div>
@@ -53,10 +53,10 @@
   <label class="col-md-4 control-label" for="animation">Animation</label>
   <div class="col-md-8">
     <select id="animation" name="animation" class="form-control image-picker">
-        <option data-img-src="/assets/img/animation/1.png" value="1">Animation 1</option>
-        <option data-img-src="/assets/img/animation/2.png" value="2">Animation 2</option>
-        <option data-img-src="/assets/img/animation/3.png" value="3">Animation 3</option>
-        <option data-img-src="/assets/img/animation/4.png" value="4">Animation 4</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/animation/1.png" value="1">Animation 1</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/animation/2.png" value="2">Animation 2</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/animation/3.png" value="3">Animation 3</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/animation/4.png" value="4">Animation 4</option>
     </select>
   </div>
 </div>
@@ -66,9 +66,9 @@
   <div class="col-md-8">
     <select id="character" name="character" class="form-control">
         <option data-img-src="<?php echo base_url() ?>assets/img/quest/1.png" value="<?php echo base_url() ?>assets/img/quest/1.png">Nhi</option>
-        <option data-img-src="<?php echo base_url() ?>assets/img/quest/2.png" value="<?php echo base_url() ?>assets/img/quest/2.png">Nam</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/2.png" value="<?php echo base_url() ?>assets/img/quest/2.png">Han</option>
         <option data-img-src="<?php echo base_url() ?>assets/img/quest/3.png" value="<?php echo base_url() ?>assets/img/quest/3.png">My</option>
-        <option data-img-src="<?php echo base_url() ?>assets/img/quest/4.png" value="<?php echo base_url() ?>assets/img/quest/4.png">Han</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/4.png" value="<?php echo base_url() ?>assets/img/quest/4.png">Nam</option>
       
     </select>
   </div>
