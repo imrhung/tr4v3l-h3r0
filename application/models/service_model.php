@@ -66,6 +66,7 @@ class Service_Model extends CI_Model {
 					$result[$indexPacket]['Quests'][$indexQuest]['vAnimationId'] = $row['vAnimationId'];
 					$result[$indexPacket]['Quests'][$indexQuest]['UnlockPoint'] = $row['vUnlockPoint'];
 					$result[$indexPacket]['Quests'][$indexQuest]['vCreateDate'] = $row['vCreateDate'];
+					$result[$indexPacket]['Quests'][$indexQuest]['ImageUrl'] = $row['questImageUrl'];
 					
 					$indexCondition = 0;
 					
@@ -108,6 +109,7 @@ class Service_Model extends CI_Model {
 						$result[$indexPacket]['Quests'][$indexQuest]['vAnimationId'] = $row['vAnimationId'];
 						$result[$indexPacket]['Quests'][$indexQuest]['UnlockPoint'] = $row['vUnlockPoint'];
 						$result[$indexPacket]['Quests'][$indexQuest]['vCreateDate'] = $row['vCreateDate'];
+						$result[$indexPacket]['Quests'][$indexQuest]['ImageUrl'] = $row['questImageUrl'];
 						
 						// set lai gia tri moi cho indexCondition
 						$indexCondition = 0;
