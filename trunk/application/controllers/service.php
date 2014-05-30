@@ -9,7 +9,33 @@ class Service extends App_Controller {
         parent::__construct();
         $this->load->model('service_model');
     }
-	
+    
+	/* Get Organization list function from database*/
+	public function getOrganizationList(){
+		$result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = array();
+        
+		$result['info']['organization'] = "";
+		
+        $currentPage = $_POST['currentPage'];
+        $pageSize = $_POST['pageSize'];
+        
+        $resultCheck = $this->service_model->getOrganizationList($currentPage, $pageSize);
+        
+        if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['info']['organization'] = $resultCheck;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+            $result['info']['organization'] = $resultCheck;
+        }
+        echo json_encode($result);
+	}
+    
 	public function getTest() {
 		$id = $this->input->post("id");
 		

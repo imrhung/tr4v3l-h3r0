@@ -14,7 +14,19 @@ class Service_Model extends CI_Model {
 
         return $result->row();
     }
-	
+    /* 	Get Activity list function from databases */
+    
+    public function getOrganizationList($currentPage, $pageSize) {
+        
+        $currentPage = (int) $currentPage;
+        $pageSize = (int) $pageSize;
+        
+        $sql = 'CALL sp_GetOrganizationList(?, ?)';
+        $result = $this->db->query($sql, array($currentPage, $pageSize));
+        
+        return $result->result();
+    }
+    
 	public function getPacketsBy($rowIndex, $pageSize) {
 		$result = array(array());
 		
