@@ -42,6 +42,8 @@ function getQuest(questId) {
                     var select = $('#packet');
                     select.prepend($("<option>").attr('value', quest.PacketId).text(quest.PacketName));
                     $('#packet').val(quest.PacketId);
+                    // Disable packet select when edit quest:
+                    $('#packet').attr('disabled', 'disabled');
                     
                     $('#name').val(quest.QuestName);
                     $('#unlock').val(quest.UnlockPoint);
