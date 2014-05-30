@@ -286,8 +286,6 @@ class Service_Model extends CI_Model {
 			} else {
 				$userId = $row['uUserId'];
 				
-				$result[0]['code'] = $row['code'];
-				$result[0]['message'] = $row['message'];
 				$result[0]['userId'] = $row['uUserId'];
 				$result[0]['facebookId'] = $row['uFacebookId'];
 				$result[0]['points'] = $row['uPoints'];
