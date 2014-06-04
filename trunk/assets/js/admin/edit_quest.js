@@ -92,11 +92,15 @@ function getQuest(questId) {
                     }
                     
                 } else { // Fail
-
+                    bootstrap_alert.warning("Some error occurred, please try again!");
+                    $('#submit').attr('disabled', 'disabled');
                 }
             },
             "json"
-            );
+            ).fail(function() {
+                bootstrap_alert.warning("Some error occurred, please try again!");
+            $('#submit').attr('disabled', 'disabled');
+          });
 }
 
 
