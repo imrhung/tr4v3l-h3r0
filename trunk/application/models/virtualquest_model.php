@@ -7,6 +7,89 @@ class VirtualQuest_Model extends CI_Model {
     public function __construct() {
         parent:: __construct();
     }
+	
+	public function completeQuestProcess($userId, $questId) {
+		$result = null;
+		
+		$userId = (int) $userId;
+        $questId = (int) $questId;
+		
+		$sql1 = 'CALL sp_completeQuestProcess(?,?)';
+		$resultPackets = $this->db->query($sql1, array($userId, $questId));
+		
+		if ($resultPackets->num_rows() > 0) {
+			
+			$data = $resultPackets->result_array();
+			
+			$result['quest']['Id'] = $data[0]['virtualquestId'];
+			$result['quest']['QuestName'] = $data[0]['QuestName'];
+			$result['quest']['PacketId'] = $data[0]['PacketId'];
+			$result['quest']['PartnerId'] = $data[0]['PartnerId'];
+			$result['quest']['AnimationId'] = $data[0]['AnimationId'];
+			$result['quest']['UnlockPoint'] = $data[0]['UnlockPoint'];
+			$result['quest']['CreateDate'] = $data[0]['virtualquestCreateDate'];
+			$result['quest']['Title'] = $data[0]['packetTitle'];
+			$result['quest']['ImageURL'] = $data[0]['packetImageURL'];
+			$result['quest']['PartnerName'] = $data[0]['PartnerName'];
+			$result['quest']['OrganizationTypeId'] = $data[0]['OrganizationTypeId'];
+			$result['quest']['Address'] = $data[0]['partnerAddress'];
+			$result['quest']['PhoneNumber'] = $data[0]['PhoneNumber'];
+			$result['quest']['WebsiteUrl'] = $data[0]['partnerWebsiteUrl'];
+			$result['quest']['Latitude'] = $data[0]['Latitude'];
+			$result['quest']['Longtitude'] = $data[0]['Longtitude'];
+			$result['quest']['Description'] = $data[0]['partnerDescription'];
+			$result['quest']['IsApproved'] = $data[0]['partnerIsApproved'];
+			$result['quest']['LogoUrl'] = $data[0]['partnerLogoUrl'];
+			$result['quest']['IconUrl'] = $data[0]['partnerIconUrl'];
+			
+			$indexCondition = -1;
+			
+			foreach($data as $row) {
+				$indexCondition++;
+				$result['quest']['condition'][$indexCondition]['Id'] = $row['conditionId'];
+				$result['quest']['condition'][$indexCondition]['Type'] = $row['conditionType'];
+				$result['quest']['condition'][$indexCondition]['Value'] = $row['conditionValue'];
+				$result['quest']['condition'][$indexCondition]['ObjectId'] = $row['ObjectId'];
+				
+				if ($row['conditionType'] == 1) {
+					$result['quest']['condition'][$indexCondition]['content']['Id'] = $row['Id'];
+					$result['quest']['condition'][$indexCondition]['content']['Title'] = $row['Title'];
+					$result['quest']['condition'][$indexCondition]['content']['Description'] = $row['Description'];
+					$result['quest']['condition'][$indexCondition]['content']['IsApproved'] = $row['IsApproved'];
+					$result['quest']['condition'][$indexCondition]['content']['CreateDate'] = $row['CreateDate'];
+					$result['quest']['condition'][$indexCondition]['content']['ActionId'] = $row['activityActionId'];
+					$result['quest']['condition'][$indexCondition]['content']['BonusPoint'] = $row['activityBonusPoint'];
+					$result['quest']['condition'][$indexCondition]['content']['ActionContent'] = $row['activityActionContent'];
+					$result['quest']['condition'][$indexCondition]['content']['WebUrl'] = $row['WebUrl'];
+					$result['quest']['condition'][$indexCondition]['content']['IconUrl'] = $row['IconUrl'];
+					
+				} elseif ($row['conditionType'] == 2) {
+					$result['quest']['condition'][$indexCondition]['content']['Id'] = $row['Id'];
+					$result['quest']['condition'][$indexCondition]['content']['Title'] = $row['Title'];
+					$result['quest']['condition'][$indexCondition]['content']['Description'] = $row['Description'];
+					$result['quest']['condition'][$indexCondition]['content']['IsApproved'] = $row['IsApproved'];
+					$result['quest']['condition'][$indexCondition]['content']['CreateDate'] = $row['CreateDate'];
+					$result['quest']['condition'][$indexCondition]['content']['RequiredPoint'] = $row['donationRequiredPoint'];
+					$result['quest']['condition'][$indexCondition]['content']['MedalId'] = $row['donationMedalId'];
+					$result['quest']['condition'][$indexCondition]['content']['ImageUrl'] = $row['medalImageUrl'];
+					$result['quest']['condition'][$indexCondition]['content']['WebUrl'] = $row['WebUrl'];
+					$result['quest']['condition'][$indexCondition]['content']['IconUrl'] = $row['IconUrl'];
+					
+				} else {
+					$result['quest']['condition'][$indexCondition]['content']['Id'] = $row['Id'];
+					$result['quest']['condition'][$indexCondition]['content']['Title'] = $row['Title'];
+					$result['quest']['condition'][$indexCondition]['content']['Description'] = $row['Description'];
+					$result['quest']['condition'][$indexCondition]['content']['IsApproved'] = $row['IsApproved'];
+					$result['quest']['condition'][$indexCondition]['content']['CreateDate'] = $row['CreateDate'];
+					$result['quest']['condition'][$indexCondition]['content']['RequiredPoint'] = $row['donationRequiredPoint'];
+					$result['quest']['condition'][$indexCondition]['content']['MedalId'] = $row['donationMedalId'];
+				}
+			}
+			
+			return $result;
+		} else 
+			return array();
+	}
 
     /*     * ***SELECT**** */
     /* Last 18-March-2014 */
