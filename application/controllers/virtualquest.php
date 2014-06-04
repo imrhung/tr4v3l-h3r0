@@ -25,6 +25,28 @@ class VirtualQuest extends App_Controller {
         $this->load->helper('language');
     }
 
+	public function completeQuest() {
+		$result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = null;
+		
+		$userId = $_POST['userId'];
+		$questId = $_POST['questId'];
+		
+		$data = $this->virtualquest_model->completeQuestProcess($userId, $questId);
+		if ($data) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['info'] = $data;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+            $result['info'] = $data;
+        }
+        echo json_encode($result);
+	}
+	
     /*     * ***SELECT**** */
     /* Last 18-March-2014 */
     /* Get a VirtualQuest function from database */
