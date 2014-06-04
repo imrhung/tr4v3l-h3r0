@@ -149,8 +149,7 @@ class VirtualQuest extends App_Controller {
         $Id = $this->virtualquest_model->insertVirtualQuest($partnerId, $packetId, $name, $unlock, $createDate, $animation, $image);
 
         // Insert ConditionQuest quiz action
-        if ($quiz_category != 0)
-            $this->virtualquest_model->insertQuestConditionPoint(0, $quiz_category, $Id, $point);
+        $this->virtualquest_model->insertQuestConditionPoint(0, $quiz_category, $Id, $point);
 
         // Insert ConditionQuest activity action
         if ($activity_id_1 != 0)
@@ -215,8 +214,7 @@ class VirtualQuest extends App_Controller {
         $this->virtualquest_model->deleteQuestCondition($Id);
 
         // Insert ConditionQuest quiz action
-        if ($quiz_category != 0)
-            $this->virtualquest_model->insertQuestConditionPoint(0, $quiz_category, $Id, $point);
+        $this->virtualquest_model->insertQuestConditionPoint(0, $quiz_category, $Id, $point);
 
         // Insert ConditionQuest activity action
         if ($activity_id_1 != 0)
