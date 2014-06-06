@@ -10,6 +10,29 @@ class Service extends App_Controller {
         $this->load->model('service_model');
     }
     
+    /* Insert award for user */
+    public function insertMedal() {
+		// Input data
+		$userId = $this->input->post('userId');
+		$medalId = $this->input->post('medalId');
+        
+		// Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+		
+		$resultCheck= $this->service_model->insertMedal($userId, $medalId);
+        
+		if ($resultCheck == 'Success') {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+		
+		echo json_encode($result);
+	}
 	/* Get Organization list function from database*/
 	public function getOrganizationList(){
 		$result = array();
