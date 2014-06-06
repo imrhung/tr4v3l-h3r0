@@ -14,6 +14,17 @@ class Service_Model extends CI_Model {
 
         return $result->row();
     }
+    
+    /*  Insert award for user  */
+    public function insertMedal($userId, $medalId) {
+        try {
+            $sql = 'CALL sp_InsertMedal(?,?)';
+            $result = $this->db->query($sql, array($userId, $medalId));
+            return 'Success';
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
     /* 	Get Activity list function from databases */
     
     public function getOrganizationList($currentPage, $pageSize) {
