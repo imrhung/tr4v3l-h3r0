@@ -464,8 +464,9 @@ class Service extends App_Controller {
         );
         
         // Then get the quiz list:
-        //$category = $this->service_model->getQuizCategoryInQuest($questId);
-        $quizList = $this->service_model->getQuizChoiceListRandom($pageSize);
+		// Get the quiz category from quest first.
+        $category = $this->service_model->getQuizCategoryInQuest($questId);
+        $quizList = $this->service_model->getQuizChoiceListRandomCate($pageSize, $category);
 
         if ($quizList) {
             $result['code'] = 1;
