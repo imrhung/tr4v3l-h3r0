@@ -147,6 +147,9 @@ function updateQuiz(quizId){
             },
             "json"
             );
+    // Update point also :D
+    var point = $('#point').val();
+    updatePoint(quizId, point);
 }
 
 successfulAlert = function(message) {
@@ -200,7 +203,6 @@ function updatePoint(quizId, point){
                 if (data.code === 1) { // Successful
                     
                     // Update the first form
-                    $('#point').val(data.info.point);
                 } else { // Fail
 
                 }

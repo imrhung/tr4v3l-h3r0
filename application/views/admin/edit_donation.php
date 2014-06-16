@@ -56,13 +56,7 @@
                     <div class="form-group">
                         <label class="control-label" for="point">Bonus Point</label>
                         <div class="col-md-12">
-                            <select id="point" name="point" class="form-control">
-                                <option value="100">100pts</option>
-                                <option value="200">200pts</option>
-                                <option value="300">300pts</option>
-                                <option value="400">400pts</option>
-                                <option value="500">500pts</option>
-                            </select>
+                            <input id="point" name="point" type="number" placeholder="" class="form-control input-md" min="1" max="500">
                         </div>
                     </div>
 
