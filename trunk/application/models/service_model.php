@@ -490,7 +490,7 @@ class Service_Model extends CI_Model {
 	public function getQuizChoiceListRandomCate($pageSize, $category) {
         // Get list of quiz first.
         mysqli_next_result($this->db->conn_id);
-        $sql = 'CALL `sp_Get_QuizList_Random_Cate`(?, ?)';
+        $sql = 'CALL `sp_Get_QuizChoiceList_Random_Cate`(?, ?)';
         $result = $this->db->query($sql,array((int) $pageSize, (int) $category));
         $quizList = $result->result();
 
