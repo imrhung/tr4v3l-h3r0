@@ -1,21 +1,23 @@
 <?php
+
 // Author: Hau
 // Start date: 10-April-2014
 
 class Service_Model extends CI_Model {
 
-	public function __construct() {
+    public function __construct() {
         parent:: __construct();
     }
-	
-	public function getTestById($id) {
+
+    public function getTestById($id) {
         $sql = 'SELECT * FROM testtable WHERE id = ?';
         $result = $this->db->query($sql, array($id));
 
         return $result->row();
     }
-    
+
     /*  Insert award for user  */
+
     public function insertMedal($userId, $medalId) {
         try {
             $sql = 'CALL sp_InsertMedal(?,?)';
@@ -25,230 +27,228 @@ class Service_Model extends CI_Model {
             return $e->getMessage();
         }
     }
+
     /* 	Get Activity list function from databases */
-    
+
     public function getOrganizationList($currentPage, $pageSize) {
-        
+
         $currentPage = (int) $currentPage;
         $pageSize = (int) $pageSize;
-        
+
         $sql = 'CALL sp_GetOrganizationList(?, ?)';
         $result = $this->db->query($sql, array($currentPage, $pageSize));
-        
+
         return $result->result();
     }
-    
-	public function getPacketsBy($rowIndex, $pageSize) {
-		$result = array(array());
-		
-		$rowIndex = (int) $rowIndex;
-		$pageSize = (int) $pageSize;
-		
-		$resultPackets = $this->db->query('CALL sp_getPacketsBy(?,?)', array($rowIndex, $pageSize));
-		
-		$indexPacket = -1;
-		$indexQuest = -1;
-		$indexCondition = -1;
-		
-		$pId = -1;
-		$vId = -1;
-		//$cId = -1;
-		
-		if ($resultPackets->num_rows() > 0) {
-			
-			foreach($resultPackets->result_array() as $row) {
-				
-				if($pId != $row['pId']) {
-					
-					$pId = $row['pId'];
-					$indexPacket++;
-				
-					$result[$indexPacket]['Id'] = $row['pId'];
-					$result[$indexPacket]['Title'] = $row['pTitle'];
-					$result[$indexPacket]['ImageURL'] = $row['pImageURL'];
-					
-					$vId = $row['vId'];
-					$indexQuest = 0;
-					
-					$result[$indexPacket]['Quests'][$indexQuest]['Id'] = $row['vId'];
-					$result[$indexPacket]['Quests'][$indexQuest]['vQuestName'] = $row['vQuestName'];
-					$result[$indexPacket]['Quests'][$indexQuest]['vPacketId'] = $row['vPacketId'];
-					$result[$indexPacket]['Quests'][$indexQuest]['vPartnerId'] = $row['vPartnerId'];
-					$result[$indexPacket]['Quests'][$indexQuest]['vAnimationId'] = $row['vAnimationId'];
-					$result[$indexPacket]['Quests'][$indexQuest]['UnlockPoint'] = $row['vUnlockPoint'];
-					$result[$indexPacket]['Quests'][$indexQuest]['vCreateDate'] = $row['vCreateDate'];
-					$result[$indexPacket]['Quests'][$indexQuest]['ImageUrl'] = $row['questImageUrl'];
-					
-					$indexCondition = 0;
-					
-					$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Id'] = $row['cId'];
-					$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Type'] = $row['cType'];
-					$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Value'] = $row['cValue'];
-					$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['cVirtualQuestId'] = $row['cVirtualQuestId'];
-					$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['ObjectId'] = $row['cObjectId'];
-					
-				} else {
-				
-					if($vId == $row['vId']) {
-					
-						//
-						//Van con condition chua nap
-						// Tang indexCondition len 1
-						$indexCondition++;
-						
-						$vId = $row['vId'];
-						$pId = $row['pId'];
-						
-						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Id'] = $row['cId'];
-						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Type'] = $row['cType'];
-						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Value'] = $row['cValue'];
-						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['cVirtualQuestId'] = $row['cVirtualQuestId'];
-						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['ObjectId'] = $row['cObjectId'];
-						
-					} else {
-						
-						// tang indexQuest
-						$indexQuest++;
-						$vId = $row['vId'];
-						$pId = $row['pId'];
-						
-						// nap quest
-						$result[$indexPacket]['Quests'][$indexQuest]['Id'] = $row['vId'];
-						$result[$indexPacket]['Quests'][$indexQuest]['vQuestName'] = $row['vQuestName'];
-						$result[$indexPacket]['Quests'][$indexQuest]['vPacketId'] = $row['vPacketId'];
-						$result[$indexPacket]['Quests'][$indexQuest]['vPartnerId'] = $row['vPartnerId'];
-						$result[$indexPacket]['Quests'][$indexQuest]['vAnimationId'] = $row['vAnimationId'];
-						$result[$indexPacket]['Quests'][$indexQuest]['UnlockPoint'] = $row['vUnlockPoint'];
-						$result[$indexPacket]['Quests'][$indexQuest]['vCreateDate'] = $row['vCreateDate'];
-						$result[$indexPacket]['Quests'][$indexQuest]['ImageUrl'] = $row['questImageUrl'];
-						
-						// set lai gia tri moi cho indexCondition
-						$indexCondition = 0;
-						// nap condition
-						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Id'] = $row['cId'];
-						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Type'] = $row['cType'];
-						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Value'] = $row['cValue'];
-						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['cVirtualQuestId'] = $row['cVirtualQuestId'];
-						$result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['ObjectId'] = $row['cObjectId'];
-						
-					}
-				}
-			}
-			
-			return $result;
-		} else
-			return array();
-	}
-        
-	public function getDonationByPageIndex($pageIndex, $pageSize) {
+
+    public function getPacketsBy($rowIndex, $pageSize) {
+        $result = array(array());
+
+        $rowIndex = (int) $rowIndex;
+        $pageSize = (int) $pageSize;
+
+        $resultPackets = $this->db->query('CALL sp_getPacketsBy(?,?)', array($rowIndex, $pageSize));
+
+        $indexPacket = -1;
+        $indexQuest = -1;
+        $indexCondition = -1;
+
+        $pId = -1;
+        $vId = -1;
+        //$cId = -1;
+
+        if ($resultPackets->num_rows() > 0) {
+
+            foreach ($resultPackets->result_array() as $row) {
+
+                if ($pId != $row['pId']) {
+
+                    $pId = $row['pId'];
+                    $indexPacket++;
+
+                    $result[$indexPacket]['Id'] = $row['pId'];
+                    $result[$indexPacket]['Title'] = $row['pTitle'];
+                    $result[$indexPacket]['ImageURL'] = $row['pImageURL'];
+
+                    $vId = $row['vId'];
+                    $indexQuest = 0;
+
+                    $result[$indexPacket]['Quests'][$indexQuest]['Id'] = $row['vId'];
+                    $result[$indexPacket]['Quests'][$indexQuest]['vQuestName'] = $row['vQuestName'];
+                    $result[$indexPacket]['Quests'][$indexQuest]['vPacketId'] = $row['vPacketId'];
+                    $result[$indexPacket]['Quests'][$indexQuest]['vPartnerId'] = $row['vPartnerId'];
+                    $result[$indexPacket]['Quests'][$indexQuest]['vAnimationId'] = $row['vAnimationId'];
+                    $result[$indexPacket]['Quests'][$indexQuest]['UnlockPoint'] = $row['vUnlockPoint'];
+                    $result[$indexPacket]['Quests'][$indexQuest]['vCreateDate'] = $row['vCreateDate'];
+                    $result[$indexPacket]['Quests'][$indexQuest]['ImageUrl'] = $row['questImageUrl'];
+
+                    $indexCondition = 0;
+
+                    $result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Id'] = $row['cId'];
+                    $result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Type'] = $row['cType'];
+                    $result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Value'] = $row['cValue'];
+                    $result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['cVirtualQuestId'] = $row['cVirtualQuestId'];
+                    $result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['ObjectId'] = $row['cObjectId'];
+                } else {
+
+                    if ($vId == $row['vId']) {
+
+                        //
+                        //Van con condition chua nap
+                        // Tang indexCondition len 1
+                        $indexCondition++;
+
+                        $vId = $row['vId'];
+                        $pId = $row['pId'];
+
+                        $result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Id'] = $row['cId'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Type'] = $row['cType'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Value'] = $row['cValue'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['cVirtualQuestId'] = $row['cVirtualQuestId'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['ObjectId'] = $row['cObjectId'];
+                    } else {
+
+                        // tang indexQuest
+                        $indexQuest++;
+                        $vId = $row['vId'];
+                        $pId = $row['pId'];
+
+                        // nap quest
+                        $result[$indexPacket]['Quests'][$indexQuest]['Id'] = $row['vId'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['vQuestName'] = $row['vQuestName'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['vPacketId'] = $row['vPacketId'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['vPartnerId'] = $row['vPartnerId'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['vAnimationId'] = $row['vAnimationId'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['UnlockPoint'] = $row['vUnlockPoint'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['vCreateDate'] = $row['vCreateDate'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['ImageUrl'] = $row['questImageUrl'];
+
+                        // set lai gia tri moi cho indexCondition
+                        $indexCondition = 0;
+                        // nap condition
+                        $result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Id'] = $row['cId'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Type'] = $row['cType'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['Value'] = $row['cValue'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['cVirtualQuestId'] = $row['cVirtualQuestId'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['Condition'][$indexCondition]['ObjectId'] = $row['cObjectId'];
+                    }
+                }
+            }
+
+            return $result;
+        } else
+            return array();
+    }
+
+    public function getDonationByPageIndex($pageIndex, $pageSize) {
         $sql = 'CALL sp_getDonationBy(?,?)';
-        $result = $this->db->query($sql,array($pageIndex, $pageSize));
+        $result = $this->db->query($sql, array($pageIndex, $pageSize));
 
         return $result->row();
     }
-	
-	public function getPacketsBy1($rowIndex, $pageSize) {
+
+    public function getPacketsBy1($rowIndex, $pageSize) {
         $arrPacket;
-		
-		$rowIndex = (int) $rowIndex;
-		$pageSize = (int) $pageSize;
-		
-		$resultPackets = $this->db->query('SELECT * FROM packet LIMIT ?,?', array($rowIndex, $pageSize));
-		$i=0;
-		foreach($resultPackets->result_array() as $row) {
-			$arrPacket[$i] = $row;
-			$tmp = $row['Id'];
-			$resultQuets = $this->db->query('SELECT * FROM virtualquest WHERE PacketId = ?', array($tmp));
-			$y=0;
-			foreach($resultQuets->result_array() as $rowQuest) {
-				$arrPacket[$i]['Quests'][$y] = $rowQuest;
-				$tmp = $rowQuest['Id'];
-				$resultCondition = $this->db->query('SELECT * FROM questcondition WHERE VirtualQuestId = ?', array($tmp));
-				$z=0;
-				foreach($resultCondition->result_array() as $rowCondition) {
-					$arrPacket[$i]['Quests'][$y]['Condition'][$z] = $rowCondition;
-					$z++;
-				}
-				$y++;
-			}
-			$i++;
-		}
-		
-		return $arrPacket;
+
+        $rowIndex = (int) $rowIndex;
+        $pageSize = (int) $pageSize;
+
+        $resultPackets = $this->db->query('SELECT * FROM packet LIMIT ?,?', array($rowIndex, $pageSize));
+        $i = 0;
+        foreach ($resultPackets->result_array() as $row) {
+            $arrPacket[$i] = $row;
+            $tmp = $row['Id'];
+            $resultQuets = $this->db->query('SELECT * FROM virtualquest WHERE PacketId = ?', array($tmp));
+            $y = 0;
+            foreach ($resultQuets->result_array() as $rowQuest) {
+                $arrPacket[$i]['Quests'][$y] = $rowQuest;
+                $tmp = $rowQuest['Id'];
+                $resultCondition = $this->db->query('SELECT * FROM questcondition WHERE VirtualQuestId = ?', array($tmp));
+                $z = 0;
+                foreach ($resultCondition->result_array() as $rowCondition) {
+                    $arrPacket[$i]['Quests'][$y]['Condition'][$z] = $rowCondition;
+                    $z++;
+                }
+                $y++;
+            }
+            $i++;
+        }
+
+        return $arrPacket;
     }
-	
-	public function insertScore($userId, $score, $conditionId) {
+
+    public function insertScore($userId, $score, $conditionId) {
         $sql = 'CALL sp_saveGame(?,?,?)';
         $result = $this->db->query($sql, array($userId, $score, $conditionId));
 
         return $result->row();
     }
-	
-	public function getQuizzBy($id) {
+
+    public function getQuizzBy($id) {
         $sql = 'CALL sp_getQuizzBy(?)';
         $result = $this->db->query($sql, array($id));
 
         return $result->row();
     }
-	
-	public function getUserProfileBy($partnerId) {
+
+    public function getUserProfileBy($partnerId) {
         $sql = 'CALL sp_getUserProfileBy(?)';
         $result = $this->db->query($sql, array($partnerId));
 
         return $result->row();
     }
-	
-	public function getDonationByPartnerId($partnerId) {
+
+    public function getDonationByPartnerId($partnerId) {
         $sql = 'CALL sp_getDonationByPartnerId(?)';
         $result = $this->db->query($sql, array($partnerId));
 
         return $result->row();
     }
-	
-	public function getLeaderBoardBy($id) {
+
+    public function getLeaderBoardBy($id) {
         $sql = 'CALL sp_getLeaderBoardBy(?)';
         $result = $this->db->query($sql, array($id));
 
         return $result->row();
     }
-	
-	public function getUserAwardsBy($id) {
+
+    public function getUserAwardsBy($id) {
         $sql = 'CALL sp_getUserAwardsBy(?)';
         $result = $this->db->query($sql, array($id));
 
         return $result->row();
     }
-	
-	public function getActivitiesByPartnerId($partnerId) {
+
+    public function getActivitiesByPartnerId($partnerId) {
         $sql = 'CALL sp_getActivitiesByPartnerId(?)';
         $result = $this->db->query($sql, array($partnerId));
 
         return $result->row();
     }
-	
-	public function getUserCurrentQuestBy($id) {
+
+    public function getUserCurrentQuestBy($id) {
         $sql = 'CALL sp_getUserCurrentQuestBy(?)';
         $result = $this->db->query($sql, array($id));
 
         return $result->row();
     }
-	
-	public function getNumberOfChildrenByUserId() {
-		
+
+    public function getNumberOfChildrenByUserId() {
+
         $sql = 'CALL sp_getNumberOfChildrenByUserId()';
         $result = $this->db->query($sql);
 
         return $result->row();
     }
-	
-	public function insertSpentPointDonation($partnerId,$donationId) {
+
+    public function insertSpentPointDonation($partnerId, $donationId) {
         $sql = 'CALL sp_insertSpentPointDonation(?,?)';
-        $result = $this->db->query($sql, array($partnerId,$donationId));
+        $result = $this->db->query($sql, array($partnerId, $donationId));
 
         return $result->row();
     }
-	
-	public function insertUserQuest($id) {
+
+    public function insertUserQuest($id) {
         try {
             $sql = 'CALL sp_insertUserQuest(?)';
             $result = $this->db->query($sql, array($id));
@@ -257,91 +257,90 @@ class Service_Model extends CI_Model {
             return $e->getMessage();
         }
     }
-	
-	public function insertUserFb($fullName,$email,$phone,$facebookId) {
-		
-		$result = array();
-		
-		$resultPackets = $this->db->query('CALL sp_insertUserFb(?,?,?,?)', array($fullName,$email,$phone,$facebookId));
-		
-		$index = -1;
-		$indexQuest = -1;
-		$indexCondition = -1;
-		
-		$userId = -1;
-		$vId = -1;
-		$cId = -1;
-		
-		foreach($resultPackets->result_array() as $row) {
-			if ($userId == $row['uUserId']) {
-			
-				if ($vId != $row['vId']) {
-					$vId = $row['vId'];
-					$indexQuest++;
-					
-					$result[0]['quests'][$indexQuest]['id'] = $row['vId'];
-					$result[0]['quests'][$indexQuest]['questName'] = $row['vQuestName'];
-					$result[0]['quests'][$indexQuest]['packetId'] = $row['vPacketId'];
-					$result[0]['quests'][$indexQuest]['partnerId'] = $row['vPartnerId'];
-					$result[0]['quests'][$indexQuest]['animationId'] = $row['vAnimationId'];
-					$result[0]['quests'][$indexQuest]['unlockPoint'] = $row['vUnlockPoint'];
-					$result[0]['quests'][$indexQuest]['createDate'] = $row['vCreateDate'];
-					$result[0]['quests'][$indexQuest]['status'] = $row['qStatus'];
-					
-					$indexCondition = 0;
-				
-					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['id'] = $row['cId'];
-					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['type'] = $row['cType'];
-					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['value'] = $row['cValue'];
-					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['virtualQuestId'] = $row['cVirtualQuestId'];
-					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['objectId'] = $row['cObjectId'];
-					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['is_completed'] = $row['is_completed'];
-				} else {
-					$vId = $row['vId'];
-					$indexCondition++;
-				
-					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['id'] = $row['cId'];
-					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['type'] = $row['cType'];
-					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['value'] = $row['cValue'];
-					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['virtualQuestId'] = $row['cVirtualQuestId'];
-					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['objectId'] = $row['cObjectId'];
-					$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['is_completed'] = $row['is_completed'];
-				}
-				
-			} else {
-				$userId = $row['uUserId'];
-				
-				$result[0]['userId'] = $row['uUserId'];
-				$result[0]['facebookId'] = $row['uFacebookId'];
-				$result[0]['points'] = $row['uPoints'];
-				$result[0]['currentLv'] = $row['uCurrentLevel'];
-				
-				$vId = $row['vId'];
-				$indexQuest = 0;
-				
-				$result[0]['quests'][$indexQuest]['id'] = $row['vId'];
-				$result[0]['quests'][$indexQuest]['questName'] = $row['vQuestName'];
-				$result[0]['quests'][$indexQuest]['packetId'] = $row['vPacketId'];
-				$result[0]['quests'][$indexQuest]['partnerId'] = $row['vPartnerId'];
-				$result[0]['quests'][$indexQuest]['animationId'] = $row['vAnimationId'];
-				$result[0]['quests'][$indexQuest]['unlockPoint'] = $row['vUnlockPoint'];
-				$result[0]['quests'][$indexQuest]['createDate'] = $row['vCreateDate'];
-				$result[0]['quests'][$indexQuest]['status'] = $row['qStatus'];
-				
-				$indexCondition = 0;
-				
-				$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['id'] = $row['cId'];
-				$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['type'] = $row['cType'];
-				$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['value'] = $row['cValue'];
-				$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['virtualQuestId'] = $row['cVirtualQuestId'];
-				$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['objectId'] = $row['cObjectId'];
-				$result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['is_completed'] = $row['is_completed'];
-			}
-		}
-		
-		return $result;
+
+    public function insertUserFb($fullName, $email, $phone, $facebookId) {
+
+        $result = array();
+
+        $resultPackets = $this->db->query('CALL sp_insertUserFb(?,?,?,?)', array($fullName, $email, $phone, $facebookId));
+
+        $index = -1;
+        $indexQuest = -1;
+        $indexCondition = -1;
+
+        $userId = -1;
+        $vId = -1;
+        $cId = -1;
+
+        foreach ($resultPackets->result_array() as $row) {
+            if ($userId == $row['uUserId']) {
+
+                if ($vId != $row['vId']) {
+                    $vId = $row['vId'];
+                    $indexQuest++;
+
+                    $result[0]['quests'][$indexQuest]['id'] = $row['vId'];
+                    $result[0]['quests'][$indexQuest]['questName'] = $row['vQuestName'];
+                    $result[0]['quests'][$indexQuest]['packetId'] = $row['vPacketId'];
+                    $result[0]['quests'][$indexQuest]['partnerId'] = $row['vPartnerId'];
+                    $result[0]['quests'][$indexQuest]['animationId'] = $row['vAnimationId'];
+                    $result[0]['quests'][$indexQuest]['unlockPoint'] = $row['vUnlockPoint'];
+                    $result[0]['quests'][$indexQuest]['createDate'] = $row['vCreateDate'];
+                    $result[0]['quests'][$indexQuest]['status'] = $row['qStatus'];
+
+                    $indexCondition = 0;
+
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['id'] = $row['cId'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['type'] = $row['cType'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['value'] = $row['cValue'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['virtualQuestId'] = $row['cVirtualQuestId'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['objectId'] = $row['cObjectId'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['is_completed'] = $row['is_completed'];
+                } else {
+                    $vId = $row['vId'];
+                    $indexCondition++;
+
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['id'] = $row['cId'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['type'] = $row['cType'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['value'] = $row['cValue'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['virtualQuestId'] = $row['cVirtualQuestId'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['objectId'] = $row['cObjectId'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['is_completed'] = $row['is_completed'];
+                }
+            } else {
+                $userId = $row['uUserId'];
+
+                $result[0]['userId'] = $row['uUserId'];
+                $result[0]['facebookId'] = $row['uFacebookId'];
+                $result[0]['points'] = $row['uPoints'];
+                $result[0]['currentLv'] = $row['uCurrentLevel'];
+
+                $vId = $row['vId'];
+                $indexQuest = 0;
+
+                $result[0]['quests'][$indexQuest]['id'] = $row['vId'];
+                $result[0]['quests'][$indexQuest]['questName'] = $row['vQuestName'];
+                $result[0]['quests'][$indexQuest]['packetId'] = $row['vPacketId'];
+                $result[0]['quests'][$indexQuest]['partnerId'] = $row['vPartnerId'];
+                $result[0]['quests'][$indexQuest]['animationId'] = $row['vAnimationId'];
+                $result[0]['quests'][$indexQuest]['unlockPoint'] = $row['vUnlockPoint'];
+                $result[0]['quests'][$indexQuest]['createDate'] = $row['vCreateDate'];
+                $result[0]['quests'][$indexQuest]['status'] = $row['qStatus'];
+
+                $indexCondition = 0;
+
+                $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['id'] = $row['cId'];
+                $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['type'] = $row['cType'];
+                $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['value'] = $row['cValue'];
+                $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['virtualQuestId'] = $row['cVirtualQuestId'];
+                $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['objectId'] = $row['cObjectId'];
+                $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['is_completed'] = $row['is_completed'];
+            }
+        }
+
+        return $result;
     }
-    
+
     /*
      * Services of Hung
      */
@@ -352,7 +351,7 @@ class Service_Model extends CI_Model {
 
         return $result->result();
     }
-    
+
     public function getUserMedal($pageNumber, $pageSize, $userId) {
         $sql = 'CALL `sp_Get_UserMedal`(?,?,?);';
         $result = $this->db->query($sql, array((int) $pageNumber, (int) $pageSize, (int) $userId));
@@ -427,12 +426,12 @@ class Service_Model extends CI_Model {
         }
         return $quizChoiceArray;
     }
-    
+
     public function getQuizChoiceListRandom($pageSize) {
         // Get list of quiz first.
         mysqli_next_result($this->db->conn_id);
         $sql = 'CALL `sp_Get_QuizChoiceList_Random`(?)';
-        $result = $this->db->query($sql,(int) $pageSize);
+        $result = $this->db->query($sql, (int) $pageSize);
         $quizList = $result->result();
 
         // TODO : how to get exactly $pageSize quiz? :)
@@ -442,8 +441,8 @@ class Service_Model extends CI_Model {
 
         // Then with each quiz/question, we extract needed data:
         foreach ($quizList as $quiz) {
-            
-            if ($flag === 0){
+
+            if ($flag === 0) {
                 $choice = array();
 
                 // Question information
@@ -459,7 +458,7 @@ class Service_Model extends CI_Model {
                 // And determine "choice_type": long or short
                 $maxChoiceLength = 0;
             }
-            
+
             // Make choices list. 
             $choice[] = array(
                 'id' => $quiz->cId,
@@ -469,7 +468,7 @@ class Service_Model extends CI_Model {
                 $maxChoiceLength = strlen($quiz->answer);
             }
 
-            if ($flag === 3){
+            if ($flag === 3) {
                 if ($maxChoiceLength > 17) {
                     $quizChoice['choice_type'] = 0;
                 } else {
@@ -480,18 +479,18 @@ class Service_Model extends CI_Model {
                 // Add to quiz list:
                 $quizChoiceArray[] = $quizChoice;
             }
-            
+
             // Increase the flag value.
-            $flag = ($flag+1)%4;
+            $flag = ($flag + 1) % 4;
         }
         return $quizChoiceArray;
     }
-	
-	public function getQuizChoiceListRandomCate($pageSize, $category) {
+
+    public function getQuizChoiceListRandomCate($pageSize, $category) {
         // Get list of quiz first.
         mysqli_next_result($this->db->conn_id);
         $sql = 'CALL `sp_Get_QuizChoiceList_Random_Cate`(?, ?)';
-        $result = $this->db->query($sql,array((int) $pageSize, (int) $category));
+        $result = $this->db->query($sql, array((int) $pageSize, (int) $category));
         $quizList = $result->result();
 
         // TODO : how to get exactly $pageSize quiz? :)
@@ -501,8 +500,8 @@ class Service_Model extends CI_Model {
 
         // Then with each quiz/question, we extract needed data:
         foreach ($quizList as $quiz) {
-            
-            if ($flag === 0){
+
+            if ($flag === 0) {
                 $choice = array();
 
                 // Question information
@@ -518,7 +517,7 @@ class Service_Model extends CI_Model {
                 // And determine "choice_type": long or short
                 $maxChoiceLength = 0;
             }
-            
+
             // Make choices list. 
             $choice[] = array(
                 'id' => $quiz->cId,
@@ -528,7 +527,7 @@ class Service_Model extends CI_Model {
                 $maxChoiceLength = strlen($quiz->answer);
             }
 
-            if ($flag === 3){
+            if ($flag === 3) {
                 if ($maxChoiceLength > 17) {
                     $quizChoice['choice_type'] = 0;
                 } else {
@@ -539,18 +538,18 @@ class Service_Model extends CI_Model {
                 // Add to quiz list:
                 $quizChoiceArray[] = $quizChoice;
             }
-            
+
             // Increase the flag value.
-            $flag = ($flag+1)%4;
+            $flag = ($flag + 1) % 4;
         }
         return $quizChoiceArray;
     }
-    
+
     public function getQuizChoiceListRandom2($pageSize) {
         // Get list of quiz first.
         mysqli_next_result($this->db->conn_id);
         $sql = 'CALL `sp_Get_QuizList_Random`(?)';
-        $result = $this->db->query($sql,(int) $pageSize);
+        $result = $this->db->query($sql, (int) $pageSize);
         $quizList = $result->result();
 
         // TODO : how to get exactly $pageSize quiz? :)
@@ -610,7 +609,7 @@ class Service_Model extends CI_Model {
         $sql = "SELECT questcondition.ObjectId FROM questcondition WHERE VirtualQuestId = $questId AND Type = 0";
         $result = $this->db->query($sql);
 
-        if ($result->row()){
+        if ($result->row()) {
             return (int) $result->row()->ObjectId;
         } else {
             return 0;
@@ -620,4 +619,26 @@ class Service_Model extends CI_Model {
     /*
      * End of Hung's services
      */
+
+    /*
+     * Pagination purpose.
+     */
+
+    public function getNumOrganization() {
+        mysqli_next_result($this->db->conn_id);
+        return (int) $this->db->count_all('partner');
+    }
+    
+    public function getNumLeaderBoard() {
+        mysqli_next_result($this->db->conn_id);
+        return (int) $this->db->count_all('userapplication');
+    }
+    
+    public function getNumMedal($userId){
+        mysqli_next_result($this->db->conn_id);
+        $this->db->where('UserId', $userId);
+        $this->db->from('usermedal');
+        return (int) $this->db->count_all_results();
+    }
+
 }
