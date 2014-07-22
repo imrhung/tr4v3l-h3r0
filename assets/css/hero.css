@@ -254,3 +254,10 @@ ul.image_picker_selector li .thumbnail{
         margin-bottom:0;
     }
 }
+
+/* Home page */
+#homepage-head {
+    width: 100%;
+    height: 460px;
+    background-color: white;
+}
