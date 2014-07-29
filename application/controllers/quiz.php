@@ -140,6 +140,7 @@ class Quiz extends App_Controller {
         $partnerId = $this->input->post('partnerId');
         $questCategory = $this->input->post('category');
         $questQuestion = $this->input->post('question');
+        $imageUrl = $this->input->post('image_url');
         $answerA = $this->input->post('answer_a');
         $answerB = $this->input->post('answer_b');
         $answerC = $this->input->post('answer_c');
@@ -173,7 +174,7 @@ class Quiz extends App_Controller {
 
         //	Update correct answer
         $CorrectChoiceId = $minChoiceId + (int) $CorrectChoiceNumber;
-        $resultCheck = $this->quiz_model->updateQuiz($Id, $questCategory, $questQuestion, $CorrectChoiceId, $sharingInfo, $linkURL, $createDate);
+        $resultCheck = $this->quiz_model->updateQuiz($Id, $questCategory, $questQuestion,$imageUrl, $CorrectChoiceId, $sharingInfo, $linkURL, $createDate);
         $result1 = $this->quiz_model->getQuiz($Id);
 
         //	Notification

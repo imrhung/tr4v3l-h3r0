@@ -49,7 +49,7 @@ function uploadFiles(event) {
     });
 
     $.ajax({
-        url: baseUrl + "process/upload_s3",
+        url: baseUrl + "process/upload",
         type: 'POST',
         data: data,
         cache: false,
@@ -60,7 +60,8 @@ function uploadFiles(event) {
             if (data.code === 1) {
                 // SUCCESS.
                 // Call function to create packet.
-                createQuiz(data.info.file_name);
+                var fileUrl = data.info.file_name;
+                createQuiz(fileUrl);
             } else {
                 // Error
                 console.log('ERRORS: ' + data.error);

@@ -615,6 +615,13 @@ class Service_Model extends CI_Model {
             return 0;
         }
     }
+    
+    public function resetPlayer($id){
+        $sql = 'CALL sp_reset_player(?)';
+        $result = $this->db->query($sql, array($id));
+
+        return true;
+    }
 
     /*
      * End of Hung's services

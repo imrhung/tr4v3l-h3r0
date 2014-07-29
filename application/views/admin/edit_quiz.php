@@ -6,11 +6,13 @@
         <p>You can edit the Quiz to be more accurate.</p>
         <div id="alert_placeholder"></div>
         <div class="col-lg-8">
-            <form id="quiz-form" class="form-horizontal" onsubmit="updateQuiz(<?php echo $quizId ?>); return false;">
+            <form id="quiz-form" class="form-horizontal" onsubmit=" return false;">
                 <fieldset>
 
                     <!-- Form Name -->
                     <legend></legend>
+                    
+                    <input type="hidden" id="quiz_id" value="<?php echo $quizId; ?>">
 
                     <!-- Select Basic -->
                     <div class="form-group">
@@ -27,6 +29,17 @@
     <textarea class="form-control" id="question" name="question"></textarea>
   </div>
 </div>
+ 
+
+                    <!-- File Button --> 
+<div class="form-group">
+  <label class="col-md-4 control-label" for="userfile"></label>
+  <div class="col-md-8">
+      <img id="quiz_image" src="" class="img-responsive" alt="">
+    <input id="userfile" name="userfile" class="input-file form-control" type="file"><p id="fileLabel">Choose an image for your question</p>
+  </div>
+</div>
+                    
 
                     <!-- Text input-->
                     <div class="form-group">
