@@ -69,6 +69,9 @@
         <option data-img-src="<?php echo base_url() ?>assets/img/quest/2.png" value="<?php echo base_url() ?>assets/img/quest/2.png">Han</option>
         <option data-img-src="<?php echo base_url() ?>assets/img/quest/3.png" value="<?php echo base_url() ?>assets/img/quest/3.png">My</option>
         <option data-img-src="<?php echo base_url() ?>assets/img/quest/4.png" value="<?php echo base_url() ?>assets/img/quest/4.png">Nam</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/training-activity@2x.png" value="<?php echo base_url() ?>assets/img/quest/training-activity@2x.png">Activity</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/training-award@2x.png" value="<?php echo base_url() ?>assets/img/quest/training-award@2x.png">Donation</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/training-quiz@2x.png" value="<?php echo base_url() ?>assets/img/quest/training-quiz@2x.png">Quiz</option>
       
     </select>
   </div>

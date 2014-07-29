@@ -167,8 +167,8 @@ class User extends App_Controller {
             /*
              * Get user image: logo and icon
              */
-            $logoImage = $this->upload_s3('logo_image');
-            $iconImage = $this->upload_s3('icon_image');
+            $logoImage = $this->upload_image('logo_image');
+            $iconImage = $this->upload_image('icon_image');
             
             $partnerId = $this->user_model->register(
                     $this->input->post('username'), 

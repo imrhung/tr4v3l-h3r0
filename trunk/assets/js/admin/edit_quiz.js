@@ -2,6 +2,83 @@ $(function (){
     drawSelectCategory();
 });
 
+// Variable to store your files
+var files;
+
+$(function() {
+    
+    drawSelectCategory();
+    
+    
+    
+
+    // Add events
+    $('input[type=file]').on('change', prepareUpload);
+    $('form').on('submit', submitQuiz);
+
+    // Grab the files and set them to our variable
+    function prepareUpload(event) {
+        files = event.target.files;
+    }
+    
+    function submitQuiz(event){
+        if (files && files.length){
+            // File attacked
+            uploadFiles(event)
+        } else {
+            // Not file choosen. Just submit bare quiz.
+            updateQuiz("");
+        }
+    }
+
+});
+
+
+/*
+ * Upload file, then, if successfull will automatically call create Quiz function.
+ */
+function uploadFiles(event) {
+    var baseUrl = $("#base-url").attr("href");
+    
+    // Stop stuff happening.
+    event.stopPropagation();
+    event.preventDefault();
+
+    // START A LOADING SPINNER HERE
+
+    // Create a formdata object and add the files.
+    var data = new FormData();
+    $.each(files, function(key, value) {
+        data.append('userfile', value);
+    });
+
+    $.ajax({
+        url: baseUrl + "process/upload",
+        type: 'POST',
+        data: data,
+        cache: false,
+        dataType: 'json',
+        processData: false, // Do not process the file.
+        contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+        success: function(data) {
+            if (data.code === 1) {
+                // SUCCESS.
+                // Call function to create packet.
+                var fileUrl = data.info.file_name;
+                updateQuiz(fileUrl);
+            } else {
+                // Error
+                console.log('ERRORS: ' + data.error);
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log("ERRORS: " + textStatus);
+
+            // STOP LOADING SPINNER
+        }
+    });
+}
+
 function getQuiz(quizId) {
     //var baseUrl = window.location.protocol + "//" + window.location.host + "/";
     var baseUrl = $("#base-url").attr("href");
@@ -21,6 +98,10 @@ function getQuiz(quizId) {
                     // Update the first form
                     $('#category').val(parseInt(data.info.quiz.CategoryId));
                     $('#question').val(data.info.quiz.Content);
+                    
+                    // Quiz Image
+                    $('#quiz_image').attr('src', data.info.quiz.ImageURL);
+                    
                     $('#answer_a').val(data.info.choice[0].answerContent);
                     $('#answer_b').val(data.info.choice[1].answerContent);
                     $('#answer_c').val(data.info.choice[2].answerContent);
@@ -65,9 +146,10 @@ function getQuiz(quizId) {
 }
 
 
-function updateQuiz(quizId){
+function updateQuiz(imageUrl){
     var baseUrl = $("#base-url").attr("href");
     
+    var quizId = $("#quiz_id").val();
     var category = $("#category").val();
     var question = $("#question").val();
     var answer_a = $("#answer_a").val();
@@ -88,6 +170,7 @@ function updateQuiz(quizId){
                 id: quizId,
                 category: category,
                 question: question,
+                image_url: imageUrl,
                 answer_a: answer_a,
                 answer_b: answer_b,
                 answer_c: answer_c,

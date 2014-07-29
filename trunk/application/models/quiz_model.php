@@ -141,10 +141,10 @@ class Quiz_Model extends CI_Model {
       createdDate	  	datetime
      */
 
-    public function updateQuiz($Id, $questCategory, $questQuestion, $CorrectChoiceId, $sharingInfo, $linkURL, $createDate) {
+    public function updateQuiz($Id, $questCategory, $questQuestion, $imageUrl, $CorrectChoiceId, $sharingInfo, $linkURL, $createDate) {
         try {
-            $sql = 'CALL sp_Update_Quiz(?, ?, ?, ?, ?, ?, ?)';
-            $result = $this->db->query($sql, array($Id, $questCategory, $questQuestion, $CorrectChoiceId,
+            $sql = 'CALL sp_Update_Quiz(?, ?, ?, ?, ?, ?, ?, ?)';
+            $result = $this->db->query($sql, array($Id, $questCategory, $questQuestion, $imageUrl, $CorrectChoiceId,
                 $sharingInfo, $linkURL, $createDate));
             return "Success";
         } catch (Exception $e) {

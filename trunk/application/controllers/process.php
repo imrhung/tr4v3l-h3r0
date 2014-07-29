@@ -39,7 +39,7 @@ class Process extends App_Controller {
             $result['code'] = 1;
             $result['message'] = "Success";
             $result['info'] = array(
-                'file_name' => $this->upload->file_name
+                'file_name' => $this->config->base_url()."assets/uploads/".$this->upload->file_name
             );
         } else {
             // Upload error

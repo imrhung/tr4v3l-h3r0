@@ -171,6 +171,18 @@ class Admin extends App_Controller {
         }
     }
     
+    public function players(){
+        $this->page_title = 'Players';
+        $this->current_section = 'players';
+        $this->assets_css[] = 'datatables/jquery.dataTables.css';
+        $this->assets_css[] = 'datatables/dataTables.bootstrap.css';
+        $this->assets_js[] = 'datatables/jquery.dataTables.js';
+        $this->assets_js[] = 'datatables/pagebootstrap.js';
+        $this->assets_js[] = 'bootbox/bootbox.min.js';
+        $this->assets_js[] = 'admin/players.js';
+        $this->render_page_admin('admin/players');
+    }
+    
     //change password
     function change_password() {
         $this->form_validation->set_rules('old', 'Old password', 'required');
