@@ -38,6 +38,11 @@ class Donation_Model extends CI_Model {
 
         return $result->result();
     }
+    
+    public function getNumDonation(){
+        mysqli_next_result($this->db->conn_id);
+        return (int) $this->db->count_all('donation');
+    }
 
     /* 	Donation insert function */
 

@@ -52,11 +52,15 @@ class Partner extends App_Controller {
         $pageSize = $_POST['pageSize'];
 
         $resultCheck = $this->partner_model->getPartnerList($currentPage, $pageSize);
+        
+        // Get number
+        $quantity = $this->partner_model->getNumPartner();
 
         if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
             $result['info']['partners'] = $resultCheck;
+             $result['quantity'] = $quantity;
         } else {
             $result['code'] = 0;
             $result['message'] = "Fail";

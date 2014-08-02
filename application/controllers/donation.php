@@ -68,11 +68,15 @@ class Donation extends App_Controller {
         $pageSize = $_POST['pageSize'];
 
         $resultCheck = $this->donation_model->getDonationList($currentPage, $pageSize);
+        
+        // Get number
+        $quantity = $this->donation_model->getNumDonation();
 
         if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
             $result['info']['donation'] = $resultCheck;
+            $result['quantity'] = $quantity;
         } else {
             $result['code'] = 0;
             $result['message'] = "Fail";

@@ -72,7 +72,7 @@ class Quiz extends App_Controller {
         // $keys = array_keys($IdList);
         // $last = end($keys);
 
-
+        
 
         if ($resultCheck) {
             $result['code'] = 1;

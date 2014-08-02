@@ -45,6 +45,11 @@ class Partner_Model extends CI_Model {
 
         return $result->result();
     }
+    
+    public function getNumPartner(){
+        mysqli_next_result($this->db->conn_id);
+        return (int) $this->db->count_all('partner');
+    }
 
     /* Update IsApproved function from Partner Table */
 

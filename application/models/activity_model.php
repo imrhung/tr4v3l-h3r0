@@ -40,6 +40,11 @@ class Activity_Model extends CI_Model {
 
         return $result->result();
     }
+    
+    public function getNumActivity(){
+        mysqli_next_result($this->db->conn_id);
+        return (int) $this->db->count_all('activity');
+    }
 
     /*     * ***INSERT**** */
     /* Last 13-March-2014 */

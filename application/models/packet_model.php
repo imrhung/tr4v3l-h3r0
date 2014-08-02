@@ -36,6 +36,11 @@ class Packet_Model extends CI_Model {
 
         return $result->result();
     }
+    
+     public function getNumPacket(){
+        mysqli_next_result($this->db->conn_id);
+        return (int) $this->db->count_all('packet');
+    }
 
     /*     * ***INSERT**** */
     /* Last 18-March-2014 */
