@@ -67,10 +67,14 @@ class Activity extends App_Controller{
 
         $resultCheck = $this->activity_model->getActivityList($currentPage, $pageSize);
         
+        // Get number
+        $quantity = $this->activity_model->getNumActivity();
+        
         if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
             $result['info']['activity'] = $resultCheck;
+            $result['quantity'] = $quantity;
         } else {
             $result['code'] = 0;
             $result['message'] = "Fail";

@@ -42,11 +42,15 @@ class Packet extends App_Controller {
         $pageSize = $_POST['pageSize'];
 
         $resultCheck = $this->packet_model->getPacketList($currentPage, $pageSize);
+        
+        // Get number
+        $quantity = $this->packet_model->getNumPacket();
 
         if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
             $result['info']['packet'] = $resultCheck;
+            $result['quantity'] = $quantity;
         } else {
             $result['code'] = 0;
             $result['message'] = "Fail";

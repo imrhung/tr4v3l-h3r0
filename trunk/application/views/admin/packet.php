@@ -13,7 +13,6 @@
                 <thead>
                     <tr>
                         <th>Packet's Name</th>
-                        <th>Packet's Background</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -35,13 +34,6 @@
                         </div>
                     </div>
 
-                    <!-- File Button --> 
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="userfile">Background</label>
-                        <div class="col-md-8">
-                            <input id="userfile" name="userfile" class="input-file form-control" type="file" required="">
-                        </div>
-                    </div>
                     <!-- Button -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="submit"></label>

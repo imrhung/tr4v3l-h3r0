@@ -23,7 +23,7 @@ function drawPacketTable(){
                         var name = $('<td></td>').text(packets[i].Title);
                         var background = '<img src="'+packets[i].ImageURL+'" alt="Your logo" width="139" height="29">';
                         var action = '<td><a href="'+baseUrl+'admin/edit_packet/'+packets[i].Id+'">Edit</a></td>';
-                        row.append(name).append(background).append(action);
+                        row.append(name).append(action);
                         packetTable.append(row);
                     }
                 } else { // Fail
@@ -72,7 +72,7 @@ $(function() {
 
     // Add events
     $('input[type=file]').on('change', prepareUpload);
-    $('form').on('submit', uploadFiles);
+    $('form').on('submit', createPacket);
 
     // Grab the files and set them to our variable
     function prepareUpload(event) {
@@ -120,7 +120,7 @@ $(function() {
     
 });
 
-function createPacket(event, data){
+function createPacket(event){
     var baseUrl = $("#base-url").attr("href");
     var title = $('#packet').val();
     
@@ -129,7 +129,7 @@ function createPacket(event, data){
             baseUrl + "packet/insertPacket",
             {
                 title: title,
-                image_url:data.info.file_name,
+                image_url:"",
                 partner_id:1
             },
             function(data) {
@@ -141,6 +141,7 @@ function createPacket(event, data){
                     var row = $('<tr></tr>');
                     var name = $('<td></td>').text(title);
                     var background = $('<td></td>').text("Image");
+                    var action = '<td><a href="'+baseUrl+'admin/edit_packet/">Edit</a></td>';
                     row.append(name).append(background);
                     packetTable.append(row);
                     
