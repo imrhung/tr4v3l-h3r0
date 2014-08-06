@@ -424,6 +424,55 @@ Response:
 }
 }}}
 
+=Get Quiz List with Answers=
+Order by newest first. 
+
+Request: POST to Link: quiz/getQuizChoiceList
+
+params: page_size (pageSize == 0 will return full list), page_number.
+
+Response:
+{{{
+{
+    "code": 1,
+    "message": "Success",
+    "quiz": [
+        {
+            "id": "85",
+            "content": "What type are the children at the pagoda categorized as? ",
+            "image_url": "",
+            "correct_choice_id": "241",
+            "learn_more_url": "",
+            "point": "1",
+            "sharing_info": "",
+            "CategoryName": "No Category",
+            "CreatedDate": "2014-06-16 07:40:41",
+            "IsApproved": null,
+            "PartnerName": "Buddhist Social Charity Center of Ky Quang Pa",
+            "choice_type": 0,
+            "choice": [
+                {
+                    "id": "238",
+                    "content": "Abandoned or orphaned children. "
+                },
+                {
+                    "id": "239",
+                    "content": "Disabled children."
+                },
+                {
+                    "id": "240",
+                    "content": "Immigrant children from other local areas. "
+                },
+                {
+                    "id": "241",
+                    "content": "All of the above."
+                }
+            ]
+        }
+    ]
+}
+}}}
+
 =Get one Quiz(F)=
 
 Request: POST to Link: quiz/getQuiz
