@@ -319,6 +319,65 @@ Response:
 }
 }}}
 
+
+=Register with Device ID=
+Request to: service/registerUser
+ * user_name
+ * device_id
+
+Response: 
+{{{
+{
+  "code": 1,
+  "message": "Success",
+  "info": [
+    {
+      "code": "1",
+      "message": "Regist successful",
+      "userId": "20",
+      "facebookId": "86756578",
+      "points": "0",
+      "currentLv": "0",
+      "device_id": "wertyuiosdfghjkl",
+      "quests": [
+        {
+          "id": "1",
+          "questName": "Test A",
+          "packetId": "1",
+          "partnerId": "1",
+          "animationId": "1",
+          "unlockPoint": "500",
+          "createDate": null,
+          "status": "1",
+          "conditions": [
+            {
+              "id": "1",
+              "type": "1",
+              "value": "1",
+              "virtualQuestId": "1",
+              "objectId": "1"
+            },
+            {
+              "id": "2",
+              "type": "1",
+              "value": "1",
+              "virtualQuestId": "1",
+              "objectId": "1"
+            },
+            {
+              "id": "3",
+              "type": "1",
+              "value": "1",
+              "virtualQuestId": "1",
+              "objectId": "1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+}}}
 =Get Packets=
 Request : /service/getPackets
  * pageSize :
