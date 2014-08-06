@@ -328,56 +328,51 @@ Request to: service/registerUser
 Response: 
 {{{
 {
-  "code": 1,
-  "message": "Success",
-  "info": [
-    {
-      "code": "1",
-      "message": "Regist successful",
-      "userId": "20",
-      "facebookId": "86756578",
-      "points": "0",
-      "currentLv": "0",
-      "device_id": "wertyuiosdfghjkl",
-      "quests": [
+    "code": 1,
+    "message": "Success",
+    "info": [
         {
-          "id": "1",
-          "questName": "Test A",
-          "packetId": "1",
-          "partnerId": "1",
-          "animationId": "1",
-          "unlockPoint": "500",
-          "createDate": null,
-          "status": "1",
-          "conditions": [
-            {
-              "id": "1",
-              "type": "1",
-              "value": "1",
-              "virtualQuestId": "1",
-              "objectId": "1"
-            },
-            {
-              "id": "2",
-              "type": "1",
-              "value": "1",
-              "virtualQuestId": "1",
-              "objectId": "1"
-            },
-            {
-              "id": "3",
-              "type": "1",
-              "value": "1",
-              "virtualQuestId": "1",
-              "objectId": "1"
-            }
-          ]
+            "userId": "35",
+            "facebookId": null,
+            "points": "0",
+            "currentLv": "0",
+            "device_id": "2345678qwertyui",
+            "quests": [
+                {
+                    "id": "1",
+                    "questName": "Save Nam, a sick boy",
+                    "packetId": "1",
+                    "partnerId": "5",
+                    "animationId": "3",
+                    "unlockPoint": "0",
+                    "createDate": null,
+                    "status": "1",
+                    "conditions": [
+                        {
+                            "id": "327",
+                            "type": "0",
+                            "value": "10",
+                            "virtualQuestId": "1",
+                            "objectId": "1",
+                            "is_completed": "0"
+                        },
+                        {
+                            "id": "328",
+                            "type": "1",
+                            "value": "0",
+                            "virtualQuestId": "1",
+                            "objectId": "7",
+                            "is_completed": "0"
+                        }
+                    ]
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
 }}}
+
+
 =Get Packets=
 Request : /service/getPackets
  * pageSize :
