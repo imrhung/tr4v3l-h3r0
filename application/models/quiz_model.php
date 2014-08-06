@@ -63,6 +63,68 @@ class Quiz_Model extends CI_Model {
 
         return $query->result();
     }
+    
+    public function getQuizChoiceList($pageNumber, $pageSize) {
+        // Get list of quiz first.
+        mysqli_next_result($this->db->conn_id);
+        $sql = 'CALL `sp_Get_QuizChoiceList`(?, ?)';
+        $result = $this->db->query($sql, array((int) $pageNumber, (int) $pageSize));
+        $quizList = $result->result();
+
+        // Init return array:
+        $quizChoiceArray = array();
+        $flag = 0;
+
+        // Then with each quiz/question, we extract needed data:
+        foreach ($quizList as $quiz) {
+
+            if ($flag === 0) {
+                $choice = array();
+
+                // Question information
+                $quizChoice = array(
+                    'id' => $quiz->Id,
+                    'content' => $quiz->Content,
+                    'image_url' => $quiz->ImageURL,
+                    'correct_choice_id' => $quiz->CorrectChoiceId,
+                    'learn_more_url' => $quiz->LearnMoreURL,
+                    'point' => $quiz->BonusPoint,
+                    'sharing_info' => $quiz->SharingInfo,
+                    'CategoryName' =>$quiz->CategoryName,
+                    'CreatedDate' => $quiz->CreatedDate,
+                    'IsApproved' => $quiz->IsApproved,
+                    'PartnerName' => $quiz->PartnerName
+                );
+                // And determine "choice_type": long or short
+                $maxChoiceLength = 0;
+            }
+
+            // Make choices list. 
+            $choice[] = array(
+                'id' => $quiz->cId,
+                'content' => $quiz->answer
+            );
+            if (strlen($quiz->answer) > $maxChoiceLength) {
+                $maxChoiceLength = strlen($quiz->answer);
+            }
+
+            if ($flag === 3) {
+                if ($maxChoiceLength > 17) {
+                    $quizChoice['choice_type'] = 0;
+                } else {
+                    $quizChoice['choice_type'] = 1;
+                }
+                $quizChoice['choice'] = $choice;
+
+                // Add to quiz list:
+                $quizChoiceArray[] = $quizChoice;
+            }
+
+            // Increase the flag value.
+            $flag = ($flag + 1) % 4;
+        }
+        return $quizChoiceArray;
+    }
 
     /*     * **INSERT*** */
     /* Last 11-March-2014 */

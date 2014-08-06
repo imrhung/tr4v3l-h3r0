@@ -85,6 +85,32 @@ class Quiz extends App_Controller {
         }
         echo json_encode($result);
     }
+    
+    
+    // Get list of Quiz with answers used in website.
+    public function getQuizChoiceList(){
+        // Get request params:
+        $pageNumber = $this->input->post('page_number');
+        $pageSize = $this->input->post('page_size');
+        
+        // Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        
+        $quizList = $this->quiz_model->getQuizChoiceList($pageNumber, $pageSize);
+        
+        if ($quizList) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['quiz'] = $quizList;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "No result";
+        }
+        
+        echo json_encode($result);
+    }
 
     /*     * ***INSERT**** */
     /* Insert a new quiz function into databases */
