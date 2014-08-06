@@ -258,6 +258,7 @@ class Service_Model extends CI_Model {
         }
     }
 
+    // Login user with facebook.
     public function insertUserFb($fullName, $email, $phone, $facebookId) {
 
         $result = array();
@@ -314,6 +315,91 @@ class Service_Model extends CI_Model {
                 $result[0]['facebookId'] = $row['uFacebookId'];
                 $result[0]['points'] = $row['uPoints'];
                 $result[0]['currentLv'] = $row['uCurrentLevel'];
+
+                $vId = $row['vId'];
+                $indexQuest = 0;
+
+                $result[0]['quests'][$indexQuest]['id'] = $row['vId'];
+                $result[0]['quests'][$indexQuest]['questName'] = $row['vQuestName'];
+                $result[0]['quests'][$indexQuest]['packetId'] = $row['vPacketId'];
+                $result[0]['quests'][$indexQuest]['partnerId'] = $row['vPartnerId'];
+                $result[0]['quests'][$indexQuest]['animationId'] = $row['vAnimationId'];
+                $result[0]['quests'][$indexQuest]['unlockPoint'] = $row['vUnlockPoint'];
+                $result[0]['quests'][$indexQuest]['createDate'] = $row['vCreateDate'];
+                $result[0]['quests'][$indexQuest]['status'] = $row['qStatus'];
+
+                $indexCondition = 0;
+
+                $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['id'] = $row['cId'];
+                $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['type'] = $row['cType'];
+                $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['value'] = $row['cValue'];
+                $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['virtualQuestId'] = $row['cVirtualQuestId'];
+                $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['objectId'] = $row['cObjectId'];
+                $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['is_completed'] = $row['is_completed'];
+            }
+        }
+
+        return $result;
+    }
+    
+    // Login user with device ID.
+    public function insertUser($userName, $deviceId) {
+
+        $result = array();
+
+        $resultPackets = $this->db->query('CALL sp_insert_user(?,?)', array($userName, $deviceId));
+
+        $index = -1;
+        $indexQuest = -1;
+        $indexCondition = -1;
+
+        $userId = -1;
+        $vId = -1;
+        $cId = -1;
+
+        foreach ($resultPackets->result_array() as $row) {
+            if ($userId == $row['uUserId']) {
+
+                if ($vId != $row['vId']) {
+                    $vId = $row['vId'];
+                    $indexQuest++;
+
+                    $result[0]['quests'][$indexQuest]['id'] = $row['vId'];
+                    $result[0]['quests'][$indexQuest]['questName'] = $row['vQuestName'];
+                    $result[0]['quests'][$indexQuest]['packetId'] = $row['vPacketId'];
+                    $result[0]['quests'][$indexQuest]['partnerId'] = $row['vPartnerId'];
+                    $result[0]['quests'][$indexQuest]['animationId'] = $row['vAnimationId'];
+                    $result[0]['quests'][$indexQuest]['unlockPoint'] = $row['vUnlockPoint'];
+                    $result[0]['quests'][$indexQuest]['createDate'] = $row['vCreateDate'];
+                    $result[0]['quests'][$indexQuest]['status'] = $row['qStatus'];
+
+                    $indexCondition = 0;
+
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['id'] = $row['cId'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['type'] = $row['cType'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['value'] = $row['cValue'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['virtualQuestId'] = $row['cVirtualQuestId'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['objectId'] = $row['cObjectId'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['is_completed'] = $row['is_completed'];
+                } else {
+                    $vId = $row['vId'];
+                    $indexCondition++;
+
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['id'] = $row['cId'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['type'] = $row['cType'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['value'] = $row['cValue'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['virtualQuestId'] = $row['cVirtualQuestId'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['objectId'] = $row['cObjectId'];
+                    $result[0]['quests'][$indexQuest]['conditions'][$indexCondition]['is_completed'] = $row['is_completed'];
+                }
+            } else {
+                $userId = $row['uUserId'];
+
+                $result[0]['userId'] = $row['uUserId'];
+                $result[0]['facebookId'] = $row['uFacebookId'];
+                $result[0]['points'] = $row['uPoints'];
+                $result[0]['currentLv'] = $row['uCurrentLevel'];
+                $result[0]['device_id'] = $row['device_id'];
 
                 $vId = $row['vId'];
                 $indexQuest = 0;

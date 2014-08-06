@@ -358,6 +358,19 @@ class Service extends App_Controller {
 
         echo json_encode($result);
     }
+    
+    public function registerUser(){
+        $fullName = $this->input->post('user_name');
+        $deviceId = $this->input->post('device_id');
+
+        $resultCheck = $this->service_model->insertUser($fullName, $deviceId);
+
+        $result['code'] = 1;
+        $result['message'] = "Success";
+        $result['info'] = $resultCheck;
+
+        echo json_encode($result);
+    }
 
     public function spentPointDonation() {
         $partnerId = $this->input->post('partnerId');
@@ -427,6 +440,7 @@ class Service extends App_Controller {
      * Hung's Services:
      */
 
+    // Get quiz list by category and radom result for the app.
     public function getQuizz() {
         // Get request params:
         $pageNumber = $this->input->post('page_number');
@@ -492,6 +506,7 @@ class Service extends App_Controller {
         }
         echo json_encode($result);
     }
+    
 
     public function getLeaderBoard() {
 

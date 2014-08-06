@@ -108,9 +108,9 @@ $(document).ready(function(){
     $('#quiz').html( '<table cellpadding="0" cellspacing="0" border="0" class="display table table-striped table-bordered" id="quiz-table"></table>' );
     quizTable = $('#quiz-table').dataTable({
         "aoColumns":[
-            { "sTitle": "Author" },
+            { "sTitle": "Question" },
+            { "sTitle": "Answer" },
             { "sTitle": "Quiz Category", "sClass": "center" },
-            { "sTitle": "Approve?", "sClass": "center" },
             { "sTitle": "Action", "sClass": "center" }
         ],
         "sPaginationType": "bootstrap",
@@ -126,7 +126,7 @@ function loadQuizTable(){
 
     // Post to api
     $.post(
-            baseUrl + "quiz/getQuizList",
+            baseUrl + "quiz/getQuizChoiceList",
             {
                 pageSize: 0,
                 pageNumber: 0
@@ -134,24 +134,38 @@ function loadQuizTable(){
             function(data) {
                 console.log(data);
                 if (data.code == 1) { // Successful
-                    var quizArray = data.info.quiz;
+                    var quizArray = data.quiz;
                     var tableData = new Array();
                     var quiz;
+                    var choices;
                     var isApproved;
                     var action;
+                    var answers;
                     for (var i=0; i<quizArray.length; i++){
                         quiz = quizArray[i];
-                        if (quiz.IsApproved == 1){
+                        if (quiz.IsApproved === 1){
                             isApproved = "Yes";
                         }else {
                             isApproved = 'No';
                         }
-                        action = '<div style="float: left;"><a href="'+baseUrl+'admin/edit_quiz/'+quiz.Id+'">View</a></div>  <div style="float: right; font-size:11px"><a style="color: red;" onclick="callDelete('+quiz.Id+')" href="javacript:void(0);">Delete</a></div>';
+                        
+                        // Produce the answer
+                        choices = quiz.choice;
+                        answers = "";
+                        for (var j=0; j<choices.length; j++){
+                            if (quiz.correct_choice_id == choices[j].id){
+                                answers += "<strong>" + choices[j].content + "</strong><br>";
+                            } else {
+                                answers += choices[j].content + "<br>";
+                            }
+                        }
+                        action = '<div style="float: left;"><a href="'+baseUrl+'admin/edit_quiz/'+quiz.id+'">View</a></div>  <div style="float: right; font-size:11px"><a style="color: red;" onclick="callDelete('+quiz.id+')" href="javacript:void(0);">Delete</a></div>';
                         //action = '<a href="'+baseUrl+'admin/edit_quiz/'+quiz.Id+'">View</a>  <a onclick="callDelete('+quiz.Id+')" href="javacript:void(0);">Delete</a>';
+                        
                         tableData.push([
-                            quiz.PartnerName,
+                            quiz.content,
+                            answers,
                             quiz.CategoryName,
-                            isApproved,
                             action
                         ]);
                     }
