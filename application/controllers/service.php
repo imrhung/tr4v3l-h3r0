@@ -11,7 +11,32 @@ class Service extends App_Controller {
         parent::__construct();
         $this->load->model('service_model');
     }
+	/* Update quest status*/
+	public function updateQuestStatus() {
+        // Input data
+        $userId = $this->input->post('userId');
+        $questId = $this->input->post('questId');
+        $questStatus = $this->input->post('questStatus');
 
+
+        // Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+
+        $resultCheck = $this->service_model->updateQuestStatus($userId, $questId, $questStatus);
+
+        if ($resultCheck == 'Success') {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+
+        echo json_encode($result);
+    }
+    
     /* Insert award for user */
 
     public function insertMedal() {

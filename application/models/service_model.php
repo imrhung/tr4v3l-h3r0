@@ -16,6 +16,17 @@ class Service_Model extends CI_Model {
         return $result->row();
     }
 
+	/*  Update quest status*/
+
+    public function updateQuestStatus($userId, $questId, $questStatus) {
+        try {
+            $sql = 'CALL sp_UpdateQuestStatus(?,?,?)';
+            $result = $this->db->query($sql, array($userId, $questId, $questStatus));
+            return 'Success';
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
     /*  Insert award for user  */
 
     public function insertMedal($userId, $medalId) {
