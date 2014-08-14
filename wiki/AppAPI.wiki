@@ -149,6 +149,28 @@ Response:
 }
 }}}
 
+
+
+=Get user rank in leader board=
+Request: to : service/getUserRank
+ * user_id
+
+Response:
+{{{
+{
+    "code": 1,
+    "message": "Success",
+    "user": {
+        "id": "1",
+        "name": "Vu Hoang Son",
+        "mark": "119",
+        "facebook_id": "1498934909",
+        "current_level": "0",
+        "rank": "3"
+    }
+}
+}}}
+
 =Get Quiz List =
 Request: to : /service/getQuizz
  * page_size : The number of needed questions
