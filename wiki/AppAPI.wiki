@@ -176,6 +176,7 @@ Request: to : /service/getQuizz
  * page_size : The number of needed questions
  * page_number : (not in use now)
  * quest_id : 
+ * random : provide random value 1 to get random quiz without category
 Response:
 {{{
 {
