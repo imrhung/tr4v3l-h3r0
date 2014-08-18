@@ -84,6 +84,38 @@ class Donation extends App_Controller {
         }
         echo json_encode($result);
     }
+    
+    /* Get Donation list by Organization function from database */
+
+    public function getDonationListByOrganization() {
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = array();
+
+        $result['info']['donation'] = "";
+
+        $currentPage = $_POST['pageNumber'];
+        $pageSize = $_POST['pageSize'];
+        $partnerId = $_POST['partnerId'];
+
+        $resultCheck = $this->donation_model->getDonationListByOrganization($currentPage, $pageSize, $partnerId);
+        
+        // Get number
+        $quantity = $this->donation_model->getNumDonation();
+
+        if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['info']['donation'] = $resultCheck;
+            $result['quantity'] = $quantity;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+            $result['info']['donation'] = $resultCheck;
+        }
+        echo json_encode($result);
+    }
 
     /*     * ***INSERT**** */
     /* Last 17-March-2014 */
