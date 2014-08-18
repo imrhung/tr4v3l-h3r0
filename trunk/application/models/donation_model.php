@@ -39,6 +39,21 @@ class Donation_Model extends CI_Model {
         return $result->result();
     }
     
+    /* 	Get Donation list by Organization function from databases */
+
+    public function getDonationListByOrganization($currentPage, $pageSize, $partnerId) {
+
+        $currentPage = (int) $currentPage;
+        $pageSize = (int) $pageSize;
+        $partnerId = (int) $partnerId;
+
+        $sql = 'CALL sp_Get_DonationListByOrganization(?, ?, ?)';
+        $result = $this->db->query($sql, array($currentPage, $pageSize, $partnerId));
+
+        return $result->result();
+    }
+    
+    
     public function getNumDonation(){
         mysqli_next_result($this->db->conn_id);
         return (int) $this->db->count_all('donation');

@@ -41,6 +41,21 @@ class Activity_Model extends CI_Model {
         return $result->result();
     }
     
+     /* 	Get Activity list by Organization function from databases */
+
+    public function getActivityListByOrganization($currentPage, $pageSize, $partnerId) {
+
+        $currentPage = (int) $currentPage;
+        $pageSize = (int) $pageSize;
+        $partnerId = (int) $partnerId;
+
+
+        $sql = 'CALL sp_Get_ActivityListByOrganization(?, ?, ?)';
+        $result = $this->db->query($sql, array($currentPage, $pageSize, $partnerId));
+
+        return $result->result();
+    }
+    
     public function getNumActivity(){
         mysqli_next_result($this->db->conn_id);
         return (int) $this->db->count_all('activity');

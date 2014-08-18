@@ -82,6 +82,37 @@ class Activity extends App_Controller{
         }
         echo json_encode($result);
 	}
+	
+	/* Get Activity list by Organization function from database*/
+	public function getActivityListByOrganization(){
+		$result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = array();
+
+		$result['info']['activity'] = "";
+		
+        $currentPage = $_POST['pageNumber'];
+        $pageSize = $_POST['pageSize'];
+		$partnerId = $_POST['partnerId'];
+		
+        $resultCheck = $this->activity_model->getActivityListByOrganization($currentPage, $pageSize, $partnerId);
+        
+        // Get number
+        $quantity = $this->activity_model->getNumActivity();
+        
+        if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['info']['activity'] = $resultCheck;
+            $result['quantity'] = $quantity;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+            $result['info']['activity'] = $resultCheck;
+        }
+        echo json_encode($result);
+	}
 						/*****INSERT*****/
 					/* Last 17-March-2014 */
 	/*	Activity insert function*/
