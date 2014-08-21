@@ -344,7 +344,7 @@ Response:
 
 
 =Register with Device ID=
-Request to: service/registerUser
+Request to: service/registerUser (to register) or service/loginUser (to login)
  * user_name
  * device_id
 
@@ -392,6 +392,20 @@ Response:
             ]
         }
     ]
+}
+}}}
+or (for register)
+{{{
+{
+    "code": 2,
+    "message": "User Name Existed"
+}
+}}}
+or (for login)
+{{{
+{
+    "code": 3,
+    "message": "User has not logged in"
 }
 }}}
 
