@@ -57,6 +57,7 @@
         <option data-img-src="<?php echo base_url() ?>assets/img/animation/2.png" value="2">Animation 2</option>
         <option data-img-src="<?php echo base_url() ?>assets/img/animation/3.png" value="3">Animation 3</option>
         <option data-img-src="<?php echo base_url() ?>assets/img/animation/4.png" value="4">Animation 4</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/animation/5.png" value="5">Animation 5</option>
     </select>
   </div>
 </div>
@@ -65,13 +66,19 @@
   <label class="col-md-4 control-label" for="character">Quest character</label>
   <div class="col-md-8">
     <select id="character" name="character" class="form-control">
-        <option data-img-src="<?php echo base_url() ?>assets/img/quest/1.png" value="<?php echo base_url() ?>assets/img/quest/1.png">Nhi</option>
-        <option data-img-src="<?php echo base_url() ?>assets/img/quest/2.png" value="<?php echo base_url() ?>assets/img/quest/2.png">Han</option>
-        <option data-img-src="<?php echo base_url() ?>assets/img/quest/3.png" value="<?php echo base_url() ?>assets/img/quest/3.png">My</option>
-        <option data-img-src="<?php echo base_url() ?>assets/img/quest/4.png" value="<?php echo base_url() ?>assets/img/quest/4.png">Nam</option>
-        <option data-img-src="<?php echo base_url() ?>assets/img/quest/training-activity@2x.png" value="<?php echo base_url() ?>assets/img/quest/training-activity@2x.png">Activity</option>
-        <option data-img-src="<?php echo base_url() ?>assets/img/quest/training-award@2x.png" value="<?php echo base_url() ?>assets/img/quest/training-award@2x.png">Donation</option>
-        <option data-img-src="<?php echo base_url() ?>assets/img/quest/training-quiz@2x.png" value="<?php echo base_url() ?>assets/img/quest/training-quiz@2x.png">Quiz</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/training-sword.png" value="<?php echo base_url() ?>assets/img/quest/training-sword.png">Sword</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/training-shield.png" value="<?php echo base_url() ?>assets/img/quest/training-shield.png">Shield</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/training-cape.png" value="<?php echo base_url() ?>assets/img/quest/training-cape.png">Cape</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/nutrition-minority.png" value="<?php echo base_url() ?>assets/img/quest/nutrition-minority.png">My</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/nutrition-buddist.png" value="<?php echo base_url() ?>assets/img/quest/nutrition-buddist.png">Tieu</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/nutrition-streetkid.png" value="<?php echo base_url() ?>assets/img/quest/nutrition-streetkid.png">Ty</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/education-lottogirl.png" value="<?php echo base_url() ?>assets/img/quest/education-lottogirl.png">Mai</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/education-minority.png" value="<?php echo base_url() ?>assets/img/quest/education-minority.png">Han</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/education-streetworker.png" value="<?php echo base_url() ?>assets/img/quest/education-streetworker.png">Nam</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/protection-abused.png" value="<?php echo base_url() ?>assets/img/quest/protection-abused.png">Thao</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/protection-cripple.png" value="<?php echo base_url() ?>assets/img/quest/protection-cripple.png">Uy</option>
+        <option data-img-src="<?php echo base_url() ?>assets/img/quest/health-sick.png" value="<?php echo base_url() ?>assets/img/quest/health-sick.png">Ba</option>
+        
       
     </select>
   </div>

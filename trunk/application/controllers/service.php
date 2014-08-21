@@ -387,13 +387,50 @@ class Service extends App_Controller {
     public function registerUser(){
         $fullName = $this->input->post('user_name');
         $deviceId = $this->input->post('device_id');
-
-        $resultCheck = $this->service_model->insertUser($fullName, $deviceId);
-
-        $result['code'] = 1;
-        $result['message'] = "Success";
-        $result['info'] = $resultCheck;
-
+        
+        // Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        
+        $existUsername = $this->service_model->checkUsernameExist($fullName);
+        
+        if ($existUsername) {
+            // Username existed, return failure
+            $result['code'] = 2;
+            $result['message'] = "User Name Existed";
+        } else {
+            $resultCheck = $this->service_model->insertUser($fullName, $deviceId);
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['info'] = $resultCheck;
+        }
+        echo json_encode($result);
+    }
+    
+    public function loginUser(){
+        $fullName = $this->input->post('user_name');
+        $deviceId = $this->input->post('device_id');
+        
+        // Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        
+        $existUser = $this->service_model->checkUserExist($fullName, $deviceId);
+        
+        if ($existUser){
+            // User existed, just login
+            $resultCheck = $this->service_model->insertUser($fullName, $deviceId);
+            
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['info'] = $resultCheck;
+        } else {
+            $result['code'] = 3;
+            $result['message'] = "User has not logged in";
+        }
+        
         echo json_encode($result);
     }
 
@@ -514,6 +551,78 @@ class Service extends App_Controller {
                 );
 
                 // Then get the quiz list:
+                
+                if ($random){
+                    $quizList = $this->service_model->getQuizChoiceListRandom($pageSize);
+                } else {
+                    // Get the quiz category from quest first.
+                    $category = $this->service_model->getQuizCategoryInQuest($questId);
+                    $quizList = $this->service_model->getQuizChoiceListRandomCate($pageSize, $category);
+                }
+
+                if ($quizList) {
+                    $result['code'] = 1;
+                    $result['message'] = "Success";
+                    $result['animation'] = $animation;
+                    $result['quizzes'] = $quizList;
+                } else {
+                    $result['code'] = 0;
+                    $result['message'] = "No result";
+                }
+            }
+        }
+        echo json_encode($result);
+    }
+    
+    // Get quiz list by radom result, without category, for the app.
+    public function getQuizzRandom() {
+        // Get request params:
+        $pageNumber = $this->input->post('page_number');
+        $pageSize = $this->input->post('page_size');
+        $questId = $this->input->post('quest_id');
+        $random = $this->input->post('random');
+
+        // Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+
+        // Get Animation first:
+        $virtualQuest = $this->service_model->getVirtualQuestTable($questId);
+
+        // Check if virtualQuest exist:
+        if (count($virtualQuest) === 0) {
+            $result['code'] = 0;
+            $result['message'] = "Quest not found!";
+        } else {
+
+            $animationId = $virtualQuest->AnimationId;
+
+            // If animation not defined:
+            if (is_null($animationId)) {
+                $animationId = 1;
+            }
+
+            $animationRaw = $this->service_model->getAnimation($animationId);
+            // Create elements like json defined.
+            // Check if animation exist:
+            if (count($animationRaw) === 0) {
+                $result['code'] = 0;
+                $result['message'] = "Animation not found";
+            } else {
+                $animation = array(
+                    'id' => $animationRaw->Id,
+                    'time' => $animationRaw->time,
+                    'hero_anim_walking' => $animationRaw->HeroAnimWalking,
+                    'hero_anim_standby' => $animationRaw->HeroAnimStandby,
+                    'monster_anim' => $animationRaw->MonsterAnim,
+                    'kid_frame' => $animationRaw->KidFrame,
+                    'color_R' => $animationRaw->ColorR,
+                    'color_G' => $animationRaw->ColorG,
+                    'color_B' => $animationRaw->ColorB
+                );
+
+                // Then get the quiz list:
                 // Get the quiz category from quest first.
                 $category = $this->service_model->getQuizCategoryInQuest($questId);
                 $quizList = $this->service_model->getQuizChoiceListRandomCate($pageSize, $category);
@@ -576,8 +685,28 @@ class Service extends App_Controller {
         if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
-            $result['leaderboard'] = $leaderboard;
+            $result['leaderboard'] = $resultCheck;
             $result['quantity'] = $quantity;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+        echo json_encode($result);
+    }
+    
+    public function getUserRank(){
+        $userId = $this->input->post('user_id');
+        // Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        
+        $rank = $this->service_model->getUserRank($userId);
+        
+        if ($rank) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['user'] = $rank;
         } else {
             $result['code'] = 0;
             $result['message'] = "Fail";

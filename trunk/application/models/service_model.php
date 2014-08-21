@@ -437,6 +437,41 @@ class Service_Model extends CI_Model {
 
         return $result;
     }
+    
+    public function checkUsernameExist($username){
+        $this->db->where('FullName',$username);
+        $query = $this->db->get('user');
+        if ($query->num_rows() > 0){
+            return true;
+        } else{
+            return false;
+        }
+    }
+    
+    public function checkDeviceIdExist($id){
+        $this->db->where('device_id',$id);
+        $query = $this->db->get('userapplication');
+        if ($query->num_rows() > 0){
+            return true;
+        } else{
+            return false;
+        }
+    }
+    
+    public function checkUserExist($username, $deviceId){
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->join('userapplication', 'userapplication.UserId = user.Id');
+        $this->db->where('userapplication.device_id', $deviceId);
+        $this->db->where('user.FullName', $username);
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0){
+            return true;
+        } else{
+            return false;
+        }
+    }
 
     /*
      * Services of Hung
@@ -445,8 +480,20 @@ class Service_Model extends CI_Model {
     public function getLeaderBoard($pageNumber, $pageSize, $fbidString) {
         $sql = 'CALL `sp_Get_Leaderboard`(?, ?, ?);';
         $result = $this->db->query($sql, array((int) $pageNumber, (int) $pageSize, $fbidString));
-
         return $result->result();
+    }
+    
+    public function getUserRank($userId){
+        $sql = "SELECT userapplication.UserId as id, 
+                    user.FullName as name, 
+                    userapplication.Points as mark, 
+                    userapplication.FacebookId as facebook_id, 
+                    userapplication.CurrentLevel as current_level, 
+                    FIND_IN_SET(Points, (SELECT GROUP_CONCAT( Points ORDER BY Points DESC) FROM userapplication)) AS rank
+                FROM userapplication, user
+                WHERE user.Id = userapplication.UserId AND userapplication.UserId = ?";
+        $result = $this->db->query($sql, array($userId));
+        return $result->row();        
     }
 
     public function getUserMedal($pageNumber, $pageSize, $userId) {

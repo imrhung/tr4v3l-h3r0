@@ -39,7 +39,10 @@
                 <p>Below are quiz that have been created by other organizations. Please approve or deny them.</p>
 
 
-                <div id="quiz"></div>
+                <div id="quiz">
+                    
+                    
+                </div>
 
                 <br><br><br>
             </div>

@@ -107,6 +107,7 @@ var quizTable;
 $(document).ready(function(){
     $('#quiz').html( '<table cellpadding="0" cellspacing="0" border="0" class="display table table-striped table-bordered" id="quiz-table"></table>' );
     quizTable = $('#quiz-table').dataTable({
+        "sDom": '<"top"fpl>rt<"bottom"ip><"clear">',
         "aoColumns":[
             { "sTitle": "Question" },
             { "sTitle": "Answer" },
@@ -154,7 +155,7 @@ function loadQuizTable(){
                         answers = "";
                         for (var j=0; j<choices.length; j++){
                             if (quiz.correct_choice_id == choices[j].id){
-                                answers += "<strong>" + choices[j].content + "</strong><br>";
+                                answers += "<b>" + choices[j].content + "</b><br>";
                             } else {
                                 answers += choices[j].content + "<br>";
                             }
