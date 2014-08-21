@@ -54,6 +54,7 @@
                     <tr>
                         <th>Quest Category</th>
                         <th>Category's ID</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
