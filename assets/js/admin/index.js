@@ -7,6 +7,7 @@ var questTable;
 $(document).ready(function(){
     $('#quest').html( '<table cellpadding="0" cellspacing="0" border="0" class="display table table-striped table-bordered" id="quest-table"></table>' );
     questTable = $('#quest-table').dataTable({
+        "sDom": '<"top"fpl>rt<"bottom"ip><"clear">',
         "aoColumns":[
             { "sTitle": "Quest'name" },
             { "sTitle": "Packet" },
@@ -253,6 +254,7 @@ var activityTable;
 $(document).ready(function(){
     $('#activity').html( '<table cellpadding="0" cellspacing="0" border="0" class="display table table-striped table-bordered" id="activity-table"></table>' );
     activityTable = $('#activity-table').dataTable({
+        "sDom": '<"top"fpl>rt<"bottom"ip><"clear">',
         "aoColumns":[
             { "sTitle": "Title of Activity" },
             { "sTitle": "Author" },
@@ -386,6 +388,7 @@ var donationTable;
 $(document).ready(function(){
     $('#donation').html( '<table cellpadding="0" cellspacing="0" border="0" class="display table table-striped table-bordered" id="donation-table"></table>' );
     donationTable = $('#donation-table').dataTable({
+        "sDom": '<"top"fpl>rt<"bottom"ip><"clear">',
         "aoColumns":[
             { "sTitle": "Title of Donation" },
             { "sTitle": "Author" },

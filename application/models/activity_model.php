@@ -40,8 +40,8 @@ class Activity_Model extends CI_Model {
 
         return $result->result();
     }
-    
-     /* 	Get Activity list by Organization function from databases */
+
+    /* 	Get Activity list by Organization function from databases */
 
     public function getActivityListByOrganization($currentPage, $pageSize, $partnerId) {
 
@@ -55,13 +55,13 @@ class Activity_Model extends CI_Model {
 
         return $result->result();
     }
-    
-    public function getNumActivity(){
+
+    public function getNumActivity() {
         mysqli_next_result($this->db->conn_id);
         return (int) $this->db->count_all('activity');
     }
-    
-     public function getNumActivityByOrganization($partnerId){
+
+    public function getNumActivityByOrganization($partnerId) {
         mysqli_next_result($this->db->conn_id);
         $this->db->where("PartnerId", $partnerId);
         $this->db->from('activity');

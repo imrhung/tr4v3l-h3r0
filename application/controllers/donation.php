@@ -68,7 +68,7 @@ class Donation extends App_Controller {
         $pageSize = $_POST['pageSize'];
 
         $resultCheck = $this->donation_model->getDonationList($currentPage, $pageSize);
-        
+
         // Get number
         $quantity = $this->donation_model->getNumDonation();
 
@@ -84,7 +84,7 @@ class Donation extends App_Controller {
         }
         echo json_encode($result);
     }
-    
+
     /* Get Donation list by Organization function from database */
 
     public function getDonationListByOrganization() {
@@ -100,7 +100,7 @@ class Donation extends App_Controller {
         $partnerId = $_POST['partnerId'];
 
         $resultCheck = $this->donation_model->getDonationListByOrganization($currentPage, $pageSize, $partnerId);
-        
+
         // Get number
         $quantity = $this->donation_model->getNumDonationByOrganization($partnerId);
 
