@@ -99,7 +99,7 @@ class Activity extends App_Controller{
         $resultCheck = $this->activity_model->getActivityListByOrganization($currentPage, $pageSize, $partnerId);
         
         // Get number
-        $quantity = $this->activity_model->getNumActivity();
+        $quantity = $this->activity_model->getNumActivityByOrganization($partnerId);
         
         if ($resultCheck) {
             $result['code'] = 1;

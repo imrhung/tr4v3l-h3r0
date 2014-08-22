@@ -60,6 +60,13 @@ class Activity_Model extends CI_Model {
         mysqli_next_result($this->db->conn_id);
         return (int) $this->db->count_all('activity');
     }
+    
+     public function getNumActivityByOrganization($partnerId){
+        mysqli_next_result($this->db->conn_id);
+        $this->db->where("PartnerId", $partnerId);
+        $this->db->from('activity');
+        return (int) $this->db->count_all_results();
+    }
 
     /*     * ***INSERT**** */
     /* Last 13-March-2014 */
