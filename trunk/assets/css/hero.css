@@ -261,3 +261,11 @@ ul.image_picker_selector li .thumbnail{
     height: 460px;
     background-color: white;
 }
+
+// Admin/index : dataTables modify
+#quest-table_filter {
+    //margin-top: 5px;
+}
+div.dataTables_paginate {
+    padding-right: 10px;
+}
