@@ -102,7 +102,7 @@ class Donation extends App_Controller {
         $resultCheck = $this->donation_model->getDonationListByOrganization($currentPage, $pageSize, $partnerId);
         
         // Get number
-        $quantity = $this->donation_model->getNumDonation();
+        $quantity = $this->donation_model->getNumDonationByOrganization($partnerId);
 
         if ($resultCheck) {
             $result['code'] = 1;
