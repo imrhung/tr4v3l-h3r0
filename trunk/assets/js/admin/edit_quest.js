@@ -159,6 +159,7 @@ function updateQuest(questId){
                     //return false;
                     successfulAlert("Your Quest has been updated!");
                     //window.location.replace(baseUrl + "organization/create_activity");
+                    $('html, body').animate({ scrollTop: 0 }, 'fast');
                     return false;
                 } else { // Fail
                     bootstrap_alert.warning("Some error occurred, please try again!");

@@ -1,5 +1,5 @@
 $(function (){
-    drawSelectCategory();
+    //drawSelectCategory();
 });
 
 // Variable to store your files
@@ -223,6 +223,7 @@ function updateQuiz(imageUrl){
                     * Just simple left the form unchange.
                     */
                    successfulAlert("Your Quiz has been updated!");
+                   $('html, body').animate({ scrollTop: 0 }, 'fast');
                 } else { // Fail
 
                 }

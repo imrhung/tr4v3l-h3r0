@@ -111,6 +111,7 @@ function updateActivity(activityId){
                 console.log(data);
                 if (data.code == 1) { // Successful
                     successfulAlert("Your activity has been updated!");
+                    $('html, body').animate({ scrollTop: 0 }, 'fast');
                     return false;
                 } else { // Fail
                     bootstrap_alert.warning("Some error occurred, please try again!");

@@ -32,5 +32,12 @@
 
     </div> <!-- /container -->
     
+    <!-- Scroll to top button -->
+    <div class="scroll-top-wrapper">
+    <span class="scroll-top-inner">
+        <i class="fa fa-2x fa-chevron-up"></i>
+    </span>
+</div>
+    
   </body>
 </html>
