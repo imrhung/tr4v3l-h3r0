@@ -1,3 +1,18 @@
+=Update player avatar=
+Request: to : service/updateavatar
+ * user_id
+ * avatar_id
+Response:
+{{{
+{
+    "code": 1,
+    "message": "Success"
+}
+}}}
+
+
+
+
 =Edit get virtual quest 10-May=
 Request: /virtualquest/getVirtualQuest
  * id
