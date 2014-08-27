@@ -411,6 +411,7 @@ class Service_Model extends CI_Model {
                 $result[0]['points'] = $row['uPoints'];
                 $result[0]['currentLv'] = $row['uCurrentLevel'];
                 $result[0]['device_id'] = $row['device_id'];
+                $result[0]['avatar_id'] = $row['uAvatar'];
 
                 $vId = $row['vId'];
                 $indexQuest = 0;
@@ -790,6 +791,13 @@ class Service_Model extends CI_Model {
         $this->db->where('UserId', $userId);
         $this->db->from('usermedal');
         return (int) $this->db->count_all_results();
+    }
+    
+    public function updateAvatar($userId, $avatarId){
+        $sql = 'UPDATE user SET AvatarId = ? WHERE Id = ?';
+        $result = $this->db->query($sql, array($avatarId, $userId));
+
+        return true;
     }
 
 }
