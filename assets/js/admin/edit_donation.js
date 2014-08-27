@@ -67,6 +67,7 @@ function updateDonation(donationId){
 
                     //return false;
                     successfulAlert("Your donation has been updated");
+                    $('html, body').animate({ scrollTop: 0 }, 'fast');
                     return false;
                 } else { // Fail
                     bootstrap_alert.warning("Some error occurred, please try again!");
