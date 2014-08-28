@@ -1,6 +1,6 @@
 =Get player avatar=
 Request: to : service/getavatar
- * avatar_id
+ * avatar_id (Put nothing if wanna get all avatar)
 Response:
 {{{
 {
