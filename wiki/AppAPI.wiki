@@ -1,3 +1,19 @@
+=Get player avatar=
+Request: to : service/getavatar
+ * avatar_id
+Response:
+{{{
+{
+    "code": 1,
+    "message": "Success",
+    "info": {
+        "id": "2",
+        "name": "Boy hero",
+        "avatar_url": "http://www.heroforzero.be/assets/img/player/boy_hero@2x.png"
+    }
+}
+}}}
+
 =Update player avatar=
 Request: to : service/updateavatar
  * user_id
