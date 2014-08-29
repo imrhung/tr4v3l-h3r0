@@ -18,6 +18,7 @@ Response:
 Request: to : service/updateavatar
  * user_id
  * avatar_id
+ * facebook_id : put '0' if do not use facebook.
 Response:
 {{{
 {
