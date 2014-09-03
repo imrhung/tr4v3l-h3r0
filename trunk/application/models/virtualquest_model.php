@@ -268,7 +268,7 @@ class VirtualQuest_Model extends CI_Model {
     }
 
     // Insert VirtualQuest function
-    public function insertVirtualQuest($partnerId, $packetId, $name, $point, $create_date, $animation, $image) {
+    public function insertVirtualQuest($partnerId, $packetId, $name, $point, $create_date, $animation, $image, $medalId) {
 
         try {
             $this->db->trans_start();
@@ -280,11 +280,30 @@ class VirtualQuest_Model extends CI_Model {
             $sql1 = 'SELECT MAX(virtualquest.Id) FROM virtualquest';
             $result1 = $this->db->query($sql1, array());
             $Id = $result1->row()->{'MAX(virtualquest.Id)'};
+            
+            // Update the medal Id:
+            $data = array(
+                'MedalId' => $medalId
+            );
+            $this->db->where('Id', $Id);
+            $this->db->update('virtualquest', $data);
+            
         } catch (Exception $e) {
 
             return $e->getMessage();
         }
         return $Id;
+    }
+    
+    // Insert Medal for this quest:
+    public function insertQuestMedal($name, $imageUrl){
+        $data = array(
+            "Name" => $name,
+            "ImageURL" => $imageUrl
+        );
+        $this->db->insert('medal', $data);
+        
+        return $this->db->insert_id();
     }
 
     /*     * **UPDATE*** */
