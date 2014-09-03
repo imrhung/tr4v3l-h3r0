@@ -11,8 +11,10 @@ class Service extends App_Controller {
         parent::__construct();
         $this->load->model('service_model');
     }
-	/* Update quest status*/
-	public function updateQuestStatus() {
+
+    /* Update quest status */
+
+    public function updateQuestStatus() {
         // Input data
         $userId = $this->input->post('userId');
         $questId = $this->input->post('questId');
@@ -36,7 +38,7 @@ class Service extends App_Controller {
 
         echo json_encode($result);
     }
-    
+
     /* Insert award for user */
 
     public function insertMedal() {
@@ -76,7 +78,7 @@ class Service extends App_Controller {
         $pageSize = $_POST['pageSize'];
 
         $resultCheck = $this->service_model->getOrganizationList($currentPage, $pageSize);
-        
+
         // Get the number of pages of this list.
         $numOfOrganization = $this->service_model->getNumOrganization();
 
@@ -132,7 +134,7 @@ class Service extends App_Controller {
         $result['info']['packet'] = null;
 
         $resultCheck = $this->service_model->getPacketsBy($rowIndex, $pageSize);
-        
+
         if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
@@ -383,18 +385,18 @@ class Service extends App_Controller {
 
         echo json_encode($result);
     }
-    
-    public function registerUser(){
+
+    public function registerUser() {
         $fullName = $this->input->post('user_name');
         $deviceId = $this->input->post('device_id');
-        
+
         // Initialization Array
         $result = array();
         $result['code'] = -1;
         $result['message'] = "";
-        
+
         $existUsername = $this->service_model->checkUsernameExist($fullName);
-        
+
         if ($existUsername) {
             // Username existed, return failure
             $result['code'] = 2;
@@ -407,22 +409,22 @@ class Service extends App_Controller {
         }
         echo json_encode($result);
     }
-    
-    public function loginUser(){
+
+    public function loginUser() {
         $fullName = $this->input->post('user_name');
         $deviceId = $this->input->post('device_id');
-        
+
         // Initialization Array
         $result = array();
         $result['code'] = -1;
         $result['message'] = "";
-        
+
         $existUser = $this->service_model->checkUserExist($fullName, $deviceId);
-        
-        if ($existUser){
+
+        if ($existUser) {
             // User existed, just login
             $resultCheck = $this->service_model->insertUser($fullName, $deviceId);
-            
+
             $result['code'] = 1;
             $result['message'] = "Success";
             $result['info'] = $resultCheck;
@@ -430,7 +432,7 @@ class Service extends App_Controller {
             $result['code'] = 3;
             $result['message'] = "User has not logged in";
         }
-        
+
         echo json_encode($result);
     }
 
@@ -551,8 +553,8 @@ class Service extends App_Controller {
                 );
 
                 // Then get the quiz list:
-                
-                if ($random){
+
+                if ($random) {
                     $quizList = $this->service_model->getQuizChoiceListRandom($pageSize);
                 } else {
                     // Get the quiz category from quest first.
@@ -573,7 +575,7 @@ class Service extends App_Controller {
         }
         echo json_encode($result);
     }
-    
+
     // Get quiz list by radom result, without category, for the app.
     public function getQuizzRandom() {
         // Get request params:
@@ -640,7 +642,6 @@ class Service extends App_Controller {
         }
         echo json_encode($result);
     }
-    
 
     public function getLeaderBoard() {
 
@@ -667,6 +668,7 @@ class Service extends App_Controller {
         // Get data
         $resultCheck = $this->service_model->getLeaderBoard($pageNumber, $pageSize, $fbidString);
 
+
         // Because number returned from database is in String, so we need to convert it to integer:
         $leaderboard = array();
         foreach ($resultCheck as $row) {
@@ -678,7 +680,7 @@ class Service extends App_Controller {
                 'current_level' => (int) $row->current_level
             );
         }
-        
+
         // Get number of user in leader board
         $quantity = $this->service_model->getNumLeaderBoard();
 
@@ -693,16 +695,16 @@ class Service extends App_Controller {
         }
         echo json_encode($result);
     }
-    
-    public function getUserRank(){
+
+    public function getUserRank() {
         $userId = $this->input->post('user_id');
         // Initialization Array
         $result = array();
         $result['code'] = -1;
         $result['message'] = "";
-        
+
         $rank = $this->service_model->getUserRank($userId);
-        
+
         if ($rank) {
             $result['code'] = 1;
             $result['message'] = "Success";
@@ -728,7 +730,7 @@ class Service extends App_Controller {
 
         // Get data
         $resultCheck = $this->service_model->getUserMedal($pageNumber, $pageSize, $userId);
-        
+
         // Get the number of medal
         $quantity = $this->service_model->getNumMedal($userId);
 
@@ -743,19 +745,19 @@ class Service extends App_Controller {
         }
         echo json_encode($result);
     }
-    
-    public function resetPlayer(){
+
+    public function resetPlayer() {
         // Get request params
         $userId = $this->input->post('id');
-        
+
         // Initialization Array
         $result = array();
         $result['code'] = -1;
         $result['message'] = "";
-        
+
         // Reset
         $resultCheck = $this->service_model->resetPlayer($userId);
-        
+
         if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
@@ -766,23 +768,51 @@ class Service extends App_Controller {
 
         echo json_encode($result);
     }
-    
-    public function updateAvatar(){
+
+    public function updateAvatar() {
         // Get request params
         $userId = $this->input->post('user_id');
         $avatarId = $this->input->post('avatar_id');
-        
+
+        // To update image from facebook. Input 0 if make no change on them.
+        $facebookId = $this->input->post('facebook_id');
+
+        // Initialization Array
+        $result = array();
+
+        // Reset
+        $resultCheck = $this->service_model->updateAvatar($userId, $avatarId, $facebookId);
+
+        if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+
+        echo json_encode($result);
+    }
+
+    public function getAvatar() {
+        // Get request params
+        $avatarId = $this->input->post('avatar_id');
+
         // Initialization Array
         $result = array();
         $result['code'] = -1;
         $result['message'] = "";
-        
-        // Reset
-        $resultCheck = $this->service_model->updateAvatar($userId, $avatarId);
-        
+
+        if ($avatarId !== FALSE) {
+            $resultCheck = $this->service_model->getAvatar($avatarId);
+        } else {
+            $resultCheck = $this->service_model->getAvatars($avatarId);
+        }
+
         if ($resultCheck) {
             $result['code'] = 1;
             $result['message'] = "Success";
+            $result['info'] = $resultCheck;
         } else {
             $result['code'] = 0;
             $result['message'] = "Fail";

@@ -144,9 +144,12 @@ class VirtualQuest extends App_Controller {
         $result = array();
         $result['code'] = -1;
         $result['message'] = "";
+        
+        // Insert Medal of this quest first
+        $medalId = $this->virtualquest_model->insertQuestMedal($name, $image);
 
         // Insert VirtualQuest
-        $Id = $this->virtualquest_model->insertVirtualQuest($partnerId, $packetId, $name, $unlock, $createDate, $animation, $image);
+        $Id = $this->virtualquest_model->insertVirtualQuest($partnerId, $packetId, $name, $unlock, $createDate, $animation, $image, $medalId);
 
         // Insert ConditionQuest quiz action
         $this->virtualquest_model->insertQuestConditionPoint(0, $quiz_category, $Id, $point);

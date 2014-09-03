@@ -92,6 +92,7 @@ class Service_Model extends CI_Model {
                     $result[$indexPacket]['Quests'][$indexQuest]['UnlockPoint'] = $row['vUnlockPoint'];
                     $result[$indexPacket]['Quests'][$indexQuest]['vCreateDate'] = $row['vCreateDate'];
                     $result[$indexPacket]['Quests'][$indexQuest]['ImageUrl'] = $row['questImageUrl'];
+                    $result[$indexPacket]['Quests'][$indexQuest]['MedalId'] = $row['medalId'];
 
                     $indexCondition = 0;
 
@@ -133,6 +134,7 @@ class Service_Model extends CI_Model {
                         $result[$indexPacket]['Quests'][$indexQuest]['UnlockPoint'] = $row['vUnlockPoint'];
                         $result[$indexPacket]['Quests'][$indexQuest]['vCreateDate'] = $row['vCreateDate'];
                         $result[$indexPacket]['Quests'][$indexQuest]['ImageUrl'] = $row['questImageUrl'];
+                        $result[$indexPacket]['Quests'][$indexQuest]['MedalId'] = $row['medalId'];
 
                         // set lai gia tri moi cho indexCondition
                         $indexCondition = 0;
@@ -326,6 +328,8 @@ class Service_Model extends CI_Model {
                 $result[0]['facebookId'] = $row['uFacebookId'];
                 $result[0]['points'] = $row['uPoints'];
                 $result[0]['currentLv'] = $row['uCurrentLevel'];
+                
+                $result[0]['avatar_id'] = $row['uAvatar'];
 
                 $vId = $row['vId'];
                 $indexQuest = 0;
@@ -793,11 +797,32 @@ class Service_Model extends CI_Model {
         return (int) $this->db->count_all_results();
     }
     
-    public function updateAvatar($userId, $avatarId){
-        $sql = 'UPDATE user SET AvatarId = ? WHERE Id = ?';
-        $result = $this->db->query($sql, array($avatarId, $userId));
+    public function updateAvatar($userId, $avatarId, $facebookId){
+        if ($facebookId == '0'){
+            $sql = 'UPDATE user SET AvatarId = ? WHERE Id = ?';
+            $this->db->query($sql, array($avatarId, $userId));
+        } else {
+            $sql = 'UPDATE userapplication SET FacebookId = ? WHERE UserId = ?';
+            $this->db->query($sql, array($facebookId, $userId));
+            $sql = 'UPDATE user SET AvatarId = 0 WHERE Id = ?';
+            $this->db->query($sql, array($userId));
+        }
 
         return true;
+    }
+    
+    public function getAvatar($avatarId){
+        $sql = 'SELECT * FROM player_avatar WHERE id = ?';
+        $result = $this->db->query($sql, array($avatarId));
+
+        return $result->row();
+    }
+    
+    public function getAvatars(){
+        $sql = 'SELECT * FROM player_avatar';
+        $result = $this->db->query($sql);
+
+        return $result->result();
     }
 
 }
