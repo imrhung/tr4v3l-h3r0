@@ -643,7 +643,38 @@ class Service extends App_Controller {
         echo json_encode($result);
     }
 
+    // Get leader board of all user.
     public function getLeaderBoard() {
+
+        // Get request params:
+        $pageNumber = $this->input->post('page_number');
+        $pageSize = $this->input->post('page_size');
+
+        // Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+
+        // Get data
+        $resultCheck = $this->service_model->getLeaderBoard($pageNumber, $pageSize);
+
+        // Get number of user in leader board
+        $quantity = $this->service_model->getNumLeaderBoard();
+
+        if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['leaderboard'] = $resultCheck;
+            $result['quantity'] = $quantity;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+        echo json_encode($result);
+    }
+    
+    // Get the leader board with facebook account and fb friends.
+    public function getLeaderBoardFb() {
 
         // Get request params:
         $pageNumber = $this->input->post('page_number');
@@ -666,10 +697,10 @@ class Service extends App_Controller {
         }
 
         // Get data
-        $resultCheck = $this->service_model->getLeaderBoard($pageNumber, $pageSize, $fbidString);
+        $resultCheck = $this->service_model->getLeaderBoardFb($pageNumber, $pageSize, $fbidString);
 
 
-        // Because number returned from database is in String, so we need to convert it to integer:
+        // NOT IN USE. Because number returned from database is in String, so we need to convert it to integer:
         $leaderboard = array();
         foreach ($resultCheck as $row) {
             $leaderboard[] = array(
