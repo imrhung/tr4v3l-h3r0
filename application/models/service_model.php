@@ -482,22 +482,26 @@ class Service_Model extends CI_Model {
      * Services of Hung
      */
 
-    public function getLeaderBoard($pageNumber, $pageSize, $fbidString) {
+    public function getLeaderBoard($pageNumber, $pageSize) {
+        if ((int) $pageSize === 0){
+            $result = $this->db->get('leaderboard');
+        } else {
+            $result = $this->db->get('leaderboard', $pageSize, $pageNumber*$pageSize);
+        }
+        
+        return $result->result();
+    }
+    
+    public function getLeaderBoardFb($pageNumber, $pageSize, $fbidString) {
         $sql = 'CALL `sp_Get_Leaderboard`(?, ?, ?);';
         $result = $this->db->query($sql, array((int) $pageNumber, (int) $pageSize, $fbidString));
         return $result->result();
     }
     
     public function getUserRank($userId){
-        $sql = "SELECT userapplication.UserId as id, 
-                    user.FullName as name, 
-                    userapplication.Points as mark, 
-                    userapplication.FacebookId as facebook_id, 
-                    userapplication.CurrentLevel as current_level, 
-                    FIND_IN_SET(Points, (SELECT GROUP_CONCAT( Points ORDER BY Points DESC) FROM userapplication)) AS rank
-                FROM userapplication, user
-                WHERE user.Id = userapplication.UserId AND userapplication.UserId = ?";
-        $result = $this->db->query($sql, array($userId));
+        $result = $this->db->get_where('leaderboard', array('id'=> $userId));
+        
+        
         return $result->row();        
     }
 
@@ -782,7 +786,9 @@ class Service_Model extends CI_Model {
 
     public function getNumOrganization() {
         mysqli_next_result($this->db->conn_id);
-        return (int) $this->db->count_all('partner');
+        $sql = 'CALL sp_GetOrganizationList(0,0)';
+        $result = $this->db->query($sql);
+        return (int) sizeof($result->result());
     }
     
     public function getNumLeaderBoard() {
