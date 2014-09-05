@@ -799,6 +799,29 @@ class Service extends App_Controller {
 
         echo json_encode($result);
     }
+    
+    public function deletePlayer() {
+        // Get request params
+        $userId = $this->input->post('id');
+
+        // Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+
+        // Reset
+        $resultCheck = $this->service_model->deletePlayer($userId);
+
+        if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+
+        echo json_encode($result);
+    }
 
     public function updateAvatar() {
         // Get request params

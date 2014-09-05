@@ -118,6 +118,20 @@ class Admin extends App_Controller {
             );
         $this->render_page_admin('admin/create_quest', $data);
     }
+    
+    public function create_animation(){
+        $this->page_title = 'Create Animation';
+        $this->current_section = 'packet';
+        $this->assets_css[] = 'bootstrap-colorpicker/css/bootstrap-colorpicker.css';
+        $this->assets_js[] = 'bootstrap-colorpicker/bootstrap-colorpicker.js';
+        $this->assets_js[] = 'admin/create_animation.js';
+        $data = array(
+                'questId' => 0,
+                'edit_quest' => 0,
+                'partnerId' => $this->session->userdata('partner_id')
+            );
+        $this->render_page_admin('admin/create_animation', $data);
+    }
 
     public function packet() {
         $this->page_title = 'Packet and Category';
