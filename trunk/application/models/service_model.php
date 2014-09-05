@@ -775,6 +775,13 @@ class Service_Model extends CI_Model {
 
         return true;
     }
+    
+    public function deletePlayer($id){
+        $sql = 'CALL sp_delete_player(?)';
+        $result = $this->db->query($sql, array($id));
+
+        return true;
+    }
 
     /*
      * End of Hung's services

@@ -1,6 +1,7 @@
 $(function(){
     drawPacketTable();
     drawCategoryTable();
+    drawAnimationTable();
 });
 
 function drawPacketTable(){
@@ -57,6 +58,44 @@ function drawCategoryTable(){
                         cateTable.append(row);
                     }
                   
+                } else { // Fail
+                    
+                }
+            },
+            "json"
+        );
+}
+
+function drawAnimationTable(){
+    var baseUrl = $("#base-url").attr("href");
+    
+    // Post to api
+    $.post(
+            baseUrl + "animation/getAnimation",
+            {
+                page_size: 0,
+                page_number: 0
+            },
+            function(data) {
+                console.log(data);
+                if (data.code == 1) { // Successful
+                    var animations = data.info.animation;
+                    var animationTable = $('#animation-table');
+                    for (var i=0; i<animations.length; i++){
+                        var row = $('<tr></tr>');
+                        var id = $('<td></td>').text(animations[i].Id);
+                        var time = $('<td></td>').text(animations[i].time);
+                        var walking = $('<td></td>').text(animations[i].HeroAnimWalking);
+                        var standby = $('<td></td>').text(animations[i].HeroAnimStandby);
+                        var monster = $('<td></td>').text(animations[i].MonsterAnim);
+                        var kid = $('<td></td>').text(animations[i].KidFrame);
+                                                
+                        var color = '<td style="background-color:rgb('+animations[i].ColorR+','+animations[i].ColorG+','+animations[i].ColorB+')"></td>';
+                        var background = '<img src="'+animations[i].ScreenShotURL+'" alt="Screenshot" width="139" height="29">';
+                        
+                        row.append(id).append(time).append(walking).append(standby).append(monster).append(kid).append(color).append(background);
+                        animationTable.append(row);
+                    }
                 } else { // Fail
                     
                 }

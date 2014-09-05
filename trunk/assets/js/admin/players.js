@@ -44,6 +44,7 @@ function loadPlayersTable() {
                     for (var i = 0; i < playersArray.length; i++) {
                         player = playersArray[i];
                         action = '<div style="float: center; font-size:11px"><a style="color: red;" onclick="callDelete('+player.id+')" href="javacript:void(0);">Reset Player</a></div>';
+                        action = '<div style="float: left;"><a style="color: blue;" onclick="callReset('+player.id+')" href="javacript:void(0);">Reset Player</a></div>  <div style="float: right; font-size:11px"><a style="color: red;" onclick="callDelete('+player.id+')" href="javacript:void(0);">Delete</a></div>';
                         tableData.push([
                             '<strong>'+player.name+'</strong>',
                             player.mark,
@@ -60,12 +61,23 @@ function loadPlayersTable() {
             );
 }
 
-function callDelete(playerId) {
+function callReset(playerId) {
     bootbox.confirm(
             "Are you sure you want to reset this player. The action cannot be undone!",
             function(result) {
                 if (result) {
                     resetPlayer(playerId);
+                }
+            }
+    );
+}
+
+function callDelete(playerId) {
+    bootbox.confirm(
+            "Are you sure you want to DELETE this player. The action cannot be undone!",
+            function(result) {
+                if (result) {
+                    deletePlayer(playerId);
                 }
             }
     );
@@ -91,6 +103,35 @@ function resetPlayer(playerId) {
                     
                 } else { // Fail
                     bootbox.alert("Some error happened that we cannot reset the player. Please try again later.",
+                            function() {
+
+                            });
+                }
+            },
+            "json"
+            );
+}
+
+function deletePlayer(playerId) {
+    var baseUrl = $("#base-url").attr("href");
+    console.log("Deleting player");
+    // Make the spining when waiting
+    // Disable submit button
+
+    // Post to api
+    $.post(
+            baseUrl + "service/deletePlayer",
+            {
+                id: playerId
+            },
+            function(data) {
+                console.log(data);
+                if (data.code === 1) { // Successful
+                    // Reset table. Maybe by reloading, maybe just replace the Point by Zero.
+                    loadPlayersTable();
+                    
+                } else { // Fail
+                    bootbox.alert("Some error happened that we cannot delete the player. Please try again later.",
                             function() {
 
                             });
