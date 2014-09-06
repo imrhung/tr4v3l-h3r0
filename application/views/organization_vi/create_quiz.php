@@ -100,7 +100,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="sharing">Thông tin thêm</label>
   <div class="col-md-8">                     
-    <textarea class="form-control" id="sharing" placeholder="Những thông tin thêm mà người dùng có thể chia sẻ lên facebook của họ. Giới hạn 140 ký tự." name="sharing"></textarea>
+    <textarea class="form-control" id="sharing" placeholder="Những thông tin thêm mà người dùng có thể chia sẻ lên facebook của họ. Giới hạn 140 ký tự." name="sharing" maxlength="140"></textarea>
   </div>
 </div>
 

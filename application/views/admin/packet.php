@@ -3,14 +3,47 @@
     <div id="page-wrapper">
 
         <div class="row">
-            <h1>Packet and Category</h1>
+            <h1>Game options</h1>
             <p>Each quest must belong to a city or a packet. You must first create that city or packet, then you can associate that packet/city with your quest.</p>
 
 
+            <!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#animation" role="tab" data-toggle="tab">Animation</a></li>
+  <li><a href="#packet" role="tab" data-toggle="tab">Packet</a></li>
+  <li><a href="#category" role="tab" data-toggle="tab">Category</a></li>
+</ul>
 
-            <!-- Left table -->
-            <div class="col-md-6">
-                <table class="table table-striped table-bordered" id="packet-table">
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane active" id="animation">
+        <h2>Animation</h2>
+            <p><a href="/admin/create_animation" class="btn btn-primary btn-mini"><i class="fa fa-plus"></i> Create a new animation</a></p>
+            
+            <table class="table table-striped table-bordered" id="animation-table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Time</th>
+                        <th>Hero Walking</th>
+                        <th>Hero Standby</th>
+                        <th>Monster</th>
+                        <th>Kid Frame</th>
+                        <th>Background Color</th>
+                        <th>Screen shot</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        
+    </div>
+    <div class="tab-pane" id="packet">
+        <h2>Packet</h2>
+            <p>Each quest must belong to a city or a packet. You must first create that city or packet, then you can associate that packet/city with your quest.</p>
+        <table class="table table-striped table-bordered" id="packet-table">
                     <thead>
                         <tr>
                             <th>Packet's Name</th>
@@ -44,13 +77,12 @@
                         </div>
                     </fieldset>
                 </form>
-
-
-            </div> <!-- #End of Left table -->
-
-            <!-- Right table -->
-            <div class='col-md-6'>
-                <table class="table table-striped table-bordered" id="category-table">
+    </div>
+    <div class="tab-pane" id="category">
+        
+        <h2>Category</h2>
+           
+        <table class="table table-striped table-bordered" id="category-table">
                     <thead>
                         <tr>
                             <th>Quest Category</th>
@@ -72,33 +104,8 @@
                         <button type='submit' class='btn btn-block btn-primary'>Add Category</button>
                     </div>
                 </form>
-            </div> <!-- #End of Right table -->
-        </div>
-
-        <div class="row">
-            
-            <h1>Animation</h1>
-            <p><a href="/admin/create_animation" class="btn btn-primary btn-mini"><i class="fa fa-plus"></i> Create a new animation</a></p>
-            
-            <table class="table table-striped table-bordered" id="animation-table">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Time</th>
-                        <th>Hero Walking</th>
-                        <th>Hero Standby</th>
-                        <th>Monster</th>
-                        <th>Kid Frame</th>
-                        <th>Background Color</th>
-                        <th>Screen shot</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                </tbody>
-            </table>
-
-        </div>
+    </div>
+</div>
 
     </div><!-- /#page-wrapper -->
 </div><!-- /#wrapper -->

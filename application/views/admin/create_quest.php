@@ -51,14 +51,8 @@
                 <!-- Select Basic -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="animation">Animation</label>
-  <div class="col-md-8">
-    <select id="animation" name="animation" class="form-control image-picker">
-        <option data-img-src="<?php echo base_url() ?>assets/img/animation/1.png" value="1">Animation 1</option>
-        <option data-img-src="<?php echo base_url() ?>assets/img/animation/2.png" value="2">Animation 2</option>
-        <option data-img-src="<?php echo base_url() ?>assets/img/animation/3.png" value="3">Animation 3</option>
-        <option data-img-src="<?php echo base_url() ?>assets/img/animation/4.png" value="4">Animation 4</option>
-        <option data-img-src="<?php echo base_url() ?>assets/img/animation/5.png" value="5">Animation 5</option>
-    </select>
+  <div class="col-md-8" id="select-animation">
+   
   </div>
 </div>
                 <!-- Select Basic -->
@@ -159,7 +153,7 @@
                     <div class="form-group">
                         <label class="control-label" for="delete"></label>
                         <div class="col-md-12">
-                            <button type="button" id="delete" name="delete" class="btn btn-danger btn-block" onclick="callDeleteQuest(<?php echo $questId ?>)"> Delete Quest</button>
+                            <button type="button" id="delete" name="delete" class="btn btn-danger btn-block" onclick="callDeleteQuest(<?php echo $questId ?>)" disabled="disabled"> Delete Quest</button>
                         </div>
                     </div>
 
