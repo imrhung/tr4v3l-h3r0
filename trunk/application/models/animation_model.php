@@ -51,4 +51,27 @@ class Animation_Model extends CI_Model {
         
         return $this->db->insert_id();
     }
+    
+    public function updateAnimation($id, $time, $walking, $standby, $monster, $kid, $red, $green, $blue, $screenshot){
+        $data = array(
+            'time' => $time,
+            'HeroAnimWalking' => $walking,
+            'HeroAnimStandby' => $standby,
+            'MonsterAnim' => $monster,
+            'KidFrame' => $kid,
+            'ColorR' => $red,
+            'ColorG' => $green,
+            'ColorB' => $blue,
+            'ScreenShotURL' => $screenshot
+        );
+        $this->db->where('id', $id);
+        $this->db->update('animation', $data);
+        
+        return TRUE;
+    }
+    
+    public function delete($id){
+        $this->db->delete('animation', array('Id' => $id));
+        return TRUE;
+    }
 }

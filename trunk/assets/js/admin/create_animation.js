@@ -4,6 +4,11 @@ var colorPicker;
 
 $(function() {
     
+    var animationId = $('#animation-id').val();
+    if (animationId != 0){
+        getAnimation(animationId);
+    }
+    
     colorPicker = $('.color-picker').colorpicker({
             format: "rgb"
     });
@@ -87,10 +92,21 @@ function createAnimation(imageUrl) {
     // Disable submit button
     $('#submit').attr('disabled', 'true');
     
+    var animationId = parseInt($('#animation-id').val());
+    var serviceUrl;
+    if (animationId !== 0){
+        // Edit 
+        serviceUrl = baseUrl + "animation/editAnimation";
+    } else {
+        // Create new animation
+        serviceUrl = baseUrl + "animation/createAnimation";
+    }
+    
     // Post to api
     $.post(
-            baseUrl + "animation/createAnimation",
+            serviceUrl,
             {
+                id : animationId,
                 time: $("#time").val(),
                 walking: $("#walking").val(),
                 standby: $("#standby").val(),
@@ -117,7 +133,7 @@ function createAnimation(imageUrl) {
                     
                     // Reset the form
                     $('#submit').removeAttr("disabled");
-                    $('#animation-form')[0].reset();
+                    //$('#animation-form')[0].reset();
                     
                     return false;
                 } else { // Fail
@@ -128,6 +144,42 @@ function createAnimation(imageUrl) {
             "json"
         );
     return false;
+}
+
+function getAnimation(animationId) {
+    var baseUrl = $("#base-url").attr("href");
+    // Make the spining when waiting
+
+    // Post to api
+    $.post(
+            baseUrl + "animation/getAnimation",
+            {
+                id: animationId
+            },
+            function(data) {
+                console.log(data);
+                if (data.code === 1) { // Successful
+                    var animation = data.info.animation;
+                    $('#time').val(animation.time);
+                    $('#walking').val(animation.HeroAnimWalking);
+                    $('#standby').val(animation.HeroAnimStandby);
+                    $('#monster').val(animation.MonsterAnim);
+                    $('#kid').val(animation.KidFrame);
+                    $('#color').val('rgb('+animation.ColorR+','+animation.ColorG+','+animation.ColorB+')');
+                    
+                    // Screenshot
+                    $('#screenshot').attr('src', animation.ScreenShotURL);
+                    
+                } else { // Fail
+                    bootstrap_alert.warning("Some error occurred, please try again!");
+                    $('#submit').attr('disabled', 'disabled');
+                }
+            },
+            "json"
+            ).fail(function() {
+                bootstrap_alert.warning("Some error occurred, please try again!");
+            $('#submit').attr('disabled', 'disabled');
+          });
 }
 
 successfulAlert = function(message) {

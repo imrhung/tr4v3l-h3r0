@@ -101,7 +101,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="sharing">Sharing Information</label>
   <div class="col-md-8">                     
-    <textarea class="form-control" id="sharing" placeholder="Write down a fact related to the question you would like the user to share. Limit to 140 characters." name="sharing"></textarea>
+    <textarea class="form-control" id="sharing" placeholder="Write down a fact related to the question you would like the user to share. Limit to 140 characters." name="sharing" maxlength="140"></textarea>
   </div>
 </div>
 

@@ -3,14 +3,13 @@ $(document).ready(function(){
     drawSelectCategory();
     drawSelectActivity();
     drawSelectDonation();
+    drawSelectAnimation();
     
     // Bind to function
     $('form').on('submit', createQuest);
     
     // Image picker init.
-    $('#animation').imagepicker({
-        hide_select: false
-    });
+    
     $('#character').imagepicker({
         hide_select: false
     });
@@ -49,6 +48,39 @@ function drawSelectPacket(){
             },
             "json"
         );
+}
+
+function drawSelectAnimation() {
+    var baseUrl = $("#base-url").attr("href");
+
+    // Post to api
+    $.post(
+            baseUrl + "animation/getAnimation",
+            {
+                page_size: 0,
+                page_number: 0
+            },
+    function(data) {
+        console.log(data);
+        if (data.code == 1) { // Successful
+            var animations = data.info.animation;
+                    var select = $('<select id="animation" name="animation" class="form-control image-picker">').appendTo('#select-animation');
+                    for (var i=0; i<animations.length; i++){
+                        select.append($("<option>").attr('value',animations[i].Id)
+                                .attr('data-img-src', animations[i].ScreenShotURL)
+                                .text('Animation '+animations[i].Id));
+                    }
+                    
+                    // Image Picker Init
+                    $('#animation').imagepicker({
+        hide_select: false
+    });
+        } else { // Fail
+
+        }
+    },
+            "json"
+            );
 }
 
 function drawSelectActivity(){

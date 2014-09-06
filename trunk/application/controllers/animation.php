@@ -91,5 +91,53 @@ class Animation extends App_Controller{
         echo json_encode($result);
     }
     
+    public function editAnimation(){
+        $id = $this->input->post('id');
+        $time = $this->input->post('time');
+        $walking = $this->input->post('walking');
+        $standby = $this->input->post('standby');
+        $monster = $this->input->post('monster');
+        $kid = $this->input->post('kid');
+        $colorRed = $this->input->post('color_red');
+        $colorGreen = $this->input->post('color_green');
+        $colorBlue = $this->input->post('color_blue');
+        $screenshot = $this->input->post('screenshot_url');
+        
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        
+        $check = $this->animation_model->updateAnimation($id, $time, $walking, $standby, 
+                $monster, $kid, $colorRed, $colorGreen, $colorBlue, $screenshot);
+        
+        if ($check) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+        echo json_encode($result);
+    }
+    
+    public function delete(){
+        $id = $this->input->post('id');
+        
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        
+        $check = $this->animation_model->delete($id);
+        
+        if ($check) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+        echo json_encode($result);
+    }
+    
 }
 

@@ -11,6 +11,8 @@
 
                     <!-- Form Name -->
                     <legend></legend>
+                    
+                    <input type="hidden" name="animation-id" id="animation-id" value="<?php echo $animation_id ?>">
 
                     <!-- Text input-->
                     <div class="form-group">
@@ -70,6 +72,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="userfile">Screenshot</label>
                         <div class="col-md-4">
+                            <img id="screenshot" src="" class="img-responsive" alt="">
                             <input id="userfile" name="userfile" class="input-file" type="file">
                         </div>
                     </div>
