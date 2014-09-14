@@ -64,6 +64,7 @@ class Activity_Model extends CI_Model {
     public function getNumActivityByOrganization($partnerId) {
         mysqli_next_result($this->db->conn_id);
         $this->db->where("PartnerId", $partnerId);
+        $this->db->where("IsApproved", 1);
         $this->db->from('activity');
         return (int) $this->db->count_all_results();
     }

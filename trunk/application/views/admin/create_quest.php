@@ -18,7 +18,11 @@
                 <!-- Select Basic -->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="packet">Choose Quest Packet</label>
-                    <div class="col-md-8" id="select-packet"></div>
+                    <div class="col-md-8" id="select-packet">
+                        <select id="packet" name="packet" class="form-control">
+                            
+                        </select>
+                    </div>
                 </div>
 
                 <!-- Text input-->

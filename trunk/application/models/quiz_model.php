@@ -70,7 +70,6 @@ class Quiz_Model extends CI_Model {
         $sql = 'CALL `sp_Get_QuizChoiceList`(?, ?)';
         $result = $this->db->query($sql, array((int) $pageNumber, (int) $pageSize));
         $quizList = $result->result();
-
         // Init return array:
         $quizChoiceArray = array();
         $flag = 0;
