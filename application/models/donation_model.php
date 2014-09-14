@@ -61,6 +61,7 @@ class Donation_Model extends CI_Model {
     public function getNumDonationByOrganization($partnerId) {
         mysqli_next_result($this->db->conn_id);
         $this->db->where("PartnerId", $partnerId);
+        $this->db->where("IsApproved", 1);
         $this->db->from('donation');
         return (int) $this->db->count_all_results();
     }

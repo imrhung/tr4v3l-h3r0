@@ -236,7 +236,7 @@ function drawSelectPacket(){
                 console.log(data);
                 if (data.code == 1) { // Successful
                     var packets = data.info.packet;
-                    var select = $('<select id="packet" name="packet" class="form-control">').appendTo('#select-packet');
+                    var select = $('#packet');
                     for (var i=0; i<packets.length; i++){
                         select.append($("<option>").attr('value', packets[i].Id).text(packets[i].Title));
                     }
