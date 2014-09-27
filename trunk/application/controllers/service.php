@@ -56,9 +56,9 @@ class Service extends App_Controller {
         if ($resultCheck == 'Success') {
             $result['code'] = 1;
             $result['message'] = "Success";
-        } else if ($resultCheck == 'Success'){
+        } else if ($resultCheck == 'Existed'){
             $result['code'] = 2;
-            $result['message'] = "Done";
+            $result['message'] = "Existed";
         } else {
             $result['code'] = 0;
             $result['message'] = "Fail";
