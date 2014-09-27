@@ -17,13 +17,13 @@
                     <hr class="hr-light-blue">
                 
                 <!-- Create button -->
-                <li class="<?php echo ($current_section == 'quiz') ? 'active' : '' ?> list-background" id="list-background-top"><a href="<?php echo site_url('organization/create_quiz') ?>"><i class="fa fa-question-circle"></i>  Create Quiz</a></li>
+                <li class="<?php echo ($current_section == 'quiz') ? 'active' : '' ?> list-background disabled disable" id="list-background-top"><a href="#"><i class="fa fa-question-circle"></i>  Create Quiz</a></li>
                 <li class="<?php echo ($current_section == 'activity') ? 'active' : '' ?> list-background"><a href="<?php echo site_url('organization/create_activity') ?>"><i class="fa fa-calendar"></i>  Create Activity</a></li>
                 <li class="<?php echo ($current_section == 'donation') ? 'active' : '' ?> list-background" id="list-background-bottom"><a href="<?php echo site_url('organization/create_donation') ?>"><i class="fa fa-gift"></i>  Create Donation</a></li>
                 
                 <!-- Management button -->
                 <li class="<?php echo ($current_section == 'home') ? 'active' : '' ?>"><a id="base-url" href="<?php echo site_url('') ?>"><i class="fa fa-home"></i>  Home</a></li>
-                <li class="<?php echo ($current_section == 'profile') ? 'active' : '' ?> disable"><a href="<?php echo site_url('organization/under_construction') ?>" TITLE="Function under construction"><i class="fa fa-pencil"></i>  Edit profile</a></li>
+                <li class="<?php echo ($current_section == 'profile') ? 'active' : '' ?>"><a href="<?php echo site_url('organization/profile') ?>"><i class="fa fa-pencil"></i>  Edit profile</a></li>
                 <li class="<?php echo ($current_section == 'noti') ? 'active' : '' ?>  disable"><a href="<?php echo site_url('organization/under_construction') ?>" TITLE="Function under construction"><i class="fa fa-bell"></i><span class="badge pull-right badge-green"></span>  Notifications</a></li>
                 <li class="<?php echo ($current_section == 'stat') ? 'active' : '' ?> disable"><a href="<?php echo site_url('organization/under_construction') ?>" TITLE="Function under construction"><i class="fa fa-bar-chart-o"></i></span>  Statistics</a></li>
                 
@@ -32,7 +32,6 @@
             
             <ul class="nav navbar-nav side-nav bottom-left-nav">
                 <li class="<?php echo ($current_section == 'help') ? 'active' : '' ?>"><a href="<?php echo site_url('organization/help') ?>"><i class="fa fa-question"></i>  Help me!</a></li>
-                <li class="<?php echo ($current_section == 'change_pass') ? 'active' : '' ?>"><a href="<?php echo site_url('organization/change_password') ?>"><i class="fa fa-edit"></i>Change Password</a></li>
                 <li><a href="<?php echo site_url('logout') ?>"><i class="fa fa-power-off"></i>  Sign me out</a></li>
                 
                 

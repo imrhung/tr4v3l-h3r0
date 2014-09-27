@@ -4,6 +4,7 @@ $(function (){
 
 // Variable to store your files
 var files;
+var imageUrl = "";
 
 $(function() {
     
@@ -27,7 +28,7 @@ $(function() {
             uploadFiles(event)
         } else {
             // Not file choosen. Just submit bare quiz.
-            updateQuiz("");
+            updateQuiz(imageUrl);
         }
     }
 
@@ -101,6 +102,7 @@ function getQuiz(quizId) {
                     
                     // Quiz Image
                     $('#quiz_image').attr('src', data.info.quiz.ImageURL);
+                    imageUrl = data.info.quiz.ImageURL;
                     
                     $('#answer_a').val(data.info.choice[0].answerContent);
                     $('#answer_b').val(data.info.choice[1].answerContent);

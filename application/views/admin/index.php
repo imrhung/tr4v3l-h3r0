@@ -35,8 +35,8 @@
             </div>
             <div class="tab-pane" id="quiz_tab">
                 <!-- Quest approval -->
-                <h3>Please approve recent quiz</h3>
-                <p>Below are quiz that have been created by other organizations. Please approve or deny them.</p>
+                <h3>Please create more Quiz</h3>
+                <p>To create new Quiz, <a href="<?php echo base_url() ?>admin/create_quiz">Click here</a></p>
 
 
                 <div id="quiz">

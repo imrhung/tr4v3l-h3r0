@@ -204,7 +204,7 @@ class User extends App_Controller {
              */
 
             // Redirect to proper page.
-            redirect('organization/index');
+            redirect('organization/profile#additional_information');
         }
     }
     
@@ -284,7 +284,7 @@ class User extends App_Controller {
         $config['max_height']  = '1768';
 
         //set filename in config for upload
-        $config['file_name'] = md5(time());
+        $config['file_name'] = md5(time()+rand(1,10));
         
         $this->load->library('upload', $config);
                 

@@ -120,7 +120,8 @@ class User_model extends CI_Model {
             'PhoneNumber' => $phone,
             'WebsiteURL' => $website,
             'LogoURL' => $logoImage,
-            'IconURL' => $iconImage
+            'IconURL' => $iconImage,
+            'AdminName' => $adminName
         );
         $this->db->insert("partner", $dataPartner);
         $partnerId = $this->db->insert_id();

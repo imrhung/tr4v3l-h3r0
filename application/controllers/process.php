@@ -12,7 +12,6 @@ class Process extends App_Controller {
     /*
      * Upload photo to same folder of source code. :)
      */
-
     public function upload() {
         // Codeigniter config
         $config['upload_path'] = './assets/uploads/';
@@ -40,6 +39,49 @@ class Process extends App_Controller {
             $result['message'] = "Success";
             $result['info'] = array(
                 'file_name' => $this->config->base_url()."assets/uploads/".$this->upload->file_name
+            );
+        } else {
+            // Upload error
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+
+        echo json_encode($result);
+    }
+    
+    /*
+     * Upload photo to same folder of source code. :)
+     */
+    public function upload_files() {
+        // Codeigniter config
+        $config['upload_path'] = './assets/uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '1000';
+        $config['max_width'] = '2024';
+        $config['max_height'] = '1768';
+
+        //set filename in config for upload
+        $config['file_name'] = array(md5(time()+1), md5(time()));
+
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+
+        // Init result json file:
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = array();
+
+        if ($this->upload->do_multi_upload('userfile')) {
+            // Upload successful
+            $uploadInfo = $this->upload->get_multi_upload_data();
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['info'] = array(
+                'file_name' => array(
+                    $this->config->base_url()."assets/uploads/".$uploadInfo[0]['file_name'],
+                    $this->config->base_url()."assets/uploads/".$uploadInfo[1]['file_name'],
+                    )
             );
         } else {
             // Upload error

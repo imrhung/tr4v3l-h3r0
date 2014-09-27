@@ -61,9 +61,11 @@ class Animation_Model extends CI_Model {
             'KidFrame' => $kid,
             'ColorR' => $red,
             'ColorG' => $green,
-            'ColorB' => $blue,
-            'ScreenShotURL' => $screenshot
+            'ColorB' => $blue
         );
+        if (strlen($screenshot) !== 0){
+            $data['ScreenShotURL'] = $screenshot;
+        }
         $this->db->where('id', $id);
         $this->db->update('animation', $data);
         

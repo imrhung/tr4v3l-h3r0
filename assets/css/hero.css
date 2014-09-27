@@ -96,7 +96,7 @@ hr {
     position: fixed;
     top: auto;
     bottom: 0px;
-    height: 165px;
+    height: 125px;
     border-radius: 0;
     border: none;
     overflow-y: auto;
@@ -156,6 +156,10 @@ body{
 
 .list-background.active a, .list-background.active a .fa{
     color: #447294 !important;
+}
+
+.list-background.disable a, .list-background.disable a .fa{
+    color: #4F565C !important;
 }
 
 #list-background-top{
