@@ -64,4 +64,107 @@ class Partner_Model extends CI_Model {
             return $e->getMessage();
         }
     }
+    
+    public function getPartnerExt($partnerId){
+        $query = $this->db->get_where('partner_ext', array('partner_id'=>$partnerId));
+        return $query->row();
+    }
+    
+    public function updatePartnerExt($id, $fanpage, $message, $link, $paypal, $address){
+        $data = array(
+            'partner_id' => $id,
+            'fanpage' => $fanpage,
+            'donation_message' => $message,
+            'donation_link' => $link,
+            'donation_paypal' => $paypal,
+            'donation_address' => $address
+        );
+        
+        $query = $this->db->get_where('partner_ext', array('partner_id'=>$id));
+        
+        if ($query->row_array()){
+            $this->db->where('partner_id', $id);
+            return $this->db->update('partner_ext', $data);
+        } else {
+            return $this->createPartnerExt($id, $fanpage, $message, $link, $paypal, $address);
+        }
+    }
+    
+    public function createPartnerExt($id, $fanpage, $message, $link, $paypal, $address){
+        $data = array(
+            'partner_id' => $id,
+            'fanpage' => $fanpage,
+            'donation_message' => $message,
+            'donation_link' => $link,
+            'donation_paypal' => $paypal,
+            'donation_address' => $address
+        );
+        return $this->db->insert('partner_ext', $data);      
+    }
+    
+    public function updatePartner($id, $name, $logo, $icon, $admin, $email, $address, $phone,$website,$type, $description){
+        // We will update in multiple table
+        // 'partner' table
+        $data = array(
+            'PartnerName' => $name,
+            'LogoURL' => $logo,
+            'IconURL' => $icon,
+            'AdminName' => $admin,
+            'Address' => $address,
+            'PhoneNumber' => $phone,
+            'WebsiteURL' => $website,
+            'OrganizationTypeId' => $type,
+            'Description' => $description
+        );
+        $this->db->where('id', $id);
+        $this->db->update('partner', $data);
+        
+        // 'user' table        
+        // Get user ID
+        $query = $this->db->get_where('userpartner', array('PartnerId'=>$id));
+        $userId = $query->row()->UserId;
+        $dataUser = array(
+            'Email' => $email
+        );
+        $this->db->where('id', $userId);
+        $this->db->update('user', $dataUser);
+        
+        return true;
+    }
+    
+    public function deletePartner($partnerId){
+        // We will delete from multiple (5) table
+        // Because we don't set foreign key between table so we can easily delete
+        // table one by one without worrying about foreign key constraint.
+        
+        // Get user ID
+        $query = $this->db->get_where('userpartner', array('PartnerId'=>$partnerId));
+        $result = $query->row();
+        if ($result){
+            $userId = $result->UserId;
+        } else {
+            $userId = 0;
+        }
+        
+        $this->db->trans_start();
+        
+        // user role
+        $this->db->delete('userrole', array('UserId'=>$userId));
+        // user
+        $this->db->delete('user', array('Id'=>$userId));
+        // userpartner
+        $this->db->delete('userpartner', array('PartnerId'=>$partnerId));
+        // partner
+        $this->db->delete('partner', array('Id'=>$partnerId));
+        // partner_ext
+        $this->db->delete('partner_ext', array('partner_id'=>$partnerId));
+        
+        $this->db->trans_complete();
+        
+        if ($this->db->trans_status() === FALSE) {
+            return FALSE;
+        }
+        return TRUE;
+    }
+    
 }

@@ -71,14 +71,24 @@ class Organization extends App_Controller {
         $this->render_page("organization".$this->language.'/create_donation', $this->data);
     }
     
-    public function create_quiz(){
-        $this->page_title = 'Create a Quiz';
-        $this->current_section = 'quiz';
+//    public function create_quiz(){
+//        $this->page_title = 'Create a Quiz';
+//        $this->current_section = 'quiz';
+//        $this->assets_css[] = 'admin.css';
+//        $this->assets_js[] = 'organization/create_quiz.js';
+//        $this->data['partnerId']= $this->session->userdata('partner_id');
+//        $this->render_page("organization".$this->language.'/create_quiz', $this->data);
+//    }
+    
+    public function profile(){
+        $this->page_title = 'Profile';
+        $this->current_section = 'profile';
         $this->assets_css[] = 'admin.css';
-        $this->assets_js[] = 'organization/create_quiz.js';
+        $this->assets_js[] = 'organization/profile.js';
         $this->data['partnerId']= $this->session->userdata('partner_id');
-        $this->render_page("organization".$this->language.'/create_quiz', $this->data);
+        $this->render_page("organization".$this->language.'/profile', $this->data);
     }
+            
     
     //change password
     function change_password() {

@@ -34,6 +34,15 @@ class Admin extends App_Controller {
         $this->assets_js[] = 'bootbox/bootbox.min.js';
         $this->render_page_admin('admin/index');
     }
+    
+    public function create_quiz(){
+        $this->page_title = 'Create a Quiz';
+        $this->current_section = 'home';
+        $this->assets_css[] = 'admin.css';
+        $this->assets_js[] = 'organization/create_quiz.js';
+        $this->data['partnerId']= $this->session->userdata('partner_id');
+        $this->render_page_admin("organization/create_quiz", $this->data);
+    }
 
     public function edit_quiz($id = NULL) {
         if ($id == NULL) {

@@ -158,7 +158,7 @@
                                 <option value="2" <?php echo set_select('type', '2'); ?> >International Non-profit organization</option>
                                 <option value="3" <?php echo set_select('type', '3'); ?> >Child Care Center or Shelter</option>
                                 <option value="4" <?php echo set_select('type', '4'); ?> >Mass Organization</option>
-                                <option value="5" <?php echo set_select('type', '4'); ?> >Religious Organization</option>
+                                <option value="5" <?php echo set_select('type', '5'); ?> >Religious Organization</option>
                             </select>
                         </div>
                     </div>

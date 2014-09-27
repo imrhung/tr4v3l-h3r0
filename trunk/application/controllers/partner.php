@@ -96,6 +96,109 @@ class Partner extends App_Controller {
         }
         echo json_encode($result);
     }
-}
+    
+    public function getPartnerExt(){
+        $id = $this->input->post("partner_id");
 
+        // Initialization Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+
+        $resultCheck = $this->partner_model->getPartnerExt($id);
+
+        if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+            $result['info']['partner_ext'] = $resultCheck;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+
+        echo json_encode($result);
+    }
+    
+    public function updatePartnerExt(){
+        $id = $this->input->post('partner_id');
+        $fanpage = $this->input->post('fanpage');
+        $message = $this->input->post('donation_message');
+        $link = $this->input->post('donation_link');
+        $paypal = $this->input->post('donation_paypal');
+        $address = $this->input->post('donation_address');
+        
+        // Initialization notification Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+
+        // 	Update data
+        $resultCheck = $this->partner_model->updatePartnerExt($id, $fanpage, $message, $link, $paypal, $address);
+
+        //	Notification
+        if ($resultCheck == 'Success') {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+        echo json_encode($result);
+    }
+    
+    public function updatePartner(){
+        $id = $this->input->post('partner_id');
+        $name = $this->input->post('name');
+        $logo = $this->input->post('logo_image');
+        $icon = $this->input->post('icon_image');
+        $admin = $this->input->post('admin_name');
+        $email = $this->input->post('email');
+        $address = $this->input->post('address');
+        $phone = $this->input->post('phone');
+        $website = $this->input->post('website');
+        $type = $this->input->post('type');
+        $description = $this->input->post('description');
+        
+        // Initialization notification Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+
+        // 	Update data
+        $resultCheck = $this->partner_model->updatePartner($id, $name, $logo, $icon, $admin, $email, $address, $phone,$website,$type, $description);
+
+        //	Notification
+        if ($resultCheck == 'Success') {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+        echo json_encode($result);
+    }
+    
+    public function deletePartner(){
+        $id = $this->input->post('partner_id');
+        
+        // Initialization notification Array
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+
+        // 	Update data
+        $resultCheck = $this->partner_model->deletePartner($id);
+
+        //	Notification
+        if ($resultCheck == 'Success') {
+            $result['code'] = 1;
+            $result['message'] = "Success";
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Fail";
+        }
+        echo json_encode($result);
+    }
+    
+}
 ?>

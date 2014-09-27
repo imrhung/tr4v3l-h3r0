@@ -56,11 +56,13 @@ class Service extends App_Controller {
         if ($resultCheck == 'Success') {
             $result['code'] = 1;
             $result['message'] = "Success";
+        } else if ($resultCheck == 'Success'){
+            $result['code'] = 2;
+            $result['message'] = "Done";
         } else {
             $result['code'] = 0;
             $result['message'] = "Fail";
         }
-
         echo json_encode($result);
     }
 
