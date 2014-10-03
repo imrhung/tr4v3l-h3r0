@@ -19,6 +19,14 @@ Response:
 }
 }}}
 
+There are case that partner have not enter this information, the return will be:
+{{{
+{
+    "code": 0,
+    "message": "Fail"
+}
+}}}
+
 =Get player avatar=
 Request: to : service/getavatar
  * avatar_id (Put nothing if wanna get all avatar)
