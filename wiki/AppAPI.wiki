@@ -1,3 +1,24 @@
+=Get Partner Extended Information=
+Request: to : partner/getPartnerExt
+ * partner_id
+Response:
+{{{
+{
+    "code": 1,
+    "message": "Success",
+    "info": {
+        "partner_ext": {
+            "partner_id": "17",
+            "fanpage": "https://sdfslfldk",
+            "donation_message": "Help you will be returned.",
+            "donation_link": "hi there",
+            "donation_paypal": "httpsdfsfddjf",
+            "donation_address": "122 sdfsfds"
+        }
+    }
+}
+}}}
+
 =Get player avatar=
 Request: to : service/getavatar
  * avatar_id (Put nothing if wanna get all avatar)
