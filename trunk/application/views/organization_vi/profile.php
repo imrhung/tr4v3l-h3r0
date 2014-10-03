@@ -3,7 +3,7 @@
 
     <div id="page-wrapper">
 
-        <h1><b>Edit Profile in Hero for Zero.</b></h1>
+        <h1><b>Edit your Profile in Hero for Zero.</b></h1>
         <p></p>
 
         <!--Main form on organization information.-->
@@ -30,9 +30,8 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="password">Password</label>
                         <div class="col-md-4">
-                            <?php if (!$admin) : ?>
                             <a href="<?php echo site_url('organization/change_password') ?>">Change Password</a>
-                            <?php endif ?>
+
                         </div>
                     </div>
 

@@ -198,7 +198,7 @@ class Admin extends App_Controller {
     
     public function partner($id = NULL){
         if ($id == NULL) {
-            redirect("admin/index");
+            redirect("admin/partners");
         } else {
             $this->page_title = 'Partner';
             $this->current_section = "partners";
@@ -209,6 +209,22 @@ class Admin extends App_Controller {
                 'partnerId' => $id
             );
             $this->render_page_admin('admin/partner', $data);
+        }
+    }
+    
+    public function edit_partner($id = NULL){
+        if ($id == NULL) {
+            redirect("admin/partners");
+        } else {
+            $this->page_title = 'Edit Partner';
+            $this->current_section = 'partners';
+            $this->assets_js[] = 'organization/profile.js';
+
+            $data = array(
+                'partnerId' => $id,
+                'admin' => TRUE
+            );
+            $this->render_page_admin('organization/profile', $data);
         }
     }
     
