@@ -31,6 +31,13 @@
                     </div>
                     
                     <br>
+                    
+                    <div class="form-group">
+                        <label class="control-label" for="approve">Administration</label>
+                        <div class="col-md-12" id="edit_partner">
+                            <a href="/admin/edit_partner/<?php echo $partnerId ?>">Edit partner information</a>
+                        </div>
+                    </div>
                     <!-- Button 
                     <div class="form-group">
                         <label class="control-label" for="delete"></label>

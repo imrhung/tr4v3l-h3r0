@@ -50,7 +50,8 @@ function loadPartnersTable() {
                         } else {
                             isApproved = 'No';
                         }
-                        action = '<a href="' + baseUrl + 'admin/partner/' + partner.Id + '">View</a>';
+                        
+                        action = '<div style="float: left;"><a style="color: blue;" href="' + baseUrl + 'admin/partner/' + partner.Id + '">View</a></div>  <div style="float: right; font-size:11px"><a style="color: red;" onclick="callDelete('+partner.Id+')" href="javacript:void(0);">Delete</a></div>';
                         tableData.push([
                             '<strong>'+partner.PartnerName+'</strong>',
                             partner.Description,
@@ -89,7 +90,7 @@ function deletePartner(partnerId) {
     $.post(
             baseUrl + "partner/deletePartner",
             {
-                id: partnerId
+                partner_id: partnerId
             },
             function(data) {
                 console.log(data);
