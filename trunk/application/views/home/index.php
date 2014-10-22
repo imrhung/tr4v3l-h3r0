@@ -13,9 +13,9 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.9.1.min.js"></script>
 
         <script>
-            (function(i, s, o, g, r, a, m) {
+            (function (i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function() {
+                i[r] = i[r] || function () {
                     (i[r].q = i[r].q || []).push(arguments)
                 }, i[r].l = 1 * new Date();
                 a = s.createElement(o),
@@ -34,16 +34,23 @@
     <body>
         <div class="container-fluid" id="homepage-head">
             <br>
-            <p>
+            <div class="row">
                 <img src='<?php echo base_url(); ?>assets/img/everyone.png' class='img-responsive img-center' alt='Hero For Zero'>
-            </p>
-            <p>
+            </div>
+            <div class="row">
                 <img src='<?php echo base_url(); ?>assets/img/download_btn.png' class='img-responsive img-center' alt='Hero For Zero'>
-            </p>
-            <p>
-                <img src='<?php echo base_url(); ?>assets/img/iphone.png' class='img-responsive img-center' alt='Hero For Zero'>
-            </p>
-            <div class="container">
+            </div>
+            <div class="row img-center">
+                <div id="container">
+                    <div id="main_image">
+                        <img src="http://travel.hero/assets/img/IPhone_5s.png" class="img-responsive img-center" width="250" alt="Hero For Zero">
+                    </div>
+                    <div id="overlay_image">
+                        <img src="http://travel.hero/assets/img/HEROforZERO_640x1136.gif" class="img-responsive img-center" width="250" alt="Hero For Zero">
+                    </div>
+                </div>
+            </div>
+            <div class="row container">
                 <p>
                     Every child in Vietnam has the right to basic health services, nutrition, education, and to be protected from abuse and exploitation, yet so many are deprived of these basic rights.
                 </p>
@@ -60,7 +67,7 @@
                     Your small actions combined make big difference.
                 </h1>
                 <p>
-                    
+
                 </p>
                 <p>
                     Want to help us with content?

@@ -15,7 +15,8 @@ $(document).ready(function(){
             { "sTitle": "Action", "sClass": "center" }
         ],
         "sPaginationType": "bootstrap",
-        "bSort": false
+        "bSort": false,
+        "aaSorting": []
     });
     loadQuestTable();
 });
@@ -116,7 +117,8 @@ $(document).ready(function(){
             { "sTitle": "Action", "sClass": "center" }
         ],
         "sPaginationType": "bootstrap",
-        "bSort": false
+        "bSort": true,
+        "aaSorting": []
     });
     loadQuizTable();
 });
@@ -156,7 +158,7 @@ function loadQuizTable(){
                         answers = "";
                         for (var j=0; j<choices.length; j++){
                             if (quiz.correct_choice_id == choices[j].id){
-                                answers += "<b>" + choices[j].content + "</b><br>";
+                                answers += "<u>" + choices[j].content + "</u><br>";
                             } else {
                                 answers += choices[j].content + "<br>";
                             }
@@ -263,7 +265,8 @@ $(document).ready(function(){
             { "sTitle": "Action", "sClass": "center" }
         ],
         "sPaginationType": "bootstrap",
-        "bSort": false
+        "bSort": true,
+        "aaSorting": []
     });
     loadActivityTable();
     
@@ -397,7 +400,8 @@ $(document).ready(function(){
             { "sTitle": "Action", "sClass": "center" }
         ],
         "sPaginationType": "bootstrap",
-        "bSort": false
+        "bSort": true,
+        "aaSorting": []
     });
     loadDonationTable();
     
