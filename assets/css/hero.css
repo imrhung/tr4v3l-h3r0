@@ -238,7 +238,7 @@ ul.image_picker_selector li .thumbnail{
 /* Remove padding in phone view */
 @media (min-width: 768px) {
     body {
-        //	margin-top:40px;
+        /*//	margin-top:40px;*/
     }
 }
 
@@ -266,18 +266,17 @@ ul.image_picker_selector li .thumbnail{
     background-color: white;
 }
 
-// DataTables modify
+/*DataTables modify*/
 #quest-table_filter {
-    //margin-top: 5px;
+    /*margin-top: 5px;*/
 }
 div.dataTables_paginate {
     padding-right: 10px;
 }
 
-// Scroll to top 
+/*Scroll to top*/ 
 
 div.scroll-top-wrapper{
-    background-color: red;
 }
 /*#scroll-to-top-wrapper{
      position: fixed;
@@ -339,4 +338,22 @@ div.scroll-top-wrapper{
 }
 .scroll-top-wrapper i.fa {
     line-height: inherit;
+}
+
+/* Home page */
+#container{
+    position: relative;
+    width: 250px;
+    height: 570px;
+    margin: auto;
+}
+#main_image{
+    width: 100%;
+    height: 100%;
+}
+#overlay_image {
+    position: absolute;
+    top: 70px;
+    right: 15px;
+    width: 218px;
 }

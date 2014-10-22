@@ -40,21 +40,22 @@ function drawCategoryTable() {
 
     // Post to api
     $.post(
-            baseUrl + "quizcategory/getQuizCategoryList",
+            baseUrl + "quizcategory/getQuizCategory",
             {
-                pageSize: 0,
-                pageNumber: 0
             },
     function(data) {
         console.log(data);
         if (data.code == 1) { // Successful
             var categorys = data.info.category;
-            var cateTable = $('#category-table');
+            var cateTable = $('#category-table tbody');
+            cateTable.empty();
             for (var i = 0; i < categorys.length; i++) {
                 var row = $('<tr></tr>');
                 var name = $('<td></td>').text(categorys[i].CategoryName);
-                var background = $('<td></td>').text(categorys[i].Id);
-                row.append(name).append(background);
+                var numQuestion = $('<td></td>').text(categorys[i].quiz_count);
+                var action = '<td><div style="float: left;"><a onclick="callEditCategory(' + categorys[i].Id + ')" href="javacript:void(0);">Change Name</a></div> '
+                        +' <div style="float: right; font-size:11px"><a style="color: red;" onclick="callDeleteCategory(' + categorys[i].Id + ')" href="javacript:void(0);">Delete</a></div></td>';
+                row.append(name).append(numQuestion).append(action);
                 cateTable.append(row);
             }
 
@@ -224,7 +225,7 @@ function createCategory() {
              */
 
             // Remove old table
-            $('#category-table tbody').remove();
+            //$('#category-table tbody').remove();
 
             // Draw new table
             drawCategoryTable();
@@ -268,7 +269,7 @@ function deleteAnimation(animationId){
                     
                     drawAnimationTable();
                 } else { // Fail
-                    bootbox.alert("Some error happened that we cannot delete the quest. Please try again later.", 
+                    bootbox.alert("Some error happened that we cannot delete. Please try again later.", 
                         function(){
                             
                         });
@@ -278,3 +279,78 @@ function deleteAnimation(animationId){
             );
 }
 
+function callDeleteCategory(categoryId){
+    bootbox.confirm(
+            "Are you sure you want to DELETE this category. The action cannot be undone!",
+            function(result){
+                if (result){
+                    deleteCategory(categoryId);
+                }
+            }
+        );
+}
+
+function deleteCategory(categoryId){
+    var baseUrl = $("#base-url").attr("href");
+    console.log("Deleting");
+    // Make the spining when waiting
+    // Disable submit button
+
+    // Post to api
+    $.post(
+            baseUrl + "quizcategory/deleteQuizCategory",
+            {
+                id: categoryId
+            },
+            function(data) {
+                console.log(data);
+                if (data.code === 1) { // Successful
+                    
+                    drawCategoryTable();
+                } else { // Fail
+                    bootbox.alert("Some error happened that we cannot delete. Please try again later.", 
+                        function(){
+                            
+                        });
+                }
+            },
+            "json"
+            );
+}
+
+function callEditCategory(categoryId){
+    bootbox.prompt("New name of the category: ", function(result){
+        if (!result){
+            // Do nothing
+        } else {
+            // Change it.
+            editCategory(categoryId, result);
+        }
+    });
+}
+
+function editCategory(categoryId, category){
+    var baseUrl = $("#base-url").attr("href");
+    // Make the spining when waiting
+
+    // Post to api
+    $.post(
+            baseUrl + "quizcategory/updateQuizCategory",
+            {
+                id: categoryId,
+                category_name: category
+            },
+            function(data) {
+                console.log(data);
+                if (data.code === 1) { // Successful
+                    drawCategoryTable();
+                } else { // Fail
+                    bootbox.alert("Some error happened. Please try again later.", 
+                        function(){
+                            
+                        });
+                }
+            },
+            "json"
+            );
+}
