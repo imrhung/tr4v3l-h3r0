@@ -43,10 +43,10 @@
             <div class="row img-center">
                 <div id="container">
                     <div id="main_image">
-                        <img src="http://travel.hero/assets/img/IPhone_5s.png" class="img-responsive img-center" width="250" alt="Hero For Zero">
+                        <img src="<?php echo base_url(); ?>assets/img/IPhone_5s.png" class="img-responsive img-center" width="250" alt="Hero For Zero">
                     </div>
                     <div id="overlay_image">
-                        <img src="http://travel.hero/assets/img/HEROforZERO_640x1136.gif" class="img-responsive img-center" width="250" alt="Hero For Zero">
+                        <img src="<?php echo base_url(); ?>assets/img/HEROforZERO_640x1136.gif" class="img-responsive img-center" width="250" alt="Hero For Zero">
                     </div>
                 </div>
             </div>
