@@ -71,8 +71,20 @@ class Donation_Model extends CI_Model {
     public function insertDonation($title, $description, $partner_id, $date) {
 
         try {
-            $sql = 'CALL sp_Insert_Donation(?, ?, ?, ?)';
-            $result = $this->db->query($sql, array($title, $description, $partner_id, $date));
+            $data = array(
+                'Title' => $title,
+                'Description' => $description,
+                'RequiredPoint' => 10,
+                'MedalId' => 0,
+                'PartnerId' => $partner_id,
+                'IsApproved' => 0,
+                'CreateDate' => $date
+            );
+            $this->db->insert('donation', $data);
+            
+            // Don't use store procedure anymore
+            //$sql = 'CALL sp_Insert_Donation(?, ?, ?, ?)';
+            //$result = $this->db->query($sql, array($title, $description, $partner_id, $date));
             return 'Success';
         } catch (Exception $e) {
             return $e->getMessage();

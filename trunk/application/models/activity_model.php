@@ -77,9 +77,22 @@ class Activity_Model extends CI_Model {
     public function insertActivity($title, $description, $partner_id, $action_id, $action_content, $date) {
 
         try {
-            $sql = 'CALL sp_Insert_Activity(?, ?, ?, ?, ?, ?)';
-            $result = $this->db->query($sql, array($title, $description, $partner_id,
-                $action_id, $action_content, $date));
+            $data = array(
+                'PartnerId' => $partner_id,
+                'Title' => $title,
+                'Description' => $description,
+                'ActionId' => $action_id,
+                'BonusPoint' => 2,
+                'IsApproved' => 0,
+                'CreateDate' => $date,
+                'ActionContent' => $action_content
+            );
+            $this->db->insert('activity', $data);
+            
+            // We not use this Stored Procedure.
+//            $sql = 'CALL sp_Insert_Activity(?, ?, ?, ?, ?, ?)';
+//            $result = $this->db->query($sql, array($title, $description, $partner_id,
+//                $action_id, $action_content, $date));
             return 'Success';
         } catch (Exception $e) {
             return $e->getMessage();
