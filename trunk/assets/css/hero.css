@@ -8,11 +8,12 @@
 */
 
 
-@import url(http://fonts.googleapis.com/css?family=Varela+Round);
+@import url(http://fonts.googleapis.com/css?family=Nunito:700);
 @import url(http://fonts.googleapis.com/css?family=Lato);
 
 body {
     font-family: 'Lato', sans-serif;
+    font-size: 16px;
 }
 
 .navbar-nav li a {
@@ -293,9 +294,9 @@ ul.image_picker_selector li .thumbnail{
 }
 #overlay_image {
     position: absolute;
-    top: 70px;
-    right: 15px;
-    width: 218px;
+    top: 74px;
+    right: 33px;
+    width: 239px;
 }
 .ver-center>tbody>tr>td{
     vertical-align: middle;
@@ -317,23 +318,50 @@ ul.image_picker_selector li .thumbnail{
 }
 .btn-hero-blue:hover, .btn-hero-blue:focus, .btn-hero-blue:active {
     color: #fff;
-    border-color: orange;
+    border-color: #df6526;
     border-width: 3px;
 }
 .btn-appstore{
-    width: 205px;
+    width: 223px;
 }
 .btn-appstore .fa-apple {
     margin-left: -15px;
 }
+h2{
+    font-size: 44px;
+}
+h3{
+    font-size: 30px;
+}
+.btn {
+    font-size: 16px;
+}
 .text-large {
     font-size: 26px;
 }
+.text-xlarge {
+    font-size : 30px;
+    font-weight: 900;
+}
+.text-24{
+    font-size: 24px;
+    line-height: 29px;
+}
+.text-21{
+    font-size : 18px;
+}
+.text-18{
+    font-size: 20px;
+    font-weight: 700;
+}
 .text-xxlarge{
-    font-size: 60px;
+    font-size: 54px;
+}
+.text-44{
+    font-size: 44px;
 }
 .text-medium{
-    font-size: 16px;
+    font-size: 18px;
 }
 .text-small {
     font-size: 12px;
@@ -350,20 +378,71 @@ ul.image_picker_selector li .thumbnail{
 .add-space-above-sm {
     margin-top: 15px;
 }
+.add-space-above-xs {
+    margin-top: 10px;
+}
+.add-space-below-xs{
+    margin-bottom: 10px;
+}
 .add-space-above-md {
-    margin-top: 25px;
+    margin-top: 30px;
+}
+.add-space-above-lg{
+    margin-top: 60px;
+}
+.add-space-above-xxl{
+    margin-top: 120px;
 }
 .add-space-below-sm{
     margin-bottom: 15px;
 }
 .add-space-below-md{
-    margin-bottom: 25px;
+    margin-bottom: 30px;
+}
+.add-space-below-lg{
+    margin-bottom: 60px;
+}
+.add-margin-left-md{
+    margin-left: 40px;
 }
 .footer-blue{
     background-color: #26AAE1;
 }
 .font-varela-round{
-    font-family: 'Varela Round', sans-serif;
+    font-family: 'Nunito', sans-serif;
+}
+.modal-content{
+    background-color: #26AAE1;
+}
+.modal-header{
+    border-bottom: 3px solid white;
+}
+.modal-body{
+    padding: 0px;
+}
+#donateModal a{
+    color: white;
+}
+#donateModal a:hover, #donateModal a:focus{
+    color: white;
+    text-decoration: none;
+}
+#donateModal table>tbody>tr:hover>td {
+    background-color: #df6526;
+}
+.avatar-overlay{
+    position: relative;
+}
+.avatar-overlay .img-circle{
+    color: #26AAE1;
+    background-color: white;
+}
+.text-name-alt{
+    position: absolute;
+    top: 10px;
+    left: 53px;
+    color: #26AAE1;
+    font-size: 28px;
 }
 
 

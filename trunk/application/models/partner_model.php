@@ -70,6 +70,15 @@ class Partner_Model extends CI_Model {
         return $query->row();
     }
     
+    public function getPartnerExtList(){
+        $this->db->select("*");
+        $this->db->from('partner_ext');
+        $this->db->join('partner', 'partner.Id = partner_ext.partner_id');
+        
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    
     public function updatePartnerExt($id, $fanpage, $message, $link, $paypal, $address){
         $data = array(
             'partner_id' => $id,

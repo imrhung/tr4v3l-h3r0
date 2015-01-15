@@ -85,6 +85,7 @@ class Organization extends App_Controller {
         $this->current_section = 'profile';
         $this->assets_js[] = 'organization/profile.js';
         $this->data['partnerId']= $this->session->userdata('partner_id');
+        $this->data['admin'] = FALSE;
         $this->render_page("organization".$this->language.'/profile', $this->data);
     }
             
