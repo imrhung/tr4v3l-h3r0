@@ -487,6 +487,7 @@ class Service_Model extends CI_Model {
      */
 
     public function getLeaderBoard($pageNumber, $pageSize) {
+        mysqli_next_result($this->db->conn_id);
         if ((int) $pageSize === 0){
             $result = $this->db->get('leaderboard');
         } else {

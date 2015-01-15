@@ -8,6 +8,12 @@
 */
 
 
+@import url(http://fonts.googleapis.com/css?family=Varela+Round);
+@import url(http://fonts.googleapis.com/css?family=Lato);
+
+body {
+    font-family: 'Lato', sans-serif;
+}
 
 .navbar-nav li a {
     color: #777;
@@ -118,7 +124,7 @@ div#watermark {
 }
 
 body{
-    background-color: #F2F2F2;
+    background-color: #e6e6e6;
 }
 
 .top-alert{
@@ -197,9 +203,9 @@ root {
     margin-right: 20px;
 }
 
-* {
+/** {
     font-family: 'Lato', sans-serif;
-}
+}*/
 
 @font-face {
     font-family: 'Lato';
@@ -260,11 +266,124 @@ ul.image_picker_selector li .thumbnail{
 }
 
 /* Home page */
+/*.container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+}*/
 #homepage-head {
     width: 100%;
     height: 460px;
     background-color: white;
 }
+.blur{
+    opacity: .8;
+}
+.send-to-front{
+    z-index: 10;
+}
+#phone-container{
+    position: relative;
+    width: 300px;
+    height: 590px;
+    margin: auto;
+}
+#main_image{
+    width: 100%;
+    height: 100%;
+}
+#overlay_image {
+    position: absolute;
+    top: 70px;
+    right: 15px;
+    width: 218px;
+}
+.ver-center>tbody>tr>td{
+    vertical-align: middle;
+}
+.table-noborder>tbody>tr>td{
+    border-top: none;
+}
+.border-bottom{
+    border-bottom: solid #26AAE1 3px;
+}
+.btn-hero-blue {
+    color: #fff;
+    background-color: #26AAE1;
+    border-color: #e6e6e6;
+    border-width: 3px;
+    border-radius: 7px;
+    padding: 6px 20px;
+    margin: 2px;
+}
+.btn-hero-blue:hover, .btn-hero-blue:focus, .btn-hero-blue:active {
+    color: #fff;
+    border-color: orange;
+    border-width: 3px;
+}
+.btn-appstore{
+    width: 205px;
+}
+.btn-appstore .fa-apple {
+    margin-left: -15px;
+}
+.text-large {
+    font-size: 26px;
+}
+.text-xxlarge{
+    font-size: 60px;
+}
+.text-medium{
+    font-size: 16px;
+}
+.text-small {
+    font-size: 12px;
+}
+.text-xsmall {
+    font-size: 10px;
+}
+.text-white {
+    color: white;
+}
+.text-blue {
+    color: #26AAE1;
+}
+.add-space-above-sm {
+    margin-top: 15px;
+}
+.add-space-above-md {
+    margin-top: 25px;
+}
+.add-space-below-sm{
+    margin-bottom: 15px;
+}
+.add-space-below-md{
+    margin-bottom: 25px;
+}
+.footer-blue{
+    background-color: #26AAE1;
+}
+.font-varela-round{
+    font-family: 'Varela Round', sans-serif;
+}
+
+
+@media (min-width: 768px) {
+    .height-0{
+        height: 1px;
+    }
+    #phone-container{
+        margin-top: -230px;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
 
 /*DataTables modify*/
 #quest-table_filter {
@@ -340,20 +459,3 @@ div.scroll-top-wrapper{
     line-height: inherit;
 }
 
-/* Home page */
-#container{
-    position: relative;
-    width: 250px;
-    height: 570px;
-    margin: auto;
-}
-#main_image{
-    width: 100%;
-    height: 100%;
-}
-#overlay_image {
-    position: absolute;
-    top: 70px;
-    right: 15px;
-    width: 218px;
-}

@@ -27,7 +27,6 @@
         <div class="container">
         <div class='content-center'>
             
-            
         <form class="form-horizontal" action ='' method='POST'>
             <fieldset>
                 <img src='<?php echo base_url(); ?>assets/img/sign_up_logo.png' class='img-responsive img-center' alt='Hero For Zero'>
@@ -100,6 +99,6 @@
             opt.textContent = 'Tiếng Việt';
             select.appendChild(opt);
         </script>
-        
+
     </body>
 </html>

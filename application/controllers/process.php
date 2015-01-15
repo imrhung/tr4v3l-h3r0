@@ -12,14 +12,14 @@ class Process extends App_Controller {
     /*
      * Upload photo to same folder of source code. :)
      */
+
     public function upload() {
         // Codeigniter config
         $config['upload_path'] = './assets/uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = '1000';
-        $config['max_width'] = '2024';
-        $config['max_height'] = '1768';
-
+        //$config['max_size'] = '1000';
+        //$config['max_width'] = '2048';
+        //$config['max_height'] = '1768';
         //set filename in config for upload
         $config['file_name'] = md5(time());
 
@@ -38,33 +38,42 @@ class Process extends App_Controller {
             $result['code'] = 1;
             $result['message'] = "Success";
             $result['info'] = array(
-                'file_name' => $this->config->base_url()."assets/uploads/".$this->upload->file_name
+                'file_name' => $this->config->base_url() . "assets/uploads/" . $this->upload->file_name
             );
         } else {
             // Upload error
             $result['code'] = 0;
             $result['message'] = "Fail";
+            $result['info'] = $this->upload->display_errors();
         }
 
         echo json_encode($result);
     }
-    
+
+    function test() {
+        $result = array();
+        $result["name"] = $this->input->post("name");
+        echo json_encode($result);
+    }
+
     /*
      * Upload photo to same folder of source code. :)
      */
+
     public function upload_files() {
         // Codeigniter config
         $config['upload_path'] = './assets/uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = '1000';
-        $config['max_width'] = '2024';
-        $config['max_height'] = '1768';
-
+        //$config['max_size'] = '1000';
+        //$config['max_width'] = '2024';
+        //$config['max_height'] = '1768';
         //set filename in config for upload
-        $config['file_name'] = array(md5(time()+1), md5(time()));
+        $config['file_name'] = array(md5(time() + 1), md5(time()));
 
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
+        
+        $postParams = $this->input->post();
 
         // Init result json file:
         $result = array();
@@ -77,12 +86,14 @@ class Process extends App_Controller {
             $uploadInfo = $this->upload->get_multi_upload_data();
             $result['code'] = 1;
             $result['message'] = "Success";
+            $fileNames = array();
+            foreach ($uploadInfo as $info) {
+                $fileNames[] = $this->config->base_url()."assets/uploads/".$info['file_name'];
+            }
             $result['info'] = array(
-                'file_name' => array(
-                    $this->config->base_url()."assets/uploads/".$uploadInfo[0]['file_name'],
-                    $this->config->base_url()."assets/uploads/".$uploadInfo[1]['file_name'],
-                    )
-            );
+                'file_name' => $fileNames,
+                'post' => $postParams
+                    );
         } else {
             // Upload error
             $result['code'] = 0;
@@ -91,11 +102,12 @@ class Process extends App_Controller {
 
         echo json_encode($result);
     }
-    
+
     /*
      * Upload to http://mytempbucket.s3.amazonaws.com/
      * Return json file
      */
+
     public function upload_s3() {
 
         //error_reporting(E_ALL);
@@ -120,9 +132,9 @@ class Process extends App_Controller {
         // we have three forms on the test page, so we redirect accordingly
         if (true) {
             $handle = new Upload($_FILES['userfile']);
-            
+
             if ($handle->uploaded) {
-                
+
                 // Keep origin image, no resize. :)
                 $handle->image_resize = false;
                 $handle->image_ratio_y = true;
@@ -148,8 +160,8 @@ class Process extends App_Controller {
                     $s3 = new S3(awsAccessKey, awsSecretKey);
                     //$s3->putBucket($bucket, S3::ACL_PUBLIC_READ);
                     //Rename image name. 
-                    $actual_image_name = time() . ".".$handle->file_src_name_ext;
-                    
+                    $actual_image_name = time() . "." . $handle->file_src_name_ext;
+
                     // Init result json file:
                     $result = array();
                     $result['code'] = -1;
@@ -158,14 +170,14 @@ class Process extends App_Controller {
 
                     if ($s3->putObjectFile($url, $bucket, $actual_image_name, S3::ACL_PUBLIC_READ)) {
                         $s3file = 'http://' . $bucket . '.s3.amazonaws.com/' . $actual_image_name;
-                        
+
                         // Upload successful
                         $result['code'] = 1;
                         $result['message'] = "Success";
                         $result['info'] = array(
                             'file_name' => $s3file
                         );
-                    } else{
+                    } else {
                         // Upload error
                         $result['code'] = 0;
                         $result['message'] = "Fail";
@@ -176,7 +188,7 @@ class Process extends App_Controller {
                     // Upload error
                     $result['code'] = 0;
                     $result['message'] = "Fail";
-                    $result['info']= $handle->error;
+                    $result['info'] = $handle->error;
                 }
 
                 // we delete the temporary files
@@ -225,7 +237,7 @@ class Process extends App_Controller {
             $handle = new Upload($_FILES['my_field']);
 
             if ($handle->uploaded) {
-                
+
                 // Resize image
                 $handle->image_resize = true;
                 $handle->image_ratio_y = true;
@@ -251,7 +263,7 @@ class Process extends App_Controller {
                     $s3 = new S3(awsAccessKey, awsSecretKey);
                     //$s3->putBucket($bucket, S3::ACL_PUBLIC_READ);
                     //Rename image name. 
-                    $actual_image_name = time() . ".". $handle->file_dst_name;
+                    $actual_image_name = time() . "." . $handle->file_dst_name;
 
                     if ($s3->putObjectFile($url, $bucket, $actual_image_name, S3::ACL_PUBLIC_READ)) {
                         $s3file = 'http://' . $bucket . '.s3.amazonaws.com/' . $actual_image_name;

@@ -18,7 +18,16 @@ class Home extends App_Controller {
                 redirect('organization');
             }
         }
-        $this->load->view('home/index');
+        // User not login
+        $this->load->model('service_model');
+        $data = array();
+        // Get the number of children that need to save until now.
+        $numberOfChildren = $this->service_model->getNumberOfChildrenByUserId()->numOfChildren;
+        $data['children'] = number_format($numberOfChildren);
+        // Get the top 4 leader board:
+        $data['leader'] = $this->service_model->getLeaderBoard(0, 4);
+        
+        $this->load->view('home/index', $data);
     }
     
     public function unauthorized(){
