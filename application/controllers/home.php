@@ -20,12 +20,17 @@ class Home extends App_Controller {
         }
         // User not login
         $this->load->model('service_model');
+        $this->load->model('partner_model');
         $data = array();
         // Get the number of children that need to save until now.
         $numberOfChildren = $this->service_model->getNumberOfChildrenByUserId()->numOfChildren;
         $data['children'] = number_format($numberOfChildren);
         // Get the top 4 leader board:
         $data['leader'] = $this->service_model->getLeaderBoard(0, 4);
+        
+        // Get the Donation list
+        $donateList = $this->partner_model->getPartnerExtList();
+        $data['donate'] = $donateList;
         
         $this->load->view('home/index', $data);
     }
