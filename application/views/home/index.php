@@ -7,6 +7,7 @@
 
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/hero.css" media="screen" />
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.ico" type="image/x-ico">
 
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.9.1.min.js"></script>
@@ -90,7 +91,7 @@
                     <div class="row border-bottom add-space-above-sm">
                         <div class="col-sm-4 text-blue text-center">
                             <p class="text-24">
-                                Number of children to save in Vietnam under 5:
+                                Number of children under 5 to support in Vietnam:
                             </p>
                             <p class="text-xxlarge font-varela-round"><b><?php echo $children ?></b></p>
                         </div>
@@ -108,7 +109,7 @@
                                         <div class="col-xs-8">
                                             <span class="text-medium">Available on the</span>
                                             <br>
-                                            <span class="text-large">App Store</span>
+                                            <span class="text-medium">Apple App Store</span>
 
                                         </div>
                                     </div>
@@ -123,24 +124,24 @@
                             <!--Fact-->
                             <table class="table ver-center table-noborder table-condensed">
                                 <tr>
-                                    <td><img src="<?php echo base_url(); ?>assets/img/demo/vn-flag.png" height="25px"></td>
+                                    <td><img src="<?php echo base_url(); ?>assets/img/demo/vn-flag.png" height="35px"></td>
                                     <td class="text-xlarge">In Vietnam</td>
                                 </tr>
                                 <tr>
                                     <td class="text-xlarge">100</td>
-                                    <td class="text-21"><b>children die everyday</b> of preventable death</td>
+                                    <td class="text-21"><b>children die preventable</b> deaths every day </td>
                                 </tr>
                                 <tr>
                                     <td class="text-xlarge">1</td>
-                                    <td class="text-21"><b>child dies every hour</b> from injury mainly drowning or traffic accidents</td>
+                                    <td class="text-21"><b>child dies every hour</b> from injury: mainly drowning and traffic accidents</td>
                                 </tr>
                                 <tr>
                                     <td class="text-xlarge">2</td>
-                                    <td class="text-21"><b>million children</b> suffer permanent physical and brain damage from malnutrition</td>
+                                    <td class="text-21"><b>million children</b> suffer permanent physical and brain damage due to malnutrition</td>
                                 </tr>
                                 <tr>
                                     <td class="text-xlarge">3</td>
-                                    <td class="text-21"><b>million children</b> are deprived of clean water</td>
+                                    <td class="text-21"><b>million children</b> are deprived of clean drinking water</td>
                                 </tr>
                                 <tr>
                                     <td class="text-xlarge">12</td>
@@ -175,8 +176,8 @@
 
                     <!--How it works-->
                     <div class="row  add-space-above-md">
-                        <h2 class="text-center">Will you help us save the children?</h2>
-                        <h3 class="text-center">Here's how this work:</h3>
+                        <h2 class="text-center">Will you help us support the children?</h2>
+                        <h3 class="text-center">Here's how this works:</h3>
                         <!--Three steps-->
                         <div class="col-sm-4">
                             <h3>Step 1: NGOs Know</h3>
@@ -185,12 +186,12 @@
                         </div>
                         <div class="col-sm-4">
                             <h3>Step 2: Educate</h3>
-                            <p>You the HERO will educate yourself on how to help and save a child in the virtual world</p>
+                            <p>You, the HERO, will educate yourself on how to help and support a child from a preventable death in the virtual world</p>
                             <img class="img-responsive add-space-above-md" src="<?php echo base_url(); ?>assets/img/demo/educate.png" height="750px">
                         </div>
                         <div class="col-sm-4">
                             <h3>Step 3: Activate</h3>
-                            <p>Participate in NGO's activities, causes, and donations to save children in the real world</p>
+                            <p>Participate in NGO's activities and donate to NGOs, and inform your friends to support children in the real world</p>
                             <img class="img-responsive add-space-above-md" src="<?php echo base_url(); ?>assets/img/demo/activate.png" height="750px">
                         </div>
                     </div>
@@ -198,11 +199,11 @@
                     <!--Building community-->
                     <div class="row  add-space-above-md add-space-below-lg">
                         <h2 class="text-center">It's more than a game, it's a community of HEROs</h2>
-                        <h3 class="text-center add-space-below-md">Saving children | Building communities</h3>
+                        <h3 class="text-center add-space-below-md">Supporting children | Building communities</h3>
                         <!--Three groups-->
                         <div class="col-sm-4 add-space-above-xs">
                             <img class="img-responsive add-space-below-md" src="<?php echo base_url(); ?>assets/img/demo/partners.png">
-                            <p>HEROforZERO is supported by UNICEF Vietnam and having partnered with many great organizations and people who already are saving children's lives in the real world.</p>
+                            <p>HEROforZERO is supported by UNICEF Vietnam and having partnered with many great organizations and people who already are supporting children's lives in the real world.</p>
                         </div>
                         <div class="col-sm-4 add-space-above-xs">
                             <img class="img-responsive add-space-below-md" src="<?php echo base_url(); ?>assets/img/demo/ranking.png">
@@ -210,7 +211,7 @@
                         </div>
                         <div class="col-sm-4 add-space-above-xs">
                             <img class="img-responsive add-space-below-md" src="<?php echo base_url(); ?>assets/img/demo/together.png">
-                            <p>You alone cannot save 7,000,000 children. You must enlist your friends, families, co-workers, and neighbor. With this community we could do our small parts to help save the whole world.</p>
+                            <p>You alone cannot support 7,000,000 children. You must enlist your friends, families, co-workers, and neighbors to help. With this united community we could do our small parts to help change the number of preventable child deaths in Vietnam to ZERO.</p>
                         </div>
                     </div>
 
@@ -220,7 +221,7 @@
                     <!--Call for action-->
                     <div class="row  add-space-above-md">
                         <div class="col-sm-8 text-center">
-                            <p class="text-medium">Be an agent for change. The only way to save 7,000,000 children is to get a lot of people to save one child at a time. Your 
+                            <p class="text-medium">Be an agent for change. The only way to support 7,000,000 children is to get a lot of people to support one child at a time. Your 
                                 small actions combined makes a big difference. How do you get involved? Play the game and learn through the quizes. Share with your
                                 friends or donate to these many great organizations who are the true HEROforZERO.</p>
                         </div>
@@ -238,7 +239,7 @@
                                         <div class="col-xs-8">
                                             <span class="text-medium">Available on the</span>
                                             <br>
-                                            <span class="text-large">App Store</span>
+                                            <span class="text-medium">Apple App Store</span>
 
                                         </div>
                                     </div>
@@ -256,7 +257,7 @@
                 <div class="row">
                 <!--Message for member-->
                 <div class="col-md-7 col-md-offset-1 text-center add-space-above-md">
-                    Are you an organization or a person that like helping? You can sign up and help us create content and help to promote your cause and NGO.
+                    Are you an organization or a person that likes helping? You can sign up and help us create content and help promote your cause and NGO.
                 </div>
                 <div class="col-md-4 add-space-above-md">
                     <a class="btn btn-hero-blue" href="<?php echo base_url(); ?>login">Login</a>
